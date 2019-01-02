@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "babel-node src/server/app.js",
-     "prestart": "babel src/client/app.js -o public/bundle.js"
+    "prestart": "babel src/client/app.js -o public/bundle.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/shannenwu/catbook-react#readme",
   "dependencies": {
+    "@babel/preset-react": "^7.0.0",
     "express": "^4.16.4",
     "webpack": "^4.28.3",
     "webpack-cli": "^3.1.2",
@@ -27,7 +28,7 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
-    "babel-loader": "^8.0.4",
+    "babel-loader": "^7.1.5",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
