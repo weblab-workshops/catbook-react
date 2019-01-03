@@ -1,17 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
+import App from './App';
 
-class App extends React.Component {
+const Root = () => (
+    <Router>
+        <App />
+    </Router>
+);
 
-  render() {
-    return (
-      <h1>let's get this BREAD!</h1>
-    );
-  }
-}
 ReactDOM.render(
-  <App/>,
-  document.getElementById('root')
+    <Root />,
+    document.getElementById('root')
 );
 
 module.hot.accept();
