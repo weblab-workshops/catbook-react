@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // const routes = [
 //     {
-//         title: 'Catbook',
+//         title: 'Home',
 //         path: '/',
 //         exact: true,
 //         component: Feed
 //     },
 //     {
 //         title: 'Profile',
-//         path: `/u/profile?/${userInfo}`,
+//         path: `/u/profile?:user`,
 //         exact: true,
 //         component: Profile
-//     },
+//     }
 // ];
 
 class NavBar extends Component {
@@ -22,6 +22,7 @@ class NavBar extends Component {
     }
 
     render() {
+        console.log(this.props.userInfo);
         // const menuList = routes.map((route, i) => {
         //     const page = route.path.slice(1);
         //     return (
@@ -39,7 +40,18 @@ class NavBar extends Component {
 
         return (
             <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-                <div className="navbar-brand" href="#">Catbook</div>
+                <div className="navbar-brand">Catbook</div>
+                <div className="navbar-nav">
+                    <Link to="/">Home</Link>
+                        { this.props.userInfo === null ? (
+                            <Link to="/auth/google">Login</Link>
+                        ) : (
+                            <React.Fragment>
+                                <Link to={`/u/profile?${this.props.userInfo._id}`}>Profile</Link>
+                                <Link to="/logout">Logout</Link>
+                            </React.Fragment>
+                        )}
+                </div>
             </nav>
         );
     }

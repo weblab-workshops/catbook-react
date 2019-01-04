@@ -26,7 +26,7 @@ class Feed extends Component {
     render() {
         return (
             <div className="container feed-container">
-                
+                I am duck pls feed me quack
             </div>
         );
     }

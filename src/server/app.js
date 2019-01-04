@@ -51,7 +51,7 @@ app.get('/logout', function(req, res) {
 });
 
 // set routes
-app.use('/', views);
+// app.use('/', views);
 app.use('/api', api );
 // app.use('/static', express.static('public'));
 app.use(express.static(publicPath));
@@ -73,7 +73,7 @@ app.use(function(err, req, res, next) {
 });
 
 // port config
-const port = 3000; // config variable
+const port = 5000; // config variable
 const server = http.Server(app);
 server.listen(port, function() {
   console.log('Server running on port: ' + port);

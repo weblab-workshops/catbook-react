@@ -10,13 +10,15 @@ const Comment = require('../models/comment');
 const router = express.Router();
 
 // api endpoints
+router.get('/test', function(req, res) {
+  res.send('HI');
+});
+
 router.get('/whoami', function(req, res) {
-  
   if(req.isAuthenticated()){
     res.send(req.user);
   }
   else{
-    console.log(":(");
     res.send({});
   }
 });

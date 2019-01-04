@@ -10,6 +10,9 @@ class Profile extends Component {
 
     render() {
         return (
+            <div className="container text-center">
+                idk who i am anymore
+            </div>
         );
     }
 }
