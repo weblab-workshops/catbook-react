@@ -3,7 +3,8 @@ import { hot } from "react-hot-loader";
 import NavBar from "./modules/Navbar.js";
 import Feed from "./pages/Feed.js";
 import Profile from "./pages/Profile.js"
-import { Route, Switch } from 'react-router-dom';
+import Login from "./modules/Login.js";
+import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import styles from "../styles.css";
 
 class App extends Component {
@@ -23,7 +24,7 @@ class App extends Component {
             userObj => {
                 if (userObj._id !== undefined) {
                     this.setState({ 
-                        userInfo: jsonObj
+                        userInfo: userObj
                     });
                 } else {
                     this.setState({ 
@@ -32,6 +33,11 @@ class App extends Component {
                 }
             }
         );
+    }
+
+    login = () => {
+        const redirectURL = window.location.origin + '/auth/google';
+        window.location.replace(redirectURL);
     }
 
 	render(){
@@ -43,10 +49,11 @@ class App extends Component {
                 <Switch>
                     <Route exact path='/' component={Feed}/>
                     <Route path='/u/profile?:user' component={Profile}/>
+                    // <Redirect from='/login' to='/auth/google'>{this.login}</Redirect>
                 </Switch>
             </React.Fragment>
 	    );
 	}
 }
 
-export default App;
+export default withRouter(App);

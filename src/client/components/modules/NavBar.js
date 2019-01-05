@@ -21,6 +21,16 @@ class NavBar extends Component {
         super(props);
     }
 
+    login = () => {
+        const redirectURL = window.location.origin + '/auth/google';
+        window.location.replace(redirectURL);
+    }
+
+    logout = () => {
+        const redirectURL = window.location.origin + '/logout';
+        window.location.replace(redirectURL);
+    }
+
     render() {
         console.log(this.props.userInfo);
         // const menuList = routes.map((route, i) => {
@@ -44,11 +54,12 @@ class NavBar extends Component {
                 <div className="navbar-nav">
                     <Link to="/">Home</Link>
                         { this.props.userInfo === null ? (
-                            <Link to="/auth/google">Login</Link>
+                            <button onClick={this.login}>Login</button>
+                            // <Link to="/login">Login</Link>
                         ) : (
                             <React.Fragment>
                                 <Link to={`/u/profile?${this.props.userInfo._id}`}>Profile</Link>
-                                <Link to="/logout">Logout</Link>
+                                <button onClick={this.logout}>Logout</button>
                             </React.Fragment>
                         )}
                 </div>
