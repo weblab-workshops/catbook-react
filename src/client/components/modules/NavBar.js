@@ -32,7 +32,7 @@ class NavBar extends Component {
     }
 
     render() {
-        console.log(this.props.userInfo);
+        // console.log(this.props.userInfo);
         // const menuList = routes.map((route, i) => {
         //     const page = route.path.slice(1);
         //     return (

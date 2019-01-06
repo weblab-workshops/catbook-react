@@ -52,6 +52,9 @@ app.get('/logout', function(req, res) {
 
 // set routes
 // app.use('/', views);
+// app.use('/u/profile?', function (req, res, next) {
+//   next();
+// });
 app.use('/api', api );
 // app.use('/static', express.static('public'));
 app.use(express.static(publicPath));

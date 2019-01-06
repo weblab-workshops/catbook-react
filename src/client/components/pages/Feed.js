@@ -1,32 +1,45 @@
 import React, { Component } from 'react';
+import Card from '../modules/Card.js';
+import NewPost from '../modules/NewPost.js';
 
 class Feed extends Component {
 	constructor(props) {
         super(props);
-        
-        this.state = {
-            form: {
-                user: '',
-                story: ''
-            }
-        };
     }
 
-    // handleSubmit = event => {
-    //     event.preventDefault();
-    //     this.props.handleData.addEntry(PAGE, this.state.form);
-    //     this.setState({
-    //         form: {
-    //             user: '',
-    //             story: ''
-    //         }
-    //     });
-    // }
+    componentDidMount() {
+        document.title = "News Feed";
+    }
 
     render() {
+        const isLoggedIn = this.props.userInfo !== null;
         return (
             <div className="container feed-container">
-                I am duck pls feed me quack
+                <div className="row">
+                    <div className="col">
+                        { isLoggedIn ? (
+                            <NewPost 
+                                addStory={this.props.addStory}
+                            />
+                        ) : (
+                            <div>
+                                You must be logged in to post.
+                            </div>
+                        )}
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col">
+                        {this.props.stories.map(story => (
+                            <Card
+                                key={`Card_${story._id}`}
+                                story={story}
+                                userInfo={this.props.userInfo}
+                                addComment={this.props.addComment}
+                            />
+                        ))}
+                    </div>
+                </div>
             </div>
         );
     }

@@ -13,10 +13,10 @@ class App extends Component {
 
         this.state = {
             userInfo: null,
-            data: []
+            stories: []
         };
     }
-
+    //is there a cleaner way to write this guy
     componentDidMount() {
         fetch('/api/whoami')
         .then(res => res.json())
@@ -32,13 +32,12 @@ class App extends Component {
                     });
                 }
             }
-        );
+        )
+        .then(this.getStories);
     }
 
-    login = () => {
-        const redirectURL = window.location.origin + '/auth/google';
-        window.location.replace(redirectURL);
-    }
+    // idk if this is needed for when u add a new story and want it to show up right away?
+    // componentDidUpdate() {}
 
 	render(){
 	    return (
@@ -47,13 +46,56 @@ class App extends Component {
     	      		userInfo={this.state.userInfo}
     	      	/>
                 <Switch>
-                    <Route exact path='/' component={Feed}/>
-                    <Route path='/u/profile?:user' component={Profile}/>
-                    // <Redirect from='/login' to='/auth/google'>{this.login}</Redirect>
+                    <Route exact path='/' render={(props) => <Feed {...props} userInfo={this.state.userInfo} stories={this.state.stories} addStory={this.addStory} addComment={this.addComment} />}/>
+                    <Route path='/u/profile?:user' render={(props) => <Profile {...props} userInfo={this.state.userInfo} />}/>
+                    <Redirect from='/login' to='/auth/google'>{this.login}</Redirect>
                 </Switch>
             </React.Fragment>
 	    );
 	}
+
+    // login not used here as of now
+    login = () => {
+        const redirectURL = window.location.origin + '/auth/google';
+        window.location.replace(redirectURL);
+    }
+
+    getStories = () => {
+        fetch('/api/stories')
+        .then(res => res.json())
+        .then(
+            storyObj => {
+                this.setState({ 
+                    stories: storyObj
+                });
+            }
+        );
+    }
+
+    // may need to update state here?? would need to change response from api.js since it returns {} atm
+    addStory = (content) => {
+        const body = { 'content': content };
+        fetch('/api/story', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body)
+        });
+    }
+
+    addComment = (parent, content) => {
+        const body = {'parent': parent, 'content': content };
+        fetch('/api/comment', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body)
+        });
+    }
+
+
 }
 
 export default withRouter(App);

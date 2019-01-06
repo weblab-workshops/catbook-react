@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class NewPost extends Component {
+class NewComment extends Component {
     constructor(props) {
         super(props);
 
@@ -21,7 +21,7 @@ class NewPost extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        this.props.addStory(this.state.value);
+        this.props.addComment(this.props.storyId, this.state.value);
         this.setState({
             value: '' 
         });
@@ -29,9 +29,9 @@ class NewPost extends Component {
 
     render() {
         return (
-            <div className="input-group my-3">
+            <div className="comment input-group">
                 <form onSubmit={this.handleSubmit}>
-                    <input type="text" placeholder="New Story" value={this.state.value} onChange={this.handleChange} className="form-control"/>
+                    <input type="text" placeholder="New Comment" value={this.state.value} onChange={this.handleChange} className="form-control"/>
                 </form>
                 <div className="input-group-append">
                     <button type="submit" className="btn btn-outline-primary" value="Submit" onClick={this.handleSubmit}>Submit</button>
@@ -41,4 +41,4 @@ class NewPost extends Component {
     }
 }
 
-export default NewPost;
+export default NewComment;
