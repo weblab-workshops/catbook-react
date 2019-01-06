@@ -45,6 +45,7 @@ module.exports = {
   devServer: {
     // contentBase: './src/client/dist',
     // hot: true,
+    historyApiFallback: true,
     contentBase: './src/client/dist',
     hot: true,
     proxy: {

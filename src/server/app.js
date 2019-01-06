@@ -14,7 +14,7 @@ const api = require('./routes/api');
 
 // initialize express app
 const app = express();
-const publicPath = path.resolve(__dirname, '..', 'client');
+const publicPath = path.resolve(__dirname, '..', 'client/dist');
 
 // set POST request body parser
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -33,7 +33,7 @@ app.use(passport.session());
 
 app.get(['/profile'], function (req, res) {
   console.log("sending to react")
-  res.sendFile(path.join(__dirname, '../client/', 'index.html'));
+  res.sendFile(path.join(__dirname, '../client/dist/index.html'));
 });
 
 // authentication routes
