@@ -31,7 +31,8 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get(['/u', '/u/profile'], function (req, res) {
+app.get(['/profile'], function (req, res) {
+  console.log("sending to react")
   res.sendFile(path.join(__dirname, '../client/', 'index.html'));
 });
 

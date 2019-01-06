@@ -18,6 +18,7 @@ class App extends Component {
     }
     //is there a cleaner way to write this guy
     componentDidMount() {
+        console.log("hi223454533")
         fetch('/api/whoami')
         .then(res => res.json())
         .then(
@@ -41,16 +42,16 @@ class App extends Component {
 
 	render(){
 	    return (
-            <React.Fragment>
-    	      	<NavBar 
-    	      		userInfo={this.state.userInfo}
-    	      	/>
-                <Switch>
-                    <Route exact path='/' render={(props) => <Feed {...props} userInfo={this.state.userInfo} stories={this.state.stories} addStory={this.addStory} addComment={this.addComment} />}/>
-                    <Route exact path='/u' render={(props) => <Profile {...props} userInfo={this.state.userInfo} />}/>
-                    <Redirect from='/login' to='/auth/google'>{this.login}</Redirect>
-                </Switch>
-            </React.Fragment>
+	      <React.Fragment>
+            <NavBar
+              userInfo={this.state.userInfo}
+            />
+            <Switch>
+                <Route exact path='/' render={(props) => <Feed {...props} userInfo={this.state.userInfo} stories={this.state.stories} addStory={this.addStory} addComment={this.addComment} />}/>
+                {/*<Route exact path='/utu' render={(props) => <Feed {...props} userInfo={this.state.userInfo} stories={this.state.stories} addStory={this.addStory} addComment={this.addComment} />}/>*/}
+                <Route exact path='/profile' render={(props) => <Profile {...props} userInfo={this.state.userInfo} />}/>
+            </Switch>
+        </React.Fragment>
 	    );
 	}
 

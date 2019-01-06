@@ -1,17 +1,18 @@
 const path = require('path');
 const entryFile = path.resolve(__dirname, 'src', 'client', 'index.js');
-const outputDir = path.resolve(__dirname, 'src', 'client', 'dist');
+// const outputDir = path.resolve(__dirname, 'src', 'client', 'dist');
 
 const webpack = require('webpack');
 
 module.exports = {
   entry: ['babel-polyfill', entryFile],
   output: {
-    publicPath: "./dist/",
-    filename: 'bundle.js',
-    path: outputDir
+    path: __dirname + '/dist',
+    publicPath: '/',
+    filename: 'bundle.js'
   },
   module: {
+
     rules: [
 
       {
@@ -35,12 +36,16 @@ module.exports = {
       }
     ]
   },
+  resolve: {
+    extensions: ['*', '.js', '.jsx']
+  },
   plugins: [
     new webpack.HotModuleReplacementPlugin()
   ],
   devServer: {
-    publicPath: './src/client/dist/',
-    contentBase: './src/client/',
+    // contentBase: './src/client/dist',
+    // hot: true,
+    contentBase: './dist',
     hot: true,
     proxy: {
       '/api': 'http://localhost:3000',
