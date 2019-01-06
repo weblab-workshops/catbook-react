@@ -7,7 +7,8 @@ const webpack = require('webpack');
 module.exports = {
   entry: ['babel-polyfill', entryFile],
   output: {
-    filename: './bundle.js',
+    publicPath: "./dist/",
+    filename: 'bundle.js',
     path: outputDir
   },
   module: {
@@ -38,10 +39,10 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin()
   ],
   devServer: {
-    contentBase: '.src/client/dist',
+    publicPath: './src/client/dist/',
+    contentBase: './src/client/',
     hot: true,
     proxy: {
-      '/': 'http://localhost:3000',
       '/api': 'http://localhost:3000',
       '/auth': 'http://localhost:3000'
     }

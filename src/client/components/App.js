@@ -47,7 +47,7 @@ class App extends Component {
     	      	/>
                 <Switch>
                     <Route exact path='/' render={(props) => <Feed {...props} userInfo={this.state.userInfo} stories={this.state.stories} addStory={this.addStory} addComment={this.addComment} />}/>
-                    <Route path='/u/profile?:user' render={(props) => <Profile {...props} userInfo={this.state.userInfo} />}/>
+                    <Route exact path='/u' render={(props) => <Profile {...props} userInfo={this.state.userInfo} />}/>
                     <Redirect from='/login' to='/auth/google'>{this.login}</Redirect>
                 </Switch>
             </React.Fragment>
