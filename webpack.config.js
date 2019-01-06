@@ -7,7 +7,7 @@ const webpack = require('webpack');
 module.exports = {
   entry: ['babel-polyfill', entryFile],
   output: {
-    path: __dirname + '/dist',
+    path: __dirname + '/src/client/dist',
     publicPath: '/',
     filename: 'bundle.js'
   },
@@ -45,7 +45,7 @@ module.exports = {
   devServer: {
     // contentBase: './src/client/dist',
     // hot: true,
-    contentBase: './dist',
+    contentBase: './src/client/dist',
     hot: true,
     proxy: {
       '/api': 'http://localhost:3000',

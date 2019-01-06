@@ -18,7 +18,7 @@ class App extends Component {
     }
     //is there a cleaner way to write this guy
     componentDidMount() {
-        console.log("hi223454533")
+        console.log("hi533")
         fetch('/api/whoami')
         .then(res => res.json())
         .then(
