@@ -26,7 +26,7 @@ body {
 	padding: 1rem 0;
 }
 
-div.circle-avatar{
+.circle-avatar{
 	/* make it responsive */
 	max-width: 100%;
 	width:100%;
