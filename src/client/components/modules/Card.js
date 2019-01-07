@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
 import Story from './Story.js';
 import CommentsBlock from './CommentsBlock.js';
+import io from 'socket.io-client';
 
 class Card extends Component {
     constructor(props) {
         super(props);
+
+        this.socket = io('http://localhost:3000');
+
+        this.socket.on('comment', (comment) => {
+            this.getComments(this.props.story._id);
+        });
 
         this.state = {
             story: null,
@@ -29,7 +36,7 @@ class Card extends Component {
                     userInfo={this.props.userInfo}
                     data={this.state.comments}
                     storyId={this.props.story._id}
-                    addComment={this.props.addComment}
+                    addComment={this.addComment}
                 />
             </div>
         );
@@ -45,6 +52,19 @@ class Card extends Component {
                 });
             }
         );
+    }
+
+
+
+    addComment = (parent, content) => {
+        const body = {'parent': parent, 'content': content };
+        fetch('/api/comment', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body)
+        });
     }
 }
 

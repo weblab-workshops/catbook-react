@@ -4,17 +4,16 @@ const bodyParser = require('body-parser');
 const session = require('express-session')
 const express = require('express');
 const path = require('path');
+const socketio = require('socket.io');
 
 // local dependencies
 const db = require('./db');
 const passport = require('./passport');
-// react-router will handle front-end views
-// const views = require('./routes/views'); 
 const api = require('./routes/api');
 
 // initialize express app
 const app = express();
-const publicPath = path.resolve(__dirname, '..', 'client/dist');
+const publicPath = path.resolve(__dirname, '..', 'socket/dist');
 
 // set POST request body parser
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -32,7 +31,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.get(['/profile/:user'], function (req, res) {
-  res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
+  res.sendFile(path.join(__dirname, '../socket/dist', 'index.html'));
 });
 
 // authentication routes
@@ -76,6 +75,11 @@ app.use(function(err, req, res, next) {
 // port config
 const port = 3000; // config variable
 const server = http.Server(app);
+
+// socket stuff
+const io = socketio(server);
+app.set('socketio', io);
+
 server.listen(port, function() {
   console.log('Server running on port: ' + port);
 });
