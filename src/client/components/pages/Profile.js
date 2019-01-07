@@ -41,10 +41,17 @@ class Profile extends Component {
                     <div className="col-4">
                         <h4>My Latest Post</h4>
                         <br/>
-                        <LatestPost
-                            name={this.state.name}
-                            latestPost={this.state.latestPost}
-                        />
+                        { this.state.latestPost ? (
+                            <LatestPost
+                                name={this.state.name}
+                                latestPost={this.state.latestPost}
+                                id={this.state.id}
+                            />
+                        ) : (
+                            <div>
+                                No posts!
+                            </div>
+                        )}
                     </div>
                     <div className="col-4">
                         <h4>My Favorite Type of Cat</h4>

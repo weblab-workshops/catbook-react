@@ -9,7 +9,7 @@ class LatestPost extends Component {
         return (
             <div className="card">
                 <div className="card-body">
-                    <a className="story-creator card-title" href={'/profile'}>
+                    <a className="story-creator card-title" href={'/profile/'+this.props.id}>
                         {this.props.name}
                     </a>
                     <p className="story-content card-text">
