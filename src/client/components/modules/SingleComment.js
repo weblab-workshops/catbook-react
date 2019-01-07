@@ -8,7 +8,7 @@ class SingleComment extends Component {
     render() {
         return (
             <div className="comment mb-2">
-                <a className="comment-creator" href={'/u/profile?' + this.props.data.creator_id}>
+                <a className="comment-creator" href={'/profile/' + this.props.data.creator_id}>
                     {this.props.data.creator_name}
                 </a>
                 <span className="comment-content">

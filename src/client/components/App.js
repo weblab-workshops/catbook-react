@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import { hot } from "react-hot-loader";
 import NavBar from "./modules/Navbar.js";
 import Feed from "./pages/Feed.js";
-import Profile from "./pages/Profile.js"
-import Login from "./modules/Login.js";
+import Profile from "./pages/Profile.js";
 import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import styles from "../styles.css";
 
@@ -16,49 +15,41 @@ class App extends Component {
             stories: []
         };
     }
-    //is there a cleaner way to write this guy
+
     componentDidMount() {
-        console.log("hi533")
-        fetch('/api/whoami')
-        .then(res => res.json())
-        .then(
-            userObj => {
-                if (userObj._id !== undefined) {
-                    this.setState({ 
-                        userInfo: userObj
-                    });
-                } else {
-                    this.setState({ 
-                        userInfo: null
-                    });
-                }
-            }
-        )
-        .then(this.getStories);
+        this.getUser();
+        this.getStories();
     }
 
-    // idk if this is needed for when u add a new story and want it to show up right away?
-    // componentDidUpdate() {}
-
 	render(){
+        console.log("rendering from react")
 	    return (
 	      <React.Fragment>
             <NavBar
-              userInfo={this.state.userInfo}
+                userInfo={this.state.userInfo}
+                login={this.login}
+                logout={this.logout}
             />
             <Switch>
                 <Route exact path='/' render={(props) => <Feed {...props} userInfo={this.state.userInfo} stories={this.state.stories} addStory={this.addStory} addComment={this.addComment} />}/>
-                {/*<Route exact path='/utu' render={(props) => <Feed {...props} userInfo={this.state.userInfo} stories={this.state.stories} addStory={this.addStory} addComment={this.addComment} />}/>*/}
-                <Route exact path='/profile' render={(props) => <Profile {...props} userInfo={this.state.userInfo} />}/>
+                <Route exact path='/profile/:user' render={(props) => <Profile {...props} />}/>
             </Switch>
         </React.Fragment>
 	    );
 	}
 
-    // login not used here as of now
     login = () => {
         const redirectURL = window.location.origin + '/auth/google';
         window.location.replace(redirectURL);
+    }
+
+    logout = () => {
+        fetch('/logout')
+        .then(
+            this.setState({
+                userInfo: null
+            })
+        );
     }
 
     getStories = () => {
@@ -73,7 +64,24 @@ class App extends Component {
         );
     }
 
-    // may need to update state here?? would need to change response from api.js since it returns {} atm
+    getUser = () => {    
+        fetch('/api/whoami')
+        .then(res => res.json())
+        .then(
+            userObj => {
+                if (userObj._id !== undefined) {
+                    this.setState({ 
+                        userInfo: userObj
+                    });
+                } else {
+                    this.setState({ 
+                        userInfo: null
+                    });
+                }
+            }
+        );
+    }
+
     addStory = (content) => {
         const body = { 'content': content };
         fetch('/api/story', {

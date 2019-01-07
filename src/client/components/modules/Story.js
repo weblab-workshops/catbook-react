@@ -8,7 +8,7 @@ class Story extends Component {
     render() {
         return (
             <div className="card-body">
-                <a className="story-creator card-title" href={'/u/profile?' + this.props.data.creator_id}>
+                <a className="story-creator card-title" href={'/profile/' + this.props.data.creator_id}>
                     {this.props.data.creator_name}
                 </a>
                 <p className="story-content card-text">

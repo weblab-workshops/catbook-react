@@ -43,14 +43,13 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin()
   ],
   devServer: {
-    // contentBase: './src/client/dist',
-    // hot: true,
     historyApiFallback: true,
     contentBase: './src/client/dist',
     hot: true,
     proxy: {
       '/api': 'http://localhost:3000',
-      '/auth': 'http://localhost:3000'
+      '/auth': 'http://localhost:3000',
+      '/logout': 'http://localhost:3000'
     }
   }
 };

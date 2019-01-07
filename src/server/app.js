@@ -31,9 +31,8 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get(['/profile'], function (req, res) {
-  console.log("sending to react")
-  res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+app.get(['/profile/:user'], function (req, res) {
+  res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
 });
 
 // authentication routes
@@ -52,20 +51,10 @@ app.get(
 
 app.get('/logout', function(req, res) {
   req.logout();
-  res.redirect('/');
+  res.redirect('/'); //can delete?
 });
 
-// set routes
-// app.use('/', views);
-// app.use('/u/profile?', function (req, res, next) {
-//   next();
-// });
-
-
-
-
 app.use('/api', api );
-// app.use('/static', express.static('public'));
 app.use(express.static(publicPath));
 
 // 404 route

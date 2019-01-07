@@ -9,11 +9,11 @@ class LatestPost extends Component {
         return (
             <div className="card">
                 <div className="card-body">
-                    <a className="story-creator card-title" href={'/u/profile?' + this.props.userInfo._id}>
-                        {this.props.userInfo.name}
+                    <a className="story-creator card-title" href={'/profile'}>
+                        {this.props.name}
                     </a>
                     <p className="story-content card-text">
-                        {this.props.userInfo.last_post}
+                        {this.props.latestPost}
                     </p>
                 </div>
             </div>
