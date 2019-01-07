@@ -5,6 +5,10 @@ body {
   font-weight: 300;
 }
 
+form {
+	flex-grow: 1;
+}
+
 .story {
 	margin: 10px 0px;
 }
