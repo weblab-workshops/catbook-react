@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import LatestPost from '../modules/LatestPost.js';
-// import ProfilePicture from '../../public/corgi.jpg';
+import ProfilePicture from '../../public/corgi.jpg';
+import "../../styles.css"
 
 class Profile extends Component {
 	constructor(props) {
@@ -21,12 +22,16 @@ class Profile extends Component {
 
     render() {
         // this.props.userInfo ? this.props.userInfo.name : ""
-        // const profilePic = require('../../public/corgi.jpg');
+
+        const pfpStyle = {
+          backgroundImage: `url(${ProfilePicture})`
+        }
         console.log(this.state.latestPost);
         return (
             <div className="container text-center">
                 <div className="large-profile-container text-center my-4">
-                    <div className="circle-avatar"></div>
+                  <div style={pfpStyle} className={'circle-avatar'}>
+                  </div>
                 </div>
                 <h1>{this.state.name ? this.state.name : ""}</h1>
                 <hr/>
