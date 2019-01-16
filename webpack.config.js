@@ -1,13 +1,13 @@
 const path = require('path');
-const entryFile = path.resolve(__dirname, 'src', 'client', 'index.js');
-// const outputDir = path.resolve(__dirname, 'src', 'client', 'dist');
+const entryFile = path.resolve(__dirname,'client', 'src', 'index.js');
+const outputDir = path.resolve(__dirname, 'client', 'dist');
 
 const webpack = require('webpack');
 
 module.exports = {
   entry: ['babel-polyfill', entryFile],
   output: {
-    path: __dirname + '/src/client/dist',
+    path: outputDir,
     publicPath: '/',
     filename: 'bundle.js'
   },
@@ -51,7 +51,7 @@ module.exports = {
   ],
   devServer: {
     historyApiFallback: true,
-    contentBase: './src/client/dist',
+    contentBase: './client/dist',
     hot: true,
     proxy: {
       '/api': 'http://localhost:3000',
