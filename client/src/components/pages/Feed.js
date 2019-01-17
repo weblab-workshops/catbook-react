@@ -17,15 +17,27 @@ class Feed extends Component {
     componentDidMount() {
       this.socket.on('post', (story) => {
         this.setState({
-          stories: [story].concat(this.state.stories),
+          stories: [{story: story, comments: []}].concat(this.state.stories),
         });
       });
 
       document.title = "News Feed";
-        this.getStories();
+      this.getStories();
+
+      this.socket.on('comment', (comment) => {
+        console.log(comment);
+        let newState = Object.assign({}, this.state);
+        console.log(newState);
+        console.log(comment.parent);
+        let commentParent = newState.stories.find(x => x.story._id === comment.parent);
+        console.log(commentParent)
+        commentParent.comments.push(comment);
+        this.setState({newState});
+      });
     }
 
     render() {
+	      console.log(this.state)
         const isLoggedIn = this.props.userInfo !== null;
         return (
             <div className="container feed-container">
@@ -45,11 +57,13 @@ class Feed extends Component {
                 <div className="row">
                     <div className="col">
                         {this.state.stories ? (
-                            this.state.stories.map(story => (
+                            this.state.stories.map(storyObj => (
                                 <Card
-                                    key={`Card_${story._id}`}
-                                    story={story}
+                                    key={`Card_${storyObj.story._id}`}
+                                    story={storyObj.story}
                                     userInfo={this.props.userInfo}
+                                    comments = {storyObj.comments}
+                                    addComment = {this.addComment}
                                 />
                                 )
                             )
@@ -69,12 +83,30 @@ class Feed extends Component {
         fetch('/api/stories')
         .then(res => res.json())
         .then(
-            storyObj => {
-                this.setState({ 
-                    stories: storyObj.reverse()
-                });
-            }
+            // storyObj => {
+            //     this.setState({
+            //         stories: storyObj.reverse()
+            //     });
+            // }
+
+          storyObjs => storyObjs.reverse().map((storyObj) => {
+            console.log(storyObj);
+            this.getComments(storyObj._id).then(
+              comments => {
+                this.setState({
+                  stories: (this.state.stories).concat([{story: storyObj, comments: comments}])
+                })
+              }
+            );
+
+          })
         );
+    };
+
+
+    getComments = (storyId) => {
+      return fetch(`/api/comment?parent=${storyId}`)
+        .then(res => res.json())
     };
 
     addStory = (content) => {
@@ -87,6 +119,18 @@ class Feed extends Component {
             body: JSON.stringify(body)
         });
     };
+
+
+  addComment = (parent, content) => {
+    const body = {'parent': parent, 'content': content };
+    fetch('/api/comment', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    });
+  };
 }
 
 export default Feed;
