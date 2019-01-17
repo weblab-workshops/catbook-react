@@ -9,9 +9,6 @@ class Card extends Component {
 
         this.socket = io('http://localhost:3000');
 
-        this.socket.on('comment', (comment) => {
-            this.getComments(this.props.story._id);
-        });
 
         this.state = {
             story: null,
@@ -22,7 +19,14 @@ class Card extends Component {
     componentDidMount() {
         this.setState({
             story: this.props.story
-        })
+        });
+
+        this.socket.on('comment', (comment) => {
+            this.setState({
+                comments: this.state.comments.concat([comment])
+            });
+        });
+
         this.getComments(this.props.story._id);
     }
 
@@ -52,7 +56,7 @@ class Card extends Component {
                 });
             }
         );
-    }
+    };
 
 
 
@@ -65,7 +69,7 @@ class Card extends Component {
             },
             body: JSON.stringify(body)
         });
-    }
+    };
 }
 
 export default Card;

@@ -37,7 +37,7 @@ class App extends Component {
     login = () => {
         const redirectURL = window.location.origin + '/auth/google';
         window.location.replace(redirectURL);
-    }
+    };
 
     logout = () => {
         fetch('/logout')
@@ -46,7 +46,7 @@ class App extends Component {
                 userInfo: null
             })
         );
-    }
+    };
 
     getUser = () => {    
         fetch('/api/whoami')

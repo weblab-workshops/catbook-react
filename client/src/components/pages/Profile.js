@@ -23,7 +23,7 @@ class Profile extends Component {
     render() {
         const pfpStyle = {
           backgroundImage: `url(${ProfilePicture})`
-        }
+        };
         return (
             <div className="container text-center">
                 <div className="large-profile-container text-center my-4">

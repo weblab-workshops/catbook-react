@@ -9,17 +9,19 @@ class Feed extends Component {
 
         this.socket = io('http://localhost:3000');
 
-        this.socket.on('post', (story) => {
-            this.getStories();
-        });
-
         this.state = {
             stories: []
         };
     }
 
     componentDidMount() {
-        document.title = "News Feed";
+      this.socket.on('post', (story) => {
+        this.setState({
+          stories: [story].concat(this.state.stories),
+        });
+      });
+
+      document.title = "News Feed";
         this.getStories();
     }
 
@@ -73,7 +75,7 @@ class Feed extends Component {
                 });
             }
         );
-    }
+    };
 
     addStory = (content) => {
         const body = { 'content': content };
@@ -84,7 +86,7 @@ class Feed extends Component {
             },
             body: JSON.stringify(body)
         });
-    }
+    };
 }
 
 export default Feed;

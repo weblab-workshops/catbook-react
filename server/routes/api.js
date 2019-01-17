@@ -52,7 +52,7 @@ router.post(
                 user.save(); // this is OK, because the following lines of code are not reliant on the state of user, so we don't have to shove them in a callback. 
                 // configure socketio
                 const io = req.app.get('socketio');
-                io.emit("post", { id: story.id, creator_name: user.name, content: req.body.content });
+                io.emit("post", { creator_id: story.id, creator_name: user.name, content: req.body.content });
             });
             if (err) console.log(err);
         });

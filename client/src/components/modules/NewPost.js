@@ -7,19 +7,15 @@ class NewPost extends Component {
         this.state = {
             value: ''
         };
-
-        //do we need to bind?
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChange = event => {
+    handleChange = (event) => {
         this.setState({
             value: event.target.value 
         });
     }
 
-    handleSubmit = event => {
+    handleSubmit = (event) => {
         event.preventDefault();
         this.props.addStory(this.state.value);
         this.setState({
