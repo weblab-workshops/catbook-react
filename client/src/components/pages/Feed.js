@@ -43,7 +43,7 @@ class Feed extends Component {
                 <div className="row">
                     <div className="col">
                         {this.state.stories ? (
-                            this.state.stories.reverse().map(story => (
+                            this.state.stories.map(story => (
                                 <Card
                                     key={`Card_${story._id}`}
                                     story={story}
@@ -69,7 +69,7 @@ class Feed extends Component {
         .then(
             storyObj => {
                 this.setState({ 
-                    stories: storyObj
+                    stories: storyObj.reverse()
                 });
             }
         );

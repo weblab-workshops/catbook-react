@@ -20,7 +20,7 @@ class App extends Component {
 
 	render(){
 	    return (
-	      <React.Fragment>
+	      <div>
             <NavBar
                 userInfo={this.state.userInfo}
                 login={this.login}
@@ -30,7 +30,7 @@ class App extends Component {
                 <Route exact path='/' render={(props) => <Feed {...props} userInfo={this.state.userInfo} />}/>
                 <Route exact path='/profile/:user' render={(props) => <Profile {...props} />}/>
             </Switch>
-        </React.Fragment>
+        </div>
 	    );
 	}
 
