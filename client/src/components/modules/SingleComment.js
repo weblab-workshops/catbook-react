@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class SingleComment extends Component {
     constructor(props) {
@@ -8,9 +9,9 @@ class SingleComment extends Component {
     render() {
         return (
             <div className="comment mb-2">
-                <a className="comment-creator" href={'/profile/' + this.props.data.creator_id}>
+                <Link to={"/profile/" + this.props.data.creator_id} className="comment-creator">
                     {this.props.data.creator_name}
-                </a>
+                </Link>
                 <span className="comment-content">
                     {' | ' + this.props.data.content}
                 </span>

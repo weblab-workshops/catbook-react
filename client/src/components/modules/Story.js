@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Story extends Component {
     constructor(props) {
@@ -8,9 +9,9 @@ class Story extends Component {
     render() {
         return (
             <div className="card-body">
-                <a className="story-creator card-title" href={'/profile/' + this.props.data.creator_id}>
+                <Link to={"/profile/" + this.props.data.creator_id} className="story-creator card-title">
                     {this.props.data.creator_name}
-                </a>
+                </Link>
                 <p className="story-content card-text">
                     {this.props.data.content}
                 </p>
