@@ -13,11 +13,11 @@ class NavBar extends Component {
                 <div className="navbar-nav">
                     <Link to="/" className="nav-item nav-link">Home</Link>
                         { this.props.userInfo === null ? (
-                            <a className="nav-item nav-link" onClick={this.props.login}>Login</a>
+                            <a className="nav-item nav-link" href="/auth/google">Login</a>
                         ) : (
                             <React.Fragment>
                                 <Link to={"/profile/" + this.props.userInfo._id} className="nav-item nav-link">Profile</Link>
-                                <a className="nav-item nav-link" onClick={this.props.logout}>Logout</a>
+                                <a className="nav-item nav-link" href="/logout" onClick={this.props.logout}>Logout</a>
                             </React.Fragment>
                         )}
                 </div>

@@ -23,29 +23,20 @@ class App extends Component {
 	      <div>
             <NavBar
                 userInfo={this.state.userInfo}
-                login={this.login}
                 logout={this.logout}
             />
             <Switch>
                 <Route exact path='/' render={(props) => <Feed {...props} userInfo={this.state.userInfo} />}/>
-                <Route exact path='/profile/:user' render={(props) => <Profile {...props} />}/>
+                <Route exact path='/profile/:user' component={Profile} />}/>
             </Switch>
         </div>
 	    );
 	}
 
-    login = () => {
-        const redirectURL = window.location.origin + '/auth/google';
-        window.location.replace(redirectURL);
-    };
-
     logout = () => {
-        fetch('/logout')
-        .then(
-            this.setState({
-                userInfo: null
-            })
-        );
+        this.setState({
+            userInfo: null
+        })
     };
 
     getUser = () => {    

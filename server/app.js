@@ -50,7 +50,7 @@ app.get(
 
 app.get('/logout', function(req, res) {
   req.logout();
-  res.redirect('/'); //can delete?
+  res.redirect('/'); 
 });
 
 app.use('/api', api );
