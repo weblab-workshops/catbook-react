@@ -15,29 +15,24 @@ class Feed extends Component {
     }
 
     componentDidMount() {
-      this.socket.on('post', (story) => {
-        this.setState({
-          stories: [{story: story, comments: []}].concat(this.state.stories),
+        this.socket.on('post', (story) => {
+            this.setState({
+                stories: [{story: story, comments: []}].concat(this.state.stories),
+            });
         });
-      });
 
-      document.title = "News Feed";
-      this.getStories();
+        document.title = "News Feed";
+        this.getStories();
 
-      this.socket.on('comment', (comment) => {
-        console.log(comment);
-        let newState = Object.assign({}, this.state);
-        console.log(newState);
-        console.log(comment.parent);
-        let commentParent = newState.stories.find(x => x.story._id === comment.parent);
-        console.log(commentParent)
-        commentParent.comments.push(comment);
-        this.setState({newState});
-      });
+        this.socket.on('comment', (comment) => {
+            let newState = Object.assign({}, this.state);
+            let commentParent = newState.stories.find(x => x.story._id === comment.parent);
+            commentParent.comments.push(comment);
+            this.setState({newState});
+        });
     }
 
     render() {
-	      console.log(this.state)
         const isLoggedIn = this.props.userInfo !== null;
         return (
             <div className="container feed-container">
@@ -83,14 +78,7 @@ class Feed extends Component {
         fetch('/api/stories')
         .then(res => res.json())
         .then(
-            // storyObj => {
-            //     this.setState({
-            //         stories: storyObj.reverse()
-            //     });
-            // }
-
           storyObjs => storyObjs.reverse().map((storyObj) => {
-            console.log(storyObj);
             this.getComments(storyObj._id).then(
               comments => {
                 this.setState({
@@ -98,7 +86,6 @@ class Feed extends Component {
                 })
               }
             );
-
           })
         );
     };
@@ -121,16 +108,16 @@ class Feed extends Component {
     };
 
 
-  addComment = (parent, content) => {
-    const body = {'parent': parent, 'content': content };
-    fetch('/api/comment', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(body)
-    });
-  };
+    addComment = (parent, content) => {
+        const body = {'parent': parent, 'content': content };
+        fetch('/api/comment', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+        });
+    };
 }
 
 export default Feed;
