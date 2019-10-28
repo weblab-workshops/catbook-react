@@ -6,7 +6,7 @@ export const getProfile = (id) => {
 
 export const getStories = () => {
     fetch('/api/stories')
-    .then(res => res.json())
+    .then(res => {console.log(res); res.json()})
 };
 
 

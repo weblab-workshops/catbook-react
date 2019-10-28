@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Card from '../modules/Card.js';
 import NewPost from '../modules/NewPost.js';
 import io from 'socket.io-client';
-import { getProfile, getStories, getComments, addStory, addComment } from '../../public/serverCommunication.js'
 
 class Feed extends Component {
 	constructor(props) {
@@ -23,17 +22,7 @@ class Feed extends Component {
         });
 
         document.title = "News Feed";
-        getStories().then(
-				      storyObjs => storyObjs.reverse().map((storyObj) => {
-				        this.getComments(storyObj._id).then(
-				          comments => {
-				            this.setState({
-				              stories: (this.state.stories).concat([{story: storyObj, comments: comments}])
-				            })
-				          }
-				        );
-				      })
-				    );;
+        this.getStories();
 
         this.socket.on('comment', (comment) => {
             let newState = Object.assign({}, this.state);
@@ -51,7 +40,7 @@ class Feed extends Component {
                     <div className="col">
                         { isLoggedIn ? (
                             <NewPost
-                                addStory={addStory}
+                                addStory={this.addStory}
                             />
                         ) : (
                             <div>
@@ -69,7 +58,7 @@ class Feed extends Component {
                                     story={storyObj.story}
                                     userInfo={this.props.userInfo}
                                     comments = {storyObj.comments}
-                                    addComment = {addComment}
+                                    addComment = {this.addComment}
                                 />
                                 )
                             )
@@ -85,6 +74,50 @@ class Feed extends Component {
         );
     }
 
+    getStories = () => {
+        fetch('/api/stories')
+        .then(res => res.json())
+        .then(
+          storyObjs => storyObjs.reverse().map((storyObj) => {
+            this.getComments(storyObj._id).then(
+              comments => {
+                this.setState({
+                  stories: (this.state.stories).concat([{story: storyObj, comments: comments}])
+                })
+              }
+            );
+          })
+        );
+    };
+
+
+    getComments = (storyId) => {
+      return fetch(`/api/comment?parent=${storyId}`)
+        .then(res => res.json())
+    };
+
+    addStory = (content) => {
+        const body = { 'content': content };
+        fetch('/api/story', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body)
+        });
+    };
+
+
+    addComment = (parent, content) => {
+        const body = {'parent': parent, 'content': content };
+        fetch('/api/comment', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+        });
+    };
 }
 
 export default Feed;
