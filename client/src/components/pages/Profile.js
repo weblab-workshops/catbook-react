@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import LatestPost from '../modules/LatestPost.js';
 import ProfilePicture from '../../public/corgi.jpg';
 import "../../styles.css"
-import { getProfile } from "../../public/serverCommunication.js"
 
 class Profile extends Component {
 	constructor(props) {
@@ -16,15 +15,7 @@ class Profile extends Component {
     }
 
     componentDidMount() {
-        getProfile(this.props.match.params.user).then(
-					            userObj => {
-					                this.setState({
-					                    name: userObj.name,
-					                    latestPost: userObj.last_post,
-					                    id: id
-					                });
-					            }
-					        );
+        this.getProfile(this.props.match.params.user);
         document.title = "Profile Page";
     }
 
@@ -73,6 +64,20 @@ class Profile extends Component {
             </div>
         );
     }
+
+    getProfile = (id) => {
+    fetch("/api/user?_id=" + id)
+        .then(res => res.json())
+        .then(
+            userObj => {
+                this.setState({
+                    name: userObj.name,
+                    latestPost: userObj.last_post,
+                    id: id
+                });
+            }
+        );
+			} 
 }
 
 export default Profile;
