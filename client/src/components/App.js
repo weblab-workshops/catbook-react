@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import NavBar from "./modules/Navbar.js";
+import NavBar from "./modules/NavBar.js";
 import Feed from "./pages/Feed.js";
 import Profile from "./pages/Profile.js";
 import { Route, Switch, withRouter } from 'react-router-dom';
@@ -39,17 +39,17 @@ class App extends Component {
         })
     };
 
-    getUser = () => {    
+    getUser = () => {
         fetch('/api/whoami')
         .then(res => res.json())
         .then(
             userObj => {
                 if (userObj._id !== undefined) {
-                    this.setState({ 
+                    this.setState({
                         userInfo: userObj
                     });
                 } else {
-                    this.setState({ 
+                    this.setState({
                         userInfo: null
                     });
                 }
