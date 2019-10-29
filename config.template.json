@@ -1,0 +1,5 @@
+{
+  "mongoSRV": "put your SRV address here",
+  "dbName": "data",
+  "port": 3000
+}

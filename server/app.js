@@ -1,85 +1,53 @@
-// libraries
-const http = require('http');
-const bodyParser = require('body-parser');
-const session = require('express-session');
-const express = require('express');
-const path = require('path');
-const socketio = require('socket.io');
+const http = require("http");
+const bodyParser = require("body-parser");
+const express = require("express");
+const mongoose = require("mongoose");
+const path = require("path");
 
-// local dependencies
-const db = require('./db');
-const passport = require('./passport');
-const api = require('./routes/api');
-
-// initialize express app
+const config = require("../config.json");
+const api = require("./routes/api");
 const app = express();
-const publicPath = path.resolve(__dirname, '..', 'client/dist');
 
-// set POST request body parser
+// reactPath is the location of the compiled react files
+const reactPath = path.resolve(__dirname, "..", "client", "dist");
+
+// connect to mongodb
+mongoose
+  .connect(config.mongoSRV, {
+    useNewUrlParser: true,
+    dbName: config.dbName
+  })
+  .then(() => console.log("Connected to MongoDB"))
+  .catch(err => console.log(`Error connecting to MongoDB: ${err}`));
+
+// set up bodyParser, which allows us to process POST requests
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// set up sessions
-app.use(session({
-  secret: 'session-secret',
-  resave: 'false',
-  saveUninitialized: 'true'
-}));
+// connect API routes
+app.use("/api", api);
 
-// hook up passport
-app.use(passport.initialize());
-app.use(passport.session());
+// serve /index.html and /bundle.js
+app.use(express.static(reactPath));
 
-app.get(['/profile/:user'], function (req, res) {
-  res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
+// for all other routes, load index.html and let react router handle them
+app.get("*", (req, res) => {
+  res.sendFile(path.join(reactPath, "index.html"));
 });
 
-// authentication routes
-app.get('/auth/google', passport.authenticate('google', { scope: ['profile'] }));
-
-app.get(
-  '/auth/google/callback',
-  passport.authenticate(
-    'google',
-    { failureRedirect: '/login' }
-  ),
-  function(req, res) {
-    res.redirect('/');
-  }
-);
-
-app.get('/logout', function(req, res) {
-  req.logout();
-  res.redirect('/');
-});
-
-app.use('/api', api );
-app.use(express.static(publicPath));
-
-// 404 route
-app.use(function(req, res, next) {
-  const err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
-
-// route error handler
-app.use(function(err, req, res, next) {
+// any server errors cause this function to run
+app.use((err, req, res, next) => {
   res.status(err.status || 500);
   res.send({
     status: err.status,
-    message: err.message,
+    message: err.message
   });
 });
 
-// port config
-const port = 3000; // config variable
+// port defaults to 3000, can be changed in config.json
+const port = config.port || 3000;
 const server = http.Server(app);
 
-// socket stuff
-const io = socketio(server);
-app.set('socketio', io);
-
-server.listen(port, function() {
-  console.log('Server running on port: ' + port);
+server.listen(port, () => {
+  console.log(`Server running on port: ${port}`);
 });
