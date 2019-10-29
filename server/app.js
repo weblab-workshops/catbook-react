@@ -13,7 +13,7 @@ const api = require('./routes/api');
 
 // initialize express app
 const app = express();
-const publicPath = path.resolve(__dirname, '..', 'socket/dist');
+const publicPath = path.resolve(__dirname, '..', 'client/dist');
 
 // set POST request body parser
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -31,7 +31,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.get(['/profile/:user'], function (req, res) {
-  res.sendFile(path.join(__dirname, '../socket/dist', 'index.html'));
+  res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
 });
 
 // authentication routes
@@ -50,7 +50,7 @@ app.get(
 
 app.get('/logout', function(req, res) {
   req.logout();
-  res.redirect('/'); 
+  res.redirect('/');
 });
 
 app.use('/api', api );
