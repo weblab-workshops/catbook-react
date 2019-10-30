@@ -1,3 +1,7 @@
+// validator runs some basic checks to make sure you've set everything up correctly
+const validator = require("./validator");
+validator.checkSetup();
+
 const http = require("http");
 const bodyParser = require("body-parser");
 const express = require("express");
@@ -15,10 +19,13 @@ const reactPath = path.resolve(__dirname, "..", "client", "dist");
 mongoose
   .connect(config.mongoSRV, {
     useNewUrlParser: true,
+    useUnifiedTopology: true,
     dbName: config.dbName
   })
   .then(() => console.log("Connected to MongoDB"))
   .catch(err => console.log(`Error connecting to MongoDB: ${err}`));
+
+app.use(validator.checkRoutes);
 
 // set up bodyParser, which allows us to process POST requests
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -46,7 +53,7 @@ app.use((err, req, res, next) => {
 
   res.status(status);
   res.send({
-    status: err.status,
+    status: status,
     message: err.message
   });
 });
