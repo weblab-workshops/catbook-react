@@ -1,0 +1,37 @@
+/** @define NavBar; */
+.NavBar-container {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: calc(100vw - 2 * 1.25rem);
+  display: flex;
+  padding: 0.75rem 1.25rem;
+
+  background-color: var(--primary);
+}
+
+.NavBar-title {
+  color: var(--white);
+  font-size: 1.2em;
+}
+
+.NavBar-linkContainer {
+  display: flex;
+  align-items: center;
+  margin-left: 1.5rem;
+}
+
+.NavBar-link,
+.NavBar-link:visited {
+  color: var(--white);
+  opacity: 0.6;
+  text-decoration: none;
+}
+
+.NavBar-link:hover {
+  opacity: 0.8;
+}
+
+.NavBar-link + .NavBar-link {
+  margin-left: 1rem;
+}
