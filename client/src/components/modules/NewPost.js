@@ -1,40 +1,51 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+
+import "./NewPost.css";
 
 class NewPost extends Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.state = {
-            value: ''
-        };
-    }
+    this.state = {
+      value: "",
+    };
+  }
 
-    handleChange = (event) => {
-        this.setState({
-            value: event.target.value 
-        });
-    }
+  handleChange = (event) => {
+    this.setState({
+      value: event.target.value,
+    });
+  };
 
-    handleSubmit = (event) => {
-        event.preventDefault();
-        this.props.addStory(this.state.value);
-        this.setState({
-            value: '' 
-        });
-    }
+  handleSubmit = (event) => {
+    event.preventDefault();
+    this.props.addStory(this.state.value);
+    this.setState({
+      value: "",
+    });
+  };
 
-    render() {
-        return (
-            <div className="input-group my-3">
-                <form onSubmit={this.handleSubmit}>
-                    <input type="text" placeholder="New Story" value={this.state.value} onChange={this.handleChange} className="form-control"/>
-                </form>
-                <div className="input-group-append">
-                    <button type="submit" className="btn btn-outline-primary" value="Submit" onClick={this.handleSubmit}>Submit</button>
-                </div>
-            </div>
-        );
-    }
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit} className="u-flex">
+        <input
+          type="text"
+          placeholder="New Story"
+          value={this.state.value}
+          onChange={this.handleChange}
+          className="NewPost-input"
+        />
+        <button
+          type="submit"
+          className="NewPost-button u-pointer"
+          value="Submit"
+          onClick={this.handleSubmit}
+        >
+          Submit
+        </button>
+      </form>
+    );
+  }
 }
 
 export default NewPost;

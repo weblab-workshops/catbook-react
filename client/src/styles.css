@@ -2,6 +2,8 @@
 
 :root {
   --primary: #396dff;
+  --primary--dim: #6987db;
+  --darkgrey: #d4d4d4;
   --grey: #efefef;
   --white: #fff;
 }
@@ -48,10 +50,6 @@ form {
 }
 .comment-creator {
   font-weight: 600;
-}
-
-.feed-container {
-  padding: 1rem 0;
 }
 
 .circle-avatar {
