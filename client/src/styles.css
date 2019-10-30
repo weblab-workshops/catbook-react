@@ -1,63 +1,71 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,600');
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,600");
 
+:root {
+  --primary: #396dff;
+  --grey: #efefef;
+  --white: #fff;
+}
+
+html,
 body {
-  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans", sans-serif;
   font-weight: 300;
 }
 
 form {
-	flex-grow: 1;
+  flex-grow: 1;
 }
 
 .story {
-	margin: 10px 0px;
+  margin: 10px 0px;
 }
 .story-creator {
-  	font-size: 20px;
-  	font-weight: 600;
+  font-size: 20px;
+  font-weight: 600;
 }
 .story-content {
-	font-size: 40px;
+  font-size: 40px;
 }
 .story-comments {
-
 }
 .comment-creator {
-	font-weight: 600;
+  font-weight: 600;
 }
 
 .feed-container {
-	padding: 1rem 0;
+  padding: 1rem 0;
 }
 
-.circle-avatar{
-	/* make it responsive */
-	max-width: 100%;
-	width:100%;
-	height:auto;
-	display:block;
-	/* div height to be the same as width*/
-	padding-top:100%;
+.circle-avatar {
+  /* make it responsive */
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  display: block;
+  /* div height to be the same as width*/
+  padding-top: 100%;
 
-	/* make it a circle */
-	border-radius:50%;
+  /* make it a circle */
+  border-radius: 50%;
 
-	/* Centering on image`s center*/
-	background-position-y: center;
-	background-position-x: center;
-	background-repeat: no-repeat;
+  /* Centering on image`s center*/
+  background-position-y: center;
+  background-position-x: center;
+  background-repeat: no-repeat;
 
-	/* it makes the clue thing, takes smaller dimension to fill div */
-	background-size: cover;
+  /* it makes the clue thing, takes smaller dimension to fill div */
+  background-size: cover;
 
-	/* it is optional, for making this div centered in parent*/
-	margin: 0 auto;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
+  /* it is optional, for making this div centered in parent*/
+  margin: 0 auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .large-profile-container {
-	padding: 0 35%;
+  padding: 0 35%;
 }
