@@ -4,7 +4,7 @@
   --primary: #396dff;
   --primary--dim: #6987db;
   --darkgrey: #d4d4d4;
-  --grey: #efefef;
+  --grey: #f7f7f7;
   --white: #fff;
 }
 
@@ -32,22 +32,24 @@ form {
   align-items: center;
 }
 
+.u-bold {
+  font-weight: 600;
+}
+
 .u-pointer {
   cursor: pointer;
 }
 
-.story {
-  margin: 10px 0px;
+.u-link {
+  color: var(--primary);
+  text-decoration: none;
+  cursor: pointer;
 }
-.story-creator {
-  font-size: 20px;
-  font-weight: 600;
+
+.u-link:hover {
+  color: var(--primary--dim);
 }
-.story-content {
-  font-size: 40px;
-}
-.story-comments {
-}
+
 .comment-creator {
   font-weight: 600;
 }

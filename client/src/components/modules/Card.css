@@ -1,0 +1,34 @@
+/** @define Card */
+.Card-container {
+  border: var(--darkgrey) 1px solid;
+  border-radius: 4px;
+  margin-top: 0.75rem;
+}
+
+.Card-container:first-of-type {
+  margin-top: 1.5rem;
+}
+
+.Card-story,
+.Card-commentSection {
+  padding: 1.5rem 1.75rem;
+}
+
+.Card-storyUser {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.Card-storyContent {
+  font-size: 40px;
+  margin: 0.5rem 0 0;
+}
+
+.Card-commentSection {
+  background-color: var(--grey);
+  border-top: 1px solid var(--darkgrey);
+}
+
+.Card-commentBody {
+  margin: 0 0 0.75rem;
+}
