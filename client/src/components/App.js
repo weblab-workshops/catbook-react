@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import NavBar from "./modules/NavBar.js";
 import Feed from "./pages/Feed.js";
+import NotFound from "./pages/NotFound.js";
 import Profile from "./pages/Profile.js";
 import { Route, Switch, withRouter } from 'react-router-dom';
 import styles from "../styles.css";
@@ -28,6 +29,7 @@ class App extends Component {
             <Switch>
                 <Route exact path='/' render={(props) => <Feed {...props} userInfo={this.state.userInfo} />}/>
                 <Route exact path='/profile/:user' component={Profile} />}/>
+                <Route component={NotFound} />
             </Switch>
         </div>
 	    );
