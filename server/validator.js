@@ -14,6 +14,7 @@ const net = require("net");
  * - config.json has a mongoSRV specified
  * - makes sure 'npx webpack' was called if required
  * - warns if visiting port 3000 while running hot reloader
+ * - warns if using the default mongoSRV
  */
 
 class NodeSetupError extends Error {}
@@ -60,6 +61,17 @@ module.exports = {
       throw new NodeSetupError(
         "Failed to parse config.json. Make sure the contents are properly-formatted json"
       );
+    }
+
+    // if student deleted config.template.json, whatever, just skip this check
+    if (fs.existsSync("./config.template.json")) {
+      const template = require("../config.template.json");
+      if (template.mongoSRV === config.mongoSRV) {
+        console.log(
+          "Warning: You're connecting to web.lab staff's catbook database.\n" +
+            "You should eventually make your own Atlas cluster and insert your own mongoSRV into config.json"
+        );
+      }
     }
   },
 
