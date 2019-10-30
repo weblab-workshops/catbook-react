@@ -19,7 +19,7 @@ class NewPost extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.addStory(this.state.value);
+    this.props.comment && this.props.storyId ? this.addComment(this.props.storyId, this.state.value) : this.addStory(this.state.value);
     this.setState({
       value: "",
     });
@@ -30,7 +30,7 @@ class NewPost extends Component {
       <form onSubmit={this.handleSubmit} className="u-flex">
         <input
           type="text"
-          placeholder="New Story"
+          placeholder={this.props.comment ? "New Comment" : "New Story"}
           value={this.state.value}
           onChange={this.handleChange}
           className="NewPost-input"
@@ -46,6 +46,28 @@ class NewPost extends Component {
       </form>
     );
   }
+
+  addStory = (content) => {
+    const body = { content: content };
+    fetch("/api/story", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
+  };
+
+  addComment = (parent, content) => {
+    const body = { parent: parent, content: content };
+    fetch("/api/comment", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
+  };
 }
 
 export default NewPost;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import SingleComment from './SingleComment.js';
-import NewComment from './NewComment.js';
+import NewPost from './NewPost.js';
 
 class CommentsBlock extends Component {
     constructor(props) {
@@ -12,16 +12,16 @@ class CommentsBlock extends Component {
         return (
             <div className="card-footer">
                 <div className="story-comments">
-                    {this.props.data.map(comment => (
+                    {this.props.comments.map(comment => (
                         <SingleComment
                             key={`SingleComment_${comment._id}`}
                             data={comment}
                         />
                     ))}
                     { isLoggedIn ? (
-                        <NewComment 
-                            storyId={this.props.storyId}
-                            addComment={this.props.addComment}
+                        <NewPost
+                            storyId={this.props.story._id}
+                            comment={true}
                         />
                     ) : (
                         <div>

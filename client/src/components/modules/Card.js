@@ -1,33 +1,40 @@
 import React, { Component } from 'react';
 import Story from './Story.js';
 import CommentsBlock from './CommentsBlock.js';
-import io from 'socket.io-client';
 
 class Card extends Component {
     constructor(props) {
         super(props);
-
+        this.state = {
+          comments : []
+        }
     }
 
     componentDidMount() {
-
+      this.getComments(this.props.story._id).then((comments) => {
+        this.setState({
+          comments : comments
+        });
+      });
     }
 
     render() {
         return (
             <div className="story card">
-                <Story 
+                <Story
                     data={this.props.story}
                 />
                 <CommentsBlock
-                    userInfo={this.props.userInfo}
-                    data={this.props.comments}
-                    storyId={this.props.story._id}
-                    addComment={this.props.addComment}
+                    {...this.props}
+                    comments = {this.state.comments}
                 />
             </div>
         );
     }
+
+    getComments = (storyId) => {
+      return fetch(`/api/comment?parent=${storyId}`).then((res) => res.json());
+    };
 
 }
 
