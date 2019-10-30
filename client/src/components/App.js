@@ -6,6 +6,7 @@ import Profile from "./pages/Profile.js";
 import { Route, Switch, withRouter } from "react-router-dom";
 
 import "../styles.css";
+import "./App.css";
 
 class App extends Component {
   constructor(props) {
@@ -24,16 +25,18 @@ class App extends Component {
     return (
       <React.Fragment>
         <NavBar userInfo={this.state.userInfo} logout={this.logout} />
-        <Switch>
-          <Route
-            exact
-            path="/"
-            render={(props) => <Feed {...props} userInfo={this.state.userInfo} />}
-          />
-          <Route exact path="/profile/:user" component={Profile} />
-          }/>
-          <Route component={NotFound} />
-        </Switch>
+        <div className="App-container">
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={(props) => <Feed {...props} userInfo={this.state.userInfo} />}
+            />
+            <Route exact path="/profile/:user" component={Profile} />
+            }/>
+            <Route component={NotFound} />
+          </Switch>
+        </div>
       </React.Fragment>
     );
   }
