@@ -8,7 +8,6 @@ class Feed extends Component {
     this.state = {
       stories: [],
     };
-
   }
 
   componentDidMount() {
@@ -20,19 +19,11 @@ class Feed extends Component {
     const isLoggedIn = this.props.userInfo !== null;
     return (
       <React.Fragment>
-        {isLoggedIn ? (
-          <NewPost comment={false}/>
-        ) : (
-          <div>You must be logged in to post.</div>
-        )}
+        {isLoggedIn ? <NewPost comment={false} /> : <div>You must be logged in to post.</div>}
 
         {this.state.stories ? (
           this.state.stories.map((storyObj) => (
-            <Card
-              key={`Card_${storyObj._id}`}
-              story={storyObj}
-              userInfo={this.props.userInfo}
-            />
+            <Card key={`Card_${storyObj._id}`} story={storyObj} userInfo={this.props.userInfo} />
           ))
         ) : (
           <div>No stories!</div>
@@ -45,13 +36,12 @@ class Feed extends Component {
     fetch("/api/stories")
       .then((res) => res.json())
       .then((storyObjs) => {
-        let r_storyObjs = storyObjs.reverse()
+        let r_storyObjs = storyObjs.reverse();
         r_storyObjs.map((storyObj) => {
-          this.setState({stories : this.state.stories.concat([storyObj])})
-        })
+          this.setState({ stories: this.state.stories.concat([storyObj]) });
+        });
       });
   };
-
 }
 
 export default Feed;
