@@ -2,11 +2,11 @@
   "name": "catbook-react",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --config ./webpack.config.js --mode development --port 5000",
-    "start": "node server/app.js"
+    "start": "nodemon"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "mongoose": "^5.4.2",
+    "nodemon": "^1.19.4",
     "passport": "^0.4.0",
     "passport-google-oauth20": "^1.0.0",
     "react": "^16.7.0",
