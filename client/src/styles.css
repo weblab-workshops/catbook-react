@@ -18,6 +18,22 @@ form {
   flex-grow: 1;
 }
 
+.u-flex {
+  display: flex;
+}
+
+.u-flex-justifyCenter {
+  justify-content: center;
+}
+
+.u-flex-alignCenter {
+  align-items: center;
+}
+
+.u-pointer {
+  cursor: pointer;
+}
+
 .story {
   margin: 10px 0px;
 }

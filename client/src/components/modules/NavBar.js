@@ -10,9 +10,9 @@ class NavBar extends Component {
 
   render() {
     return (
-      <nav className="NavBar-container">
+      <nav className="NavBar-container u-flex">
         <div className="NavBar-title">Catbook</div>
-        <div className="NavBar-linkContainer">
+        <div className="NavBar-linkContainer u-flex u-flex-alignCenter">
           <Link to="/" className="NavBar-link">
             Home
           </Link>
