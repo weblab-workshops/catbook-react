@@ -1,8 +1,5 @@
 /** @define NavBar; */
 .NavBar-container {
-  position: sticky;
-  top: 0;
-  left: 0;
   width: calc(100vw - 2 * 1.25rem);
   padding: 0.75rem 1.25rem;
 
