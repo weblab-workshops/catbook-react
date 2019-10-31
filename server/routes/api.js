@@ -6,39 +6,28 @@ const Comment = require("../models/comment");
 
 // api endpoints: all these paths will be prefixed with "/api/"
 const router = express.Router();
-const MY_NAME = "master debater"
 
-router.get("/whoami", (req, res) => {
-  res.send({ _id: "testid" });
-});
-
-router.get("/user", (req, res) => {
-  // we haven't set up user login yet, so just return
-  // some placeholder data for now
-  res.send({
-    _id: "testid",
-    name: MY_NAME,
-    last_post: "Placeholder post"
-  });
-});
+// we haven't set up user login yet, so just
+// use a hardcoded name for now
+const MY_NAME = "Test User";
 
 router.get("/stories", (req, res) => {
   // empty selector means get all documents
-  Story.find({}).then(stories => res.send(stories));
+  Story.find({}).then((stories) => res.send(stories));
 });
 
 router.post("/story", (req, res) => {
   const newStory = new Story({
     creator_id: "testid",
     creator_name: MY_NAME,
-    content: req.body.content
+    content: req.body.content,
   });
 
   newStory.save().then(() => res.send({}));
 });
 
 router.get("/comment", (req, res) => {
-  Comment.find({ parent: req.query.parent }).then(comments => {
+  Comment.find({ parent: req.query.parent }).then((comments) => {
     res.send(comments);
   });
 });
@@ -48,7 +37,7 @@ router.post("/comment", (req, res) => {
     creator_id: "testid",
     creator_name: MY_NAME,
     parent: req.body.parent,
-    content: req.body.content
+    content: req.body.content,
   });
 
   newComment.save().then(() => res.send({}));
