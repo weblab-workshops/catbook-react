@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import LatestPost from "../modules/LatestPost.js";
 import ProfilePicture from "../../public/corgi.jpg";
 
-import "../../styles.css";
+import "../../utilities.css";
 import "./Profile.css";
 
 class Profile extends Component {

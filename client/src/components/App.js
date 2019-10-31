@@ -5,7 +5,7 @@ import NotFound from "./pages/NotFound.js";
 import Profile from "./pages/Profile.js";
 import { Route, Switch, withRouter } from "react-router-dom";
 
-import "../styles.css";
+import "../utilities.css";
 import "./App.css";
 
 class App extends Component {
