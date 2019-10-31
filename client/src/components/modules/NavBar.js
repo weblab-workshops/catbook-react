@@ -16,17 +16,9 @@ class NavBar extends Component {
           <Link to="/" className="NavBar-link">
             Home
           </Link>
-          {this.props.userInfo === null ? (
-            <a className="NavBar-link" href="/auth/google">
-              Login
-            </a>
-          ) : (
-            <React.Fragment>
-              <Link to={"/profile/" + this.props.userInfo._id} className="NavBar-link">
-                Profile
-              </Link>
-            </React.Fragment>
-          )}
+          <Link to="/profile/" className="NavBar-link">
+            Profile
+          </Link>
         </div>
       </nav>
     );

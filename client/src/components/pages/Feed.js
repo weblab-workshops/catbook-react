@@ -22,7 +22,7 @@ class Feed extends Component {
 
         {this.state.stories ? (
           this.state.stories.map((storyObj) => (
-            <Card key={`Card_${storyObj._id}`} story={storyObj} userInfo={this.props.userInfo} />
+            <Card key={`Card_${storyObj._id}`} story={storyObj} />
           ))
         ) : (
           <div>No stories!</div>
