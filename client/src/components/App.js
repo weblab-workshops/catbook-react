@@ -19,9 +19,8 @@ class App extends Component {
         <NavBar />
         <div className="App-container">
           <Switch>
-            <Route exact path="/" render={(props) => <Feed {...props} />} />
-            <Route exact path="/profile/:user" component={Profile} />
-            }/>
+            <Route exact path="/" component={Feed} />
+            <Route exact path="/profile" component={Profile} />
             <Route component={NotFound} />
           </Switch>
         </div>
