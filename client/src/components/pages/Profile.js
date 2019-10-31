@@ -8,16 +8,9 @@ import "./Profile.css";
 class Profile extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      name: null,
-      latestPost: null,
-      id: null,
-    };
   }
 
   componentDidMount() {
-    this.getProfile(this.props.match.params.user);
     document.title = "Profile Page";
   }
 
@@ -30,7 +23,7 @@ class Profile extends Component {
         <div className="Profile-avatarContainer">
           <div style={pfpStyle} className="Profile-avatar" />
         </div>
-        <h1 className="Profile-name u-textCenter">{this.state.name ? this.state.name : ""}</h1>
+        <h1 className="Profile-name u-textCenter">Shannen Wu</h1>
         <hr className="Profile-line" />
         <div className="u-flex">
           <div className="Profile-subContainer u-textCenter">
@@ -41,15 +34,7 @@ class Profile extends Component {
           </div>
           <div className="Profile-subContainer u-textCenter">
             <h4 className="Profile-subTitle">My Latest Post</h4>
-            {this.state.latestPost ? (
-              <LatestPost
-                name={this.state.name}
-                latestPost={this.state.latestPost}
-                id={this.state.id}
-              />
-            ) : (
-              <div>No posts!</div>
-            )}
+            <LatestPost name="Shannen Wu" latestPost="Woof woof" id="ffffff" />
           </div>
           <div className="Profile-subContainer u-textCenter">
             <h4 className="Profile-subTitle">My Favorite Type of Cat</h4>
@@ -61,18 +46,6 @@ class Profile extends Component {
       </React.Fragment>
     );
   }
-
-  getProfile = (id) => {
-    fetch("/api/user?_id=" + id)
-      .then((res) => res.json())
-      .then((userObj) => {
-        this.setState({
-          name: userObj.name,
-          latestPost: userObj.last_post,
-          id: id,
-        });
-      });
-  };
 }
 
 export default Profile;
