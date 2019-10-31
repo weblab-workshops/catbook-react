@@ -16,10 +16,9 @@ class Feed extends Component {
   }
 
   render() {
-    const isLoggedIn = this.props.userInfo !== null;
     return (
       <React.Fragment>
-        {isLoggedIn ? <NewPost comment={false} /> : <div>You must be logged in to post.</div>}
+        <NewPost comment={false} />
 
         {this.state.stories ? (
           this.state.stories.map((storyObj) => (

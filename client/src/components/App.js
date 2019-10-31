@@ -23,7 +23,7 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <NavBar userInfo={this.state.userInfo} logout={this.logout} />
+        <NavBar userInfo={this.state.userInfo} />
         <div className="App-container">
           <Switch>
             <Route
@@ -39,12 +39,6 @@ class App extends Component {
       </React.Fragment>
     );
   }
-
-  logout = () => {
-    this.setState({
-      userInfo: null,
-    });
-  };
 
   getUser = () => {
     fetch("/api/whoami")

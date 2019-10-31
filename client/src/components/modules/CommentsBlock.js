@@ -8,18 +8,13 @@ class CommentsBlock extends Component {
   }
 
   render() {
-    const isLoggedIn = this.props.userInfo !== null;
     return (
       <div className="Card-commentSection">
         <div className="story-comments">
           {this.props.comments.map((comment) => (
             <SingleComment key={`SingleComment_${comment._id}`} data={comment} />
           ))}
-          {isLoggedIn ? (
-            <NewPost storyId={this.props.story._id} comment={true} />
-          ) : (
-            <div>You must be logged in to comment.</div>
-          )}
+          <NewPost storyId={this.props.story._id} comment={true} />
         </div>
       </div>
     );
