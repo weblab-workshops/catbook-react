@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import LatestPost from "../modules/LatestPost.js";
 import ProfilePicture from "../../public/corgi.jpg";
+
 import "../../styles.css";
+import "./Profile.css";
 
 class Profile extends Component {
   constructor(props) {
@@ -24,23 +26,21 @@ class Profile extends Component {
       backgroundImage: `url(${ProfilePicture})`,
     };
     return (
-      <div className="container text-center">
-        <div className="large-profile-container text-center my-4">
-          <div style={pfpStyle} className={"circle-avatar"}></div>
+      <React.Fragment>
+        <div className="Profile-avatarContainer">
+          <div style={pfpStyle} className="Profile-avatar" />
         </div>
-        <h1>{this.state.name ? this.state.name : ""}</h1>
-        <hr />
-        <div className="row mt-4">
-          <div className="col-4">
-            <h4>About Me</h4>
-            <br />
+        <h1 className="Profile-name u-textCenter">{this.state.name ? this.state.name : ""}</h1>
+        <hr className="Profile-line" />
+        <div className="u-flex">
+          <div className="Profile-subContainer u-textCenter">
+            <h4 className="Profile-subTitle">About Me</h4>
             <div className="text" id="profile-description">
               I am really allergic to cats i don't know why i have a catbook
             </div>
           </div>
-          <div className="col-4">
-            <h4>My Latest Post</h4>
-            <br />
+          <div className="Profile-subContainer u-textCenter">
+            <h4 className="Profile-subTitle">My Latest Post</h4>
             {this.state.latestPost ? (
               <LatestPost
                 name={this.state.name}
@@ -51,13 +51,14 @@ class Profile extends Component {
               <div>No posts!</div>
             )}
           </div>
-          <div className="col-4">
-            <h4>My Favorite Type of Cat</h4>
-            <br />
-            <h3 id="favorite-cat">corgi</h3>
+          <div className="Profile-subContainer u-textCenter">
+            <h4 className="Profile-subTitle">My Favorite Type of Cat</h4>
+            <h3 className="Profile-cat" id="favorite-cat">
+              corgi
+            </h3>
           </div>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 

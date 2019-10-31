@@ -7,12 +7,12 @@ class LatestPost extends Component {
 
   render() {
     return (
-      <div className="card">
-        <div className="card-body">
-          <a className="story-creator card-title" href={"/profile/" + this.props.id}>
+      <div className="Card-container">
+        <div className="Card-story">
+          <a className="Card-storyUser u-link" href={"/profile/" + this.props.id}>
             {this.props.name}
           </a>
-          <p className="story-content card-text">{this.props.latestPost}</p>
+          <p className="Card-storyContent">{this.props.latestPost}</p>
         </div>
       </div>
     );
