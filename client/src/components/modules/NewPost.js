@@ -19,7 +19,9 @@ class NewPost extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.comment && this.props.storyId ? this.addComment(this.props.storyId, this.state.value) : this.addStory(this.state.value);
+    this.props.comment && this.props.storyId
+      ? this.addComment(this.props.storyId, this.state.value)
+      : this.addStory(this.state.value);
     this.setState({
       value: "",
     });

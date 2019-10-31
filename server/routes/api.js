@@ -6,6 +6,7 @@ const Comment = require("../models/comment");
 
 // api endpoints: all these paths will be prefixed with "/api/"
 const router = express.Router();
+const MY_NAME = "master debater"
 
 router.get("/whoami", (req, res) => {
   res.send({ _id: "testid" });
@@ -16,7 +17,7 @@ router.get("/user", (req, res) => {
   // some placeholder data for now
   res.send({
     _id: "testid",
-    name: "Test User",
+    name: MY_NAME,
     last_post: "Placeholder post"
   });
 });
@@ -29,7 +30,7 @@ router.get("/stories", (req, res) => {
 router.post("/story", (req, res) => {
   const newStory = new Story({
     creator_id: "testid",
-    creator_name: "Test User",
+    creator_name: MY_NAME,
     content: req.body.content
   });
 
@@ -45,7 +46,7 @@ router.get("/comment", (req, res) => {
 router.post("/comment", (req, res) => {
   const newComment = new Comment({
     creator_id: "testid",
-    creator_name: "Test User",
+    creator_name: MY_NAME,
     parent: req.body.parent,
     content: req.body.content
   });

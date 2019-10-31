@@ -25,9 +25,6 @@ class NavBar extends Component {
               <Link to={"/profile/" + this.props.userInfo._id} className="NavBar-link">
                 Profile
               </Link>
-              <a className="NavBar-link" href="/logout" onClick={this.props.logout}>
-                Logout
-              </a>
             </React.Fragment>
           )}
         </div>
