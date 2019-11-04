@@ -4,6 +4,9 @@ const express = require("express");
 const Story = require("../models/story");
 const Comment = require("../models/comment");
 
+// import authentication library
+const auth = require("../auth");
+
 // api endpoints: all these paths will be prefixed with "/api/"
 const router = express.Router();
 
@@ -41,6 +44,17 @@ router.post("/comment", (req, res) => {
   });
 
   newComment.save().then(() => res.send({}));
+});
+
+router.post("/login", auth.login);
+router.post("/logout", auth.logout);
+router.get("/whoami", (req, res) => {
+  if (!req.user) {
+    // not logged in
+    return res.send({});
+  }
+
+  res.send(req.user);
 });
 
 // anything else falls to this "not found" case

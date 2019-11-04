@@ -6,11 +6,13 @@ validator.checkSetup();
 const http = require("http");
 const bodyParser = require("body-parser");
 const express = require("express");
+const session = require("express-session");
 const mongoose = require("mongoose");
 const path = require("path");
 
 const config = require("../config.json");
 const api = require("./routes/api");
+const auth = require("./auth");
 
 // connect to mongodb
 mongoose
@@ -30,7 +32,19 @@ app.use(validator.checkRoutes);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// connect API routes to the file ./routes/api.js
+// set up a session, which will persist login data across requests
+app.use(
+  session({
+    secret: "session-secret",
+    resave: false,
+    saveUninitialized: true,
+  })
+);
+
+// this checks if the user is logged in, and populates "req.user"
+app.use(auth.populateCurrentUser);
+
+// connect user-defined routes
 app.use("/api", api);
 
 // load the compiled react files, which will serve /index.html and /bundle.js
