@@ -10,6 +10,8 @@ class Feed extends Component {
     };
   }
 
+  // called when the "Feed" component "mounts", i.e.
+  // when it shows up on screen
   componentDidMount() {
     document.title = "News Feed";
     this.getStories();
@@ -19,7 +21,6 @@ class Feed extends Component {
     return (
       <React.Fragment>
         <NewPost comment={false} />
-
         {this.state.stories ? (
           this.state.stories.map((storyObj) => (
             <Card key={`Card_${storyObj._id}`} story={storyObj} />
@@ -35,8 +36,8 @@ class Feed extends Component {
     fetch("/api/stories")
       .then((res) => res.json())
       .then((storyObjs) => {
-        let r_storyObjs = storyObjs.reverse();
-        r_storyObjs.map((storyObj) => {
+        let reversedStoryObjs = storyObjs.reverse();
+        reversedStoryObjs.map((storyObj) => {
           this.setState({ stories: this.state.stories.concat([storyObj]) });
         });
       });

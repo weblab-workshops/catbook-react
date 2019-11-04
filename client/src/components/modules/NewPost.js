@@ -11,12 +11,14 @@ class NewPost extends Component {
     };
   }
 
+  // called whenever the user types in the new post input box
   handleChange = (event) => {
     this.setState({
       value: event.target.value,
     });
   };
 
+  // called when the user hits "Submit" for a new post
   handleSubmit = (event) => {
     event.preventDefault();
     this.props.comment && this.props.storyId
