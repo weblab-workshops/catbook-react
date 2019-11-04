@@ -1,4 +1,5 @@
 // validator runs some basic checks to make sure you've set everything up correctly
+// this is a tool provided by staff, so you don't need to worry about it
 const validator = require("./validator");
 validator.checkSetup();
 
@@ -10,34 +11,33 @@ const path = require("path");
 
 const config = require("../config.json");
 const api = require("./routes/api");
-const app = express();
-
-// reactPath is the location of the compiled react files
-const reactPath = path.resolve(__dirname, "..", "client", "dist");
 
 // connect to mongodb
 mongoose
   .connect(config.mongoSRV, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    dbName: config.dbName
+    dbName: config.dbName,
   })
   .then(() => console.log("Connected to MongoDB"))
-  .catch(err => console.log(`Error connecting to MongoDB: ${err}`));
+  .catch((err) => console.log(`Error connecting to MongoDB: ${err}`));
 
+// create a new express server
+const app = express();
 app.use(validator.checkRoutes);
 
 // set up bodyParser, which allows us to process POST requests
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// connect API routes
+// connect API routes to the file ./routes/api.js
 app.use("/api", api);
 
-// serve /index.html and /bundle.js
+// load the compiled react files, which will serve /index.html and /bundle.js
+const reactPath = path.resolve(__dirname, "..", "client", "dist");
 app.use(express.static(reactPath));
 
-// for all other routes, load index.html and let react router handle them
+// for all other routes, render index.html and let react router handle it
 app.get("*", (req, res) => {
   res.sendFile(path.join(reactPath, "index.html"));
 });
@@ -54,7 +54,7 @@ app.use((err, req, res, next) => {
   res.status(status);
   res.send({
     status: status,
-    message: err.message
+    message: err.message,
   });
 });
 
