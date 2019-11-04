@@ -10,27 +10,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shannenwu/catbook-react.git"
+    "url": "git+https://github.com/mit6148-workshops/catbook-react.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/shannenwu/catbook-react/issues"
+    "url": "https://github.com/mit6148-workshops/catbook-react/issues"
   },
-  "homepage": "https://github.com/shannenwu/catbook-react#readme",
+  "homepage": "https://github.com/mit6148-workshops/catbook-react#readme",
   "dependencies": {
-    "connect-ensure-login": "^0.1.1",
     "express": "^4.16.4",
-    "express-session": "^1.15.6",
     "mongoose": "^5.7.7",
     "nodemon": "^1.19.4",
-    "passport": "^0.4.0",
-    "passport-google-oauth20": "^1.0.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-router-dom": "^4.3.1",
-    "socket.io": "^2.2.0",
-    "socket.io-client": "^2.2.0",
     "url-loader": "^1.1.2"
   },
   "devDependencies": {
