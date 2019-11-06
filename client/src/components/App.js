@@ -28,7 +28,7 @@ class App extends Component {
         <NavBar />
         <div className="App-container">
           <Router>
-            <Feed path="/" {...this.props} userInfo={this.state.userInfo} />
+            <Feed path="/" {...this.props}/>
             <Profile path="/profile/" />
             <NotFound default />
           </Router>
