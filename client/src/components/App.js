@@ -3,7 +3,7 @@ import NavBar from "./modules/NavBar.js";
 import Feed from "./pages/Feed.js";
 import NotFound from "./pages/NotFound.js";
 import Profile from "./pages/Profile.js";
-import { Route, Switch, withRouter } from "react-router-dom";
+import { Router } from "@reach/router";
 
 // to use styles, import the necessary CSS files
 import "../utilities.css";
@@ -27,17 +27,15 @@ class App extends Component {
       <React.Fragment>
         <NavBar />
         <div className="App-container">
-          <Switch>
-            <Route exact path="/" component={Feed} />
-            <Route exact path="/profile" component={Profile} />
-            <Route component={NotFound} />
-          </Switch>
+          <Router>
+            <Feed path="/" {...this.props} userInfo={this.state.userInfo} />
+            <Profile path="/profile/" />
+            <NotFound default />
+          </Router>
         </div>
       </React.Fragment>
     );
   }
 }
 
-// Wrap our "App" component in withRouter to provide
-// access to Router props
-export default withRouter(App);
+export default App;
