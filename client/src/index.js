@@ -11,7 +11,7 @@ import Profile from "./components/pages/Profile.js";
  * as a Functional Component.
  */
 const Root = () => (
-  // wrap the "App" component in a BrowserRouter to
+  // wrap the "App" component in a Router to
   // ensure routing is handled
   <Router>
     <App path="/">
