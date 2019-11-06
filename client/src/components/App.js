@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import NavBar from "./modules/NavBar.js";
 import { Router } from "@reach/router";
+import Feed from "./pages/Feed.js";
+import NotFound from "./pages/NotFound.js";
+import Profile from "./pages/Profile.js";
 
 // to use styles, import the necessary CSS files
 import "../utilities.css";
@@ -23,7 +26,13 @@ class App extends Component {
       // up in the DOM tree
       <>
         <NavBar />
-        <div className="App-container">{this.props.children}</div>
+        <div className="App-container">
+          <Router>
+            <Feed path="/" />
+            <Profile path="/profile/" />
+            <NotFound default />
+          </Router>
+        </div>
       </>
     );
   }
