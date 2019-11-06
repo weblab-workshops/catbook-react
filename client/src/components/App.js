@@ -1,8 +1,5 @@
 import React, { Component } from "react";
 import NavBar from "./modules/NavBar.js";
-import Feed from "./pages/Feed.js";
-import NotFound from "./pages/NotFound.js";
-import Profile from "./pages/Profile.js";
 import { Router } from "@reach/router";
 
 // to use styles, import the necessary CSS files
@@ -26,13 +23,7 @@ class App extends Component {
       // up in the DOM tree
       <React.Fragment>
         <NavBar />
-        <div className="App-container">
-          <Router>
-            <Feed path="/" {...this.props}/>
-            <Profile path="/profile/" />
-            <NotFound default />
-          </Router>
-        </div>
+        <div className="App-container">{this.props.children}</div>
       </React.Fragment>
     );
   }

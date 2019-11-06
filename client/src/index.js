@@ -1,8 +1,10 @@
 import React from "react";
-// import "@babel/polyfill";
 import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
+import { Router } from "@reach/router";
 import App from "./components/App.js";
+import Feed from "./components/pages/Feed.js";
+import NotFound from "./components/pages/NotFound.js";
+import Profile from "./components/pages/Profile.js";
 
 /**
  * Define "Root", the highest level component,
@@ -11,9 +13,13 @@ import App from "./components/App.js";
 const Root = () => (
   // wrap the "App" component in a BrowserRouter to
   // ensure routing is handled
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
+  <Router>
+    <App path="/">
+      <Feed path="/" />
+      <Profile path="/profile/" />
+      <NotFound default />
+    </App>
+  </Router>
 );
 
 // renders React Component "Root" into the DOM element with ID "root"
