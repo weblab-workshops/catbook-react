@@ -19,12 +19,12 @@ class App extends Component {
   // shows up on screen
   render() {
     return (
-      // <React.Fragment> is like a <div>, but won't show
+      // <> is like a <div>, but won't show
       // up in the DOM tree
-      <React.Fragment>
+      <>
         <NavBar />
         <div className="App-container">{this.props.children}</div>
-      </React.Fragment>
+      </>
     );
   }
 }

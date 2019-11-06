@@ -19,7 +19,7 @@ class Feed extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <>
         <NewPost comment={false} />
         {this.state.stories ? (
           this.state.stories.map((storyObj) => (
@@ -28,7 +28,7 @@ class Feed extends Component {
         ) : (
           <div>No stories!</div>
         )}
-      </React.Fragment>
+      </>
     );
   }
 
