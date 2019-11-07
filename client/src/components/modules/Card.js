@@ -24,7 +24,7 @@ class Card extends Component {
     return (
       <div className="Card-container">
         <Story data={this.props.story} />
-        <CommentsBlock {...this.props} comments={this.state.comments} />
+        <CommentsBlock story={this.props.story} comments={this.state.comments} />
       </div>
     );
   }
