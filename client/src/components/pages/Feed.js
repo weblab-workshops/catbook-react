@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Card from "../modules/Card.js";
-import NewPost from "../modules/NewPost.js";
+import { NewStory } from "../modules/NewPost.js";
 
 class Feed extends Component {
   constructor(props) {
@@ -20,7 +20,7 @@ class Feed extends Component {
   render() {
     return (
       <>
-        <NewPost comment={false} />
+        <NewStory />
         {this.state.stories ? (
           this.state.stories.map((storyObj) => (
             <Card key={`Card_${storyObj._id}`} story={storyObj} />

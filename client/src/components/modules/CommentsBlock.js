@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import SingleComment from "./SingleComment.js";
-import NewPost from "./NewPost.js";
+import { NewComment } from "./NewPost.js";
 
 class CommentsBlock extends Component {
   constructor(props) {
@@ -14,7 +14,7 @@ class CommentsBlock extends Component {
           {this.props.comments.map((comment) => (
             <SingleComment key={`SingleComment_${comment._id}`} data={comment} />
           ))}
-          <NewPost storyId={this.props.story._id} comment={true} />
+          <NewComment storyId={this.props.story._id} />
         </div>
       </div>
     );

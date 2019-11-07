@@ -21,9 +21,8 @@ class NewPost extends Component {
   // called when the user hits "Submit" for a new post
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.comment && this.props.storyId
-      ? this.addComment(this.props.storyId, this.state.value)
-      : this.addStory(this.state.value);
+    this.props.onSubmit &&
+      this.props.onSubmit({ storyId: this.props.storyId, value: this.state.value });
     this.setState({
       value: "",
     });
@@ -34,7 +33,7 @@ class NewPost extends Component {
       <form onSubmit={this.handleSubmit} className="u-flex">
         <input
           type="text"
-          placeholder={this.props.comment ? "New Comment" : "New Story"}
+          placeholder={this.props.defaultText}
           value={this.state.value}
           onChange={this.handleChange}
           className="NewPost-input"
@@ -50,8 +49,33 @@ class NewPost extends Component {
       </form>
     );
   }
+}
 
-  addStory = (content) => {
+class NewComment extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  addComment = ({ storyId: parent, value: content }) => {
+    const body = { parent: parent, content: content };
+    fetch("/api/comment", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
+  };
+
+  render() {
+    return (
+      <NewPost storyId={this.props.storyId} defaultText="New Comment" onSubmit={this.addComment} />
+    );
+  }
+}
+
+class NewStory extends Component {
+  addStory = ({ value: content }) => {
     const body = { content: content };
     fetch("/api/story", {
       method: "POST",
@@ -62,16 +86,9 @@ class NewPost extends Component {
     });
   };
 
-  addComment = (parent, content) => {
-    const body = { parent: parent, content: content };
-    fetch("/api/comment", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    });
-  };
+  render() {
+    return <NewPost defaultText="New Story" onSubmit={this.addStory} />;
+  }
 }
 
-export default NewPost;
+export { NewComment, NewStory };
