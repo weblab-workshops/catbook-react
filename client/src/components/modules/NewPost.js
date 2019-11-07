@@ -21,8 +21,7 @@ class NewPost extends Component {
   // called when the user hits "Submit" for a new post
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.onSubmit &&
-      this.props.onSubmit({ storyId: this.props.storyId, value: this.state.value });
+    this.props.onSubmit && this.props.onSubmit(this.state.value);
     this.setState({
       value: "",
     });
@@ -56,8 +55,8 @@ class NewComment extends Component {
     super(props);
   }
 
-  addComment = ({ storyId: parent, value: content }) => {
-    const body = { parent: parent, content: content };
+  addComment = (value) => {
+    const body = { parent: this.props.storyId, content: value };
     fetch("/api/comment", {
       method: "POST",
       headers: {
@@ -68,15 +67,13 @@ class NewComment extends Component {
   };
 
   render() {
-    return (
-      <NewPost storyId={this.props.storyId} defaultText="New Comment" onSubmit={this.addComment} />
-    );
+    return <NewPost defaultText="New Comment" onSubmit={this.addComment} />;
   }
 }
 
 class NewStory extends Component {
-  addStory = ({ value: content }) => {
-    const body = { content: content };
+  addStory = (value) => {
+    const body = { content: value };
     fetch("/api/story", {
       method: "POST",
       headers: {
