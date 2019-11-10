@@ -9,15 +9,23 @@ const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
 
-const config = require("../config.json");
 const api = require("./routes/api");
+
+/**
+ * Server configuration below.
+ * You will need to change the constants below when switching
+ * to your own database instance.
+ */
+const mongoConnectionURL =
+  "mongodb+srv://weblab:jAT4po55IAgYWQgR@catbook-ylndp.mongodb.net/test?retryWrites=true&w=majority";
+const databaseName = "catbook";
 
 // connect to mongodb
 mongoose
-  .connect(config.mongoSRV, {
+  .connect(mongoConnectionURL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    dbName: config.dbName,
+    dbName: databaseName,
   })
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.log(`Error connecting to MongoDB: ${err}`));
@@ -58,8 +66,8 @@ app.use((err, req, res, next) => {
   });
 });
 
-// port defaults to 3000, can be changed in config.json
-const port = config.port || 3000;
+// hardcode port to 3000 for now
+const port = 3000;
 const server = http.Server(app);
 
 server.listen(port, () => {
