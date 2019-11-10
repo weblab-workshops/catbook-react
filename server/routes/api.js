@@ -9,6 +9,7 @@ const router = express.Router();
 
 // we haven't set up user login yet, so just
 // use a hardcoded name for now
+// TODO change to a unique name for workshop
 const MY_NAME = "Test User";
 
 router.get("/stories", (req, res) => {

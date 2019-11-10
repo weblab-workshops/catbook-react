@@ -11,13 +11,11 @@ const path = require("path");
 
 const api = require("./routes/api");
 
-/**
- * Server configuration below.
- * You will need to change the constants below when switching
- * to your own database instance.
- */
+// Server configuration below
+// TODO change connection URL after setting up your own database
 const mongoConnectionURL =
   "mongodb+srv://weblab:jAT4po55IAgYWQgR@catbook-ylndp.mongodb.net/test?retryWrites=true&w=majority";
+// TODO change database name to the name you chose
 const databaseName = "catbook";
 
 // connect to mongodb
