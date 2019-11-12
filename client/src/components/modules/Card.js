@@ -5,16 +5,10 @@ import CommentsBlock from "./CommentsBlock.js";
 import "./Card.css";
 
 /**
- * @typedef StoryObject
- * @property {string} _id of story
- * @property {import("./Story.js").StoryData} data of creator and content
- */
-
-/**
  * Card is a component for displaying content like stories
  *
  * Proptypes
- * @param {StoryObject} story information including id and content to be rendered
+ * @param {import("../pages/Feed").StoryObject} story information including id and content to be rendered
  */
 class Card extends Component {
   constructor(props) {
