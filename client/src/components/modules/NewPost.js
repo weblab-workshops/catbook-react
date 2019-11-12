@@ -6,9 +6,9 @@ import "./NewPost.css";
  * New Post is a parent component for all input components
  *
  * Proptypes
- * @param {string} defaultText is the placeholder text
- * @param {string} storyId optional prop, used for comments
- * @param {({storyId, value}) => void} onSubmit function triggered when this post is submitted
+ * defaultText: (string) is the placeholder text
+ * storyId: (string) optional prop, used for comments
+ * onSubmit: (function) triggered when this post is submitted, takes {storyId, value} as parameters
  */
 class NewPost extends Component {
   constructor(props) {
