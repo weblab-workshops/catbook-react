@@ -2,6 +2,19 @@ import React, { Component } from "react";
 import SingleComment from "./SingleComment.js";
 import { NewComment } from "./NewPost.js";
 
+/**
+ * @typedef CommentsObject
+ * @property {string} _id of the comment
+ * @property {import("./SingleComment").CommentData} data
+ */
+
+/**
+ * Component that holds all the comments for a story
+ *
+ * Proptypes
+ * @param {CommentsObject} comments
+ * @param {import("./Card").StoryObject} story
+ */
 class CommentsBlock extends Component {
   constructor(props) {
     super(props);

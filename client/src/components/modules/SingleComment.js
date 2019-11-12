@@ -1,6 +1,19 @@
 import React, { Component } from "react";
 import { Link } from "@reach/router";
 
+/**
+ * @typedef CommentData
+ * @property {string} creator_id
+ * @property {string} creator_name
+ * @property {string} content of the comment
+ */
+
+/**
+ * Component to render a single comment
+ *
+ * Proptypes
+ * @param {CommentData} data
+ */
 class SingleComment extends Component {
   constructor(props) {
     super(props);
