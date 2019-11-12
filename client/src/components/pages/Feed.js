@@ -18,19 +18,19 @@ class Feed extends Component {
   }
 
   render() {
-    let storyComponent = null;
+    let storiesList = null;
     const hasStories = this.state.stories.length !== 0;
     if (hasStories) {
-      storyComponent = this.state.stories.map((storyObj) => (
+      storiesList = this.state.stories.map((storyObj) => (
         <Card key={`Card_${storyObj._id}`} story={storyObj} />
       ));
     } else {
-      storyComponent = <div>No stories!</div>;
+      storiesList = <div>No stories!</div>;
     }
     return (
       <>
         <NewStory />
-        {storyComponent}
+        {storiesList}
       </>
     );
   }
