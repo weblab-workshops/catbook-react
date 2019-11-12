@@ -29,7 +29,7 @@ class NewPost extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} className="u-flex">
+      <div className="u-flex">
         <input
           type="text"
           placeholder={this.props.defaultText}
@@ -45,7 +45,7 @@ class NewPost extends Component {
         >
           Submit
         </button>
-      </form>
+      </div>
     );
   }
 }
