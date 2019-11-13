@@ -1,3 +1,13 @@
+/*
+|--------------------------------------------------------------------------
+| webpack.config.js -- Configuration for Webpack
+|--------------------------------------------------------------------------
+|
+| Webpack turns all the clientside HTML, CSS, Javascript into one bundle.js file.
+| Thi
+|
+*/
+
 const path = require("path");
 const entryFile = path.resolve(__dirname, "client", "src", "index.js");
 const outputDir = path.resolve(__dirname, "client", "dist");
@@ -49,8 +59,6 @@ module.exports = {
     hot: true,
     proxy: {
       "/api": "http://localhost:3000",
-      "/auth": "http://localhost:3000",
-      "/logout": "http://localhost:3000",
     },
   },
 };
