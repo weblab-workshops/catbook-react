@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 
-import "./NewPost.css";
+import "./NewPostInput.css";
 import { post } from "../../utilities";
 
-class NewPost extends Component {
+class NewPostInput extends Component {
   constructor(props) {
     super(props);
 
@@ -36,11 +36,11 @@ class NewPost extends Component {
           placeholder={this.props.defaultText}
           value={this.state.value}
           onChange={this.handleChange}
-          className="NewPost-input"
+          className="NewPostInput-input"
         />
         <button
           type="submit"
-          className="NewPost-button u-pointer"
+          className="NewPostInput-button u-pointer"
           value="Submit"
           onClick={this.handleSubmit}
         >
@@ -62,7 +62,7 @@ class NewComment extends Component {
   };
 
   render() {
-    return <NewPost defaultText="New Comment" onSubmit={this.addComment} />;
+    return <NewPostInput defaultText="New Comment" onSubmit={this.addComment} />;
   }
 }
 
@@ -73,7 +73,7 @@ class NewStory extends Component {
   };
 
   render() {
-    return <NewPost defaultText="New Story" onSubmit={this.addStory} />;
+    return <NewPostInput defaultText="New Story" onSubmit={this.addStory} />;
   }
 }
 
