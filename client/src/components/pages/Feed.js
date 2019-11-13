@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Card from "../modules/Card.js";
 import { NewStory } from "../modules/NewPost.js";
+import { get } from "../../utilities";
 
 class Feed extends Component {
   constructor(props) {
@@ -14,7 +15,12 @@ class Feed extends Component {
   // when it shows up on screen
   componentDidMount() {
     document.title = "News Feed";
-    this.getStories();
+    get("/api/stories").then((storyObjs) => {
+      let reversedStoryObjs = storyObjs.reverse();
+      reversedStoryObjs.map((storyObj) => {
+        this.setState({ stories: this.state.stories.concat([storyObj]) });
+      });
+    });
   }
 
   render() {
@@ -34,17 +40,6 @@ class Feed extends Component {
       </>
     );
   }
-
-  getStories = () => {
-    fetch("/api/stories")
-      .then((res) => res.json())
-      .then((storyObjs) => {
-        let reversedStoryObjs = storyObjs.reverse();
-        reversedStoryObjs.map((storyObj) => {
-          this.setState({ stories: this.state.stories.concat([storyObj]) });
-        });
-      });
-  };
 }
 
 export default Feed;

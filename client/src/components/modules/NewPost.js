@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import "./NewPost.css";
+import { post } from "../../utilities";
 
 class NewPost extends Component {
   constructor(props) {
@@ -57,13 +58,7 @@ class NewComment extends Component {
 
   addComment = (value) => {
     const body = { parent: this.props.storyId, content: value };
-    fetch("/api/comment", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    });
+    post("/api/comment", body);
   };
 
   render() {
@@ -74,13 +69,7 @@ class NewComment extends Component {
 class NewStory extends Component {
   addStory = (value) => {
     const body = { content: value };
-    fetch("/api/story", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    });
+    post("/api/story", body);
   };
 
   render() {
