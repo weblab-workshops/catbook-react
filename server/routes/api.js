@@ -19,7 +19,7 @@ const router = express.Router();
 // we haven't set up user login yet, so just
 // use a hardcoded name for now
 // TODO change to a unique name for workshop
-const MY_NAME = "Test User";
+const MY_NAME = "Anonymous User";
 
 router.get("/stories", (req, res) => {
   // empty selector means get all documents

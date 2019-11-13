@@ -9,9 +9,7 @@ class Story extends Component {
   render() {
     return (
       <div className="Card-story">
-        <Link to={"/profile/" + this.props.data.creator_id} className="Card-storyUser u-link">
-          {this.props.data.creator_name}
-        </Link>
+        {this.props.data.creator_name}
         <p className="Card-storyContent">{this.props.data.content}</p>
       </div>
     );

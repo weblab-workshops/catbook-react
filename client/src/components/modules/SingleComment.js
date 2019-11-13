@@ -9,9 +9,7 @@ class SingleComment extends Component {
   render() {
     return (
       <div className="Card-commentBody">
-        <Link to={"/profile/" + this.props.data.creator_id} className="u-link u-bold">
-          {this.props.data.creator_name}
-        </Link>
+        {this.props.data.creator_name}
         <span>{" | " + this.props.data.content}</span>
       </div>
     );
