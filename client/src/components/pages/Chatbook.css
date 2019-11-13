@@ -41,3 +41,44 @@
   flex-grow: 1;
   overflow-y: auto;
 }
+
+/** @define SingleChat */
+.SingleChat-container {
+  margin: 0 0 0.25rem;
+}
+
+.SingleChat-sender {
+  width: 106px;
+  margin-right: 0.25rem;
+}
+
+.SingleChat-content {
+  padding: 0.25rem 0.75rem;
+  background: var(--medgrey);
+}
+
+.SingleChat-mine .SingleChat-content {
+  background: var(--primary--dim);
+  color: var(--white);
+}
+
+/* The chat next to sender's TL corner will be rounded */
+.SingleChat-container--first .SingleChat-content {
+  border-radius: 1rem;
+}
+
+/* A chat following a chat, will have the TL corner be less rounded*/
+.SingleChat-content {
+  border-radius: 1rem;
+}
+
+/* I want to style both the last Chat-content and a Chat-content 
+followed by a Chat-content--first */
+:last(.SingleChat-content) {
+  border-radius: 4px 6px 6px 4px;
+}
+
+/**
+.SingleChat-content > .SingleChat-content--first {
+
+}*/

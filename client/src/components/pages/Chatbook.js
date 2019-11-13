@@ -50,6 +50,7 @@ class ChatList extends Component {
 
 /**
  * @param {MessageObject} message
+ * @param {boolean} showSender
  */
 class SingleChat extends Component {
   constructor(props) {
@@ -58,9 +59,14 @@ class SingleChat extends Component {
 
   render() {
     return (
-      <div>
-        <span className="u-bold">{this.props.message.sender.name}</span>:{" "}
-        <span>{this.props.message.content}</span>
+      <div
+        className={`u-flex u-flex-alignCenter SingleChat-container ${this.props.message.sender
+          ._id === "1" && "SingleChat-mine"}`}
+      >
+        <span className=" SingleChat-sender u-bold">
+          {this.props.showSender && this.props.message.sender.name + ":"}
+        </span>
+        <span className="SingleChat-content">{this.props.message.content}</span>
       </div>
     );
   }
@@ -79,8 +85,11 @@ class Chat extends Component {
       <div className="u-flexColumn Chat-container">
         <h3>Chatting with {this.props.data.recipient.name}</h3>
         <div className="Chat-historyContainer">
-          {this.props.data.messages.map((m) => (
-            <SingleChat message={m} />
+          {this.props.data.messages.map((m, i) => (
+            <SingleChat
+              message={m}
+              showSender={i === 0 || m.sender !== this.props.data.messages[i - 1].sender}
+            />
           ))}
         </div>
         <div className="Chat-newContainer">
@@ -120,6 +129,7 @@ class Chatbook extends Component {
     recipient: this.AARON,
     messages: [
       { sender: this.SHANNEN, content: "hiyo" },
+      { sender: this.AARON, content: "hey" },
       { sender: this.AARON, content: "whatsup" },
     ],
   };
