@@ -2,7 +2,7 @@
   "name": "catbook-react",
   "version": "1.0.0",
   "description": "",
-  "main": "server/app.js",
+  "main": "server/server.js",
   "scripts": {
     "hotloader": "webpack-dev-server --config ./webpack.config.js --mode development --port 5000",
     "start": "nodemon"
