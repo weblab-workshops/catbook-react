@@ -6,7 +6,7 @@
 | This file defines how your server starts up. Think of it as the main() of your server.
 | At a high level, this file does the following things:
 | - Connect to the database
-| - Sets up server middleware (i.e. addons that enable things like json parsing)
+| - Sets up server middleware (i.e. addons that enable things like json parsing, user login)
 | - Hooks up all the backend routes specified in api.js
 | - Fowards frontend routes that should be handled by the React router
 | - Sets up error handling in case something goes wrong when handling a request
@@ -22,10 +22,12 @@ validator.checkSetup();
 const http = require("http"); // add http interface to node
 const bodyParser = require("body-parser"); // allow node to automatically parse POST body requests as JSON
 const express = require("express"); // backend framework for our node server.
+const session = require("express-session"); // library that stores info about each connected user
 const mongoose = require("mongoose"); // library to connect to MongoDB
 const path = require("path"); // provide utilities for working with file and directory paths
 
 const api = require("./routes/api");
+const auth = require("./auth");
 
 // Server configuration below
 // TODO change connection URL after setting up your own database
@@ -39,10 +41,10 @@ mongoose
   .connect(mongoConnectionURL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    dbName: databaseName,
+    dbName: databaseName
   })
   .then(() => console.log("Connected to MongoDB"))
-  .catch((err) => console.log(`Error connecting to MongoDB: ${err}`));
+  .catch(err => console.log(`Error connecting to MongoDB: ${err}`));
 
 // create a new express server
 const app = express();
@@ -52,7 +54,19 @@ app.use(validator.checkRoutes);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// connect API routes to the file ./routes/api.js
+// set up a session, which will persist login data across requests
+app.use(
+  session({
+    secret: "session-secret",
+    resave: false,
+    saveUninitialized: true
+  })
+);
+
+// this checks if the user is logged in, and populates "req.user"
+app.use(auth.populateCurrentUser);
+
+// connect user-defined routes
 app.use("/api", api);
 
 // load the compiled react files, which will serve /index.html and /bundle.js
@@ -76,7 +90,7 @@ app.use((err, req, res, next) => {
   res.status(status);
   res.send({
     status: status,
-    message: err.message,
+    message: err.message
   });
 });
 
