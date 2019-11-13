@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "@reach/router";
 
-class Story extends Component {
+class SingleStory extends Component {
   constructor(props) {
     super(props);
   }
@@ -16,4 +16,4 @@ class Story extends Component {
   }
 }
 
-export default Story;
+export default SingleStory;
