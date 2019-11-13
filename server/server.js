@@ -25,7 +25,7 @@ const express = require("express"); // backend framework for our node server.
 const mongoose = require("mongoose"); // library to connect to MongoDB
 const path = require("path"); // provide utilities for working with file and directory paths
 
-const api = require("./routes/api");
+const api = require("./api");
 
 // Server configuration below
 // TODO change connection URL after setting up your own database
@@ -52,7 +52,7 @@ app.use(validator.checkRoutes);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// connect API routes to the file ./routes/api.js
+// connect API routes to the file ./api.js
 app.use("/api", api);
 
 // load the compiled react files, which will serve /index.html and /bundle.js
