@@ -77,4 +77,14 @@ class NewStory extends Component {
   }
 }
 
-export { NewComment, NewStory };
+class NewChat extends Component {
+  sendMessage = (value) => {
+    return;
+  };
+
+  render() {
+    return <NewPostInput defaultText="New Message" onSubmit={this.sendMessage} />;
+  }
+}
+
+export { NewComment, NewStory, NewChat };

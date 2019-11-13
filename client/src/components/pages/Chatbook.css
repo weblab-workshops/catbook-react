@@ -1,0 +1,43 @@
+/** @define Chatbook */
+.Chatbook-container {
+  height: calc(100vh - 4rem - 51px);
+}
+
+.Chatbook-userList {
+  width: 260px;
+  margin-right: 1rem;
+}
+
+.Chatbook-chatContainer {
+  flex-grow: 1;
+}
+
+/** @define SingleUser */
+.SingleUser-container {
+  background: var(--white);
+  border-radius: 4px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.SingleUser-container:hover {
+  background: var(--grey);
+}
+
+.SingleUser-container--active {
+  background: var(--grey);
+}
+
+/** @define Chat */
+.Chat-container {
+  height: 100%;
+}
+
+.Chat-newContainer {
+  width: 100%;
+}
+
+.Chat-historyContainer {
+  flex-grow: 1;
+  overflow-y: auto;
+}
