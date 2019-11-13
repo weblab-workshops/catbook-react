@@ -4,8 +4,15 @@
 |--------------------------------------------------------------------------
 |
 | This file defines how your server starts up. Think of it as the main() of your server.
-|
+| At a high level, this file does the following things:
+| - Connect to the database
+| - Sets up server middleware (i.e. addons that enable things like json parsing)
+| - Hooks up all the backend routes specified in api.js
+| - Fowards frontend routes that should be handled by the React router
+| - Sets up error handling in case something goes wrong when handling a request
+| - Actually starts the webserver
 */
+
 // validator runs some basic checks to make sure you've set everything up correctly
 // this is a tool provided by staff, so you don't need to worry about it
 const validator = require("./validator");
