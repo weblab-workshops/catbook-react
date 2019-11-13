@@ -9,7 +9,7 @@ class Story extends Component {
   render() {
     return (
       <div className="Card-story">
-        {this.props.data.creator_name}
+        <span className="u-bold">{this.props.data.creator_name}</span>
         <p className="Card-storyContent">{this.props.data.content}</p>
       </div>
     );

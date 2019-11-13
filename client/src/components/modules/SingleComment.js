@@ -9,7 +9,7 @@ class SingleComment extends Component {
   render() {
     return (
       <div className="Card-commentBody">
-        {this.props.data.creator_name}
+        <span className="u-bold">{this.props.data.creator_name}</span>
         <span>{" | " + this.props.data.content}</span>
       </div>
     );
