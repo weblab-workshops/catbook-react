@@ -50,10 +50,11 @@
 .SingleChat-sender {
   width: 106px;
   margin-right: 0.25rem;
+  flex-shrink: 0;
 }
 
 .SingleChat-content {
-  padding: 0.25rem 0.75rem;
+  padding: 0.4rem 0.75rem;
   background: var(--medgrey);
 }
 

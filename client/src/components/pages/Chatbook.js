@@ -131,6 +131,11 @@ class Chatbook extends Component {
       { sender: this.SHANNEN, content: "hiyo" },
       { sender: this.AARON, content: "hey" },
       { sender: this.AARON, content: "whatsup" },
+      {
+        sender: this.SHANNEN,
+        content:
+          "do you think this styling handles content with super long messages? like really really really really really long messages",
+      },
     ],
   };
 
