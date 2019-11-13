@@ -10,11 +10,11 @@
 const express = require("express");
 
 // import models so we can interact with the database
-const Story = require("../models/story");
-const Comment = require("../models/comment");
+const Story = require("./models/story");
+const Comment = require("./models/comment");
 
 // import authentication library
-const auth = require("../auth");
+const auth = require("./auth");
 
 // api endpoints: all these paths will be prefixed with "/api/"
 const router = express.Router();

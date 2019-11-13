@@ -26,7 +26,7 @@ const session = require("express-session"); // library that stores info about ea
 const mongoose = require("mongoose"); // library to connect to MongoDB
 const path = require("path"); // provide utilities for working with file and directory paths
 
-const api = require("./routes/api");
+const api = require("./api");
 const auth = require("./auth");
 
 // Server configuration below
@@ -41,10 +41,10 @@ mongoose
   .connect(mongoConnectionURL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    dbName: databaseName
+    dbName: databaseName,
   })
   .then(() => console.log("Connected to MongoDB"))
-  .catch(err => console.log(`Error connecting to MongoDB: ${err}`));
+  .catch((err) => console.log(`Error connecting to MongoDB: ${err}`));
 
 // create a new express server
 const app = express();
@@ -59,7 +59,7 @@ app.use(
   session({
     secret: "session-secret",
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: true,
   })
 );
 
@@ -90,7 +90,7 @@ app.use((err, req, res, next) => {
   res.status(status);
   res.send({
     status: status,
-    message: err.message
+    message: err.message,
   });
 });
 
