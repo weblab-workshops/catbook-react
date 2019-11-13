@@ -1,3 +1,12 @@
+/*
+|--------------------------------------------------------------------------
+| api.js -- server routes
+|--------------------------------------------------------------------------
+|
+| This file defines the routes for your server. 
+|
+*/
+
 const express = require("express");
 
 // import models so we can interact with the database
@@ -12,7 +21,8 @@ const router = express.Router();
 
 // we haven't set up user login yet, so just
 // use a hardcoded name for now
-const MY_NAME = "Test User";
+// TODO change to a unique name for workshop
+const MY_NAME = "Anonymous User";
 
 router.get("/stories", (req, res) => {
   // empty selector means get all documents

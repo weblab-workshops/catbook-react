@@ -1,24 +1,24 @@
-/** @define NewPost */
-.NewPost-input,
-.NewPost-button {
+/** @define NewPostInput */
+.NewPostInput-input,
+.NewPostInput-button {
   font-family: "Open Sans";
   font-size: 11pt;
   padding: 0.5rem 0.75rem;
 }
 
-.NewPost-input {
+.NewPostInput-input {
   flex-grow: 1;
   border: var(--darkgrey) 1px solid;
   border-radius: 4px 0 0 4px;
   transition: box-shadow 0.1s;
 }
 
-.NewPost-input:focus-within {
+.NewPostInput-input:focus-within {
   border-color: var(--primary--dim);
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
-.NewPost-button {
+.NewPostInput-button {
   color: var(--primary);
   border: var(--primary) 1px solid;
   border-radius: 0 4px 4px 0;
@@ -26,7 +26,7 @@
   transition: color 0.1s, background 0.1s;
 }
 
-.NewPost-button:hover {
+.NewPostInput-button:hover {
   color: var(--white);
   background-color: var(--primary);
 }

@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Card from "../modules/Card.js";
-import NewPost from "../modules/NewPost.js";
+import { NewStory } from "../modules/NewPostInput.js";
+
+import { get } from "../../utilities";
 
 class Feed extends Component {
   constructor(props) {
@@ -14,34 +16,31 @@ class Feed extends Component {
   // when it shows up on screen
   componentDidMount() {
     document.title = "News Feed";
-    this.getStories();
+    get("/api/stories").then((storyObjs) => {
+      let reversedStoryObjs = storyObjs.reverse();
+      reversedStoryObjs.map((storyObj) => {
+        this.setState({ stories: this.state.stories.concat([storyObj]) });
+      });
+    });
   }
 
   render() {
+    let storiesList = null;
+    const hasStories = this.state.stories.length !== 0;
+    if (hasStories) {
+      storiesList = this.state.stories.map((storyObj) => (
+        <Card key={`Card_${storyObj._id}`} story={storyObj} />
+      ));
+    } else {
+      storiesList = <div>No stories!</div>;
+    }
     return (
-      <React.Fragment>
-        <NewPost comment={false} />
-        {this.state.stories ? (
-          this.state.stories.map((storyObj) => (
-            <Card key={`Card_${storyObj._id}`} story={storyObj} />
-          ))
-        ) : (
-          <div>No stories!</div>
-        )}
-      </React.Fragment>
+      <>
+        <NewStory />
+        {storiesList}
+      </>
     );
   }
-
-  getStories = () => {
-    fetch("/api/stories")
-      .then((res) => res.json())
-      .then((storyObjs) => {
-        let reversedStoryObjs = storyObjs.reverse();
-        reversedStoryObjs.map((storyObj) => {
-          this.setState({ stories: this.state.stories.concat([storyObj]) });
-        });
-      });
-  };
 }
 
 export default Feed;

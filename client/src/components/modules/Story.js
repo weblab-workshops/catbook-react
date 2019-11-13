@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "@reach/router";
 
 class Story extends Component {
   constructor(props) {
@@ -9,9 +9,7 @@ class Story extends Component {
   render() {
     return (
       <div className="Card-story">
-        <Link to={"/profile/" + this.props.data.creator_id} className="Card-storyUser u-link">
-          {this.props.data.creator_name}
-        </Link>
+        <span className="u-bold">{this.props.data.creator_name}</span>
         <p className="Card-storyContent">{this.props.data.content}</p>
       </div>
     );

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Story from "./Story.js";
 import CommentsBlock from "./CommentsBlock.js";
+import { get } from "../../utilities";
 
 import "./Card.css";
 
@@ -13,7 +14,7 @@ class Card extends Component {
   }
 
   componentDidMount() {
-    this.getComments(this.props.story._id).then((comments) => {
+    get("/api/comment", { parent: this.props.story._id }).then((comments) => {
       this.setState({
         comments: comments,
       });
@@ -24,14 +25,10 @@ class Card extends Component {
     return (
       <div className="Card-container">
         <Story data={this.props.story} />
-        <CommentsBlock {...this.props} comments={this.state.comments} />
+        <CommentsBlock story={this.props.story} comments={this.state.comments} />
       </div>
     );
   }
-
-  getComments = (storyId) => {
-    return fetch(`/api/comment?parent=${storyId}`).then((res) => res.json());
-  };
 }
 
 export default Card;
