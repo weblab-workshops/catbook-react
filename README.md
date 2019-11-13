@@ -2,7 +2,7 @@
 
 ## start up
 
-run `npm start` in one terminal and `npm run dev` in another
+run `npm start` in one terminal and `npm run hotloader` in another
 
 visit `localhost:5000`
 

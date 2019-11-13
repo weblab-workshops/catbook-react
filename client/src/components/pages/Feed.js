@@ -1,11 +1,8 @@
 import React, { Component } from "react";
 import Card from "../modules/Card.js";
-<<<<<<< HEAD
-import { NewStory } from "../modules/NewPost.js";
-import { get } from "../../utilities";
-=======
 import { NewStory } from "../modules/NewPostInput.js";
->>>>>>> NewPost renamed as NewPostInput, and added a little more to utilities.css comment
+
+import { get } from "../../utilities";
 
 class Feed extends Component {
   constructor(props) {
