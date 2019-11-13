@@ -21,7 +21,7 @@
 }
 
 .SingleUser-container:hover {
-  background: var(--grey);
+  background: var(--medgrey);
 }
 
 .SingleUser-container--active {
