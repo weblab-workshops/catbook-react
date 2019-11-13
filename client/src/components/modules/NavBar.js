@@ -19,6 +19,9 @@ class NavBar extends Component {
           <Link to="/profile/" className="NavBar-link">
             Profile
           </Link>
+          <Link to="/chat/" className="NavBar-link">
+            Chat
+          </Link>
         </div>
       </nav>
     );
