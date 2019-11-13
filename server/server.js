@@ -1,13 +1,22 @@
+/*
+|--------------------------------------------------------------------------
+| server.js -- The core of your server
+|--------------------------------------------------------------------------
+|
+| This file defines how your server starts up. Think of it as the main() of your server.
+|
+*/
 // validator runs some basic checks to make sure you've set everything up correctly
 // this is a tool provided by staff, so you don't need to worry about it
 const validator = require("./validator");
 validator.checkSetup();
 
-const http = require("http");
-const bodyParser = require("body-parser");
-const express = require("express");
-const mongoose = require("mongoose");
-const path = require("path");
+//import libraries needed for the webserver to work!
+const http = require("http"); // add http interface to node
+const bodyParser = require("body-parser"); // allow node to automatically parse POST body requests as JSON
+const express = require("express"); // backend framework for our node server.
+const mongoose = require("mongoose"); // library to connect to MongoDB
+const path = require("path"); // provide utilities for working with file and directory paths
 
 const api = require("./routes/api");
 
