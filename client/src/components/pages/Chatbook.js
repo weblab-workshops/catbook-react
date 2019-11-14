@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ChatList from "../modules/ChatList.js";
+import Chat from "../modules/Chat.js";
 
 import "./Chatbook.css";
 
