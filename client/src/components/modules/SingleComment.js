@@ -6,7 +6,6 @@ import { Link } from "@reach/router";
  *
  * Proptypes
  * @param {string} _id of comment
- * @param {string} creator_id
  * @param {string} creator_name
  * @param {string} content of the comment
  */

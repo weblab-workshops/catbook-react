@@ -5,7 +5,6 @@ import { NewComment } from "./NewPostInput.js";
 /**
  * @typedef ContentObject
  * @property {string} _id of story/comment
- * @property {string} creator_id
  * @property {string} creator_name
  * @property {string} content of the story/comment
  */

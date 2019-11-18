@@ -9,8 +9,7 @@ import "./Card.css";
  * Card is a component for displaying content like stories
  *
  * Proptypes
- * @param {string} _id of the comment
- * @param {string} creator_id
+ * @param {string} _id of the story
  * @param {string} creator_name
  * @param {string} content of the story
  */

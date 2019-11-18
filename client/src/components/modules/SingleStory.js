@@ -5,8 +5,9 @@ import { Link } from "@reach/router";
  * Story is a component that renders creator and content of a story
  *
  * Proptypes
- * @param {string} id of the story
- * @param {import("../pages/Feed").StoryData} data
+ * @param {string} _id of the story
+ * @param {string} creator_name
+ * @param {string} content of the story
  */
 class SingleStory extends Component {
   constructor(props) {
