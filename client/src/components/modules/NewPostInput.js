@@ -1,16 +1,17 @@
 import React, { Component } from "react";
 
-import "./NewPost.css";
+import "./NewPostInput.css";
+import { post } from "../../utilities";
 
 /**
  * New Post is a parent component for all input components
  *
  * Proptypes
- * defaultText: (string) is the placeholder text
- * storyId: (string) optional prop, used for comments
- * onSubmit: (function) triggered when this post is submitted, takes {storyId, value} as parameters
+ * @param {string} defaultText is the placeholder text
+ * @param {string} storyId optional prop, used for comments
+ * @param {({storyId, value}) => void} onSubmit: (function) triggered when this post is submitted, takes {storyId, value} as parameters
  */
-class NewPost extends Component {
+class NewPostInput extends Component {
   constructor(props) {
     super(props);
 
@@ -29,8 +30,7 @@ class NewPost extends Component {
   // called when the user hits "Submit" for a new post
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.onSubmit &&
-      this.props.onSubmit({ storyId: this.props.storyId, value: this.state.value });
+    this.props.onSubmit && this.props.onSubmit(this.state.value);
     this.setState({
       value: "",
     });
@@ -38,23 +38,23 @@ class NewPost extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} className="u-flex">
+      <div className="u-flex">
         <input
           type="text"
           placeholder={this.props.defaultText}
           value={this.state.value}
           onChange={this.handleChange}
-          className="NewPost-input"
+          className="NewPostInput-input"
         />
         <button
           type="submit"
-          className="NewPost-button u-pointer"
+          className="NewPostInput-button u-pointer"
           value="Submit"
           onClick={this.handleSubmit}
         >
           Submit
         </button>
-      </form>
+      </div>
     );
   }
 }
@@ -71,21 +71,13 @@ class NewComment extends Component {
     super(props);
   }
 
-  addComment = ({ storyId: parent, value: content }) => {
-    const body = { parent: parent, content: content };
-    fetch("/api/comment", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    });
+  addComment = (value) => {
+    const body = { parent: this.props.storyId, content: value };
+    post("/api/comment", body);
   };
 
   render() {
-    return (
-      <NewPost storyId={this.props.storyId} defaultText="New Comment" onSubmit={this.addComment} />
-    );
+    return <NewPostInput defaultText="New Comment" onSubmit={this.addComment} />;
   }
 }
 
@@ -96,19 +88,13 @@ class NewComment extends Component {
  * @param {string} defaultText is the placeholder text
  */
 class NewStory extends Component {
-  addStory = ({ value: content }) => {
-    const body = { content: content };
-    fetch("/api/story", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    });
+  addStory = (value) => {
+    const body = { content: value };
+    post("/api/story", body);
   };
 
   render() {
-    return <NewPost defaultText="New Story" onSubmit={this.addStory} />;
+    return <NewPostInput defaultText="New Story" onSubmit={this.addStory} />;
   }
 }
 

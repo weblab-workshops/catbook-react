@@ -1,3 +1,12 @@
+/*
+|--------------------------------------------------------------------------
+| api.js -- server routes
+|--------------------------------------------------------------------------
+|
+| This file defines the routes for your server. 
+|
+*/
+
 const express = require("express");
 
 // import models so we can interact with the database
@@ -9,7 +18,8 @@ const router = express.Router();
 
 // we haven't set up user login yet, so just
 // use a hardcoded name for now
-const MY_NAME = "Test User";
+// TODO change to a unique name for workshop
+const MY_NAME = "Anonymous User";
 
 router.get("/stories", (req, res) => {
   // empty selector means get all documents
@@ -18,7 +28,6 @@ router.get("/stories", (req, res) => {
 
 router.post("/story", (req, res) => {
   const newStory = new Story({
-    creator_id: "testid",
     creator_name: MY_NAME,
     content: req.body.content,
   });
@@ -34,7 +43,6 @@ router.get("/comment", (req, res) => {
 
 router.post("/comment", (req, res) => {
   const newComment = new Comment({
-    creator_id: "testid",
     creator_name: MY_NAME,
     parent: req.body.parent,
     content: req.body.content,

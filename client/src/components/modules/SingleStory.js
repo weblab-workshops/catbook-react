@@ -8,7 +8,7 @@ import { Link } from "@reach/router";
  * @param {string} id of the story
  * @param {import("../pages/Feed").StoryData} data
  */
-class Story extends Component {
+class SingleStory extends Component {
   constructor(props) {
     super(props);
   }
@@ -16,13 +16,11 @@ class Story extends Component {
   render() {
     return (
       <div className="Card-story">
-        <Link to={"/profile/" + this.props.data.creator_id} className="Card-storyUser u-link">
-          {this.props.data.creator_name}
-        </Link>
+        <span className="u-bold">{this.props.data.creator_name}</span>
         <p className="Card-storyContent">{this.props.data.content}</p>
       </div>
     );
   }
 }
 
-export default Story;
+export default SingleStory;

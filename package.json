@@ -2,10 +2,9 @@
   "name": "catbook-react",
   "version": "1.0.0",
   "description": "",
-  "main": "server/app.js",
+  "main": "server/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server --config ./webpack.config.js --mode development --port 5000",
+    "hotloader": "webpack-dev-server --config ./webpack.config.js --mode development --port 5000",
     "start": "nodemon"
   },
   "repository": {

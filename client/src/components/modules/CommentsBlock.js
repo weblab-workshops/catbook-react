@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import SingleComment from "./SingleComment.js";
-import { NewComment } from "./NewPost.js";
+import { NewComment } from "./NewPostInput.js";
 
 /**
  * Component that holds all the comments for a story
