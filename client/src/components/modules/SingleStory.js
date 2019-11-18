@@ -16,8 +16,8 @@ class SingleStory extends Component {
   render() {
     return (
       <div className="Card-story">
-        <span className="u-bold">{this.props.data.creator_name}</span>
-        <p className="Card-storyContent">{this.props.data.content}</p>
+        <span className="u-bold">{this.props.creator_name}</span>
+        <p className="Card-storyContent">{this.props.content}</p>
       </div>
     );
   }

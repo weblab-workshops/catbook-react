@@ -9,7 +9,10 @@ import "./Card.css";
  * Card is a component for displaying content like stories
  *
  * Proptypes
- * @param {import("../pages/Feed").StoryObject} story information including id and content to be rendered
+ * @param {string} _id of the comment
+ * @param {string} creator_id
+ * @param {string} creator_name
+ * @param {string} content of the story
  */
 class Card extends Component {
   constructor(props) {
@@ -20,7 +23,7 @@ class Card extends Component {
   }
 
   componentDidMount() {
-    get("/api/comment", { parent: this.props.story._id }).then((comments) => {
+    get("/api/comment", { parent: this.props._id }).then((comments) => {
       this.setState({
         comments: comments,
       });
@@ -30,8 +33,8 @@ class Card extends Component {
   render() {
     return (
       <div className="Card-container">
-        <SingleStory data={this.props.story} />
-        <CommentsBlock story={this.props.story} comments={this.state.comments} />
+        <SingleStory {...this.props} />
+        <CommentsBlock story={this.props} comments={this.state.comments} />
       </div>
     );
   }

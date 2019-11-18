@@ -5,7 +5,10 @@ import { Link } from "@reach/router";
  * Component to render a single comment
  *
  * Proptypes
- * @param {import("../pages/Feed").CommentData} data
+ * @param {string} _id of comment
+ * @param {string} creator_id
+ * @param {string} creator_name
+ * @param {string} content of the comment
  */
 class SingleComment extends Component {
   constructor(props) {
@@ -15,8 +18,8 @@ class SingleComment extends Component {
   render() {
     return (
       <div className="Card-commentBody">
-        <span className="u-bold">{this.props.data.creator_name}</span>
-        <span>{" | " + this.props.data.content}</span>
+        <span className="u-bold">{this.props.creator_name}</span>
+        <span>{" | " + this.props.content}</span>
       </div>
     );
   }
