@@ -11,14 +11,13 @@ const net = require("net");
  * - node_modules exists
  * - makes sure 'npx webpack' was called if required
  * - warns if visiting port 3000 while running hot reloader
- * - warns if using the default mongoSRV
  */
 
 class NodeSetupError extends Error {}
 let routeChecked = false;
 
-// poke port 5000 to see if 'npm run dev' was possibly called
-function checkDev() {
+// poke port 5000 to see if 'npm run hotloader' was possibly called
+function checkHotLoader() {
   return new Promise((resolve, reject) => {
     var server = net.createServer();
 
@@ -46,16 +45,16 @@ module.exports = {
       // if the server receives a request on /, we must be on port 3000 not 5000
       if (!fs.existsSync("./client/dist/bundle.js")) {
         throw new NodeSetupError(
-          "Couldn't find bundle.js! If you want to run the hot reloader, make sure 'npm run dev'\n" +
+          "Couldn't find bundle.js! If you want to run the hot reloader, make sure 'npm run hotloader'\n" +
             "is running and then go to http://localhost:5000 instead of port 3000.\n" +
             "If you're not using the hot reloader, make sure to run 'npx webpack' before visiting this page"
         );
       }
 
-      checkDev().then((isDev) => {
-        if (isDev) {
+      checkHotLoader().then((active) => {
+        if (active) {
           console.log(
-            "Warning: It looks like 'npm run dev' may be running. Are you sure you don't want\n" +
+            "Warning: It looks like 'npm run hotloader' may be running. Are you sure you don't want\n" +
               "to use the hot reloader? To use it, visit http://localhost:5000 and not port 3000"
           );
         }
