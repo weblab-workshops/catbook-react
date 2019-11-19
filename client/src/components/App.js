@@ -30,7 +30,7 @@ class App extends Component {
         <div className="App-container">
           <Router>
             <Feed path="/" />
-            <Profile path="/profile/" />
+            <Profile path="/profile/:userId" />
             <Chatbook path="/chat/" />
             <NotFound default />
           </Router>

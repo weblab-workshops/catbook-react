@@ -12,7 +12,7 @@ class CommentsBlock extends Component {
       <div className="Card-commentSection">
         <div className="story-comments">
           {this.props.comments.map((comment) => (
-            <SingleComment key={`SingleComment_${comment._id}`} data={comment} />
+            <SingleComment key={`SingleComment_${comment._id}`} comment={comment} />
           ))}
           <NewComment storyId={this.props.story._id} />
         </div>

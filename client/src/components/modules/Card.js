@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Story from "./Story.js";
+import SingleStory from "./SingleStory.js";
 import CommentsBlock from "./CommentsBlock.js";
 import { get } from "../../utilities";
 
@@ -24,7 +24,7 @@ class Card extends Component {
   render() {
     return (
       <div className="Card-container">
-        <Story data={this.props.story} />
+        <SingleStory story={this.props.story} />
         <CommentsBlock story={this.props.story} comments={this.state.comments} />
       </div>
     );
