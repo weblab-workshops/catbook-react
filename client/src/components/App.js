@@ -4,6 +4,7 @@ import { Router } from "@reach/router";
 import Feed from "./pages/Feed.js";
 import NotFound from "./pages/NotFound.js";
 import Profile from "./pages/Profile.js";
+import Chatbook from "./pages/Chatbook.js";
 
 // to use styles, import the necessary CSS files
 import "../utilities.css";
@@ -30,6 +31,7 @@ class App extends Component {
           <Router>
             <Feed path="/" />
             <Profile path="/profile/:userId" />
+            <Chatbook path="/chat/" />
             <NotFound default />
           </Router>
         </div>

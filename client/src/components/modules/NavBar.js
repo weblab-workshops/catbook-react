@@ -72,6 +72,9 @@ class NavBar extends Component {
               onFailure={this.handleLogin}
             />
           )}
+          <Link to="/chat/" className="NavBar-link">
+            Chat
+          </Link>
         </div>
       </nav>
     );

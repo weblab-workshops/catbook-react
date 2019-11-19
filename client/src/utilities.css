@@ -20,6 +20,7 @@
   --primary: #396dff;
   --primary--dim: #6987db;
   --darkgrey: #d4d4d4;
+  --medgrey: #e0e0e0;
   --grey: #f7f7f7;
   --white: #fff;
 }
@@ -40,6 +41,11 @@ form {
   display: flex;
 }
 
+.u-flexColumn {
+  display: flex;
+  flex-direction: column;
+}
+
 .u-flex-justifyCenter {
   justify-content: center;
 }
@@ -54,6 +60,10 @@ form {
 
 .u-textCenter {
   text-align: center;
+}
+
+.u-relative {
+  position: relative;
 }
 
 .u-pointer {
