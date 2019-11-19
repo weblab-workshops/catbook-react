@@ -12,7 +12,9 @@ class LatestPost extends Component {
           <a className="Card-storyUser u-link" href={"/profile/" + this.props.id}>
             {this.props.name}
           </a>
-          <p className="Card-storyContent">{this.props.latestPost}</p>
+          <p className="Card-storyContent">
+            {this.props.latestPost ? this.props.latestPost : "No Posts Yet!"}
+          </p>
         </div>
       </div>
     );

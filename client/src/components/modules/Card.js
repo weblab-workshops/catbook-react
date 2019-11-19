@@ -24,7 +24,7 @@ class Card extends Component {
   render() {
     return (
       <div className="Card-container">
-        <SingleStory data={this.props.story} />
+        <SingleStory story={this.props.story} />
         <CommentsBlock story={this.props.story} comments={this.state.comments} />
       </div>
     );

@@ -9,8 +9,10 @@ class SingleStory extends Component {
   render() {
     return (
       <div className="Card-story">
-        <span className="u-bold">{this.props.data.creator_name}</span>
-        <p className="Card-storyContent">{this.props.data.content}</p>
+        <Link to={`/profile/${this.props.story.creator_id}`} className="u-link u-bold">
+          {this.props.story.creator_name}
+        </Link>
+        <p className="Card-storyContent">{this.props.story.content}</p>
       </div>
     );
   }

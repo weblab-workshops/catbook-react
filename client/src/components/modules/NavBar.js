@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "@reach/router";
 import GoogleLogin, { GoogleLogout } from "react-google-login";
+import { get, post } from "../../utilities";
 
 import "./NavBar.css";
 
@@ -9,19 +10,18 @@ class NavBar extends Component {
     super(props);
 
     this.state = {
-      loggedIn: false,
+      userId: undefined,
     };
   }
 
   componentDidMount() {
-    fetch("/api/whoami")
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(res);
-        if (res.googleid) {
-          this.setState({ loggedIn: true });
-        }
-      });
+    get("/api/whoami").then((user) => {
+      console.log(user);
+      if (user._id) {
+        // they are registed in the database, and currently logged in.
+        this.setState({ userId: user._id });
+      }
+    });
   }
 
   handleLogin = (res) => {
@@ -31,26 +31,18 @@ class NavBar extends Component {
       return;
     }
 
-    this.setState({ loggedIn: true });
     console.log(`Logged in as ${res.profileObj.name}`);
-
-    const token = res.tokenObj.id_token;
-    fetch("/api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ token }),
-    })
-      .then((res) => res.json())
-      .then(console.log);
+    const userToken = res.tokenObj.id_token;
+    post("/api/login", { token: userToken }).then(() => {
+      get("/api/whoami").then((user) => {
+        this.setState({ userId: user._id });
+      });
+    });
   };
 
   handleLogout = () => {
-    this.setState({ loggedIn: false });
-    fetch("/api/logout", {
-      method: "POST",
-    });
+    this.setState({ userId: undefined });
+    post("/api/logout");
   };
 
   render() {
@@ -61,10 +53,12 @@ class NavBar extends Component {
           <Link to="/" className="NavBar-link">
             Home
           </Link>
-          <Link to="/profile/" className="NavBar-link">
-            Profile
-          </Link>
-          {this.state.loggedIn ? (
+          {this.state.userId && (
+            <Link to={`/profile/${this.state.userId}`} className="NavBar-link">
+              Profile
+            </Link>
+          )}
+          {this.state.userId ? (
             <GoogleLogout
               clientId="121479668229-t5j82jrbi9oejh7c8avada226s75bopn.apps.googleusercontent.com"
               buttonText="Logout"
