@@ -31,7 +31,6 @@ router.get("/stories", (req, res) => {
 
 router.post("/story", (req, res) => {
   const newStory = new Story({
-    creator_id: "testid",
     creator_name: MY_NAME,
     content: req.body.content,
   });
@@ -47,7 +46,6 @@ router.get("/comment", (req, res) => {
 
 router.post("/comment", (req, res) => {
   const newComment = new Comment({
-    creator_id: "testid",
     creator_name: MY_NAME,
     parent: req.body.parent,
     content: req.body.content,
