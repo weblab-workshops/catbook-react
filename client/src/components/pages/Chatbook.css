@@ -1,4 +1,3 @@
-/** @define Chatbook */
 .Chatbook-container {
   height: calc(100vh - 4rem - 51px);
 }
