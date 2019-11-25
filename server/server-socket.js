@@ -9,6 +9,10 @@ const getAllConnectedUsers = () => {
   return { activeUsers: activeUsers };
 };
 
+const getSocketFromSocketID = (socketid) => {
+  return io.sockets.connected[socketid];
+};
+
 module.exports = {
   init: (http) => {
     io = require("socket.io")(http);
@@ -23,10 +27,16 @@ module.exports = {
       });
     });
   },
-  addUser: (user, socketid) => (socketmap[user] = socketid),
+  addUser: (user, socketid) => {
+    if (socketmap[user] && getSocketFromSocketID(socketmap[user])) {
+      getSocketFromSocketID(socketmap[user]).disconnect();
+    }
+    socketmap[user] = socketid;
+    // io.emit("activeUsers", getAllConnectedUsers());
+  },
   getSocketFromUserID: (user) => socketmap[user],
   getAllConnectedUsers: getAllConnectedUsers,
   getIo: () => io,
 
-  getSocketFromSocketID: (socketid) => io.sockets.connected[socketid],
+  getSocketFromSocketID: getSocketFromSocketID,
 };
