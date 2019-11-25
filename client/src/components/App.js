@@ -8,6 +8,8 @@ import Chatbook from "./pages/Chatbook.js";
 
 import socket from "../client-socket.js";
 
+import { get, post } from "../utilities";
+
 // to use styles, import the necessary CSS files
 import "../utilities.css";
 import "./App.css";
@@ -19,7 +21,40 @@ class App extends Component {
   // makes props available in this component
   constructor(props) {
     super(props);
+
+    this.state = {
+      userId: undefined,
+    };
   }
+
+  componentDidMount() {
+    get("/api/whoami").then((user) => {
+      console.log(user);
+      if (user._id) {
+        // they are registed in the database, and currently logged in.
+        this.setState({ userId: user._id });
+      }
+    });
+  }
+
+  handleLogin = (res) => {
+    if (!res.profileObj) {
+      console.log(res);
+      // login failed (e.g. user aborted)
+      return;
+    }
+
+    console.log(`Logged in as ${res.profileObj.name}`);
+    const userToken = res.tokenObj.id_token;
+    post("/api/login", { token: userToken }).then((user) => {
+      this.setState({ userId: user._id });
+    });
+  };
+
+  handleLogout = () => {
+    this.setState({ userId: undefined });
+    post("/api/logout");
+  };
 
   // required method: whatever is returned defines what
   // shows up on screen
@@ -28,7 +63,11 @@ class App extends Component {
       // <> is like a <div>, but won't show
       // up in the DOM tree
       <>
-        <NavBar />
+        <NavBar
+          handleLogin={this.handleLogin}
+          handleLogout={this.handleLogout}
+          userId={this.state.userId}
+        />
         <div className="App-container">
           <Router>
             <Feed path="/" />

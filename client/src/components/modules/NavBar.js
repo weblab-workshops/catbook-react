@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "@reach/router";
 import GoogleLogin, { GoogleLogout } from "react-google-login";
-import { get, post } from "../../utilities";
 import { socket } from "../../client-socket.js";
 
 import "./NavBar.css";
@@ -9,40 +8,7 @@ import "./NavBar.css";
 class NavBar extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      userId: undefined,
-    };
   }
-
-  componentDidMount() {
-    get("/api/whoami").then((user) => {
-      console.log(user);
-      if (user._id) {
-        // they are registed in the database, and currently logged in.
-        this.setState({ userId: user._id });
-      }
-    });
-  }
-
-  handleLogin = (res) => {
-    if (!res.profileObj) {
-      console.log(res);
-      // login failed (e.g. user aborted)
-      return;
-    }
-
-    console.log(`Logged in as ${res.profileObj.name}`);
-    const userToken = res.tokenObj.id_token;
-    post("/api/login", { token: userToken, socketid: socket.id }).then((user) => {
-      this.setState({ userId: user._id });
-    });
-  };
-
-  handleLogout = () => {
-    this.setState({ userId: undefined });
-    post("/api/logout");
-  };
 
   render() {
     return (
@@ -52,23 +18,23 @@ class NavBar extends Component {
           <Link to="/" className="NavBar-link">
             Home
           </Link>
-          {this.state.userId && (
-            <Link to={`/profile/${this.state.userId}`} className="NavBar-link">
+          {this.props.userId && (
+            <Link to={`/profile/${this.props.userId}`} className="NavBar-link">
               Profile
             </Link>
           )}
-          {this.state.userId ? (
+          {this.props.userId ? (
             <GoogleLogout
               clientId="121479668229-t5j82jrbi9oejh7c8avada226s75bopn.apps.googleusercontent.com"
               buttonText="Logout"
-              onLogoutSuccess={this.handleLogout}
+              onLogoutSuccess={this.props.handleLogout}
             />
           ) : (
             <GoogleLogin
               clientId="121479668229-t5j82jrbi9oejh7c8avada226s75bopn.apps.googleusercontent.com"
               buttonText="Login"
-              onSuccess={this.handleLogin}
-              onFailure={this.handleLogin}
+              onSuccess={this.props.handleLogin}
+              onFailure={this.props.handleLogin}
             />
           )}
           <Link to="/chat/" className="NavBar-link">
