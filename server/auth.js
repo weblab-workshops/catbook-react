@@ -38,7 +38,6 @@ function login(req, res) {
       // persist user in the session
       req.session.user = user;
       socket.addUser(user._id, req.body.socketid);
-      // socket.user = user;
       console.log(socket.getSocketFromUserID(user._id));
       res.send(user);
     })
