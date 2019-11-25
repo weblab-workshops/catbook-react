@@ -32,7 +32,11 @@ class Card extends Component {
   render() {
     return (
       <div className="Card-container">
-        <SingleStory {...this.props} />
+        <SingleStory
+          _id={this.props._id}
+          creator_name={this.props.creator_name}
+          content={this.props.content}
+        />
         <CommentsBlock story={this.props} comments={this.state.comments} />
       </div>
     );

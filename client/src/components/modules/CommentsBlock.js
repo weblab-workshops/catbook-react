@@ -26,7 +26,12 @@ class CommentsBlock extends Component {
       <div className="Card-commentSection">
         <div className="story-comments">
           {this.props.comments.map((comment) => (
-            <SingleComment key={`SingleComment_${comment._id}`} {...comment} />
+            <SingleComment
+              key={`SingleComment_${comment._id}`}
+              _id={comment._id}
+              creator_name={comment.creator_name}
+              content={comment.content}
+            />
           ))}
           <NewComment storyId={this.props.story._id} />
         </div>
