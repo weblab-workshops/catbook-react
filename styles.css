@@ -25,14 +25,14 @@ body {
   text-align: center;
 }
 
-.Profile-avatarContainer {
-  padding: 0 35%;
-}
-
 .App-container {
   max-width: 960px;
   padding: 1.75rem 1rem;
   margin: auto;
+}
+
+.Profile-avatarContainer {
+  padding: 0 35%;
 }
 
 .Profile-avatar {
