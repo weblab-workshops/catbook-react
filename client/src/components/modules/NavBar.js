@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "@reach/router";
 import GoogleLogin, { GoogleLogout } from "react-google-login";
 import { get, post } from "../../utilities";
+import { socket } from "../../client-socket.js";
 
 import "./NavBar.css";
 
@@ -33,7 +34,7 @@ class NavBar extends Component {
 
     console.log(`Logged in as ${res.profileObj.name}`);
     const userToken = res.tokenObj.id_token;
-    post("/api/login", { token: userToken }).then(() => {
+    post("/api/login", { token: userToken, socketid: socket.id }).then(() => {
       get("/api/whoami").then((user) => {
         this.setState({ userId: user._id });
       });

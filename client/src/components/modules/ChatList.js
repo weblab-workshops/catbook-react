@@ -19,9 +19,12 @@ class ChatList extends Component {
     return (
       <>
         <h3>Open Chats</h3>
-        <div className="SingleUser-container u-pointer">All Chat</div>
         {this.props.users.map((user) => (
-          <SingleUser user={user} active={user === this.props.active} />
+          <SingleUser
+            setActiveUser={this.props.setActiveUser}
+            user={user}
+            active={user === this.props.active}
+          />
         ))}
       </>
     );

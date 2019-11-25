@@ -3,7 +3,7 @@
 | api.js -- server routes
 |--------------------------------------------------------------------------
 |
-| This file defines the routes for your server. 
+| This file defines the routes for your server.
 |
 */
 
@@ -19,6 +19,8 @@ const auth = require("./auth");
 
 // api endpoints: all these paths will be prefixed with "/api/"
 const router = express.Router();
+
+const socket = require("./server-socket");
 
 router.get("/stories", (req, res) => {
   // empty selector means get all documents
@@ -73,6 +75,33 @@ router.get("/user", (req, res) => {
   User.findById(req.query.userid).then((user) => {
     res.send(user);
   });
+});
+
+router.post("/chat", (req, res) => {
+  console.log(`Received a chat message: ${req.body.message}`);
+  console.log(req.body.recipient);
+  const chatdata = {
+    recipient: req.body.recipient,
+    sender: {
+      _id: req.user._id,
+      name: req.user.name,
+    },
+    content: req.body.content,
+  };
+  if (req.body.recipient._id == "ALL_CHAT") {
+    socket.getIo().emit("chat", chatdata);
+  } else {
+    const recipientSocketID = socket.getSocketFromUserID(req.body.recipient._id);
+    socket
+      .getIo()
+      .to(recipientSocketID)
+      .emit("chat", chatdata);
+    const senderSocketID = socket.getSocketFromUserID(req.user._id);
+    socket
+      .getIo()
+      .to(senderSocketID)
+      .emit("chat", chatdata);
+  }
 });
 
 // anything else falls to this "not found" case

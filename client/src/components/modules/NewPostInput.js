@@ -79,7 +79,8 @@ class NewStory extends Component {
 
 class NewChat extends Component {
   sendMessage = (value) => {
-    return;
+    const body = { recipient: this.props.recipient, content: value };
+    post("/api/chat", body);
   };
 
   render() {

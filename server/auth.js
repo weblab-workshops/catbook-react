@@ -1,5 +1,6 @@
 const { OAuth2Client } = require("google-auth-library");
 const User = require("./models/user");
+const socket = require("./server-socket");
 
 // create a new OAuth client used to verify google sign-in
 const CLIENT_ID = "121479668229-t5j82jrbi9oejh7c8avada226s75bopn.apps.googleusercontent.com";
@@ -36,6 +37,9 @@ function login(req, res) {
     .then((user) => {
       // persist user in the session
       req.session.user = user;
+      socket.addUser(user._id, req.body.socketid);
+      // socket.user = user;
+      console.log(socket.getSocketFromUserID(user._id));
       res.send(user);
     })
     .catch((err) => {

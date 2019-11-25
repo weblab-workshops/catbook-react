@@ -1,23 +1,28 @@
 import React, { Component } from "react";
 import ChatList from "../modules/ChatList.js";
 import Chat from "../modules/Chat.js";
+import { socket } from "../../client-socket.js";
 
 import "./Chatbook.css";
 
-class Chatbook extends Component {
-  constructor(props) {
-    super(props);
-  }
+const ALL_CHAT = {
+  _id: "ALL_CHAT",
+  name: "ALL CHAT",
+};
 
+class Chatbook extends Component {
   //TODO: Change dummy data, remove comments, and hook up to backend
   /**
    * @typedef UserObject
    * @property {string} _id
    * @property {string} name
    */
-  SHANNEN = { _id: "1", name: "Shannen Wu" };
-  AARON = { _id: "2", name: "Aaron Sipser" };
-  USERS_ONLINE = [this.SHANNEN, this.AARON];
+  CORY = { _id: "5dbfd5ae53a5d86666e52364", name: "Cory Lynch" };
+  AARON = { _id: "5dd36f5adee10d7dff6d37cc", name: "Aaron Sipser" };
+  RACHEL = { _id: "5dd4c83f5fcc7b7882d3fa1a", name: "Rachel Zhang" };
+  ALEX = { _id: "5dd43730dbf0d667c158eaa9", name: "Alex Chen" };
+  // todo: possibly get from backend?
+  USERS_ONLINE = [ALL_CHAT, this.RACHEL, this.ALEX, this.AARON, this.CORY];
 
   /**
    * @typedef MessageObject
@@ -29,32 +34,60 @@ class Chatbook extends Component {
    * @property {MessageObject[]} messages
    * @property {UserObject} recipient
    */
-  ACTIVE_CHAT = {
-    recipient: this.AARON,
-    messages: [
-      { sender: this.SHANNEN, content: "hiyo" },
-      { sender: this.AARON, content: "hey" },
-      { sender: this.AARON, content: "whatsup" },
-      {
-        sender: this.SHANNEN,
-        content:
-          "do you think this styling handles content with super long messages? like really really really really really long messages",
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeUsers: [],
+      activeChat: {
+        recipient: ALL_CHAT,
+        messages: [],
       },
-    ],
-  };
+    };
+  }
 
   componentDidMount() {
     document.title = "Chatbook";
+    // maybe get the chat here for ALL_CHAT
+    socket.on("chat", (data) => {
+      if (
+        data.recipient._id === this.state.activeChat.recipient._id ||
+        data.sender._id === this.state.activeChat.recipient._id
+      ) {
+        this.setState((prevstate) => ({
+          activeChat: {
+            recipient: prevstate.activeChat.recipient,
+            messages: prevstate.activeChat.messages.concat(data),
+          },
+        }));
+      }
+    });
   }
 
+  setActiveUser = (user) => {
+    // maybe get chat here of the user? if we decide to
+    this.setState({
+      activeUsers: [],
+      activeChat: {
+        recipient: user,
+        messages: [],
+      },
+    });
+  };
+
   render() {
+    console.log(this.state);
     return (
       <div className="u-flex u-relative Chatbook-container">
         <div className="Chatbook-userList">
-          <ChatList users={this.USERS_ONLINE} active={this.AARON} />
+          <ChatList
+            setActiveUser={this.setActiveUser}
+            users={this.USERS_ONLINE}
+            active={this.state.activeChat.recipient}
+          />
         </div>
         <div className="Chatbook-chatContainer u-relative">
-          <Chat data={this.ACTIVE_CHAT} />
+          <Chat data={this.state.activeChat} />
         </div>
       </div>
     );

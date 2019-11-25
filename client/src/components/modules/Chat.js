@@ -40,12 +40,13 @@ class Chat extends Component {
           {this.props.data.messages.map((m, i) => (
             <SingleChat
               message={m}
+              key={i}
               showSender={i === 0 || m.sender !== this.props.data.messages[i - 1].sender}
             />
           ))}
         </div>
         <div className="Chat-newContainer">
-          <NewChat />
+          <NewChat recipient={this.props.data.recipient} />
         </div>
       </div>
     );
