@@ -11,6 +11,7 @@ import "./Card.css";
  * Proptypes
  * @param {string} _id of the story
  * @param {string} creator_name
+ * @param {string} creator_id
  * @param {string} content of the story
  */
 class Card extends Component {
@@ -35,6 +36,7 @@ class Card extends Component {
         <SingleStory
           _id={this.props._id}
           creator_name={this.props.creator_name}
+          creator_id={this.props.creator_id}
           content={this.props.content}
         />
         <CommentsBlock story={this.props} comments={this.state.comments} />

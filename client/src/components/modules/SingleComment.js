@@ -7,6 +7,7 @@ import { Link } from "@reach/router";
  * Proptypes
  * @param {string} _id of comment
  * @param {string} creator_name
+ * @param {string} creator_id
  * @param {string} content of the comment
  */
 class SingleComment extends Component {

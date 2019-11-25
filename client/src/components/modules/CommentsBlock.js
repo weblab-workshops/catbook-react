@@ -30,6 +30,7 @@ class CommentsBlock extends Component {
               key={`SingleComment_${comment._id}`}
               _id={comment._id}
               creator_name={comment.creator_name}
+              creator_id={comment.creator_id}
               content={comment.content}
             />
           ))}
