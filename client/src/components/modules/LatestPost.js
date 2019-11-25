@@ -1,5 +1,13 @@
 import React, { Component } from "react";
 
+/**
+ * Component that renders the data of a user's latest post
+ *
+ * Proptypes
+ * @param {string} id of post
+ * @param {string} name of user
+ * @param {string} latestPost is the content of the post
+ */
 class LatestPost extends Component {
   constructor(props) {
     super(props);

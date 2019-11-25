@@ -3,6 +3,14 @@ import React, { Component } from "react";
 import "./NewPostInput.css";
 import { post } from "../../utilities";
 
+/**
+ * New Post is a parent component for all input components
+ *
+ * Proptypes
+ * @param {string} defaultText is the placeholder text
+ * @param {string} storyId optional prop, used for comments
+ * @param {({storyId, value}) => void} onSubmit: (function) triggered when this post is submitted, takes {storyId, value} as parameters
+ */
 class NewPostInput extends Component {
   constructor(props) {
     super(props);
@@ -51,6 +59,13 @@ class NewPostInput extends Component {
   }
 }
 
+/**
+ * New Comment is a New Post component for comments
+ *
+ * Proptypes
+ * @param {string} defaultText is the placeholder text
+ * @param {string} storyId to add comment to
+ */
 class NewComment extends Component {
   constructor(props) {
     super(props);
@@ -66,6 +81,12 @@ class NewComment extends Component {
   }
 }
 
+/**
+ * New Story is a New Post component for comments
+ *
+ * Proptypes
+ * @param {string} defaultText is the placeholder text
+ */
 class NewStory extends Component {
   addStory = (value) => {
     const body = { content: value };

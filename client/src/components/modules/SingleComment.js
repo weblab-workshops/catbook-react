@@ -1,6 +1,14 @@
 import React, { Component } from "react";
 import { Link } from "@reach/router";
 
+/**
+ * Component to render a single comment
+ *
+ * Proptypes
+ * @param {string} _id of comment
+ * @param {string} creator_name
+ * @param {string} content of the comment
+ */
 class SingleComment extends Component {
   constructor(props) {
     super(props);
@@ -9,10 +17,10 @@ class SingleComment extends Component {
   render() {
     return (
       <div className="Card-commentBody">
-        <Link to={`/profile/${this.props.comment.creator_id}`} className="u-link u-bold">
-          {this.props.comment.creator_name}
+        <Link to={`/profile/${this.props.creator_id}`} className="u-link u-bold">
+          {this.props.creator_name}
         </Link>
-        <span>{" | " + this.props.comment.content}</span>
+        <span>{" | " + this.props.content}</span>
       </div>
     );
   }

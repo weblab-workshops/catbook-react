@@ -5,6 +5,14 @@ import { get } from "../../utilities";
 
 import "./Card.css";
 
+/**
+ * Card is a component for displaying content like stories
+ *
+ * Proptypes
+ * @param {string} _id of the story
+ * @param {string} creator_name
+ * @param {string} content of the story
+ */
 class Card extends Component {
   constructor(props) {
     super(props);
@@ -14,7 +22,7 @@ class Card extends Component {
   }
 
   componentDidMount() {
-    get("/api/comment", { parent: this.props.story._id }).then((comments) => {
+    get("/api/comment", { parent: this.props._id }).then((comments) => {
       this.setState({
         comments: comments,
       });
@@ -24,8 +32,12 @@ class Card extends Component {
   render() {
     return (
       <div className="Card-container">
-        <SingleStory story={this.props.story} />
-        <CommentsBlock story={this.props.story} comments={this.state.comments} />
+        <SingleStory
+          _id={this.props._id}
+          creator_name={this.props.creator_name}
+          content={this.props.content}
+        />
+        <CommentsBlock story={this.props} comments={this.state.comments} />
       </div>
     );
   }
