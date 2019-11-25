@@ -2,7 +2,7 @@
 
 ## to start
 
-run `npx webpack` to build your react code!
+Run `npx webpack` to build your react code! Then open up `index.html` in a browser of your choice.
 
 ## don't touch
 
