@@ -10,7 +10,7 @@ class Profile extends Component {
       backgroundImage: `url(${ProfilePicture})`,
     };
     return (
-      <>
+      <div>
         <div className="Profile-avatarContainer">
           <div style={pfpStyle} className="Profile-avatar" />
         </div>
@@ -34,7 +34,7 @@ class Profile extends Component {
             </h3>
           </div>
         </div>
-      </>
+      </div>
     );
   }
 }
