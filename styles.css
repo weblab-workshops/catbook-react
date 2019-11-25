@@ -1,0 +1,112 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,600");
+
+:root {
+  --primary: #396dff;
+  --primary--dim: #6987db;
+  --darkgrey: #d4d4d4;
+  --medgrey: #e0e0e0;
+  --grey: #f7f7f7;
+  --white: #fff;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 300;
+}
+
+.u-flex {
+  display: flex;
+}
+
+.u-textCenter {
+  text-align: center;
+}
+
+.Profile-avatarContainer {
+  padding: 0 35%;
+}
+
+.App-container {
+  max-width: 960px;
+  padding: 1.75rem 1rem;
+  margin: auto;
+}
+
+.Profile-avatar {
+  /* make it responsive */
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  display: block;
+  /* div height to be the same as width*/
+  padding-top: 100%;
+
+  /* make it a circle */
+  border-radius: 50%;
+
+  /* Centering on image`s center*/
+  background-position-y: center;
+  background-position-x: center;
+  background-repeat: no-repeat;
+
+  /* it makes the clue thing, takes smaller dimension to fill div */
+  background-size: cover;
+
+  /* it is optional, for making this div centered in parent*/
+  margin: 0 auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.Profile-name {
+  font-size: 2.4em;
+  font-weight: 300;
+}
+
+.Profile-line {
+  border-color: var(--grey);
+}
+
+.Profile-subContainer {
+  flex-grow: 1;
+  flex-basis: 0;
+}
+
+.Profile-subContainer + .Profile-subContainer {
+  margin-left: 1.75rem;
+}
+
+.Profile-subTitle {
+  font-weight: 300;
+  font-size: 1.5em;
+  margin: 0.75rem 0 1.5rem;
+}
+
+.Profile-cat {
+  font-weight: 300;
+  margin: 0;
+}
+
+.Card-container {
+  border: var(--darkgrey) 1px solid;
+  border-radius: 4px;
+  margin-top: 0.75rem;
+}
+.Card-story {
+  padding: 1.5rem 1.75rem;
+}
+
+.Card-storyUser {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.Card-storyContent {
+  font-size: 40px;
+  margin: 0.5rem 0 0;
+}
