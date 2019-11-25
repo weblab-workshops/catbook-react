@@ -37,8 +37,6 @@ function login(req, res) {
     .then((user) => {
       // persist user in the session
       req.session.user = user;
-      // socket.addUser(user._id, req.body.socketid);
-      // console.log(socket.getSocketFromUserID(user._id));
       res.send(user);
     })
     .catch((err) => {
@@ -58,6 +56,19 @@ function populateCurrentUser(req, res, next) {
   next();
 }
 
+function authenticateSocket(req, res, next) {
+  if (req.user) {
+    socket.addUser(req.user._id, req.body.socketid);
+    socket.getSocketFromSocketID(req.body.socketid).user = {
+      _id: req.user._id,
+      name: req.user.name,
+    };
+    socket.getIo().emit("activeUsers", socket.getAllConnectedUsers());
+  } else {
+    console.log("not logged in yet");
+  }
+}
+
 function ensureLoggedIn(req, res, next) {
   if (!req.user) {
     return res.send(401).send({ err: "not logged in" });
@@ -70,5 +81,6 @@ module.exports = {
   login,
   logout,
   populateCurrentUser,
+  authenticateSocket,
   ensureLoggedIn,
 };

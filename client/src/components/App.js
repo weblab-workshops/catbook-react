@@ -6,7 +6,7 @@ import NotFound from "./pages/NotFound.js";
 import Profile from "./pages/Profile.js";
 import Chatbook from "./pages/Chatbook.js";
 
-import socket from "../client-socket.js";
+import { socket } from "../client-socket.js";
 
 import { get, post } from "../utilities";
 
@@ -21,7 +21,6 @@ class App extends Component {
   // makes props available in this component
   constructor(props) {
     super(props);
-
     this.state = {
       userId: undefined,
     };
@@ -29,7 +28,6 @@ class App extends Component {
 
   componentDidMount() {
     get("/api/whoami").then((user) => {
-      console.log(user);
       if (user._id) {
         // they are registed in the database, and currently logged in.
         this.setState({ userId: user._id });
@@ -48,6 +46,7 @@ class App extends Component {
     const userToken = res.tokenObj.id_token;
     post("/api/login", { token: userToken }).then((user) => {
       this.setState({ userId: user._id });
+      post("/api/initsocket", { socketid: socket.id });
     });
   };
 

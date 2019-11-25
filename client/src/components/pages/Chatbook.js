@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ChatList from "../modules/ChatList.js";
 import Chat from "../modules/Chat.js";
 import { socket } from "../../client-socket.js";
+import { get } from "../../utilities";
 
 import "./Chatbook.css";
 
@@ -49,6 +50,13 @@ class Chatbook extends Component {
   componentDidMount() {
     document.title = "Chatbook";
     // maybe get the chat here for ALL_CHAT
+
+    get("/api/activeUsers", (data) => {
+      this.setState({
+        activeUsers: data.activeUsers,
+      });
+    });
+
     socket.on("chat", (data) => {
       if (
         data.recipient._id === this.state.activeChat.recipient._id ||
@@ -62,12 +70,16 @@ class Chatbook extends Component {
         }));
       }
     });
+    socket.on("activeUsers", (data) => {
+      this.setState({
+        activeUsers: data.activeUsers,
+      });
+    });
   }
 
   setActiveUser = (user) => {
     // maybe get chat here of the user? if we decide to
     this.setState({
-      activeUsers: [],
       activeChat: {
         recipient: user,
         messages: [],
@@ -76,13 +88,12 @@ class Chatbook extends Component {
   };
 
   render() {
-    console.log(this.state);
     return (
       <div className="u-flex u-relative Chatbook-container">
         <div className="Chatbook-userList">
           <ChatList
             setActiveUser={this.setActiveUser}
-            users={this.USERS_ONLINE}
+            users={this.state.activeUsers}
             active={this.state.activeChat.recipient}
           />
         </div>

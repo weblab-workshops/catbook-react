@@ -62,6 +62,7 @@ router.post("/comment", (req, res) => {
 
 router.post("/login", auth.login);
 router.post("/logout", auth.logout);
+router.post("/initsocket", auth.authenticateSocket);
 router.get("/whoami", (req, res) => {
   if (!req.user) {
     // not logged in
@@ -102,6 +103,10 @@ router.post("/chat", (req, res) => {
       .to(senderSocketID)
       .emit("chat", chatdata);
   }
+});
+
+router.get("/activeUsers", (req, res) => {
+  res.send(socket.getAllConnectedUsers());
 });
 
 // anything else falls to this "not found" case
