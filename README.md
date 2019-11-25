@@ -1,10 +1,8 @@
-# catbook-react
+# Workshop 1 Conclusion!
 
-## start up
+## to start
 
-run `npm start` in one terminal and `npm run hotloader` in another
-
-visit `http://localhost:5000`
+run `npx webpack` to build your react code!
 
 ## don't touch
 
