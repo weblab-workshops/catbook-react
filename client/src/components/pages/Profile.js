@@ -19,7 +19,7 @@ class Profile extends Component {
         <div className="u-flex">
           <div className="Profile-subContainer u-textCenter">
             <h4 className="Profile-subTitle">About Me</h4>
-            <div className="text" id="profile-description">
+            <div id="profile-description">
               Extra Challenge: Modify catbook to show a personalized description here!
             </div>
           </div>
@@ -29,9 +29,7 @@ class Profile extends Component {
           </div>
           <div className="Profile-subContainer u-textCenter">
             <h4 className="Profile-subTitle">My Favorite Type of Cat</h4>
-            <h3 className="Profile-cat" id="favorite-cat">
-              corgi
-            </h3>
+            <div id="favorite-cat">corgi</div>
           </div>
         </div>
       </div>
