@@ -26,11 +26,11 @@ module.exports = {
     });
   },
   addUser: (user, socketid) => {
-    if (socketmap[user] && getSocketFromSocketID(socketmap[user])) {
-      getSocketFromSocketID(socketmap[user]).disconnect();
+    const existingSocketId = socketmap[user]; // is this user already in socketmap?
+    if (getSocketFromSocketID(existingSocketId) && existingSocketId != socketid) {
+      getSocketFromSocketID(existingSocketId).disconnect();
     }
     socketmap[user] = socketid;
-    // io.emit("activeUsers", getAllConnectedUsers());
   },
   getSocketFromUserID: (user) => socketmap[user],
   getAllConnectedUsers: getAllConnectedUsers,

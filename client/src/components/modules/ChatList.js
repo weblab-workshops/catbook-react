@@ -19,8 +19,9 @@ class ChatList extends Component {
     return (
       <>
         <h3>Open Chats</h3>
-        {this.props.users.map((user) => (
+        {this.props.users.map((user, i) => (
           <SingleUser
+            key={i}
             setActiveUser={this.props.setActiveUser}
             user={user}
             active={user === this.props.active}

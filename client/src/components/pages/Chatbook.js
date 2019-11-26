@@ -90,7 +90,6 @@ class Chatbook extends Component {
   }
 
   setActiveUser = (user) => {
-    // maybe get chat here of the user? if we decide to
     this.loadMessageHistory(user);
     this.setState({
       activeChat: {
@@ -101,6 +100,8 @@ class Chatbook extends Component {
   };
 
   render() {
+    if (!this.props.userId) return <div>Log in before using Chatbook</div>;
+
     return (
       <div className="u-flex u-relative Chatbook-container">
         <div className="Chatbook-userList">
