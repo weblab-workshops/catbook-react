@@ -80,17 +80,21 @@ router.get("/user", (req, res) => {
 });
 
 router.get("/messages", auth.ensureLoggedIn, (req, res) => {
-  // find all messages from me -> you or you -> me
-  console.log("finding messages from " + req.user._id + " to " + req.query.recipient_id);
-  Message.find({
-    $or: [
-      { "sender._id": req.user._id, "recipient._id": req.query.recipient_id },
-      { "sender._id": req.query.recipient_id, "recipient._id": req.user._id },
-    ],
-  }).then((messages) => {
-    console.log(messages);
-    res.send(messages);
-  });
+  let query;
+  if (req.recipient_id == "ALL_CHAT") {
+    // get any message sent by anybody to ALL_CHAT
+    query = { "recipient._id": "ALL_CHAT" };
+  } else {
+    // get messages that are from me->you OR you->me
+    query = {
+      $or: [
+        { "sender._id": req.user._id, "recipient._id": req.query.recipient_id },
+        { "sender._id": req.query.recipient_id, "recipient._id": req.user._id },
+      ],
+    };
+  }
+
+  Message.find(query).then((messages) => res.send(messages));
 });
 
 router.post("/chat", (req, res) => {

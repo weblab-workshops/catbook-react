@@ -83,7 +83,6 @@ class Chatbook extends Component {
       }
     });
     socket.on("activeUsers", (data) => {
-      console.log(data.activeUsers);
       this.setState({
         activeUsers: [ALL_CHAT].concat(data.activeUsers),
       });
