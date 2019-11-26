@@ -12,19 +12,11 @@ const ALL_CHAT = {
 };
 
 class Chatbook extends Component {
-  //TODO: Change dummy data, remove comments, and hook up to backend
   /**
    * @typedef UserObject
    * @property {string} _id
    * @property {string} name
    */
-  CORY = { _id: "5dbfd5ae53a5d86666e52364", name: "Cory Lynch" };
-  AARON = { _id: "5dd36f5adee10d7dff6d37cc", name: "Aaron Sipser" };
-  RACHEL = { _id: "5dd4c83f5fcc7b7882d3fa1a", name: "Rachel Zhang" };
-  ALEX = { _id: "5dd43730dbf0d667c158eaa9", name: "Alex Chen" };
-  // todo: possibly get from backend?
-  USERS_ONLINE = [ALL_CHAT, this.RACHEL, this.ALEX, this.AARON, this.CORY];
-
   /**
    * @typedef MessageObject
    * @property {UserObject} sender
@@ -63,7 +55,7 @@ class Chatbook extends Component {
 
     this.loadMessageHistory(ALL_CHAT);
 
-    get("/api/activeUsers", (data) => {
+    get("/api/activeUsers").then((data) => {
       this.setState({
         activeUsers: [ALL_CHAT].concat(data.activeUsers),
       });
