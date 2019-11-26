@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import NavBar from "./modules/NavBar.js";
 import Profile from "./pages/Profile.js";
 
 // to use styles, import the necessary CSS files
@@ -13,11 +14,14 @@ class App extends Component {
   // shows up on screen
   render() {
     return (
-      <div>
+      // <> is like a <div>, but won't show
+      // up in the DOM tree
+      <>
+        <NavBar />
         <div className="App-container">
           <Profile />
         </div>
-      </div>
+      </>
     );
   }
 }
