@@ -21,9 +21,7 @@ class LatestPost extends Component {
           <a className="LatestPost-storyUser u-link" href={"profile/" + this.props.id}>
             {this.props.name}
           </a>
-          <p className="LatestPost-storyContent">
-            {this.props.latestPost ? this.props.latestPost : "No Posts Yet!"}
-          </p>
+          <p className="LatestPost-storyContent">{this.props.latestPost}</p>
         </div>
       </div>
     );
