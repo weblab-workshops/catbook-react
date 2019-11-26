@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./LatestPost.css";
 
 /**
  * Component that renders the data of a user's latest post
@@ -15,12 +16,12 @@ class LatestPost extends Component {
 
   render() {
     return (
-      <div className="Card-container">
-        <div className="Card-story">
-          <a className="Card-storyUser u-link" href={"/profile/" + this.props.id}>
+      <div className="LatestPost-container">
+        <div className="LatestPost-story">
+          <a className="LatestPost-storyUser u-link" href={"profile/" + this.props.id}>
             {this.props.name}
           </a>
-          <p className="Card-storyContent">{this.props.latestPost}</p>
+          <p className="LatestPost-storyContent">{this.props.latestPost}</p>
         </div>
       </div>
     );

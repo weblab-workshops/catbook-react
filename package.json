@@ -22,10 +22,7 @@
   },
   "dependencies": {
     "@reach/router": "^1.2.1",
-    "connect-ensure-login": "^0.1.1",
     "core-js": "^3.3.6",
-    "express": "^4.16.4",
-    "mongoose": "^5.7.7",
     "nodemon": "^1.19.4",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
