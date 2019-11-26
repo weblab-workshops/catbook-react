@@ -71,7 +71,7 @@ function authenticateSocket(req, res, next) {
 
 function ensureLoggedIn(req, res, next) {
   if (!req.user) {
-    return res.send(401).send({ err: "not logged in" });
+    return res.status(401).send({ err: "not logged in" });
   }
 
   next();

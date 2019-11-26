@@ -2,10 +2,8 @@ let io, socketmap;
 
 const getAllConnectedUsers = () => {
   let activeUsers = Object.values(io.sockets.connected)
-    .map((sock) => {
-      return sock.user;
-    })
-    .filter((val) => val);
+    .map((sock) => sock.user)
+    .filter((val) => val != undefined);
   return { activeUsers: activeUsers };
 };
 

@@ -47,13 +47,25 @@ class Chatbook extends Component {
     };
   }
 
+  loadMessageHistory(recipient) {
+    get("/api/messages", { recipient_id: recipient._id }).then((messages) => {
+      this.setState({
+        activeChat: {
+          recipient: recipient,
+          messages: messages,
+        },
+      });
+    });
+  }
+
   componentDidMount() {
     document.title = "Chatbook";
-    // maybe get the chat here for ALL_CHAT
+
+    this.loadMessageHistory(ALL_CHAT);
 
     get("/api/activeUsers", (data) => {
       this.setState({
-        activeUsers: data.activeUsers,
+        activeUsers: [ALL_CHAT].concat(data.activeUsers),
       });
     });
 
@@ -71,14 +83,16 @@ class Chatbook extends Component {
       }
     });
     socket.on("activeUsers", (data) => {
+      console.log(data.activeUsers);
       this.setState({
-        activeUsers: data.activeUsers,
+        activeUsers: [ALL_CHAT].concat(data.activeUsers),
       });
     });
   }
 
   setActiveUser = (user) => {
     // maybe get chat here of the user? if we decide to
+    this.loadMessageHistory(user);
     this.setState({
       activeChat: {
         recipient: user,

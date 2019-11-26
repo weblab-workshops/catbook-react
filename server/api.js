@@ -13,6 +13,7 @@ const express = require("express");
 const Story = require("./models/story");
 const Comment = require("./models/comment");
 const User = require("./models/user");
+const Message = require("./models/message");
 
 // import authentication library
 const auth = require("./auth");
@@ -78,30 +79,48 @@ router.get("/user", (req, res) => {
   });
 });
 
+router.get("/messages", auth.ensureLoggedIn, (req, res) => {
+  // find all messages from me -> you or you -> me
+  console.log("finding messages from " + req.user._id + " to " + req.query.recipient_id);
+  Message.find({
+    $or: [
+      { "sender._id": req.user._id, "recipient._id": req.query.recipient_id },
+      { "sender._id": req.query.recipient_id, "recipient._id": req.user._id },
+    ],
+  }).then((messages) => {
+    console.log(messages);
+    res.send(messages);
+  });
+});
+
 router.post("/chat", (req, res) => {
-  console.log(`Received a chat message: ${req.body.message}`);
+  console.log(`Received a chat message: ${req.body.content}`);
   console.log(req.body.recipient);
-  const chatdata = {
+
+  // insert this message into the database
+  const message = new Message({
     recipient: req.body.recipient,
     sender: {
       _id: req.user._id,
       name: req.user.name,
     },
     content: req.body.content,
-  };
+  });
+  message.save();
+
   if (req.body.recipient._id == "ALL_CHAT") {
-    socket.getIo().emit("chat", chatdata);
+    socket.getIo().emit("chat", message);
   } else {
     const recipientSocketID = socket.getSocketFromUserID(req.body.recipient._id);
     socket
       .getIo()
       .to(recipientSocketID)
-      .emit("chat", chatdata);
+      .emit("chat", message);
     const senderSocketID = socket.getSocketFromUserID(req.user._id);
     socket
       .getIo()
       .to(senderSocketID)
-      .emit("chat", chatdata);
+      .emit("chat", message);
   }
 });
 
