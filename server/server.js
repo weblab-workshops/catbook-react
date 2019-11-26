@@ -24,6 +24,7 @@ const bodyParser = require("body-parser"); // allow node to automatically parse 
 const express = require("express"); // backend framework for our node server.
 const mongoose = require("mongoose"); // library to connect to MongoDB
 const path = require("path"); // provide utilities for working with file and directory paths
+const cors = require("cors"); // to enable CORS requests
 
 const api = require("./routes/api");
 
@@ -47,6 +48,9 @@ mongoose
 // create a new express server
 const app = express();
 app.use(validator.checkRoutes);
+
+// enable CORS requests
+app.use(cors());
 
 // set up bodyParser, which allows us to process POST requests
 app.use(bodyParser.urlencoded({ extended: false }));
