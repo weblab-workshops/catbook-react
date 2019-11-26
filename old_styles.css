@@ -1,8 +1,47 @@
-.Profile-avatarContainer {
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,600");
+
+:root {
+  --primary: #396dff;
+  --grey: #f7f7f7;
+  --white: #fff;
+}
+
+html,
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+.u-flex {
+  display: flex;
+}
+
+.u-textCenter {
+  text-align: center;
+}
+
+.navContainer {
+  width: calc(100vw - 2 * 1.25rem);
+  padding: 0.75rem 1.25rem;
+
+  background-color: var(--primary);
+}
+
+.navTitle {
+  color: var(--white);
+  font-size: 1.2em;
+}
+
+.appContainer {
+  max-width: 960px;
+  padding: 1.75rem 1rem;
+  margin: auto;
+}
+
+.avatarContainer {
   padding: 0 35%;
 }
 
-.Profile-avatar {
+.avatar {
   /* make it responsive */
   max-width: 100%;
   width: 100%;
@@ -13,6 +52,9 @@
 
   /* make it a circle */
   border-radius: 50%;
+
+  /* Add image */
+  background-image: url("corgi.jpg");
 
   /* Centering on image`s center*/
   background-position-y: center;
@@ -30,25 +72,25 @@
   bottom: 0;
 }
 
-.Profile-name {
+.name {
   font-size: 2.4em;
   font-weight: 300;
 }
 
-.Profile-line {
+.line {
   border-color: var(--grey);
 }
 
-.Profile-subContainer {
+.subContainer {
   flex-grow: 1;
   flex-basis: 0;
 }
 
-.Profile-subContainer + .Profile-subContainer {
+.subContainer + .subContainer {
   margin-left: 1.75rem;
 }
 
-.Profile-subTitle {
+.subTitle {
   font-weight: 300;
   font-size: 1.5em;
   margin: 0.75rem 0 1.5rem;
