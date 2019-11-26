@@ -9,9 +9,7 @@
 
 const express = require("express");
 
-// import models so we can interact with the database
-const Story = require("../models/story");
-const Comment = require("../models/comment");
+let data = { stories: [], comments: [] };
 
 // api endpoints: all these paths will be prefixed with "/api/"
 const router = express.Router();
@@ -23,32 +21,35 @@ const MY_NAME = "Anonymous User";
 
 router.get("/stories", (req, res) => {
   // empty selector means get all documents
-  Story.find({}).then((stories) => res.send(stories));
+  res.send(data.stories);
 });
 
 router.post("/story", (req, res) => {
-  const newStory = new Story({
+  const newStory = {
+    _id: data.stories.length,
     creator_name: MY_NAME,
     content: req.body.content,
-  });
+  };
 
-  newStory.save().then(() => res.send({}));
+  data.stories.push(newStory);
 });
 
 router.get("/comment", (req, res) => {
-  Comment.find({ parent: req.query.parent }).then((comments) => {
-    res.send(comments);
-  });
+  const filteredComments = data.comments.filter((comment) => comment.parent == req.query.parent);
+  console.log(filteredComments);
+
+  res.send(filteredComments);
 });
 
 router.post("/comment", (req, res) => {
-  const newComment = new Comment({
+  const newComment = {
+    _id: data.comments.length,
     creator_name: MY_NAME,
     parent: req.body.parent,
     content: req.body.content,
-  });
+  };
 
-  newComment.save().then(() => res.send({}));
+  data.comments.push(newComment);
 });
 
 // anything else falls to this "not found" case
