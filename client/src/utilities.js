@@ -8,6 +8,8 @@
  * e.g. get('/api/foo', { bar: 0 }).then(res => console.log(res))
  */
 
+const API_ENDPOINT = "http://18.20.217.110:3000";
+
 // ex: formatParams({ some_key: "some_value", a: "b"}) => "some_key=some_value&a=b"
 function formatParams(params) {
   // iterate of all the keys of params as an array,
@@ -39,7 +41,7 @@ function convertToJSON(res) {
 // Returns a Promise to a JSON Object.
 export function get(endpoint, params = {}) {
   const fullPath = endpoint + "?" + formatParams(params);
-  return fetch(fullPath)
+  return fetch(API_ENDPOINT + fullPath)
     .then(convertToJSON)
     .catch((error) => {
       // give a useful error message
@@ -50,8 +52,8 @@ export function get(endpoint, params = {}) {
 // Helper code to make a post request. Default parameter of empty JSON Object for params.
 // Returns a Promise to a JSON Object.
 export function post(endpoint, params = {}) {
-  return fetch(endpoint, {
-    method: "post",
+  return fetch(API_ENDPOINT + endpoint, {
+    method: "POST",
     headers: { "Content-type": "application/json" },
     body: JSON.stringify(params),
   })
