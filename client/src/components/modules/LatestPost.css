@@ -1,15 +1,15 @@
 .LatestPost-container {
   border: var(--darkgrey) 1px solid;
   border-radius: 4px;
-  margin-top: 0.75rem;
+  margin-top: var(--s);
 }
 
 .LatestPost-container:first-of-type {
-  margin-top: 1.5rem;
+  margin-top: var(--m);
 }
 
 .LatestPost-story {
-  padding: 1.5rem 1.75rem;
+  padding: var(--m) var(--s);
 }
 
 .LatestPost-storyUser {
@@ -19,5 +19,5 @@
 
 .LatestPost-storyContent {
   font-size: 40px;
-  margin: 0.5rem 0 0;
+  margin: var(--s) 0 0;
 }
