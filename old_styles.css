@@ -4,10 +4,16 @@
   --primary: #396dff;
   --grey: #f7f7f7;
   --white: #fff;
+
+  --xs: 4px;
+  --s: 8px;
+  --m: 16px;
+  --l: 24px;
 }
 
 html,
 body {
+  margin: 0;
   font-family: "Open Sans", sans-serif;
 }
 
@@ -20,8 +26,8 @@ body {
 }
 
 .navContainer {
-  width: calc(100vw - 2 * 1.25rem);
-  padding: 0.75rem 1.25rem;
+  width: calc(100vw - 2 * var(--m));
+  padding: var(--s) var(--m);
 
   background-color: var(--primary);
 }
@@ -33,7 +39,7 @@ body {
 
 .appContainer {
   max-width: 960px;
-  padding: 1.75rem 1rem;
+  padding: var(--m) var(--m);
   margin: auto;
 }
 
@@ -87,11 +93,11 @@ body {
 }
 
 .subContainer + .subContainer {
-  margin-left: 1.75rem;
+  margin-left: var(--m);
 }
 
 .subTitle {
   font-weight: 300;
   font-size: 1.5em;
-  margin: 0.75rem 0 1.5rem;
+  margin: var(--m) var(--s);
 }
