@@ -1,0 +1,18 @@
+.CatHappiness-container {
+  border: var(--darkgrey) 1px solid;
+  border-radius: 4px;
+  margin-top: 0.75rem;
+}
+
+.CatHappiness-container:first-of-type {
+  margin-top: 1.5rem;
+}
+
+.CatHappiness-story {
+  padding: 1.5rem 1.75rem;
+}
+
+.CatHappiness-storyContent {
+  font-size: 40px;
+  margin: 0.5rem 0 0;
+}
