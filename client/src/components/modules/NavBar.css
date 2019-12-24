@@ -1,7 +1,5 @@
 .NavBar-container {
-  width: calc(100vw - 2 * var(--m));
   padding: var(--s) var(--m);
-
   background-color: var(--primary);
 }
 
