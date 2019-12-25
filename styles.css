@@ -1,5 +1,12 @@
 /* Your Code Here! */
 
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,600");
+
+html,
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
 .u-textCenter {
   text-align: center;
 }
