@@ -19,6 +19,10 @@ body {
   font-family: "Open Sans", sans-serif;
 }
 
+.u-flex {
+  display: flex;
+}
+
 .u-textCenter {
   text-align: center;
 }
