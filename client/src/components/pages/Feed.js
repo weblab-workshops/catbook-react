@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { get } from "../../utilities";
 import SingleStory from "../modules/SingleStory.js";
-// TODO (step4): import NewStory
+import { NewStory } from "../modules/NewPostInput.js";
 // TODO (step7): remove SingleStory import, import Card
 
 class Feed extends Component {
@@ -28,8 +28,12 @@ class Feed extends Component {
     } else {
       storiesList = <div>No stories!</div>;
     }
-    return <div>{storiesList}</div>;
-    // TODO (step4): add in the NewStory component
+    return (
+      <div>
+        <NewStory />
+        {storiesList}
+      </div>
+    );
     // TODO (step7): use Card instead of SingleStory
   }
 }

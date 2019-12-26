@@ -69,10 +69,13 @@ class NewStory extends Component {
     super(props);
   }
 
-  // TODO (step4): implement addStory
+  addStory = (value) => {
+    const body = { content: value };
+    post("/api/story", body);
+  };
 
   render() {
-    // TODO (step4): implement render
+    return <NewPostInput defaultText="New Story" onSubmit={this.addStory} />;
   }
 }
 
