@@ -18,7 +18,10 @@ class SingleComment extends Component {
   render() {
     return (
       <div className="Card-commentBody">
-        {/* TODO (step6): use JSX and props to render comment creator and content */}
+        <div className="Card-commentBody">
+          <span className="u-bold">{this.props.creator_name}</span>
+          <span>{" | " + this.props.content}</span>
+        </div>
       </div>
     );
   }
