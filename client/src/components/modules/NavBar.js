@@ -8,8 +8,8 @@ import "./NavBar.css";
 class NavBar extends Component {
   render() {
     return (
-      <nav class="navBar-container">
-        <div class="navBar-title">Catbook</div>
+      <nav class="NavBar-container">
+        <div class="NavBar-title">Catbook</div>
       </nav>
     );
   }
