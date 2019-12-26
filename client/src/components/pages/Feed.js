@@ -19,12 +19,16 @@ class Feed extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <SingleStory creator_name="Matt" content="test" />
-      </div>
-    );
-    // TODO (step3): map the state to SingleStory components
+    let storiesList = null;
+    const hasStories = this.state.stories.length !== 0;
+    if (hasStories) {
+      storiesList = this.state.stories.map((storyObj) => (
+        <SingleStory creator_name={storyObj.creator_name} content={storyObj.content} />
+      ));
+    } else {
+      storiesList = <div>No stories!</div>;
+    }
+    return <div>{storiesList}</div>;
     // TODO (step4): add in the NewStory component
     // TODO (step7): use Card instead of SingleStory
   }
