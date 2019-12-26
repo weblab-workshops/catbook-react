@@ -59,6 +59,10 @@ form {
   align-items: center;
 }
 
+.u-inlineBlock {
+  display: inline-block;
+}
+
 .u-bold {
   font-weight: 600;
 }
