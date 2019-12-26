@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { get } from "../../utilities";
 // TODO (step3): import SingleStory
 // TODO (step4): import NewStory
-// TODO (step7): remove SingleStory import, import Card
+// TODO (step6): remove SingleStory import, import Card
 
 class Feed extends Component {
   constructor(props) {
@@ -20,7 +20,7 @@ class Feed extends Component {
     // TODO (step1): render the raw stories data from state
     // TODO (step3): map the state to SingleStory components
     // TODO (step4): add in the NewStory component
-    // TODO (step7): use Card instead of SingleStory
+    // TODO (step6): use Card instead of SingleStory
   }
 }
 
