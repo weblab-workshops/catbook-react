@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { get } from "../../utilities";
 import SingleStory from "./SingleStory.js";
 import SingleComment from "./SingleComment.js";
-// TODO (step8): import NewComment
+import { NewComment } from "./NewPostInput";
 // TODO (step9): import CommentsBlock
 
 import "./Card.css";
@@ -52,9 +52,9 @@ class Card extends Component {
           content={this.props.content}
         />
         {commentsList}
+        <NewComment storyId={this.props._id} />
       </div>
     );
-    // TODO (step8): add in the NewComment component (refer to Feed)
     // TODO (step9): use CommentsBlock
   }
 }

@@ -91,11 +91,12 @@ class NewComment extends Component {
   }
 
   addComment = (value) => {
-    // TODO (step8): implement addComment (refer to NewStory)
+    const body = { parent: this.props.storyId, content: value };
+    post("/api/comment", body);
   };
 
   render() {
-    // TODO (step8): implement render (refer to NewStory)
+    return <NewPostInput defaultText="New Comment" onSubmit={this.addComment} />;
   }
 }
 
