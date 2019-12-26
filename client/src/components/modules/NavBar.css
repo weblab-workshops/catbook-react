@@ -1,11 +1,9 @@
-.navContainer {
-  width: calc(100vw - 2 * var(--m));
+.NavBar-container {
   padding: var(--s) var(--m);
-
   background-color: var(--primary);
 }
 
-.navTitle {
+.NavBar-title {
   color: var(--white);
-  font-size: 1.2em;
+  font-size: 20px;
 }
