@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { get } from "../../utilities";
-import SingleStory from "../modules/SingleStory.js";
+import Card from "../modules/Card.js";
 import { NewStory } from "../modules/NewPostInput.js";
 // TODO (step7): remove SingleStory import, import Card
 
@@ -23,7 +23,7 @@ class Feed extends Component {
     const hasStories = this.state.stories.length !== 0;
     if (hasStories) {
       storiesList = this.state.stories.map((storyObj) => (
-        <SingleStory creator_name={storyObj.creator_name} content={storyObj.content} />
+        <Card _id={storyObj._id} creator_name={storyObj.creator_name} content={storyObj.content} />
       ));
     } else {
       storiesList = <div>No stories!</div>;

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { get } from "../../utilities";
-// TODO (step6): import SingleStory and SingleComment
+import SingleStory from "./SingleStory.js";
 // TODO (step8): import NewComment
 // TODO (step9): import CommentsBlock
 
@@ -17,18 +17,28 @@ import "./Card.css";
 class Card extends Component {
   constructor(props) {
     super(props);
-    // TODO (step6): define state to hold comments (refer to Feed)
+    this.state = {
+      comments: [],
+    };
   }
 
   componentDidMount() {
-    // TODO (step6): implement a GET call to retrieve comments,
-    // and assign it to state
+    get("/api/comment", { parent: this.props._id }).then((comments) => {
+      this.setState({ comments: comments });
+    });
   }
 
   render() {
-    // TODO (step6): render a SingleStory using props,
-    // and render the comments into SingleComment components
-    // from state using a map (refer to Feed)
+    return (
+      <div className="Card-container">
+        <SingleStory
+          _id={this.props._id}
+          creator_name={this.props.creator_name}
+          content={this.props.content}
+        />
+        {JSON.stringify(this.state.comments)}
+      </div>
+    );
     // TODO (step8): add in the NewComment component (refer to Feed)
     // TODO (step9): use CommentsBlock
   }
