@@ -1,8 +1,9 @@
 import React, { Component } from "react";
+import { Router } from "@reach/router";
 import NavBar from "./modules/NavBar.js";
 import Profile from "./pages/Profile.js";
 import Feed from "./pages/Feed.js";
-// TODO (step5): import Router and NotFound
+import NotFound from "./pages/NotFound.js";
 
 // To use styles, import the necessary CSS files
 import "../utilities.css";
@@ -30,9 +31,11 @@ class App extends Component {
       <>
         <NavBar />
         <div className="App-container">
-          {/* <Profile /> */}
-          <Feed />
-          {/* TODO (step5): use Router to route between pages */}
+          <Router>
+            <Feed path="/" />
+            <Profile path="/profile/" />
+            <NotFound default />
+          </Router>
         </div>
       </>
     );
