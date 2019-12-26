@@ -8,14 +8,7 @@ class Feed extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      stories: [
-        {
-          content: "Hello world!",
-          creator_id: "5a590f0a57d115336c0a0079",
-          creator_name: "Aaron Sipser",
-          _id: "5a591353c26863287c2bd311",
-        },
-      ],
+      stories: [],
     };
   }
 
