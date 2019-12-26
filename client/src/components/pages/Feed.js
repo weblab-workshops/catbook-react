@@ -22,7 +22,12 @@ class Feed extends Component {
     const hasStories = this.state.stories.length !== 0;
     if (hasStories) {
       storiesList = this.state.stories.map((storyObj) => (
-        <Card _id={storyObj._id} creator_name={storyObj.creator_name} content={storyObj.content} />
+        <Card
+          key={`Card_${storyObj._id}`}
+          _id={storyObj._id}
+          creator_name={storyObj.creator_name}
+          content={storyObj.content}
+        />
       ));
     } else {
       storiesList = <div>No stories!</div>;
