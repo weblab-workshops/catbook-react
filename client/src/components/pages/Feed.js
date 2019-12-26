@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { get } from "../../utilities";
 import Card from "../modules/Card.js";
 import { NewStory } from "../modules/NewPostInput.js";
-// TODO (step7): remove SingleStory import, import Card
 
 class Feed extends Component {
   constructor(props) {
@@ -34,7 +33,6 @@ class Feed extends Component {
         {storiesList}
       </div>
     );
-    // TODO (step7): use Card instead of SingleStory
   }
 }
 
