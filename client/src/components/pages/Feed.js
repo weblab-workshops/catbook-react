@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { get } from "../../utilities";
-// TODO (step3): import SingleStory
+import SingleStory from "../modules/SingleStory.js";
 // TODO (step4): import NewStory
 // TODO (step7): remove SingleStory import, import Card
 
@@ -19,7 +19,11 @@ class Feed extends Component {
   }
 
   render() {
-    return <div>{JSON.stringify(this.state.stories)}</div>;
+    return (
+      <div>
+        <SingleStory creator_name="Matt" content="test" />
+      </div>
+    );
     // TODO (step3): map the state to SingleStory components
     // TODO (step4): add in the NewStory component
     // TODO (step7): use Card instead of SingleStory

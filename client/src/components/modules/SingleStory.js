@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import "../modules/Card.css";
+
 /**
  * Story is a component that renders creator and content of a story
  *
@@ -18,7 +20,8 @@ class SingleStory extends Component {
   render() {
     return (
       <div className="Card-story">
-        {/* TODO (step2): use JSX and props to render story creator and content */}
+        <span className="u-bold">{this.props.creator_name}</span>
+        <p className="Card-storyContent">{this.props.content}</p>
       </div>
     );
   }
