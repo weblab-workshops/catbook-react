@@ -1,8 +1,8 @@
-# catbook-react
+# Workshop 2 Start!
 
 ## start up
 
-run `npm start` in one terminal and `npm run hotloader` in another
+run `npm run hotloader` in a terminal
 
 visit `http://localhost:5000`
 

@@ -7,3 +7,22 @@
   color: var(--white);
   font-size: 20px;
 }
+
+.NavBar-linkContainer {
+  margin-left: 1.5rem;
+}
+
+.NavBar-link,
+.NavBar-link:visited {
+  color: var(--white);
+  opacity: 0.6;
+  text-decoration: none;
+}
+
+.NavBar-link:hover {
+  opacity: 0.8;
+}
+
+.NavBar-link + .NavBar-link {
+  margin-left: 1rem;
+}

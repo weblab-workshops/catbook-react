@@ -12,6 +12,8 @@ class CatHappiness extends Component {
     super(props);
   }
 
+  componentDidMount() {}
+
   render() {
     return (
       <div className="CatHappiness-container">
