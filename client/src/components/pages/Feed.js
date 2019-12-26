@@ -7,17 +7,26 @@ import { get } from "../../utilities";
 class Feed extends Component {
   constructor(props) {
     super(props);
-    // TODO (step1): define state to hold stories
+    this.state = {
+      stories: [
+        {
+          content: "Hello world!",
+          creator_id: "5a590f0a57d115336c0a0079",
+          creator_name: "Aaron Sipser",
+          _id: "5a591353c26863287c2bd311",
+        },
+      ],
+    };
   }
 
   componentDidMount() {
-    // TODO (step1): implement a GET call to retrieve stories,
-    // and assign it to state
+    get("/api/stories").then((storyObjs) => {
+      this.setState({ stories: storyObjs });
+    });
   }
 
   render() {
-    return <div>This is the feed!</div>;
-    // TODO (step1): render the raw stories data from state
+    return <div>{JSON.stringify(this.state.stories)}</div>;
     // TODO (step3): map the state to SingleStory components
     // TODO (step4): add in the NewStory component
     // TODO (step7): use Card instead of SingleStory
