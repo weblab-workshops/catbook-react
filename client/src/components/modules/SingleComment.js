@@ -18,7 +18,7 @@ class SingleComment extends Component {
   render() {
     return (
       <div className="Card-commentBody">
-        {/* TODO (step6): use JSX and props to render comment creator and content */}
+        {/* TODO (step7): use JSX and props to render comment creator and content */}
       </div>
     );
   }
