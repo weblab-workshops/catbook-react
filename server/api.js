@@ -16,11 +16,6 @@ const Comment = require("./models/comment");
 // api endpoints: all these paths will be prefixed with "/api/"
 const router = express.Router();
 
-// we haven't set up user login yet, so just
-// use a hardcoded name for now
-// TODO change to a unique name for workshop
-const MY_NAME = "Anonymous User";
-
 router.get("/stories", (req, res) => {
   // empty selector means get all documents
   Story.find({}).then((stories) => res.send(stories));
@@ -28,7 +23,7 @@ router.get("/stories", (req, res) => {
 
 router.post("/story", (req, res) => {
   const newStory = new Story({
-    creator_name: MY_NAME,
+    creator_name: req.body.creator_name,
     content: req.body.content,
   });
 
@@ -43,7 +38,7 @@ router.get("/comment", (req, res) => {
 
 router.post("/comment", (req, res) => {
   const newComment = new Comment({
-    creator_name: MY_NAME,
+    creator_name: req.body.creator_name,
     parent: req.body.parent,
     content: req.body.content,
   });
