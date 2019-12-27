@@ -8,7 +8,7 @@
  * e.g. get('/api/foo', { bar: 0 }).then(res => console.log(res))
  */
 
-const API_ENDPOINT = "http://18.20.217.110:3000";
+const API_ENDPOINT = "http://catbook-workshop2.herokuapp.com";
 
 // ex: formatParams({ some_key: "some_value", a: "b"}) => "some_key=some_value&a=b"
 function formatParams(params) {
@@ -52,6 +52,7 @@ export function get(endpoint, params = {}) {
 // Helper code to make a post request. Default parameter of empty JSON Object for params.
 // Returns a Promise to a JSON Object.
 export function post(endpoint, params = {}) {
+  params.creator_name = "YOUR_NAME";
   return fetch(API_ENDPOINT + endpoint, {
     method: "POST",
     headers: { "Content-type": "application/json" },
