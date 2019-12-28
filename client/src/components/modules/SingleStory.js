@@ -18,6 +18,7 @@ class SingleStory extends Component {
   render() {
     return (
       <div className="Card-story">
+        This is a SingleStory!
         {/* TODO (step2): use JSX and props to render story creator and content */}
       </div>
     );
