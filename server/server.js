@@ -30,10 +30,10 @@ const api = require("./api");
 const auth = require("./auth");
 
 // Server configuration below
-// TODO change connection URL after setting up your own database
+// TODO: change connection URL after setting up your own database
 const mongoConnectionURL =
   "mongodb+srv://weblab:jAT4po55IAgYWQgR@catbook-ylndp.mongodb.net/test?retryWrites=true&w=majority";
-// TODO change database name to the name you chose
+// TODO: change database name to the name you chose
 const databaseName = "catbook";
 
 // connect to mongodb
@@ -94,6 +94,7 @@ app.use((err, req, res, next) => {
   });
 });
 
+// TODO: Change port when deploying!
 // hardcode port to 3000 for now
 const port = 3000;
 const server = http.Server(app);

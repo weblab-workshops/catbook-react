@@ -1,5 +1,7 @@
 # catbook-react
 
+this branch is a bare bones skeleton for students to use to help them jumpstart working on their own projects. example files have also been included for students to base their own components, schemas, and api off of.
+
 ## start up
 
 run `npm start` in one terminal and `npm run hotloader` in another

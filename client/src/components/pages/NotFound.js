@@ -5,6 +5,10 @@ class NotFound extends Component {
     super(props);
   }
 
+  componentDidMount() {
+    return;
+  }
+
   render() {
     return (
       <div>

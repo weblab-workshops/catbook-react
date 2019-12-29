@@ -1,28 +1,40 @@
 /**
-* Welcome to your ✨𝔲𝔱𝔦𝔩𝔦𝔱𝔶 𝔰𝔱𝔶𝔩𝔢𝔰✨!
-* This file includes utility classes that are super simple
-* and can be used to add general styles; variable definitions
-* for colors; and styles to html, body, and other high level
-* DOMs.
+ * Welcome to your ✨𝔲𝔱𝔦𝔩𝔦𝔱𝔶 𝔰𝔱𝔶𝔩𝔢𝔰✨!
+ * This file includes utility classes that are super simple
+ * and can be used to add general styles; variable definitions
+ * for colors; and styles to html, body, and other high level
+ * DOMs.
+ * 
 * 
-* All utility classes start with a `u-` and all do
-* one basic CSS thing (for example, making the font-weight
-* 600 for bolding) or are super generic.
+ * 
+ * All utility classes start with a `u-` and all do
+ * one basic CSS thing (for example, making the font-weight
+ * 600 for bolding) or are super generic (i.e. `u-link`).
+ * 
 * 
-* This is 𝙉𝙊𝙏 the place to define classes for components or
-* do rigorous styling. You shoud not need to change this file
-* much after initial creation.
-*/
+ * 
+ * This is 𝙉𝙊𝙏 the place to define classes for components or
+ * do rigorous styling. You shoud not need to change this file
+ * much after initial creation, but don't be afraid to add new
+ * utility classes if you deem it necessary.
+ */
 
+/* TODO: Import fonts you want from fonts.google.com here */
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,600");
 
 :root {
+  /* TODO: Replace these with your theme's colors! */
   --primary: #396dff;
   --primary--dim: #6987db;
   --darkgrey: #d4d4d4;
   --medgrey: #e0e0e0;
   --grey: #f7f7f7;
   --white: #fff;
+
+  --xs: 4px;
+  --s: 8px;
+  --m: 16px;
+  --l: 24px;
 }
 
 html,
@@ -54,6 +66,10 @@ form {
   align-items: center;
 }
 
+.u-inlineBlock {
+  display: inline-block;
+}
+
 .u-bold {
   font-weight: 600;
 }
@@ -70,6 +86,7 @@ form {
   cursor: pointer;
 }
 
+/* TODO: Edit u-link to be whatever style you want your links to be! */
 .u-link {
   color: var(--primary);
   text-decoration: none;
