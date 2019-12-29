@@ -7,9 +7,10 @@ import "./NavBar.css";
  */
 class NavBar extends Component {
   render() {
-    // TODO: Implement Navbar here!
     return (
-
+      <nav class="NavBar-container">
+        <div class="NavBar-title">Catbook</div>
+      </nav>
     );
   }
 }
