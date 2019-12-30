@@ -22,14 +22,14 @@ validator.checkSetup();
 const express = require("express"); // backend framework for our node server.
 const path = require("path"); // provide utilities for working with file and directory paths
 
+const api = require("./api");
+
 // create a new express server
 const app = express();
 app.use(validator.checkRoutes);
 
-// an example GET route
-app.get("/api/test", (req, res) => {
-  res.send({ message: "it works" });
-});
+// connect user-defined routes
+app.use("/api", api);
 
 // load the compiled react files, which will serve /index.html and /bundle.js
 const reactPath = path.resolve(__dirname, "..", "client", "dist");
