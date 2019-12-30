@@ -40,6 +40,8 @@ module.exports = {
   addUser: (user, socketid) => {
     const socket = getSocketFromSocketID(socketid);
     socket.user = user;
+
+    // every tab open by this user joins a "room"
     socket.join(user._id);
 
     socketmap[user._id] = socketid;

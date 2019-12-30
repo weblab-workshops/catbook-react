@@ -121,7 +121,7 @@ router.post("/chat", (req, res) => {
       .emit("chat", message);
     socket
       .getIo()
-      .to(req.user_id)
+      .to(req.user._id)
       .emit("chat", message);
   }
 });
