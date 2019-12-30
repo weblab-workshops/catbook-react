@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import LatestPost from "../modules/LatestPost.js";
+import CatHappiness from "../modules/CatHappiness.js";
 import ProfilePicture from "../../public/corgi.jpg";
 
 import "../../utilities.css";
@@ -8,11 +8,20 @@ import "./Profile.css";
 class Profile extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      catHappiness: 0,
+    };
   }
 
   componentDidMount() {
     document.title = "Profile Page";
   }
+
+  incrementCatHappiness = () => {
+    this.setState({
+      catHappiness: this.state.catHappiness + 1,
+    });
+  };
 
   render() {
     const pfpStyle = {
@@ -20,7 +29,12 @@ class Profile extends Component {
     };
     return (
       <>
-        <div className="Profile-avatarContainer">
+        <div
+          className="Profile-avatarContainer"
+          onClick={() => {
+            this.incrementCatHappiness();
+          }}
+        >
           <div style={pfpStyle} className="Profile-avatar" />
         </div>
         <h1 className="Profile-name u-textCenter">Shannen Wu</h1>
@@ -33,8 +47,8 @@ class Profile extends Component {
             </div>
           </div>
           <div className="Profile-subContainer u-textCenter">
-            <h4 className="Profile-subTitle">My Latest Post</h4>
-            <LatestPost name="Shannen Wu" latestPost="Woof woof" id="ffffff" />
+            <h4 className="Profile-subTitle">Cat Happiness</h4>
+            <CatHappiness catHappiness={this.state.catHappiness} />
           </div>
           <div className="Profile-subContainer u-textCenter">
             <h4 className="Profile-subTitle">My Favorite Type of Cat</h4>
