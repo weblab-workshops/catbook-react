@@ -13,8 +13,13 @@ class CatHappiness extends Component {
   }
 
   render() {
-    // TODO: fill this in with code!
-    return <div>{this.props.catHappiness}</div>;
+    return (
+      <div className="CatHappiness-container">
+        <div className="CatHappiness-story">
+          <p className="CatHappiness-storyContent">{this.props.catHappiness}</p>
+        </div>
+      </div>
+    );
   }
 }
 
