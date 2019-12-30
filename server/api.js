@@ -35,13 +35,7 @@ router.post("/story", (req, res) => {
     content: req.body.content,
   });
 
-  newStory
-    .save()
-    .then((story) => User.findOne({ _id: req.user._id }))
-    .then((user) => {
-      user.last_post = req.body.content;
-      user.save();
-    });
+  newStory.save().then(() => res.send({}));
 });
 
 router.get("/comment", (req, res) => {
