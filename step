@@ -1,0 +1,10 @@
+#!/bin/bash
+set -e
+if [ -z $1 ]; then
+    echo "please specify a branch number!"
+    echo "e.g. './step 1'"
+    exit 1
+fi
+git reset --hard
+git checkout workshop0-step$1
+echo "you are now viewing step $1"
