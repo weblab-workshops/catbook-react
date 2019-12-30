@@ -19,6 +19,7 @@ const validator = require("./validator");
 validator.checkSetup();
 
 //import libraries needed for the webserver to work!
+const http = require("http");
 const bodyParser = require("body-parser"); // allow node to automatically parse POST body requests as JSON
 const express = require("express"); // backend framework for our node server.
 const session = require("express-session"); // library that stores info about each connected user
@@ -98,6 +99,9 @@ app.use((err, req, res, next) => {
 
 // hardcode port to 3000 for now
 const port = 3000;
-app.listen(port, () => {
+const server = http.Server(app);
+socket.init(server);
+
+server.listen(port, () => {
   console.log(`Server running on port: ${port}`);
 });

@@ -99,6 +99,7 @@ class Chatbook extends Component {
         <div className="Chatbook-userList">
           <ChatList
             setActiveUser={this.setActiveUser}
+            userId={this.props.userId}
             users={this.state.activeUsers}
             active={this.state.activeChat.recipient}
           />
