@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import CatHappiness from "../modules/CatHappiness.js";
-import ProfilePicture from "../../public/corgi.jpg";
 import { get } from "../../utilities";
+
 import "../../utilities.css";
 import "./Profile.css";
 
@@ -26,9 +26,6 @@ class Profile extends Component {
   };
 
   render() {
-    const pfpStyle = {
-      backgroundImage: `url(${ProfilePicture})`,
-    };
     if (!this.state.user) {
       return <div> Loading! </div>;
     }
@@ -40,7 +37,7 @@ class Profile extends Component {
             this.incrementCatHappiness();
           }}
         >
-          <div style={pfpStyle} className="Profile-avatar" />
+          <div className="Profile-avatar" />
         </div>
         <h1 className="Profile-name u-textCenter">{this.state.user.name}</h1>
         <hr className="Profile-line" />
