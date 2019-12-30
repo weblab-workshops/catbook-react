@@ -15,9 +15,9 @@ class NavBar extends Component {
 
   render() {
     return (
-      <nav className="NavBar-container u-flex">
-        <div className="NavBar-title">Catbook</div>
-        <div className="NavBar-linkContainer u-flex u-flex-alignCenter">
+      <nav className="NavBar-container">
+        <div className="NavBar-title u-inlineBlock">Catbook</div>
+        <div className="NavBar-linkContainer u-inlineBlock">
           <Link to="/" className="NavBar-link">
             Home
           </Link>
@@ -31,6 +31,7 @@ class NavBar extends Component {
               clientId="121479668229-t5j82jrbi9oejh7c8avada226s75bopn.apps.googleusercontent.com"
               buttonText="Logout"
               onLogoutSuccess={this.props.handleLogout}
+              className="NavBar-link"
             />
           ) : (
             <GoogleLogin
@@ -38,6 +39,7 @@ class NavBar extends Component {
               buttonText="Login"
               onSuccess={this.props.handleLogin}
               onFailure={this.props.handleLogin}
+              className="NavBar-link"
             />
           )}
           <Link to="/chat/" className="NavBar-link">

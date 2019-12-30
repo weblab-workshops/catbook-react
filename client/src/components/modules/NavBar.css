@@ -1,17 +1,15 @@
 .NavBar-container {
-  width: calc(100vw - 2 * 1.25rem);
-  padding: 0.75rem 1.25rem;
-
+  padding: var(--s) var(--m);
   background-color: var(--primary);
 }
 
 .NavBar-title {
   color: var(--white);
-  font-size: 1.2em;
+  font-size: 20px;
 }
 
 .NavBar-linkContainer {
-  margin-left: 1.5rem;
+  margin-left: var(--l);
 }
 
 .NavBar-link,
@@ -26,5 +24,5 @@
 }
 
 .NavBar-link + .NavBar-link {
-  margin-left: 1rem;
+  margin-left: var(--m);
 }

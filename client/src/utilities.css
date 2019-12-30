@@ -23,6 +23,11 @@
   --medgrey: #e0e0e0;
   --grey: #f7f7f7;
   --white: #fff;
+
+  --xs: 4px;
+  --s: 8px;
+  --m: 16px;
+  --l: 24px;
 }
 
 html,
@@ -52,6 +57,10 @@ form {
 
 .u-flex-alignCenter {
   align-items: center;
+}
+
+.u-inlineBlock {
+  display: inline-block;
 }
 
 .u-bold {

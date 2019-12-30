@@ -1,17 +1,17 @@
 .SingleChat-container {
-  margin: 0 0 0.25rem;
+  margin: 0 0 var(--xs);
 }
 
 .SingleChat-sender {
   width: 106px;
-  margin-right: 0.25rem;
+  margin-right: var(--xs);
   flex-shrink: 0;
 }
 
 .SingleChat-content {
-  padding: 0.4rem 0.75rem;
+  padding: var(--s) var(--m);
   background: var(--medgrey);
-  border-radius: 1rem;
+  border-radius: var(--l);
 }
 
 .SingleChat-mine .SingleChat-content {
