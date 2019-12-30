@@ -1,16 +1,16 @@
 .Card-container {
   border: var(--darkgrey) 1px solid;
-  border-radius: 4px;
-  margin-top: 0.75rem;
+  border-radius: var(--xs);
+  margin-top: var(--m);
 }
 
 .Card-container:first-of-type {
-  margin-top: 1.5rem;
+  margin-top: var(--l);
 }
 
 .Card-story,
 .Card-commentSection {
-  padding: 1.5rem 1.75rem;
+  padding: var(--m) var(--l);
 }
 
 .Card-storyUser {
@@ -20,7 +20,7 @@
 
 .Card-storyContent {
   font-size: 40px;
-  margin: 0.5rem 0 0;
+  margin: var(--s) 0 0;
 }
 
 .Card-commentSection {
@@ -29,5 +29,5 @@
 }
 
 .Card-commentBody {
-  margin: 0 0 0.75rem;
+  margin: 0 0 var(--s);
 }
