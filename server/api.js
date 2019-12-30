@@ -115,15 +115,13 @@ router.post("/chat", (req, res) => {
   if (req.body.recipient._id == "ALL_CHAT") {
     socket.getIo().emit("chat", message);
   } else {
-    const recipientSocketID = socket.getSocketFromUserID(req.body.recipient._id);
     socket
       .getIo()
-      .to(recipientSocketID)
+      .to(req.body.recipient._id)
       .emit("chat", message);
-    const senderSocketID = socket.getSocketFromUserID(req.user._id);
     socket
       .getIo()
-      .to(senderSocketID)
+      .to(req.user._id)
       .emit("chat", message);
   }
 });

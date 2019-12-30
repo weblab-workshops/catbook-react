@@ -58,12 +58,7 @@ function populateCurrentUser(req, res, next) {
 
 function authenticateSocket(req, res, next) {
   if (req.user) {
-    socket.addUser(req.user._id, req.body.socketid);
-    socket.getSocketFromSocketID(req.body.socketid).user = {
-      _id: req.user._id,
-      name: req.user.name,
-    };
-    socket.getIo().emit("activeUsers", socket.getAllConnectedUsers());
+    socket.addUser(req.user, req.body.socketid);
   } else {
     console.log("not logged in yet");
   }
