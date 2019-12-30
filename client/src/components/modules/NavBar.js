@@ -26,6 +26,9 @@ class NavBar extends Component {
               Profile
             </Link>
           )}
+          <Link to="/chat/" className="NavBar-link">
+            Chat
+          </Link>
           {this.props.userId ? (
             <GoogleLogout
               clientId="121479668229-t5j82jrbi9oejh7c8avada226s75bopn.apps.googleusercontent.com"
@@ -42,9 +45,6 @@ class NavBar extends Component {
               className="NavBar-link"
             />
           )}
-          <Link to="/chat/" className="NavBar-link">
-            Chat
-          </Link>
         </div>
       </nav>
     );
