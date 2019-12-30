@@ -52,7 +52,6 @@ export function get(endpoint, params = {}) {
 // Helper code to make a post request. Default parameter of empty JSON Object for params.
 // Returns a Promise to a JSON Object.
 export function post(endpoint, params = {}) {
-  params.creator_name = "YOUR_NAME";
   return fetch(API_ENDPOINT + endpoint, {
     method: "POST",
     headers: { "Content-type": "application/json" },
