@@ -13,8 +13,15 @@ class CatHappiness extends Component {
   }
 
   render() {
-    // TODO: fill this in with code!
-    return ();
+    return (
+      <div className="CatHappiness-container">
+        <div className="CatHappiness-story">
+          <p className="CatHappiness-storyContent">
+            //TODO: insert happiness counter here!
+          </p>
+        </div>
+      </div>
+    );
   }
 }
 
