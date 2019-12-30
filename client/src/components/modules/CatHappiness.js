@@ -14,7 +14,7 @@ class CatHappiness extends Component {
 
   render() {
     // TODO: fill this in with code!
-    return ();
+    return <div>{this.props.catHappiness}</div>;
   }
 }
 
