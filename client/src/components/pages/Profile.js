@@ -5,22 +5,27 @@ import "./Profile.css";
 
 class Profile extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      catHappiness : 0,
-    }
+      catHappiness: 0,
+    };
   }
 
   incrementCatHappiness = () => {
     this.setState({
-      catHappiness : this.state.catHappiness + 1
-    })
-  }
+      catHappiness: this.state.catHappiness + 1,
+    });
+  };
 
   render() {
     return (
       <div>
-        <div className="Profile-avatarContainer" onClick={() => {this.incrementCatHappiness()}}>
+        <div
+          className="Profile-avatarContainer"
+          onClick={() => {
+            this.incrementCatHappiness();
+          }}
+        >
           <div className="Profile-avatar" />
         </div>
         <h1 className="Profile-name u-textCenter">YOUR NAME HERE</h1>
