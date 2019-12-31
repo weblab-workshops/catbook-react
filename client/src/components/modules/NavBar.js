@@ -7,9 +7,8 @@ import "./NavBar.css";
  */
 class NavBar extends Component {
   render() {
-    // TODO: Implement Navbar here!
     return (
-
+      null // TODO: Replace me with Navbar implementation!
     );
   }
 }
