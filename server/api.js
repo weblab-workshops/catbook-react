@@ -9,25 +9,24 @@
 
 const express = require("express");
 
-// we haven't set up user login yet, so just
-// use a hardcoded name for now
-// TODO change to a unique name for workshop
-const MY_NAME = "Anonymous User";
+// api endpoints: all these paths will be prefixed with "/api/"
+const router = express.Router();
 
-let data = { 
-  stories: [
-    {
-      _id: 0,
-      creator_name: "Shannen Wu",
-      content: "I love corgis!"
-    }
-  ],
-  comments: [
-    {
-      _id: 0,
-      creator_name: "Jessica Tang",
-      parent: 0,
-      content: "Wow! Me too!"
-    }
-  ]
-};
+
+router.get("/stories", (req, res) => {
+  
+});
+
+router.post("/story", (req, res) => {
+  
+});
+
+router.get("/comment", (req, res) => {
+  Comment.find({ /* input the parent parameter here*/ }).then((comments) => {
+    res.send(comments);
+  });
+});
+
+router.post("/comment", (req, res) => {
+  
+});
