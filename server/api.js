@@ -39,4 +39,15 @@ router.get("/test", (req, res) => {
   res.send({ message: "it works" });
 });
 
+router.get("/stories", (req, res) => {
+  // just send back all of the stories!
+  res.send(data.stories);
+});
+
+router.get("/comment", (req, res) => {
+  // determine which comments are children of the requested story
+  const filteredComments = data.comments.filter((comment) => comment.parent == req.query.parent);
+  res.send(filteredComments);
+});
+
 module.exports = router;
