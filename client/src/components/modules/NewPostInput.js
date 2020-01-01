@@ -71,7 +71,10 @@ class NewStory extends Component {
 
   addStory = (value) => {
     const body = { content: value };
-    post("/api/story", body);
+    post("/api/story", body).then((story) => {
+      // display this story on the screen
+      this.props.addNewStory(story);
+    });
   };
 
   render() {
@@ -92,7 +95,10 @@ class NewComment extends Component {
 
   addComment = (value) => {
     const body = { parent: this.props.storyId, content: value };
-    post("/api/comment", body);
+    post("/api/comment", body).then((comment) => {
+      // display this comment on the screen
+      this.props.addNewComment(comment);
+    });
   };
 
   render() {

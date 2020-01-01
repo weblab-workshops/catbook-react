@@ -27,6 +27,14 @@ class Card extends Component {
     });
   }
 
+  // this gets called when the user pushes "Submit", so their
+  // post gets added to the screen right away
+  addNewComment = (commentObj) => {
+    this.setState({
+      comments: this.state.comments.concat([commentObj]),
+    });
+  };
+
   render() {
     return (
       <div className="Card-container">
@@ -35,7 +43,11 @@ class Card extends Component {
           creator_name={this.props.creator_name}
           content={this.props.content}
         />
-        <CommentsBlock story={this.props} comments={this.state.comments} />
+        <CommentsBlock
+          story={this.props}
+          comments={this.state.comments}
+          addNewComment={this.addNewComment}
+        />
       </div>
     );
   }

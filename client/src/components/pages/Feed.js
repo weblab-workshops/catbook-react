@@ -17,6 +17,14 @@ class Feed extends Component {
     });
   }
 
+  // this gets called when the user pushes "Submit", so their
+  // post gets added to the screen right away
+  addNewStory = (storyObj) => {
+    this.setState({
+      stories: [storyObj].concat(this.state.stories),
+    });
+  };
+
   render() {
     let storiesList = null;
     const hasStories = this.state.stories.length !== 0;
@@ -34,7 +42,7 @@ class Feed extends Component {
     }
     return (
       <div>
-        <NewStory />
+        <NewStory addNewStory={this.addNewStory} />
         {storiesList}
       </div>
     );
