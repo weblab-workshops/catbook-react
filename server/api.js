@@ -32,7 +32,7 @@ router.post("/story", (req, res) => {
     content: req.body.content,
   });
 
-  newStory.save().then(() => res.send({}));
+  newStory.save().then((story) => res.send(story));
 });
 
 router.get("/comment", (req, res) => {
@@ -48,7 +48,7 @@ router.post("/comment", (req, res) => {
     content: req.body.content,
   });
 
-  newComment.save().then(() => res.send({}));
+  newComment.save().then((comment) => res.send(comment));
 });
 
 // anything else falls to this "not found" case
