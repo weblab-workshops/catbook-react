@@ -14,22 +14,22 @@ const express = require("express");
 // TODO change to a unique name for workshop
 const MY_NAME = "Anonymous User";
 
-let data = { 
+let data = {
   stories: [
     {
       _id: 0,
       creator_name: "Shannen Wu",
-      content: "I love corgis!"
-    }
+      content: "I love corgis!",
+    },
   ],
   comments: [
     {
       _id: 0,
       creator_name: "Jessica Tang",
       parent: 0,
-      content: "Wow! Me too!"
-    }
-  ]
+      content: "Wow! Me too!",
+    },
+  ],
 };
 
 const router = express.Router();

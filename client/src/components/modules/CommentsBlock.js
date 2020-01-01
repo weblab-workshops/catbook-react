@@ -33,7 +33,7 @@ class CommentsBlock extends Component {
               content={comment.content}
             />
           ))}
-          <NewComment storyId={this.props.story._id} />
+          <NewComment storyId={this.props.story._id} addNewComment={this.props.addNewComment} />
         </div>
       </div>
     );
