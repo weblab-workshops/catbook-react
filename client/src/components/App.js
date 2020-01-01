@@ -69,7 +69,7 @@ class App extends Component {
         />
         <div className="App-container">
           <Router>
-            <Feed path="/" />
+            <Feed path="/" userId={this.state.userId} />
             <Profile path="/profile/:userId" />
             <Chatbook path="/chat/" userId={this.state.userId} />
             <NotFound default />

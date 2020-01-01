@@ -28,7 +28,7 @@ router.get("/stories", (req, res) => {
   Story.find({}).then((stories) => res.send(stories));
 });
 
-router.post("/story", (req, res) => {
+router.post("/story", auth.ensureLoggedIn, (req, res) => {
   const newStory = new Story({
     creator_id: req.user._id,
     creator_name: req.user.name,
@@ -44,7 +44,7 @@ router.get("/comment", (req, res) => {
   });
 });
 
-router.post("/comment", (req, res) => {
+router.post("/comment", auth.ensureLoggedIn, (req, res) => {
   const newComment = new Comment({
     creator_id: req.user._id,
     creator_name: req.user.name,
@@ -91,7 +91,7 @@ router.get("/messages", (req, res) => {
   Message.find(query).then((messages) => res.send(messages));
 });
 
-router.post("/chat", (req, res) => {
+router.post("/chat", auth.ensureLoggedIn, (req, res) => {
   console.log(`Received a chat message: ${req.body.content}`);
   console.log(req.body.recipient);
 

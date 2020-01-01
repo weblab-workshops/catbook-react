@@ -34,7 +34,9 @@ class CommentsBlock extends Component {
               content={comment.content}
             />
           ))}
-          <NewComment storyId={this.props.story._id} addNewComment={this.props.addNewComment} />
+          {this.props.userId && (
+            <NewComment storyId={this.props.story._id} addNewComment={this.props.addNewComment} />
+          )}
         </div>
       </div>
     );
