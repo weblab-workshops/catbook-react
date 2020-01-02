@@ -47,3 +47,5 @@ router.post("/comment", (req, res) => {
 
   newComment.save().then((comment) => res.send(comment));
 });
+
+module.exports = router;
