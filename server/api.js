@@ -104,7 +104,7 @@ router.post("/chat", auth.ensureLoggedIn, (req, res) => {
     },
     content: req.body.content,
   });
-  message.save();
+  message.save().then((msg) => res.send(msg));
 
   if (req.body.recipient._id == "ALL_CHAT") {
     socket.getIo().emit("chat", message);
