@@ -43,6 +43,7 @@ class Feed extends Component {
           creator_name={storyObj.creator_name}
           creator_id={storyObj.creator_id}
           content={storyObj.content}
+          userId={this.props.userId}
         />
       ));
     } else {
@@ -50,7 +51,7 @@ class Feed extends Component {
     }
     return (
       <>
-        <NewStory addNewStory={this.addNewStory} />
+        {this.props.userId && <NewStory addNewStory={this.addNewStory} />}
         {storiesList}
       </>
     );
