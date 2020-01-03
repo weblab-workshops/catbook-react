@@ -5,7 +5,7 @@
 |
 | This file defines how your server starts up. Think of it as the main() of your server.
 | At a high level, this file does the following things:
-| - Connect to the database
+| - Connect to the database (TODO: WORKSHOP 5)
 | - Sets up server middleware (i.e. addons that enable things like json parsing)
 | - Hooks up all the backend routes specified in api.js
 | - Fowards frontend routes that should be handled by the React router
@@ -22,14 +22,15 @@ validator.checkSetup();
 const express = require("express"); // backend framework for our node server.
 const path = require("path"); // provide utilities for working with file and directory paths
 
+//load api file to handle all API routes
+const api = require("./api");
+
 // create a new express server
 const app = express();
 app.use(validator.checkRoutes);
 
-// an example GET route
-app.get("/api/test", (req, res) => {
-  res.send({ message: "it works" });
-});
+// connect user-defined routes
+app.use("/api", api);
 
 // load the compiled react files, which will serve /index.html and /bundle.js
 const reactPath = path.resolve(__dirname, "..", "client", "dist");
