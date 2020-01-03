@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-// TODO (step9): import SingleComment and NewComment
+import SingleComment from "./SingleComment.js";
+import { NewComment } from "./NewPostInput.js";
 
 /**
  * @typedef ContentObject
@@ -23,7 +24,21 @@ class CommentsBlock extends Component {
   componentDidMount() {}
 
   render() {
-    // TODO (step9): implement render
+    return (
+      <div className="Card-commentSection">
+        <div className="story-comments">
+          {this.props.comments.map((comment) => (
+            <SingleComment
+              key={`SingleComment_${comment._id}`}
+              _id={comment._id}
+              creator_name={comment.creator_name}
+              content={comment.content}
+            />
+          ))}
+          <NewComment storyId={this.props.story._id} />
+        </div>
+      </div>
+    );
   }
 }
 

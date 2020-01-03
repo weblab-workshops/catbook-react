@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import { get } from "../../utilities";
 import SingleStory from "./SingleStory.js";
-import SingleComment from "./SingleComment.js";
-import { NewComment } from "./NewPostInput";
-// TODO (step9): import CommentsBlock
+import CommentsBlock from "./CommentsBlock.js";
 
 import "./Card.css";
 
@@ -30,20 +28,6 @@ class Card extends Component {
   }
 
   render() {
-    let commentsList = null;
-    const hasComments = this.state.comments.length !== 0;
-    if (hasComments) {
-      commentsList = this.state.comments.map((commentObj) => (
-        <SingleComment
-          _id={commentObj._id}
-          creator_name={commentObj.creator_name}
-          content={commentObj.content}
-        />
-      ));
-    } else {
-      commentsList = <div>No comments!</div>;
-    }
-
     return (
       <div className="Card-container">
         <SingleStory
@@ -51,11 +35,9 @@ class Card extends Component {
           creator_name={this.props.creator_name}
           content={this.props.content}
         />
-        {commentsList}
-        <NewComment storyId={this.props._id} />
+        <CommentsBlock story={this.props} comments={this.state.comments} />
       </div>
     );
-    // TODO (step9): use CommentsBlock
   }
 }
 
