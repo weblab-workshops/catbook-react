@@ -8,6 +8,7 @@
 */
 
 const express = require("express");
+const fs = require("fs");
 
 // we haven't set up user login yet, so just
 // use a hardcoded name for now
@@ -15,22 +16,31 @@ const express = require("express");
 const MY_NAME = "Anonymous User";
 
 let data = {
-  stories: [
-    {
-      _id: 0,
-      creator_name: "Shannen Wu",
-      content: "I love corgis!",
-    },
-  ],
-  comments: [
-    {
-      _id: 0,
-      creator_name: "Jessica Tang",
-      parent: 0,
-      content: "Wow! Me too!",
-    },
-  ],
+  stories: [],
+  comments: [],
 };
+
+function readDataFromFile() {
+  if (!fs.existsSync("data.txt")) return;
+  fs.readFile("data.txt", (err, rawData) => {
+    const fileData = JSON.parse(rawData);
+    data.stories = fileData.stories;
+    data.comments = fileData.comments;
+  });
+}
+
+function writeDataToFile() {
+  fs.writeFile(
+    "data.txt",
+    JSON.stringify({ stories: data.stories, comments: data.comments }),
+    (err) => {
+      if (err) console.log(err);
+    }
+  );
+}
+
+// read existing data from the file when the server starts up
+readDataFromFile();
 
 const router = express.Router();
 
@@ -52,6 +62,8 @@ router.post("/story", (req, res) => {
   };
 
   data.stories.push(newStory);
+  writeDataToFile();
+
   res.send(newStory);
 });
 
@@ -70,6 +82,8 @@ router.post("/comment", (req, res) => {
   };
 
   data.comments.push(newComment);
+  writeDataToFile();
+
   res.send(newComment);
 });
 
