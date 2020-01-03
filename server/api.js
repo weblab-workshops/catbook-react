@@ -22,10 +22,8 @@ let data = {
 
 function readDataFromFile() {
   if (!fs.existsSync("data.txt")) return;
-  fs.readFile("data.txt", (err, rawData) => {
-    const fileData = JSON.parse(rawData);
-    data.stories = fileData.stories;
-    data.comments = fileData.comments;
+  fs.readFile("data.txt", (err, fileData) => {
+    data = JSON.parse(fileData);
   });
 }
 
