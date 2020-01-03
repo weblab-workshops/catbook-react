@@ -30,13 +30,9 @@ function readDataFromFile() {
 }
 
 function writeDataToFile() {
-  fs.writeFile(
-    "data.txt",
-    JSON.stringify({ stories: data.stories, comments: data.comments }),
-    (err) => {
-      if (err) console.log(err);
-    }
-  );
+  fs.writeFile("data.txt", JSON.stringify(data), (err) => {
+    if (err) console.log(err);
+  });
 }
 
 // read existing data from the file when the server starts up
