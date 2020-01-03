@@ -17,6 +17,8 @@ class Feed extends Component {
     });
   }
 
+  // TODO (step10): implement addNewStory
+
   render() {
     let storiesList = null;
     const hasStories = this.state.stories.length !== 0;
@@ -29,6 +31,7 @@ class Feed extends Component {
     }
     return (
       <div>
+        {/* TODO (step10): pass addNewStory as prop to NewStory */}
         <NewStory />
         {storiesList}
       </div>

@@ -36,6 +36,7 @@ class CommentsBlock extends Component {
             />
           ))}
           <NewComment storyId={this.props.story._id} />
+          {/* TODO (step10): pass addNewComment as prop to NewComment */}
         </div>
       </div>
     );

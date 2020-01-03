@@ -27,6 +27,8 @@ class Card extends Component {
     });
   }
 
+  // TODO (step10): implement addNewComment, add as prop to CommentsBlock
+
   render() {
     return (
       <div className="Card-container">

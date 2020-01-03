@@ -71,6 +71,7 @@ class NewStory extends Component {
 
   addStory = (value) => {
     const body = { content: value };
+    // TODO (step10): use .then to call addNewStory
     post("/api/story", body);
   };
 
@@ -92,6 +93,7 @@ class NewComment extends Component {
 
   addComment = (value) => {
     const body = { parent: this.props.storyId, content: value };
+    // TODO (step10): use .then to call addNewComment
     post("/api/comment", body);
   };
 
