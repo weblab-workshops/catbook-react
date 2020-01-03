@@ -20,7 +20,7 @@ validator.checkSetup();
 
 // import libraries needed for the webserver to work!
 const express = require("express"); // backend framework for our node server.
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 const path = require("path"); // provide utilities for working with file and directory paths
 
 // Server configuration below
@@ -29,7 +29,7 @@ const mongoConnectionURL =
   "mongodb+srv://weblab:jAT4po55IAgYWQgR@catbook-ylndp.mongodb.net/test?retryWrites=true&w=majority";
 // TODO change database name to the name you chose
 const databaseName = "catbook";
-const options = { useNewUrlParser: true, useUnifiedTopology: true, dbName: databaseName}
+const options = { useNewUrlParser: true, useUnifiedTopology: true, dbName: databaseName};
 
 // connect to mongodb
 mongoose
