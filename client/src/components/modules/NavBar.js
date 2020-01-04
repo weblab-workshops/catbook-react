@@ -4,6 +4,9 @@ import GoogleLogin, { GoogleLogout } from "react-google-login";
 
 import "./NavBar.css";
 
+// This identifies your application to Google's authentication service
+const GOOGLE_CLIENT_ID = "TODO: Fill this out!";
+
 /**
  * The navigation bar at the top of all pages. Takes no props.
  */
@@ -31,10 +34,10 @@ class NavBar extends Component {
             Profile
           </Link>
           <GoogleLogin
-            clientId="TODO: Put your Client ID here"
+            clientId={GOOGLE_CLIENT_ID}
             buttonText="Login"
             onSuccess={this.handleLogin}
-            onFailure={this.handleLogin}
+            onFailure={(err) => console.log(err)}
             className="NavBar-link NavBar-login"
           />
         </div>
