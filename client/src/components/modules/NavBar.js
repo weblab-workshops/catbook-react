@@ -13,13 +13,21 @@ const GOOGLE_CLIENT_ID = "TODO: Fill this out!";
 class NavBar extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      loggedIn: false,
+    };
   }
 
   handleLogin = (res) => {
     // 'res' contains the response from Google's authentication servers
     console.log(res);
+    this.setState({ loggedIn: true });
+  };
 
-    // TODO: What do we do with 'res'?
+  handleLogout = () => {
+    console.log("Logged out successfully!");
+    this.setState({ loggedIn: false });
   };
 
   render() {
@@ -33,13 +41,23 @@ class NavBar extends Component {
           <Link to="/profile/" className="NavBar-link">
             Profile
           </Link>
-          <GoogleLogin
-            clientId={GOOGLE_CLIENT_ID}
-            buttonText="Login"
-            onSuccess={this.handleLogin}
-            onFailure={(err) => console.log(err)}
-            className="NavBar-link NavBar-login"
-          />
+          {this.state.loggedIn ? (
+            <GoogleLogout
+              clientId={GOOGLE_CLIENT_ID}
+              buttonText="Logout"
+              onLogoutSuccess={this.handleLogout}
+              onFailure={(err) => console.log(err)}
+              className="NavBar-link NavBar-login"
+            />
+          ) : (
+            <GoogleLogin
+              clientId={GOOGLE_CLIENT_ID}
+              buttonText="Login"
+              onSuccess={this.handleLogin}
+              onFailure={(err) => console.log(err)}
+              className="NavBar-link NavBar-login"
+            />
+          )}
         </div>
       </nav>
     );
