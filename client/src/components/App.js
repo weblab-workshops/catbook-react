@@ -29,7 +29,7 @@ class App extends Component {
         <div className="App-container">
           <Router>
             <Feed path="/" />
-            <Profile path="/profile" />
+            <Profile path="/profile/:userId" />
             <NotFound default />
           </Router>
         </div>

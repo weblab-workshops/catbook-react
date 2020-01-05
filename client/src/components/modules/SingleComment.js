@@ -17,7 +17,9 @@ class SingleComment extends Component {
   render() {
     return (
       <div className="Card-commentBody">
-        <span className="u-bold">{this.props.creator_name}</span>
+        <Link to={`/profile/${this.props.creator_id}`} className="u-link u-bold">
+          {this.props.creator_name}
+        </Link>
         <span>{" | " + this.props.content}</span>
       </div>
     );

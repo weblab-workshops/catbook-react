@@ -7,6 +7,7 @@ import { Link } from "@reach/router";
  * Proptypes
  * @param {string} _id of the story
  * @param {string} creator_name
+ * @param {string} creator_id
  * @param {string} content of the story
  */
 class SingleStory extends Component {
@@ -17,7 +18,9 @@ class SingleStory extends Component {
   render() {
     return (
       <div className="Card-story">
-        <span className="u-bold">{this.props.creator_name}</span>
+        <Link to={`/profile/${this.props.creator_id}`} className="u-link u-bold">
+          {this.props.creator_name}
+        </Link>
         <p className="Card-storyContent">{this.props.content}</p>
       </div>
     );
