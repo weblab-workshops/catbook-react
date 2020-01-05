@@ -60,6 +60,8 @@ router.post("/comment", (req, res) => {
 router.post("/login", auth.login);
 router.post("/logout", auth.logout);
 
+// TODO: Add GET /api/whoami
+
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
   console.log(`API route not found: ${req.method} ${req.url}`);
