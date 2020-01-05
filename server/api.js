@@ -29,7 +29,8 @@ router.get("/stories", (req, res) => {
 
 router.post("/story", (req, res) => {
   const newStory = new Story({
-    creator_name: MY_NAME,
+    creator_name: req.user.name,
+    creator_id: req.user._id,
     content: req.body.content,
   });
 
@@ -42,9 +43,17 @@ router.get("/comment", (req, res) => {
   });
 });
 
+router.get("/user", (req, res) => {
+  User.findById(req.query.userid).then((user) => {
+    res.send(user);
+  });
+});
+
 router.post("/comment", (req, res) => {
   const newComment = new Comment({
-    creator_name: MY_NAME,
+    creator_name: req.user.name,
+    creator_id: req.user._id,
+    content: req.body.content,
     parent: req.body.parent,
     content: req.body.content,
   });
