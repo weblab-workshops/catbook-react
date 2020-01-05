@@ -18,9 +18,7 @@ const auth = require("./auth");
 // api endpoints: all these paths will be prefixed with "/api/"
 const router = express.Router();
 
-// we haven't set up user login yet, so just
-// use a hardcoded name for now
-// TODO change to a unique name for workshop
+// TODO: Get rid of this!
 const MY_NAME = "Anonymous User";
 
 router.get("/stories", (req, res) => {
@@ -29,6 +27,7 @@ router.get("/stories", (req, res) => {
 });
 
 router.post("/story", (req, res) => {
+  // TODO: Introduce creator_id
   const newStory = new Story({
     creator_name: MY_NAME,
     content: req.body.content,
@@ -44,6 +43,7 @@ router.get("/comment", (req, res) => {
 });
 
 router.post("/comment", (req, res) => {
+  // TODO: Introduce creator_id
   const newComment = new Comment({
     creator_name: MY_NAME,
     parent: req.body.parent,
@@ -55,6 +55,8 @@ router.post("/comment", (req, res) => {
 
 router.post("/login", auth.login);
 router.post("/logout", auth.logout);
+
+// TODO: Add GET /api/user
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
