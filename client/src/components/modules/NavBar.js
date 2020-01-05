@@ -20,6 +20,11 @@ class NavBar extends Component {
     };
   }
 
+  componentDidMount() {
+    // TODO: After implementing /api/whoami
+    // call it here and save userid in this.state
+  }
+
   handleLogin = (res) => {
     // 'res' contains the response from Google's authentication servers
     console.log(res);
