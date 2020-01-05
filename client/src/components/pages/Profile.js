@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import CatHappiness from "../modules/CatHappiness.js";
+import { get } from "../../utilities";
 
 import "../../utilities.css";
 import "./Profile.css";
