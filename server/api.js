@@ -9,6 +9,11 @@
 
 const express = require("express");
 
+// we haven't set up user login yet, so just
+// use a hardcoded name for now
+// TODO change to a unique name for workshop
+const MY_NAME = "Anonymous User";
+
 // import models so we can interact with the database
 const Story = require("./models/story");
 const Comment = require("./models/comment");
@@ -23,8 +28,7 @@ router.get("/stories", (req, res) => {
 
 router.post("/story", (req, res) => {
   const newStory = new Story({
-    creator_id: req.user._id,
-    creator_name: req.user.name,
+    creator_name: MY_NAME,
     content: req.body.content,
   });
 
@@ -39,13 +43,19 @@ router.get("/comment", (req, res) => {
 
 router.post("/comment", (req, res) => {
   const newComment = new Comment({
-    creator_id: req.user._id,
-    creator_name: req.user.name,
+    creator_name: MY_NAME,
     parent: req.body.parent,
     content: req.body.content,
   });
 
   newComment.save().then((comment) => res.send(comment));
 });
+
+// anything else falls to this "not found" case
+router.all("*", (req, res) => {
+  console.log(`API route not found: ${req.method} ${req.url}`);
+  res.status(404).send({ msg: "API route not found" });
+});
+
 
 module.exports = router;
