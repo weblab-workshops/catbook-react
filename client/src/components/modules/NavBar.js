@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Link } from "@reach/router";
 import GoogleLogin, { GoogleLogout } from "react-google-login";
 
-import { get, post } from "../../utilities";
 import "./NavBar.css";
 
 // This identifies your application to Google's authentication service
@@ -14,42 +13,7 @@ const GOOGLE_CLIENT_ID = "TODO: Fill this out!";
 class NavBar extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      loggedIn: false,
-    };
   }
-
-  componentDidMount() {
-    get("/api/whoami").then((user) => {
-      if (user._id) {
-        // if the user is logged in, save their ID in react state
-        this.setState({ userId: user._id });
-      }
-    });
-  }
-
-  handleLogin = (res) => {
-    // 'res' contains the response from Google's authentication servers
-    console.log(res);
-
-    this.setState({ loggedIn: true });
-    const userToken = res.tokenObj.id_token;
-    post("/api/login", { token: userToken }).then((user) => {
-      // the server knows we're logged in now
-      this.setState({ userId: user._id });
-      console.log(user);
-    });
-  };
-
-  handleLogout = () => {
-    console.log("Logged out successfully!");
-    this.setState({
-      loggedIn: false,
-      userId: undefined,
-    });
-    post("/api/logout");
-  };
 
   render() {
     return (
@@ -59,16 +23,16 @@ class NavBar extends Component {
           <Link to="/" className="NavBar-link">
             Home
           </Link>
-          {this.state.userId && (
-            <Link to={`/profile/${this.state.userId}`} className="NavBar-link">
+          {this.props.userId && (
+            <Link to={`/profile/${this.props.userId}`} className="NavBar-link">
               Profile
             </Link>
           )}
-          {this.state.loggedIn ? (
+          {this.props.userId ? (
             <GoogleLogout
               clientId={GOOGLE_CLIENT_ID}
               buttonText="Logout"
-              onLogoutSuccess={this.handleLogout}
+              onLogoutSuccess={this.props.handleLogout}
               onFailure={(err) => console.log(err)}
               className="NavBar-link NavBar-login"
             />
@@ -76,7 +40,7 @@ class NavBar extends Component {
             <GoogleLogin
               clientId={GOOGLE_CLIENT_ID}
               buttonText="Login"
-              onSuccess={this.handleLogin}
+              onSuccess={this.props.handleLogin}
               onFailure={(err) => console.log(err)}
               className="NavBar-link NavBar-login"
             />
