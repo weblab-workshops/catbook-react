@@ -24,11 +24,15 @@ class NavBar extends Component {
     // 'res' contains the response from Google's authentication servers
     console.log(res);
     this.setState({ loggedIn: true });
+
+    // TODO: Send res.tokenObj.id_token to the backend
   };
 
   handleLogout = () => {
     console.log("Logged out successfully!");
     this.setState({ loggedIn: false });
+
+    // TODO: Tell the backend we logged out
   };
 
   render() {
