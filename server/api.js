@@ -12,6 +12,7 @@ const express = require("express");
 // import models so we can interact with the database
 const Story = require("./models/story");
 const Comment = require("./models/comment");
+const Comment = require("./models/user");
 const auth = require("./auth");
 
 // api endpoints: all these paths will be prefixed with "/api/"
