@@ -19,10 +19,13 @@ class NavBar extends Component {
     // 'res' contains the response from Google's authentication servers
     console.log(res);
 
-    // TODO: What do we do with 'res'?
+    // TODO: Set a variable 'loggedIn' to react state
   };
 
+  // TODO: Add a function for handleLogout here
+
   render() {
+    // TODO: Add a logout button
     return (
       <nav className="NavBar-container">
         <div className="NavBar-title u-inlineBlock">Catbook</div>
