@@ -48,6 +48,7 @@ class Feed extends Component {
     } else {
       storiesList = <div>No stories!</div>;
     }
+    // TODO: Hide NewStory if not logged in
     return (
       <>
         <NewStory addNewStory={this.addNewStory} />

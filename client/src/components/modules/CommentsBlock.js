@@ -23,6 +23,7 @@ class CommentsBlock extends Component {
   }
 
   render() {
+    // TODO: Hide NewComment if not logged in
     return (
       <div className="Card-commentSection">
         <div className="story-comments">
