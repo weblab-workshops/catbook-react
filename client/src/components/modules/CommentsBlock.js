@@ -23,7 +23,6 @@ class CommentsBlock extends Component {
   }
 
   render() {
-    // TODO: Hide NewComment if not logged in
     return (
       <div className="Card-commentSection">
         <div className="story-comments">
@@ -36,7 +35,9 @@ class CommentsBlock extends Component {
               content={comment.content}
             />
           ))}
-          <NewComment storyId={this.props.story._id} addNewComment={this.props.addNewComment} />
+          {this.props.userId && (
+            <NewComment storyId={this.props.story._id} addNewComment={this.props.addNewComment} />
+          )}
         </div>
       </div>
     );
