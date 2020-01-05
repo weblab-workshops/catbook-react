@@ -21,8 +21,12 @@ class NavBar extends Component {
   }
 
   componentDidMount() {
-    // TODO: After implementing /api/whoami
-    // call it here and save userid in this.state
+    get("/api/whoami").then((user) => {
+      if (user._id) {
+        // if the user is logged in, save their ID in react state
+        this.setState({ userId: user._id });
+      }
+    });
   }
 
   handleLogin = (res) => {
@@ -51,9 +55,11 @@ class NavBar extends Component {
           <Link to="/" className="NavBar-link">
             Home
           </Link>
-          <Link to="/profile/" className="NavBar-link">
-            Profile
-          </Link>
+          {this.state.userId && (
+            <Link to={`/profile/${this.state.userId}`} className="NavBar-link">
+              Profile
+            </Link>
+          )}
           {this.state.loggedIn ? (
             <GoogleLogout
               clientId={GOOGLE_CLIENT_ID}
