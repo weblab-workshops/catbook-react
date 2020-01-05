@@ -15,6 +15,7 @@ class Profile extends Component {
 
   componentDidMount() {
     document.title = "Profile Page";
+    get(`/api/user`, { userid: this.props.userId }).then((user) => this.setState({ user: user }));
   }
 
   incrementCatHappiness = () => {
@@ -24,6 +25,9 @@ class Profile extends Component {
   };
 
   render() {
+    if (!this.state.user) {
+      return <div> Loading! </div>;
+    }
     return (
       <>
         <div
@@ -34,7 +38,7 @@ class Profile extends Component {
         >
           <div className="Profile-avatar" />
         </div>
-        <h1 className="Profile-name u-textCenter">Shannen Wu</h1>
+        <h1 className="Profile-name u-textCenter">{this.state.user.name}</h1>
         <hr className="Profile-line" />
         <div className="u-flex">
           <div className="Profile-subContainer u-textCenter">
