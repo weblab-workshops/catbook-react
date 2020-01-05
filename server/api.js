@@ -52,6 +52,9 @@ router.post("/comment", (req, res) => {
   newComment.save().then((comment) => res.send(comment));
 });
 
+router.post("/login", auth.login);
+router.post("/logout", auth.logout);
+
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
   console.log(`API route not found: ${req.method} ${req.url}`);

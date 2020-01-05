@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "@reach/router";
 import GoogleLogin, { GoogleLogout } from "react-google-login";
 
-import { get, post } from "../utilities";
+import { get, post } from "../../utilities";
 import "./NavBar.css";
 
 // This identifies your application to Google's authentication service
@@ -23,12 +23,19 @@ class NavBar extends Component {
   handleLogin = (res) => {
     // 'res' contains the response from Google's authentication servers
     console.log(res);
+
     this.setState({ loggedIn: true });
+    const userToken = res.tokenObj.id_token;
+    post("/api/login", { token: userToken }).then((user) => {
+      // the server knows we're logged in now
+      console.log(user);
+    });
   };
 
   handleLogout = () => {
     console.log("Logged out successfully!");
     this.setState({ loggedIn: false });
+    post("/api/logout");
   };
 
   render() {
