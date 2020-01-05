@@ -42,6 +42,8 @@ class NavBar extends Component {
     console.log("Logged out successfully!");
     this.setState({ loggedIn: false });
     post("/api/logout");
+
+    // TODO: Unset this.state.userId here (e.g. set it to undefined)
   };
 
   render() {
