@@ -15,6 +15,7 @@ class Profile extends Component {
 
   componentDidMount() {
     document.title = "Profile Page";
+    // TODO: make a call to GET /api/user
   }
 
   incrementCatHappiness = () => {
@@ -24,6 +25,7 @@ class Profile extends Component {
   };
 
   render() {
+    // TODO: return "loading" if user isn't defined
     return (
       <>
         <div
