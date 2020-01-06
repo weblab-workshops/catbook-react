@@ -98,7 +98,7 @@ app.use((err, req, res, next) => {
 });
 
 // hardcode port to 3000 for now
-const port = 3000;
+const port = process.env.PORT || 3000;
 const server = http.Server(app);
 socket.init(server);
 
