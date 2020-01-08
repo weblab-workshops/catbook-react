@@ -23,6 +23,22 @@ app.get("/api/test", (req, res) => {
   res.send({ message: "test API GET endpoint!" });
 });
 
+// any server errors cause this function to run
+app.use((err, req, res, next) => {
+  const status = err.status || 500;
+  if (status === 500) {
+    // 500 means Internal Server Error
+    console.log("The server errored when processing a request!");
+    console.log(err);
+  }
+
+  res.status(status);
+  res.send({
+    status: status,
+    message: err.message,
+  });
+});
+
 // hardcode port to 3000 for now
 const port = 3000;
 app.listen(port, () => {
