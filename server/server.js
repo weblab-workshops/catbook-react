@@ -30,7 +30,6 @@ app.use(validator.checkRoutes);
 
 // automatically parse the body of requests
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
 // connect user-defined routes
 app.use("/api", api);
