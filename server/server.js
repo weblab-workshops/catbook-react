@@ -26,10 +26,16 @@ const path = require("path"); // provide utilities for working with file and dir
 const app = express();
 app.use(validator.checkRoutes);
 
+// allow us to parse POST request data using middleware
+app.use(express.json());
+
 // an example GET route
 app.get("/api/test", (req, res) => {
   res.send({ message: "it works" });
 });
+
+// connect user-defined routes
+app.use("/api", api);
 
 // load the compiled react files, which will serve /index.html and /bundle.js
 const reactPath = path.resolve(__dirname, "..", "client", "dist");
