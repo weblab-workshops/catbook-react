@@ -75,7 +75,7 @@ router.get("/user", (req, res) => {
 
 router.get("/messages", (req, res) => {
   let query;
-  if (req.query.recipient_id == "ALL_CHAT") {
+  if (req.query.recipient_id === "ALL_CHAT") {
     // get any message sent by anybody to ALL_CHAT
     query = { "recipient._id": "ALL_CHAT" };
   } else {
