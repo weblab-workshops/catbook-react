@@ -8,37 +8,27 @@
 | - Connect to the database (TODO: WORKSHOP 5)
 | - Sets up server middleware (i.e. addons that enable things like json parsing)
 | - Hooks up all the backend routes specified in api.js
-| - Fowards frontend routes that should be handled by the React router
 | - Sets up error handling in case something goes wrong when handling a request
 | - Actually starts the webserver
 */
 
-// validator runs some basic checks to make sure you've set everything up correctly
-// this is a tool provided by staff, so you don't need to worry about it
-const validator = require("./validator");
-validator.checkSetup();
-
 // import libraries needed for the webserver to work!
 const express = require("express"); // backend framework for our node server.
-const path = require("path"); // provide utilities for working with file and directory paths
-
-//load api file to handle all API routes
-const api = require("./api");
 
 // create a new express server
 const app = express();
-app.use(validator.checkRoutes);
 
-// connect user-defined routes
-app.use("/api", api);
+// allow us to parse POST request data using middleware
+app.use(express.json());
 
-// load the compiled react files, which will serve /index.html and /bundle.js
-const reactPath = path.resolve(__dirname, "..", "client", "dist");
-app.use(express.static(reactPath));
+//create basic GET endpoint at /api/test
+app.get("/api/test", (req, res) => {
+  res.send({ message: "test API GET endpoint!" });
+});
 
-// for all other routes, render index.html and let react router handle it
-app.get("*", (req, res) => {
-  res.sendFile(path.join(reactPath, "index.html"));
+//create basic POST endpoint at /api/post-here
+app.post("/api/post-here", (req, res) => {
+  res.send({ message: `You sent over ${req.body} data to me!` });
 });
 
 // any server errors cause this function to run
