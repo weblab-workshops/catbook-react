@@ -28,6 +28,9 @@ const api = require("./api.js");
 const app = express();
 app.use(validator.checkRoutes);
 
+// allow us to parse POST request data using middleware
+app.use(express.json());
+
 // connect API routes from api.js
 app.use("/api", api);
 
