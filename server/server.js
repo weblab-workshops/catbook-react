@@ -34,9 +34,6 @@ app.get("/api/test", (req, res) => {
   res.send({ message: "it works" });
 });
 
-// connect user-defined routes
-app.use("/api", api);
-
 // load the compiled react files, which will serve /index.html and /bundle.js
 const reactPath = path.resolve(__dirname, "..", "client", "dist");
 app.use(express.static(reactPath));
