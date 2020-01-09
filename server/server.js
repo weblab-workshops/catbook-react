@@ -43,6 +43,11 @@ mongoose
 const app = express();
 app.use(validator.checkRoutes);
 
+// allow us to parse POST request data using middleware
+app.use(express.json());
+
+// connect API routes from api.js
+app.use("/api", api);
 
 // load the compiled react files, which will serve /index.html and /bundle.js
 const reactPath = path.resolve(__dirname, "..", "client", "dist");
