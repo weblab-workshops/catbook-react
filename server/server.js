@@ -23,6 +23,7 @@ const express = require("express"); // backend framework for our node server.
 const mongoose = require("mongoose");
 const path = require("path"); // provide utilities for working with file and directory paths
 
+const api = require("./api.js");
 
 // Server configuration below
 // TODO change connection URL after setting up your own database
