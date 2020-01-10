@@ -79,20 +79,8 @@ router.post("/initsocket", (req, res) => {
 });
 
 router.get("/chat", (req, res) => {
-  let query;
-  if (req.query.recipient_id === "ALL_CHAT") {
-    // get any message sent by anybody to ALL_CHAT
-    query = { "recipient._id": "ALL_CHAT" };
-  } else {
-    // get messages that are from me->you OR you->me
-    query = {
-      $or: [
-        { "sender._id": req.user._id, "recipient._id": req.query.recipient_id },
-        { "sender._id": req.query.recipient_id, "recipient._id": req.user._id },
-      ],
-    };
-  }
-
+  const query = { "recipient._id": "ALL_CHAT" };
+  // TODO (step 6): Support get chat for DMs
   Message.find(query).then((messages) => res.send(messages));
 });
 
