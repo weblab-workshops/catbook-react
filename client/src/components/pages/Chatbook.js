@@ -63,18 +63,15 @@ class Chatbook extends Component {
     });
 
     socket.on("message", (data) => {
-      if (
-        data.recipient._id === this.state.activeChat.recipient._id ||
-        data.sender._id === this.state.activeChat.recipient._id
-      ) {
-        this.setState((prevstate) => ({
-          activeChat: {
-            recipient: prevstate.activeChat.recipient,
-            messages: prevstate.activeChat.messages.concat(data),
-          },
-        }));
-      }
+      // TODO (step 7)
+      this.setState((prevstate) => ({
+        activeChat: {
+          recipient: prevstate.activeChat.recipient,
+          messages: prevstate.activeChat.messages.concat(data),
+        },
+      }));
     });
+
     socket.on("activeUsers", (data) => {
       this.setState({
         activeUsers: [ALL_CHAT].concat(data.activeUsers),

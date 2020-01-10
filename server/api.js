@@ -109,19 +109,8 @@ router.post("/message", auth.ensureLoggedIn, (req, res) => {
     content: req.body.content,
   });
   message.save();
-
-  if (req.body.recipient._id == "ALL_CHAT") {
-    socket.getIo().emit("message", message);
-  } else {
-    socket
-      .getIo()
-      .to(socket.getSocketFromUserID(req.body.recipient._id))
-      .emit("message", message);
-    socket
-      .getIo()
-      .to(socket.getSocketFromUserID(req.user._id))
-      .emit("message", message);
-  }
+  // TODO (step 7): emit for DMs
+  socket.getIo().emit("message", message);
 });
 
 router.get("/activeUsers", (req, res) => {
