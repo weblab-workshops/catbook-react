@@ -19,7 +19,6 @@ const validator = require("./validator");
 validator.checkSetup();
 
 //import libraries needed for the webserver to work!
-const bodyParser = require("body-parser"); // allow node to automatically parse POST body requests as JSON
 const express = require("express"); // backend framework for our node server.
 const session = require("express-session"); // library that stores info about each connected user.
 const mongoose = require("mongoose"); // library to connect to MongoDB
@@ -50,8 +49,7 @@ const app = express();
 app.use(validator.checkRoutes);
 
 // set up bodyParser, which allows us to process POST requests
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(express.json());
 
 // set up a session, which will persist login data across requests
 app.use(
