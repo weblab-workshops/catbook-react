@@ -41,7 +41,7 @@ class Chatbook extends Component {
   }
 
   loadMessageHistory(recipient) {
-    get("/api/messages", { recipient_id: recipient._id }).then((messages) => {
+    get("/api/chat", { recipient_id: recipient._id }).then((messages) => {
       this.setState({
         activeChat: {
           recipient: recipient,
@@ -62,7 +62,7 @@ class Chatbook extends Component {
       });
     });
 
-    socket.on("chat", (data) => {
+    socket.on("message", (data) => {
       if (
         data.recipient._id === this.state.activeChat.recipient._id ||
         data.sender._id === this.state.activeChat.recipient._id

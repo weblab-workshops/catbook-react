@@ -104,10 +104,10 @@ class NewStory extends Component {
   }
 }
 
-class NewChat extends Component {
+class NewMessage extends Component {
   sendMessage = (value) => {
     const body = { recipient: this.props.recipient, content: value };
-    post("/api/chat", body);
+    post("/api/message", body);
   };
 
   render() {
@@ -115,4 +115,4 @@ class NewChat extends Component {
   }
 }
 
-export { NewComment, NewStory, NewChat };
+export { NewComment, NewStory, NewMessage };

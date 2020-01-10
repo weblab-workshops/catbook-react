@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import SingleChat from "./SingleChat.js";
-import { NewChat } from "./NewPostInput.js";
+import SingleMessage from "./SingleMessage.js";
+import { NewMessage } from "./NewPostInput.js";
 
 import "./Chat.css";
 
@@ -38,11 +38,11 @@ class Chat extends Component {
         <h3>Chatting with {this.props.data.recipient.name}</h3>
         <div className="Chat-historyContainer">
           {this.props.data.messages.map((m, i) => (
-            <SingleChat message={m} key={i} />
+            <SingleMessage message={m} key={i} />
           ))}
         </div>
         <div className="Chat-newContainer">
-          <NewChat recipient={this.props.data.recipient} />
+          <NewMessage recipient={this.props.data.recipient} />
         </div>
       </div>
     );
