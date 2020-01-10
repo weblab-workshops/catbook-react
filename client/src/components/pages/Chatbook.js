@@ -97,7 +97,7 @@ class Chatbook extends Component {
 
     return (
       <>
-        <Modal show={this.props.socketDisconnected} message="You have disconnected" />
+        {/* TODO (step 8) */}
         <div className="u-flex u-relative Chatbook-container">
           <div className="Chatbook-userList">
             <ChatList

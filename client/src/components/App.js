@@ -23,7 +23,7 @@ class App extends Component {
     super(props);
     this.state = {
       userId: undefined,
-      socketDisconnected: false,
+      // TODO (step 8)
     };
   }
 
@@ -34,11 +34,8 @@ class App extends Component {
         this.setState({ userId: user._id });
       }
     });
-    socket.on("forceDisconnect", () => {
-      this.setState({
-        socketDisconnected: true,
-      });
-    });
+    // TODO (step 9): Catch the "forceDisconnect" socket event
+    // in the callback function, set the state 'socketDisconnected' to true
   }
 
   handleLogin = (res) => {
@@ -74,7 +71,7 @@ class App extends Component {
             <Chatbook
               path="/chat/"
               userId={this.state.userId}
-              socketDisconnected={this.state.socketDisconnected}
+              // TODO (step 8)
             />
             <NotFound default />
           </Router>
