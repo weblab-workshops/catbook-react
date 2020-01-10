@@ -19,7 +19,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      userId: undefined,
+      userId: null,
     };
   }
 
@@ -43,7 +43,7 @@ class App extends Component {
 
   handleLogout = () => {
     console.log("Logged out successfully!");
-    this.setState({ userId: undefined });
+    this.setState({ userId: null });
     post("/api/logout");
   };
 
