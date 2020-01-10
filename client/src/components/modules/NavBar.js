@@ -21,11 +21,7 @@ class NavBar extends Component {
     };
   }
 
-  componentDidMount() {
-    // TODO: After implementing /api/whoami
-    // call it here and save userid in this.state
-    // that way, even if we refresh, the server will tell us if we're logged in still
-  }
+  componentDidMount() {}
 
   handleLogin = (res) => {
     // 'res' contains the response from Google's authentication servers
