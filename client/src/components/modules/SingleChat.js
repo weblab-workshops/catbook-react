@@ -16,13 +16,8 @@ class SingleChat extends Component {
 
   render() {
     return (
-      <div
-        className={`u-flex u-flex-alignCenter SingleChat-container ${this.props.message.sender
-          ._id === "1" && "SingleChat-mine"}`}
-      >
-        <span className=" SingleChat-sender u-bold">
-          {this.props.showSender && this.props.message.sender.name + ":"}
-        </span>
+      <div className={"u-flex u-flex-alignCenter SingleChat-container"}>
+        <span className=" SingleChat-sender u-bold">{this.props.message.sender.name + ":"}</span>
         <span className="SingleChat-content">{this.props.message.content}</span>
       </div>
     );

@@ -38,11 +38,7 @@ class Chat extends Component {
         <h3>Chatting with {this.props.data.recipient.name}</h3>
         <div className="Chat-historyContainer">
           {this.props.data.messages.map((m, i) => (
-            <SingleChat
-              message={m}
-              key={i}
-              showSender={i === 0 || m.sender !== this.props.data.messages[i - 1].sender}
-            />
+            <SingleChat message={m} key={i} />
           ))}
         </div>
         <div className="Chat-newContainer">
