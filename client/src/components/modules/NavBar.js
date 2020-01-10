@@ -43,7 +43,7 @@ class NavBar extends Component {
     this.setState({ loggedIn: false });
     post("/api/logout");
 
-    // TODO: Unset this.state.userId here (e.g. set it to undefined)
+    // TODO: Unset this.state.userId here (e.g. set it to null)
   };
 
   render() {
