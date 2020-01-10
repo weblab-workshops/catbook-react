@@ -68,6 +68,5 @@ module.exports = {
   login,
   logout,
   populateCurrentUser,
-  authenticateSocket,
   ensureLoggedIn,
 };

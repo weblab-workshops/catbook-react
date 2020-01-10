@@ -57,7 +57,6 @@ router.post("/comment", auth.ensureLoggedIn, (req, res) => {
 
 router.post("/login", auth.login);
 router.post("/logout", auth.logout);
-router.post("/initsocket", auth.authenticateSocket);
 router.get("/whoami", (req, res) => {
   if (!req.user) {
     // not logged in
@@ -71,6 +70,12 @@ router.get("/user", (req, res) => {
   User.findById(req.query.userid).then((user) => {
     res.send(user);
   });
+});
+
+router.post("/initsocket", (req, res) => {
+  // do nothing if user not logged in
+  if (req.user) socket.addUser(req.user, req.body.socketid);
+  res.send({});
 });
 
 router.get("/messages", (req, res) => {
