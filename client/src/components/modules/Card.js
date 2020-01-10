@@ -39,6 +39,7 @@ class Card extends Component {
 
   render() {
     return (
+      // TODO: introduce creator_id
       <div className="Card-container">
         <SingleStory
           _id={this.props._id}

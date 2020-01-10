@@ -36,6 +36,7 @@ class Feed extends Component {
     let storiesList = null;
     const hasStories = this.state.stories.length !== 0;
     if (hasStories) {
+      // TODO: introduce creator_id
       storiesList = this.state.stories.map((storyObj) => (
         <Card
           key={`Card_${storyObj._id}`}

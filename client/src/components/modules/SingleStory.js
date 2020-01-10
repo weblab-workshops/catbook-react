@@ -16,6 +16,7 @@ class SingleStory extends Component {
 
   render() {
     return (
+      // TODO: Add link to profile page
       <div className="Card-story">
         <span className="u-bold">{this.props.creator_name}</span>
         <p className="Card-storyContent">{this.props.content}</p>

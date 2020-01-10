@@ -24,6 +24,7 @@ class App extends Component {
     return (
       // <> is like a <div>, but won't show
       // up in the DOM tree
+      // TODO: make profile accept a user ID
       <>
         <NavBar />
         <div className="App-container">
