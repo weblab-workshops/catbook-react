@@ -16,7 +16,6 @@ class NavBar extends Component {
     super(props);
 
     this.state = {
-      loggedIn: false,
       userId: null,
     };
   }
@@ -27,21 +26,18 @@ class NavBar extends Component {
     // 'res' contains the response from Google's authentication servers
     console.log(res);
 
-    this.setState({ loggedIn: true });
     const userToken = res.tokenObj.id_token;
     post("/api/login", { token: userToken }).then((user) => {
       // the server knows we're logged in now
-      // TODO: Update this.state.userId here
+      this.setState({ userId: user._id });
       console.log(user);
     });
   };
 
   handleLogout = () => {
     console.log("Logged out successfully!");
-    this.setState({ loggedIn: false });
     post("/api/logout");
-
-    // TODO: Unset this.state.userId here (e.g. set it to null)
+    this.setState({ userId: null });
   };
 
   render() {
@@ -55,7 +51,7 @@ class NavBar extends Component {
           <Link to="/profile/" className="NavBar-link">
             Profile
           </Link>
-          {this.state.loggedIn ? (
+          {this.state.userId ? (
             <GoogleLogout
               clientId={GOOGLE_CLIENT_ID}
               buttonText="Logout"
