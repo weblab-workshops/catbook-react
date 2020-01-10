@@ -16,7 +16,7 @@ class NavBar extends Component {
     super(props);
 
     this.state = {
-      loggedIn: false,
+      userId: null,
     };
   }
 
@@ -33,7 +33,6 @@ class NavBar extends Component {
     // 'res' contains the response from Google's authentication servers
     console.log(res);
 
-    this.setState({ loggedIn: true });
     const userToken = res.tokenObj.id_token;
     post("/api/login", { token: userToken }).then((user) => {
       // the server knows we're logged in now
@@ -44,10 +43,7 @@ class NavBar extends Component {
 
   handleLogout = () => {
     console.log("Logged out successfully!");
-    this.setState({
-      loggedIn: false,
-      userId: null,
-    });
+    this.setState({ userId: null });
     post("/api/logout");
   };
 
@@ -64,7 +60,7 @@ class NavBar extends Component {
               Profile
             </Link>
           )}
-          {this.state.loggedIn ? (
+          {this.state.userId ? (
             <GoogleLogout
               clientId={GOOGLE_CLIENT_ID}
               buttonText="Logout"
