@@ -25,7 +25,7 @@ class Profile extends Component {
   };
 
   render() {
-    // TODO: return "loading" if user isn't defined
+    // TODO: return "loading" if user data isn't loaded yet
     return (
       <>
         <div
