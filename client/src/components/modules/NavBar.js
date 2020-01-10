@@ -20,7 +20,10 @@ class NavBar extends Component {
     };
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    // TODO: call /api/whoami and store the result in state
+    // this way, even when we refresh, the frontend knows if you're logged in
+  }
 
   handleLogin = (res) => {
     // 'res' contains the response from Google's authentication servers
