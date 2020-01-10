@@ -97,8 +97,7 @@ router.get("/messages", (req, res) => {
 });
 
 router.post("/chat", auth.ensureLoggedIn, (req, res) => {
-  console.log(`Received a chat message: ${req.body.content}`);
-  console.log(req.body.recipient);
+  console.log(`Received a chat message from ${req.user.name}: ${req.body.content}`);
 
   // insert this message into the database
   const message = new Message({
@@ -126,7 +125,7 @@ router.post("/chat", auth.ensureLoggedIn, (req, res) => {
 });
 
 router.get("/activeUsers", (req, res) => {
-  res.send(socket.getAllConnectedUsers());
+  res.send({ activeUsers: socket.getAllConnectedUsers() });
 });
 
 // anything else falls to this "not found" case

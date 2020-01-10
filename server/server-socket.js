@@ -3,29 +3,29 @@ let io;
 const userToSocketMap = {}; // maps user ID to socket ID
 const socketToUserMap = {}; // maps socket ID to userID
 
-// remove duplicate users from a list
-const removeDuplicates = (users) => {
-  const seen = {}; // set of users we've seen already
-
-  for (const user of users) {
-    if (!(user._id in seen)) {
-      seen[user._id] = user;
-    }
-  }
-
-  return Object.values(seen);
-};
-
-const getAllConnectedUsers = () => {
-  let activeUsers = Object.values(io.sockets.connected)
-    .map((sock) => getUserFromSocketID(sock.id))
-    .filter((val) => val != undefined);
-  return { activeUsers: removeDuplicates(activeUsers) };
-};
-
+const getAllConnectedUsers = () => Object.values(socketToUserMap);
 const getSocketFromUserID = (userid) => userToSocketMap[userid];
 const getUserFromSocketID = (socketid) => socketToUserMap[socketid];
 const getSocketFromSocketID = (socketid) => io.sockets.connected[socketid];
+
+const addUser = (user, socketid) => {
+  const oldSocket = userToSocketMap[user._id];
+  if (oldSocket && oldSocket != socketid) {
+    // there was an old tab open for this user, force it to disconnect
+    io.to(oldSocket).emit("forceDisconnect");
+    delete socketToUserMap[oldSocket];
+  }
+
+  userToSocketMap[user._id] = socketid;
+  socketToUserMap[socketid] = user;
+  io.emit("activeUsers", { activeUsers: getAllConnectedUsers() });
+};
+
+const removeUser = (user, socketid) => {
+  if (user) delete userToSocketMap[user.id];
+  delete socketToUserMap[socketid];
+  io.emit("activeUsers", { activeUsers: getAllConnectedUsers() });
+};
 
 module.exports = {
   init: (http) => {
@@ -34,21 +34,14 @@ module.exports = {
     io.on("connection", (socket) => {
       console.log(`socket has connected ${socket.id}`);
       socket.on("disconnect", (reason) => {
-        io.emit("activeUsers", getAllConnectedUsers());
+        const user = getUserFromSocketID(socket.id);
+        removeUser(user, socket.id);
       });
     });
   },
 
-  addUser: (user, socketid) => {
-    const oldSocket = userToSocketMap[user._id];
-    if (oldSocket && oldSocket != socketid) {
-      // there was an old tab open for this user, force it to disconnect
-      io.to(oldSocket).emit("forceDisconnect");
-    }
-    userToSocketMap[user._id] = socketid;
-    socketToUserMap[socketid] = user;
-    io.emit("activeUsers", getAllConnectedUsers());
-  },
+  addUser: addUser,
+  removeUser: removeUser,
 
   getSocketFromUserID: getSocketFromUserID,
   getUserFromSocketID: getUserFromSocketID,
