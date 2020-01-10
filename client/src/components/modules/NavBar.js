@@ -17,12 +17,14 @@ class NavBar extends Component {
 
     this.state = {
       loggedIn: false,
+      userId: null,
     };
   }
 
   componentDidMount() {
     // TODO: After implementing /api/whoami
     // call it here and save userid in this.state
+    // that way, even if we refresh, the server will tell us if we're logged in still
   }
 
   handleLogin = (res) => {
@@ -33,7 +35,7 @@ class NavBar extends Component {
     const userToken = res.tokenObj.id_token;
     post("/api/login", { token: userToken }).then((user) => {
       // the server knows we're logged in now
-      // TODO: you might need to update this.state.userId here too
+      // TODO: Update this.state.userId here
       console.log(user);
     });
   };
