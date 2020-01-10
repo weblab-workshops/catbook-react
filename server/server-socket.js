@@ -1,4 +1,7 @@
-let io, socketmap, usermap;
+let io;
+
+const userToSocketMap = {}; // maps user ID to socket ID
+const socketToUserMap = {}; // maps socket ID to userID
 
 // remove duplicate users from a list
 const removeDuplicates = (users) => {
@@ -13,8 +16,6 @@ const removeDuplicates = (users) => {
   return Object.values(seen);
 };
 
-const getUserFromSocketID = (socketid) => usermap[socketid];
-
 const getAllConnectedUsers = () => {
   let activeUsers = Object.values(io.sockets.connected)
     .map((sock) => getUserFromSocketID(sock.id))
@@ -22,17 +23,14 @@ const getAllConnectedUsers = () => {
   return { activeUsers: removeDuplicates(activeUsers) };
 };
 
-const getSocketFromSocketID = (socketid) => {
-  return io.sockets.connected[socketid];
-};
+const getSocketFromUserID = (userid) => userToSocketMap[userid];
+const getUserFromSocketID = (socketid) => socketToUserMap[socketid];
+const getSocketFromSocketID = (socketid) => io.sockets.connected[socketid];
 
 module.exports = {
   init: (http) => {
     io = require("socket.io")(http);
-    // maps user id to socket id
-    socketmap = {};
-    // maps socket id to user
-    usermap = {};
+
     io.on("connection", (socket) => {
       console.log(`socket has connected ${socket.id}`);
       socket.on("disconnect", (reason) => {
@@ -42,17 +40,17 @@ module.exports = {
   },
 
   addUser: (user, socketid) => {
-    if (socketmap[user._id]) {
-      io.to(socketmap[user._id]).emit("stale");
+    if (userToSocketMap[user._id]) {
+      io.to(userToSocketMap[user._id]).emit("stale");
     }
-    socketmap[user._id] = socketid;
-    usermap[socketid] = user;
+    userToSocketMap[user._id] = socketid;
+    socketToUserMap[socketid] = user;
     io.emit("activeUsers", getAllConnectedUsers());
   },
 
-  getSocketFromUserID: (user) => socketmap[user],
-  getSocketFromSocketID: getSocketFromSocketID,
+  getSocketFromUserID: getSocketFromUserID,
   getUserFromSocketID: getUserFromSocketID,
+  getSocketFromSocketID: getSocketFromSocketID,
   getAllConnectedUsers: getAllConnectedUsers,
   getIo: () => io,
 };
