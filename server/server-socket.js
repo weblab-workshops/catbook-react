@@ -40,8 +40,10 @@ module.exports = {
   },
 
   addUser: (user, socketid) => {
-    if (userToSocketMap[user._id]) {
-      io.to(userToSocketMap[user._id]).emit("stale");
+    const oldSocket = userToSocketMap[user._id];
+    if (oldSocket && oldSocket != socketid) {
+      // there was an old tab open for this user, force it to disconnect
+      io.to(oldSocket).emit("forceDisconnect");
     }
     userToSocketMap[user._id] = socketid;
     socketToUserMap[socketid] = user;

@@ -37,7 +37,6 @@ class Chatbook extends Component {
         recipient: ALL_CHAT,
         messages: [],
       },
-      showModal: false,
     };
   }
 
@@ -81,11 +80,6 @@ class Chatbook extends Component {
         activeUsers: [ALL_CHAT].concat(data.activeUsers),
       });
     });
-    socket.on("stale", (data) => {
-      this.setState({
-        showModal: true,
-      });
-    });
   }
 
   setActiveUser = (user) => {
@@ -103,7 +97,7 @@ class Chatbook extends Component {
 
     return (
       <>
-        <Modal show={this.state.showModal} />
+        <Modal show={this.props.socketDisconnected} message="You have disconnected" />
         <div className="u-flex u-relative Chatbook-container">
           <div className="Chatbook-userList">
             <ChatList
