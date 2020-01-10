@@ -9,6 +9,7 @@ import "./SingleUser.css";
  * Proptypes
  * @param {UserObject[]} users to display
  * @param {UserObject} active user in chat
+ * @param {(UserObject) => ()} setActiveUser function that takes in user, sets it to active
  */
 class ChatList extends Component {
   constructor(props) {

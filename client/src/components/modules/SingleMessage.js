@@ -7,7 +7,6 @@ import "./SingleMessage.css";
  *
  * Proptypes
  * @param {MessageObject} message
- * @param {boolean} showSender
  */
 class SingleMessage extends Component {
   constructor(props) {

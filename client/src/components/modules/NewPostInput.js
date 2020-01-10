@@ -104,6 +104,12 @@ class NewStory extends Component {
   }
 }
 
+/**
+ * New Message is a New Message component for messages
+ *
+ * Proptypes
+ * @param {UserObject} recipient is the intended recipient
+ */
 class NewMessage extends Component {
   sendMessage = (value) => {
     const body = { recipient: this.props.recipient, content: value };
