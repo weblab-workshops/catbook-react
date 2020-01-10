@@ -28,6 +28,7 @@ router.get("/stories", (req, res) => {
 
 router.post("/story", (req, res) => {
   // TODO: Introduce creator_id
+  // TODO: Use the real creator name
   const newStory = new Story({
     creator_name: MY_NAME,
     content: req.body.content,
@@ -44,6 +45,7 @@ router.get("/comment", (req, res) => {
 
 router.post("/comment", (req, res) => {
   // TODO: Introduce creator_id
+  // TODO: Use the real creator name
   const newComment = new Comment({
     creator_name: MY_NAME,
     parent: req.body.parent,
@@ -55,8 +57,6 @@ router.post("/comment", (req, res) => {
 
 router.post("/login", auth.login);
 router.post("/logout", auth.logout);
-
-// TODO: Add GET /api/user
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
