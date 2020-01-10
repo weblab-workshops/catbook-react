@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ChatList from "../modules/ChatList.js";
+import Modal from "../modules/Modal.js";
 import Chat from "../modules/Chat.js";
 import { socket } from "../../client-socket.js";
 import { get } from "../../utilities";
@@ -36,6 +37,7 @@ class Chatbook extends Component {
         recipient: ALL_CHAT,
         messages: [],
       },
+      showModal: false,
     };
   }
 
@@ -95,19 +97,19 @@ class Chatbook extends Component {
     if (!this.props.userId) return <div>Log in before using Chatbook</div>;
 
     return (
-      <div className="u-flex u-relative Chatbook-container">
-        <div className="Chatbook-userList">
-          <ChatList
-            setActiveUser={this.setActiveUser}
-            userId={this.props.userId}
-            users={this.state.activeUsers}
-            active={this.state.activeChat.recipient}
-          />
+      <>
+        <Modal show={this.state.showModal} />
+        <div className="u-flex u-relative Chatbook-container">
+          <div className="Chatbook-userList">
+            <ChatList
+              setActiveUser={this.setActiveUser}
+              userId={this.props.userId}
+              users={this.state.activeUsers}
+              active={this.state.activeChat.recipient}
+            />
+          </div>
         </div>
-        <div className="Chatbook-chatContainer u-relative">
-          <Chat data={this.state.activeChat} />
-        </div>
-      </div>
+      </>
     );
   }
 }
