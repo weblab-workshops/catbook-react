@@ -1,4 +1,4 @@
-let io, socketmap;
+let io, socketmap, usermap;
 
 // remove duplicate users from a list
 const removeDuplicates = (users) => {
@@ -13,9 +13,11 @@ const removeDuplicates = (users) => {
   return Object.values(seen);
 };
 
+const getUserFromSocketID = (socketid) => usermap[socketid];
+
 const getAllConnectedUsers = () => {
   let activeUsers = Object.values(io.sockets.connected)
-    .map((sock) => sock.user)
+    .map((sock) => getUserFromSocketID(sock.id))
     .filter((val) => val != undefined);
   return { activeUsers: removeDuplicates(activeUsers) };
 };
@@ -29,6 +31,8 @@ module.exports = {
     io = require("socket.io")(http);
     // maps user id to socket id
     socketmap = {};
+    // maps socket id to user
+    usermap = {};
     io.on("connection", (socket) => {
       console.log(`socket has connected ${socket.id}`);
       socket.on("disconnect", (reason) => {
@@ -38,19 +42,17 @@ module.exports = {
   },
 
   addUser: (user, socketid) => {
-    const socket = getSocketFromSocketID(socketid);
-    socket.user = user;
-
-    // every tab open by this user joins a "room"
-    socket.join(user._id);
-
+    if (socketmap[user._id]) {
+      io.to(socketmap[user._id]).emit("stale");
+    }
     socketmap[user._id] = socketid;
+    usermap[socketid] = user;
     io.emit("activeUsers", getAllConnectedUsers());
   },
 
   getSocketFromUserID: (user) => socketmap[user],
   getSocketFromSocketID: getSocketFromSocketID,
-
+  getUserFromSocketID: getUserFromSocketID,
   getAllConnectedUsers: getAllConnectedUsers,
   getIo: () => io,
 };

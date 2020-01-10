@@ -111,11 +111,11 @@ router.post("/chat", auth.ensureLoggedIn, (req, res) => {
   } else {
     socket
       .getIo()
-      .to(req.body.recipient._id)
+      .to(socket.getSocketFromUserID(req.body.recipient._id))
       .emit("chat", message);
     socket
       .getIo()
-      .to(req.user._id)
+      .to(socket.getSocketFromUserID(req.user._id))
       .emit("chat", message);
   }
 });

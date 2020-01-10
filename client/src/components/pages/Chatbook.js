@@ -81,6 +81,11 @@ class Chatbook extends Component {
         activeUsers: [ALL_CHAT].concat(data.activeUsers),
       });
     });
+    socket.on("stale", (data) => {
+      this.setState({
+        showModal: true,
+      });
+    });
   }
 
   setActiveUser = (user) => {
@@ -107,6 +112,9 @@ class Chatbook extends Component {
               users={this.state.activeUsers}
               active={this.state.activeChat.recipient}
             />
+          </div>
+          <div className="Chatbook-chatContainer u-relative">
+            <Chat data={this.state.activeChat} />
           </div>
         </div>
       </>
