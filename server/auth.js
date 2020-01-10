@@ -64,12 +64,6 @@ function ensureLoggedIn(req, res, next) {
   next();
 }
 
-function authenticateSocket(req, res) {
-  // do nothing if user not logged in
-  if (req.user) socket.addUser(req.user, req.body.socketid);
-  res.send({});
-}
-
 module.exports = {
   login,
   logout,
