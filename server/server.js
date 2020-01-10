@@ -28,7 +28,7 @@ const api = require("./api");
 // Server configuration below
 // TODO change connection URL after setting up your own database
 const mongoConnectionURL =
-  "mongodb+srv://weblab:jAT4po55IAgYWQgR@catbook-ylndp.mongodb.net/test?retryWrites=true&w=majority";
+  "mongodb+srv://johancc:weblab@anton-phjsd.gcp.mongodb.net/test?retryWrites=true&w=majority";
 // TODO change database name to the name you chose
 const databaseName = "catbook";
 const options = { useNewUrlParser: true, useUnifiedTopology: true, dbName: databaseName};
@@ -42,6 +42,9 @@ mongoose
 // create a new express server
 const app = express();
 app.use(validator.checkRoutes);
+
+// allow us to parse POST request data using middleware
+app.use(express.json());
 
 // connect user-defined routes
 app.use("/api", api);
