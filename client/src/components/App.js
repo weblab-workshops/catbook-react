@@ -23,7 +23,7 @@ class App extends Component {
     super(props);
     this.state = {
       userId: undefined,
-      // TODO (step 8)
+      socketDisconnected: false,
     };
   }
 
@@ -71,7 +71,7 @@ class App extends Component {
             <Chatbook
               path="/chat/"
               userId={this.state.userId}
-              // TODO (step 8)
+              socketDisconnected={this.state.socketDisconnected}
             />
             <NotFound default />
           </Router>
