@@ -9,22 +9,18 @@ const getUserFromSocketID = (socketid) => socketToUserMap[socketid];
 const getSocketFromSocketID = (socketid) => io.sockets.connected[socketid];
 
 const addUser = (user, socketid) => {
-  const oldSocket = userToSocketMap[user._id];
-  if (oldSocket && oldSocket != socketid) {
-    // there was an old tab open for this user, force it to disconnect
-    io.to(oldSocket).emit("forceDisconnect");
-    delete socketToUserMap[oldSocket];
-  }
-
   userToSocketMap[user._id] = socketid;
   socketToUserMap[socketid] = user;
   io.emit("activeUsers", { activeUsers: getAllConnectedUsers() });
 };
 
 const removeUser = (user, socketid) => {
-  if (user) delete userToSocketMap[user.id];
+  // if(user && userToSocketMap[user._id] == socketid) {
+    delete userToSocketMap[user._id];
+  // } else {
+  //   // this is not the user's most recent tab/active socket, so it's not in the userToSocketMap
+  // }
   delete socketToUserMap[socketid];
-  io.emit("activeUsers", { activeUsers: getAllConnectedUsers() });
 };
 
 module.exports = {
