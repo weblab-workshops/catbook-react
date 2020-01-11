@@ -7,28 +7,6 @@ import { get } from "../../utilities";
 
 import "./Chatbook.css";
 
-const ALL_CHAT = {
-  _id: "ALL_CHAT",
-  name: "ALL CHAT",
-};
-
-const TEST_MESSAGES = [
-  {
-    sender: {
-      _id: 0,
-      name: "Alex",
-    },
-    content: "i love aaron sippy cup",
-  },
-  {
-    sender: {
-      _id: 0,
-      name: "Nik",
-    },
-    content: "i spend too much time on piazza",
-  },
-];
-
 class Chatbook extends Component {
   /**
    * @typedef UserObject
@@ -67,23 +45,8 @@ class Chatbook extends Component {
   }
 
   render() {
-    if (!this.props.userId) return <div>Log in before using Chatbook</div>;
-
-    return (
-      <>
-        <div className="u-flex u-relative Chatbook-container">
-          <div className="Chatbook-chatContainer u-relative">
-            {/* TODO (step 1): change to state instead of hard coded */}
-            <Chat
-              data={{
-                recipient: ALL_CHAT,
-                messages: TEST_MESSAGES,
-              }}
-            />
-          </div>
-        </div>
-      </>
-    );
+    // TODO (starter): populate chatbook
+    return <></>;
   }
 }
 

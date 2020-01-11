@@ -111,15 +111,9 @@ class NewStory extends Component {
  * @param {UserObject} recipient is the intended recipient
  */
 class NewMessage extends Component {
-  sendMessage = (value) => {
-    // TODO (step 3): implement sendMessage, which should make a post
-    // request to "/api/message."
-    // parameter: { recipient : UserObject, content : string}
-    console.log(value);
-  };
-
   render() {
-    return <NewPostInput defaultText="New Message" onSubmit={this.sendMessage} />;
+    // TODO (starter): populate NewMessage
+    return <div></div>;
   }
 }
 
