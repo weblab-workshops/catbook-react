@@ -15,7 +15,6 @@ class SingleUser extends Component {
   }
 
   render() {
-    // TODO (starter)
     return <div></div>;
   }
 }
