@@ -56,11 +56,7 @@ class Chatbook extends Component {
 
     this.loadMessageHistory(ALL_CHAT);
 
-    get("/api/activeUsers").then((data) => {
-      this.setState({
-        activeUsers: [ALL_CHAT].concat(data.activeUsers),
-      });
-    });
+    // TODO (step 3)
 
     socket.on("message", (data) => {
       // TODO (step 7)
