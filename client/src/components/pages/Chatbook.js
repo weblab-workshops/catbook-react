@@ -56,7 +56,7 @@ class Chatbook extends Component {
 
     this.loadMessageHistory(ALL_CHAT);
 
-    get("/api/activeUsers").then((data) => {
+   .then((data) => {
       this.setState({
         activeUsers: [ALL_CHAT].concat(data.activeUsers),
       });
@@ -72,11 +72,9 @@ class Chatbook extends Component {
       }));
     });
 
-    socket.on("activeUsers", (data) => {
-      this.setState({
-        activeUsers: [ALL_CHAT].concat(data.activeUsers),
-      });
-    });
+    // TODO (step 4): add a socket on that listens for the "activeUsers" event. Once we 
+    // hear the event, update the state with the new active user who just joined
+    // similar to get("/api/activeUsers")!
   }
 
   setActiveUser = (user) => {
