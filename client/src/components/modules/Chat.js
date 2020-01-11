@@ -33,8 +33,19 @@ class Chat extends Component {
   }
 
   render() {
-    // TODO (starter): populate Chat.js
-    return <div></div>;
+    return (
+      <div className="u-flexColumn Chat-container">
+        <h3>Chatting with {this.props.data.recipient.name}</h3>
+        <div className="Chat-historyContainer">
+          {this.props.data.messages.map((m, i) => (
+            <SingleMessage message={m} key={i} />
+          ))}
+        </div>
+        <div className="Chat-newContainer">
+          <NewMessage recipient={this.props.data.recipient} />
+        </div>
+      </div>
+    );
   }
 }
 
