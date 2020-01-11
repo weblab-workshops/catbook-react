@@ -102,7 +102,8 @@ router.post("/message", auth.ensureLoggedIn, (req, res) => {
 });
 
 router.get("/activeUsers", (req, res) => {
-  res.send({ activeUsers: socket.getAllConnectedUsers() });
+  // TODO (step 2): Send back an object with the field
+  // activeUsers set to the currently active users
 });
 
 // anything else falls to this "not found" case
