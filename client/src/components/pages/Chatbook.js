@@ -87,8 +87,12 @@ class Chatbook extends Component {
         {/* TODO (step 8) */}
         <div className="u-flex u-relative Chatbook-container">
           <div className="Chatbook-userList">
-            {/* TODO (step 1): Add ChatList component and pass in props setActiveUser,
-            userId, users, and active. */}
+            <ChatList
+              setActiveUser={this.setActiveUser}
+              userId={this.props.userId}
+              users={this.state.activeUsers}
+              active={this.state.activeChat.recipient}
+            />
           </div>
           <div className="Chatbook-chatContainer u-relative">
             <Chat data={this.state.activeChat} />
