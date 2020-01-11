@@ -112,8 +112,10 @@ class NewStory extends Component {
  */
 class NewMessage extends Component {
   sendMessage = (value) => {
-    const body = { recipient: this.props.recipient, content: value };
-    post("/api/message", body);
+    // TODO (step 3): implement sendMessage, which should make a post
+    // request to "/api/message."
+    // parameter: { recipient : UserObject, content : string}
+    console.log(value);
   };
 
   render() {
