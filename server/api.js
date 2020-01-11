@@ -96,7 +96,7 @@ router.post("/message", auth.ensureLoggedIn, (req, res) => {
     content: req.body.content,
   });
   message.save();
-  socket.getIo().emit("message", message);
+  // TODO (step 7): emit to all clients that a message was received
 });
 
 // anything else falls to this "not found" case

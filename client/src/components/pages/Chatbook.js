@@ -55,14 +55,7 @@ class Chatbook extends Component {
 
     this.loadMessageHistory(ALL_CHAT);
 
-    socket.on("message", (data) => {
-      this.setState((prevstate) => ({
-        activeChat: {
-          recipient: prevstate.activeChat.recipient,
-          messages: prevstate.activeChat.messages.concat(data),
-        },
-      }));
-    });
+    // TODO (step 6): add socket.on for when received message
   }
 
   render() {
