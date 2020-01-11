@@ -32,7 +32,7 @@ class Chatbook extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeUsers: [],
+      // TODO (starter)
       activeChat: {
         recipient: ALL_CHAT,
         messages: [],
@@ -73,11 +73,7 @@ class Chatbook extends Component {
     // similar to get("/api/activeUsers")!
   }
 
-  setActiveUser = (user) => {
-    // TODO (step 5): first load the message history for this user, then set the
-    // state "activeChat" to the new recipient (user) and empty array forr messages
-    console.log(`setting active user to ${user.name}`);
-  };
+  // TODO (starter)
 
   render() {
     if (!this.props.userId) return <div>Log in before using Chatbook</div>;

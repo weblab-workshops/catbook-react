@@ -15,18 +15,8 @@ class SingleUser extends Component {
   }
 
   render() {
-    return (
-      <div
-        className={`SingleUser-container u-pointer ${
-          this.props.active ? "SingleUser-container--active" : ""
-        }`}
-        onClick={() => {
-          this.props.setActiveUser(this.props.user);
-        }}
-      >
-        {this.props.user.name}
-      </div>
-    );
+    // TODO (starter)
+    return <div></div>;
   }
 }
 

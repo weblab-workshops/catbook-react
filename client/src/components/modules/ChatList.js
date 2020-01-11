@@ -18,21 +18,8 @@ class ChatList extends Component {
   }
 
   render() {
-    return (
-      <>
-        <h3>Open Chats</h3>
-        {this.props.users
-          .filter((user) => user._id !== this.props.userId)
-          .map((user, i) => (
-            <SingleUser
-              key={i}
-              setActiveUser={this.props.setActiveUser}
-              user={user}
-              active={user === this.props.active}
-            />
-          ))}
-      </>
-    );
+    // TODO (starter)
+    return <></>;
   }
 }
 
