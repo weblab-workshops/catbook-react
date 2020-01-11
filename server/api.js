@@ -72,11 +72,7 @@ router.get("/user", (req, res) => {
   });
 });
 
-router.post("/initsocket", (req, res) => {
-  // do nothing if user not logged in
-  if (req.user) socket.addUser(req.user, req.body.socketid);
-  res.send({});
-});
+// TODO (step 5): post for init socket
 
 router.get("/chat", (req, res) => {
   const query = { "recipient._id": "ALL_CHAT" };

@@ -40,7 +40,7 @@ class App extends Component {
     const userToken = res.tokenObj.id_token;
     post("/api/login", { token: userToken }).then((user) => {
       this.setState({ userId: user._id });
-      post("/api/initsocket", { socketid: socket.id });
+      // TODO (step 5): make a post to /api/initsocket with socket id
     });
   };
 
