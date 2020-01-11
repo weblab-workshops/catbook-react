@@ -80,13 +80,9 @@ class Chatbook extends Component {
   }
 
   setActiveUser = (user) => {
-    this.loadMessageHistory(user);
-    this.setState({
-      activeChat: {
-        recipient: user,
-        messages: [],
-      },
-    });
+    // TODO (step 5): first load the message history for this user, then set the
+    // state "activeChat" to the new recipient (user) and empty array forr messages
+    console.log(`setting active user to ${user.name}`);
   };
 
   render() {
