@@ -74,26 +74,9 @@ router.get("/user", (req, res) => {
 
 // TODO (step 5): post for init socket
 
-router.get("/chat", (req, res) => {
-  const query = { "recipient._id": "ALL_CHAT" };
-  Message.find(query).then((messages) => res.send(messages));
-});
+// TODO (step 2): implement chat route
 
-router.post("/message", auth.ensureLoggedIn, (req, res) => {
-  console.log(`Received a chat message from ${req.user.name}: ${req.body.content}`);
-
-  // insert this message into the database
-  const message = new Message({
-    recipient: req.body.recipient,
-    sender: {
-      _id: req.user._id,
-      name: req.user.name,
-    },
-    content: req.body.content,
-  });
-  message.save();
-  // TODO (step 6): emit to all clients that a message was received
-});
+// TODO (step 2): implement message route
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
