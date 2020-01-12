@@ -97,7 +97,6 @@ class Chatbook extends Component {
 
     return (
       <>
-        {/* TODO (step 8) */}
         <div className="u-flex u-relative Chatbook-container">
           <div className="Chatbook-userList">
             <ChatList
