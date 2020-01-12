@@ -72,7 +72,10 @@ router.get("/user", (req, res) => {
   });
 });
 
-// TODO (step 5): post for init socket
+router.post("/initsocket", (req, res) => {
+  // do nothing if user not logged in
+  res.send({});
+});
 
 // TODO (step 2): implement chat route
 
