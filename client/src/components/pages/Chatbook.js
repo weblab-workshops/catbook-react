@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import ChatList from "../modules/ChatList.js";
-import Modal from "../modules/Modal.js";
 import Chat from "../modules/Chat.js";
 import { socket } from "../../client-socket.js";
 import { get } from "../../utilities";
@@ -97,7 +96,6 @@ class Chatbook extends Component {
 
     return (
       <>
-        <Modal show={this.props.socketDisconnected} message="You have disconnected" />
         <div className="u-flex u-relative Chatbook-container">
           <div className="Chatbook-userList">
             <ChatList
