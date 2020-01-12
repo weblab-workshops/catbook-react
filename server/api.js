@@ -72,7 +72,10 @@ router.get("/user", (req, res) => {
   });
 });
 
-// TODO (step 5): post for init socket
+router.post("/initsocket", (req, res) => {
+  // do nothing if user not logged in
+  res.send({});
+});
 
 router.get("/chat", (req, res) => {
   const query = { "recipient._id": "ALL_CHAT" };
@@ -92,7 +95,7 @@ router.post("/message", auth.ensureLoggedIn, (req, res) => {
     content: req.body.content,
   });
   message.save();
-  // TODO (step 6): emit to all clients that a message was received
+  // TODO (step 5): emit to all clients that a message was received
 });
 
 // anything else falls to this "not found" case
