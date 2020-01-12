@@ -23,7 +23,6 @@ class App extends Component {
     super(props);
     this.state = {
       userId: undefined,
-      // TODO (step 8)
     };
   }
 
@@ -68,11 +67,7 @@ class App extends Component {
           <Router>
             <Feed path="/" userId={this.state.userId} />
             <Profile path="/profile/:userId" />
-            <Chatbook
-              path="/chat/"
-              userId={this.state.userId}
-              // TODO (step 8)
-            />
+            <Chatbook path="/chat/" userId={this.state.userId} />
             <NotFound default />
           </Router>
         </div>
