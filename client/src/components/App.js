@@ -33,8 +33,6 @@ class App extends Component {
         this.setState({ userId: user._id });
       }
     });
-    // TODO (step 9): Catch the "forceDisconnect" socket event
-    // in the callback function, set the state 'socketDisconnected' to true
   }
 
   handleLogin = (res) => {
