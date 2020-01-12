@@ -84,7 +84,6 @@ class Chatbook extends Component {
 
     return (
       <>
-        {/* TODO (step 8) */}
         <div className="u-flex u-relative Chatbook-container">
           <div className="Chatbook-userList">
             {/* TODO (step 1): Add ChatList component and pass in props setActiveUser,
