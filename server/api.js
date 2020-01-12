@@ -113,10 +113,10 @@ router.post("/message", auth.ensureLoggedIn, (req, res) => {
   if (req.body.recipient._id == "ALL_CHAT") {
     socket.getIo().emit("message", message);
   } else {
-    socket.getSocketFromUserID(req.body.recipient._id).emit("message", message);
-    // TODO (step 8): implement the emit to the current user here. It should look pretty
-    // similar to above! Except you want to emit to the currently logged in user
-    // instead of recipient
+    socket.getSocketFromUserID(req.user._id).emit("message", message);
+    // TODO (step 8): implement the emit to the recipient of the message here. It should look pretty
+    // similar to above! Except you want to emit to the recipient instead of the
+    // currently logged in user
   }
 });
 
