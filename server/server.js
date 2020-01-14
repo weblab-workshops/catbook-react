@@ -37,7 +37,7 @@ const socket = require("./server-socket");
 const mongoConnectionURL =
   "mongodb+srv://weblab:jAT4po55IAgYWQgR@catbook-ylndp.mongodb.net/test?retryWrites=true&w=majority";
 // TODO change database name to the name you chose
-const databaseName = "catbook";
+const databaseName = "async-demo";
 
 // connect to mongodb
 mongoose
@@ -52,6 +52,18 @@ mongoose
 // create a new express server
 const app = express();
 app.use(validator.checkRoutes);
+
+const getTime = () => new Date().getTime() % 100000;
+
+// Interecepts every HTTP request and delays it by 100ms
+const slowify = (req, res, next) => {
+  console.log(`${getTime()}: Got request for ${req.path}`);
+  setTimeout(() => {
+    next();
+  }, 100);
+};
+
+app.use(slowify);
 
 // set up bodyParser, which allows us to process POST requests
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -100,7 +112,8 @@ app.use((err, req, res, next) => {
 // hardcode port to 3000 for now
 const port = 3000;
 const server = http.Server(app);
-socket.init(server);
+// Disable socket
+// socket.init(server);
 
 server.listen(port, () => {
   console.log(`Server running on port: ${port}`);
