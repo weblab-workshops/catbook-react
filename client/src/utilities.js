@@ -32,7 +32,7 @@ export function get(endpoint, params = {}) {
         }
       }
     };
-    xhr.onerror = function(err) {
+    xhr.onerror = (err) => {
       reject(xhr.statusText);
     };
     xhr.send(null);
@@ -47,7 +47,7 @@ export function post(endpoint, params = {}) {
     xhr.open("POST", endpoint, ASYNC_ENABLED);
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.withCredentials = true;
-    xhr.onload = function(err) {
+    xhr.onload = (err) => {
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
           resolve(JSON.parse(xhr.responseText));
@@ -56,7 +56,7 @@ export function post(endpoint, params = {}) {
         }
       }
     };
-    xhr.onerror = function(err) {
+    xhr.onerror = (err) => {
       reject(xhr.statusText);
     };
     xhr.send(JSON.stringify(params));
