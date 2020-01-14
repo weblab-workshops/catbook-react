@@ -46,6 +46,12 @@ function login(req, res) {
 }
 
 function logout(req, res) {
+  const userSocket = socket.getSocketFromUserID(req.user._id);
+  if (userSocket) {
+    // delete user's socket if they logged out
+    socket.removeUser(req.user, userSocket);
+  }
+
   req.session.user = null;
   res.send({});
 }
