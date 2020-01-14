@@ -11,6 +11,12 @@ const ALL_CHAT = {
   name: "ALL CHAT",
 };
 
+/**
+ * Page component to display when at the "/chat" route
+ *
+ * Proptypes
+ * @param {string} userId id of current logged in user
+ */
 class Chatbook extends Component {
   /**
    * @typedef UserObject
