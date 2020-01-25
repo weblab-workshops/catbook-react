@@ -10,6 +10,12 @@ import { socket } from "../client-socket.js";
 
 import { get, post } from "../utilities";
 
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fab } from "@fortawesome/free-brands-svg-icons";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+
+library.add(fab, fas);
+
 // to use styles, import the necessary CSS files
 import "../utilities.css";
 import "./App.css";
@@ -36,9 +42,10 @@ class App extends Component {
   }
 
   handleLogin = (res) => {
-    console.log(`Logged in as ${res.profileObj.name}`);
-    const userToken = res.tokenObj.id_token;
-    post("/api/login", { token: userToken }).then((user) => {
+    console.log(res);
+    // console.log(`Logged in as ${res.profileObj.name}`);
+    // const userToken = res.tokenObj.id_token;
+    post("/api/login", { code: res.code }).then((user) => {
       this.setState({ userId: user._id });
       post("/api/initsocket", { socketid: socket.id });
     });

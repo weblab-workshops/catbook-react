@@ -33,6 +33,7 @@ module.exports = {
 
     io.on("connection", (socket) => {
       console.log(`socket has connected ${socket.id}`);
+      console.log(socket.handshake.session);
       socket.on("disconnect", (reason) => {
         const user = getUserFromSocketID(socket.id);
         removeUser(user, socket);
@@ -40,12 +41,5 @@ module.exports = {
     });
   },
 
-  addUser: addUser,
-  removeUser: removeUser,
-
-  getSocketFromUserID: getSocketFromUserID,
-  getUserFromSocketID: getUserFromSocketID,
-  getSocketFromSocketID: getSocketFromSocketID,
-  getAllConnectedUsers: getAllConnectedUsers,
   getIo: () => io,
 };

@@ -55,9 +55,9 @@ router.post("/comment", auth.ensureLoggedIn, (req, res) => {
   newComment.save().then((comment) => res.send(comment));
 });
 
-router.post("/login", auth.login);
-router.post("/logout", auth.logout);
 router.get("/whoami", (req, res) => {
+  console.log("whoami");
+  console.log(req.session);
   if (!req.user) {
     // not logged in
     return res.send({});
