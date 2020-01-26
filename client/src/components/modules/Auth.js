@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { socket } from "../../client-socket.js";
+import { get } from "../../utilities.js";
 
 class Auth extends Component {
   constructor(props) {
@@ -41,7 +42,7 @@ class Auth extends Component {
 
     socket.on(provider, (user) => {
       this.popup.close();
-      this.setState({ user });
+      this.props.setUserId(user._id);
     });
   }
 
@@ -56,6 +57,13 @@ class Auth extends Component {
           <button onClick={this.startAuth}>
             <FontAwesomeIcon icon={["fab", "google"]} />
           </button>
+        )}
+        {name ? (
+          <FontAwesomeIcon icon="smile-wink" />
+        ) : (
+          <a href="/auth/google">
+            <FontAwesomeIcon icon={["fab", "microsoft"]} />
+          </a>
         )}
       </>
     );

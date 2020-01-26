@@ -47,8 +47,11 @@ class App extends Component {
     // const userToken = res.tokenObj.id_token;
     post("/api/login", { code: res.code }).then((user) => {
       this.setState({ userId: user._id });
-      post("/api/initsocket", { socketid: socket.id });
     });
+  };
+
+  setUserId = (userId) => {
+    this.setState({ userId });
   };
 
   handleLogout = () => {
@@ -65,6 +68,7 @@ class App extends Component {
       <>
         <NavBar
           handleLogin={this.handleLogin}
+          setUserId={this.setUserId}
           handleLogout={this.handleLogout}
           userId={this.state.userId}
         />

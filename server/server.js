@@ -26,6 +26,7 @@ const session = require("express-session"); // library that stores info about ea
 
 const mongoose = require("mongoose"); // library to connect to MongoDB
 const path = require("path"); // provide utilities for working with file and directory paths
+const cors = require("cors");
 
 const api = require("./api");
 const passport = require("./passport");
@@ -55,6 +56,13 @@ const app = express();
 // set up bodyParser, which allows us to process POST requests
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+// Accept requests from the client
+app.use(
+  cors({
+    origin: "http://localhost:5000",
+  })
+);
 
 // set up a session, which will persist login data across requests
 
@@ -88,10 +96,14 @@ app.get(
   function(req, res) {
     console.log(`success logged in with user ID ${req.user.id}`);
     console.log(req.session);
-    socket
-      .getIo()
-      .in(req.session.socketId)
-      .emit("google", req.user);
+    if (req.session.socketId) {
+      socket
+        .getIo()
+        .in(req.session.socketId)
+        .emit("google", req.user);
+    } else {
+      res.redirect("/");
+    }
   }
 );
 
