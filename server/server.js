@@ -22,22 +22,24 @@ validator.checkSetup();
 const http = require("http");
 const bodyParser = require("body-parser"); // allow node to automatically parse POST body requests as JSON
 const express = require("express"); // backend framework for our node server.
-const session = require("express-session"); // library that stores info about each connected user
+
+// library that stores info about each connected user
+const session = require("express-session")({
+  secret: "my-secret",
+  resave: false,
+  saveUninitialized: true,
+});
 
 const mongoose = require("mongoose"); // library to connect to MongoDB
 const path = require("path"); // provide utilities for working with file and directory paths
-const cors = require("cors");
 
 const api = require("./api");
+const auth = require("./auth");
 const passport = require("./passport");
-// socket stuff
 const socket = require("./server-socket");
 
-// Server configuration below
-// TODO change connection URL after setting up your own database
 const mongoConnectionURL =
   "mongodb+srv://weblab:jAT4po55IAgYWQgR@catbook-ylndp.mongodb.net/test?retryWrites=true&w=majority";
-// TODO change database name to the name you chose
 const databaseName = "catbook";
 
 // connect to mongodb
@@ -57,59 +59,15 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// Accept requests from the client
-app.use(
-  cors({
-    origin: "http://localhost:5000",
-  })
-);
-
 // set up a session, which will persist login data across requests
 
-const addSocketIdtoSession = (req, res, next) => {
-  req.session.socketId = req.query.socketId;
-  next();
-};
-
 //PASSPORT
-app.use(
-  session({
-    secret: "session-secret",
-    resave: false,
-    saveUninitialized: true,
-  })
-);
+app.use(session);
 
 app.use(passport.initialize());
 app.use(passport.session());
 
-// authentication routes
-app.get(
-  "/auth/google",
-  addSocketIdtoSession,
-  passport.authenticate("google", { scope: ["profile"] })
-);
-
-app.get(
-  "/auth/google/callback",
-  passport.authenticate("google", { failureRedirect: "/login" }),
-  function(req, res) {
-    console.log(`success logged in with user ID ${req.user.id}`);
-    console.log(req.session);
-    if (req.session.socketId) {
-      socket
-        .getIo()
-        .in(req.session.socketId)
-        .emit("google", req.user);
-    } else {
-      res.redirect("/");
-    }
-  }
-);
-
-app.get("/auth/logout", function(req, res) {
-  req.logout();
-});
+app.use("/auth", auth);
 
 // connect user-defined routes
 app.use("/api", api);
@@ -142,9 +100,7 @@ app.use((err, req, res, next) => {
 // hardcode port to 3000 for now
 const port = 3000;
 const server = http.Server(app);
-socket.init(server);
-
-// socket.getIo().use(sharedsession(expressSession));
+socket.init(server, session);
 
 server.listen(port, () => {
   console.log(`Server running on port: ${port}`);

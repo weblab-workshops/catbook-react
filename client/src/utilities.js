@@ -39,7 +39,7 @@ function convertToJSON(res) {
 export function get(endpoint, params = {}) {
   const fullPath = endpoint + "?" + formatParams(params);
   return fetch(fullPath, {
-    credentials: "same-origin",
+    credentials: "include",
   })
     .then(convertToJSON)
     .catch((error) => {

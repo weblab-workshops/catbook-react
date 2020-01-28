@@ -31,7 +31,12 @@ class NavBar extends Component {
           <Link to="/chat/" className="NavBar-link">
             Chat
           </Link>
-          <Auth setUserId={this.props.setUserId} provider="google" />
+          <Auth
+            logout={this.props.logout}
+            loggedIn={this.props.loggedIn}
+            setUser={this.props.setUser}
+            providers={["google"]}
+          />
         </div>
       </nav>
     );

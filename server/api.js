@@ -15,9 +15,6 @@ const Comment = require("./models/comment");
 const User = require("./models/user");
 const Message = require("./models/message");
 
-// import authentication library
-const auth = require("./auth");
-
 // api endpoints: all these paths will be prefixed with "/api/"
 const router = express.Router();
 
@@ -28,7 +25,7 @@ router.get("/stories", (req, res) => {
   Story.find({}).then((stories) => res.send(stories));
 });
 
-router.post("/story", auth.ensureLoggedIn, (req, res) => {
+router.post("/story", (req, res) => {
   const newStory = new Story({
     creator_id: req.user._id,
     creator_name: req.user.name,
@@ -44,7 +41,7 @@ router.get("/comment", (req, res) => {
   });
 });
 
-router.post("/comment", auth.ensureLoggedIn, (req, res) => {
+router.post("/comment", (req, res) => {
   const newComment = new Comment({
     creator_id: req.user._id,
     creator_name: req.user.name,
@@ -56,14 +53,23 @@ router.post("/comment", auth.ensureLoggedIn, (req, res) => {
 });
 
 router.get("/whoami", (req, res) => {
-  console.log("whoami");
-  console.log(req.session);
   if (!req.user) {
     // not logged in
     return res.send({});
   }
 
   res.send(req.user);
+});
+
+router.get("/sessions", (req, res) => {
+  console.log(req.sessionStore);
+  res.send({});
+  // req.sessionStore.sessionModel
+  //   .findAll()
+  //   .then((sessions) => sessions.map((sess) => JSON.parse(sess.dataValues.data)))
+  //   .then((sessions) => {
+  //     res.send(sessions);
+  //   });
 });
 
 router.get("/user", (req, res) => {
@@ -96,7 +102,7 @@ router.get("/chat", (req, res) => {
   Message.find(query).then((messages) => res.send(messages));
 });
 
-router.post("/message", auth.ensureLoggedIn, (req, res) => {
+router.post("/message", (req, res) => {
   console.log(`Received a chat message from ${req.user.name}: ${req.body.content}`);
 
   // insert this message into the database

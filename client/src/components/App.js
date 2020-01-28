@@ -50,13 +50,12 @@ class App extends Component {
     });
   };
 
-  setUserId = (userId) => {
-    this.setState({ userId });
+  setUser = (user) => {
+    this.setState({ userId: user._id });
   };
 
   handleLogout = () => {
     this.setState({ userId: undefined });
-    post("/api/logout");
   };
 
   // required method: whatever is returned defines what
@@ -68,8 +67,9 @@ class App extends Component {
       <>
         <NavBar
           handleLogin={this.handleLogin}
-          setUserId={this.setUserId}
-          handleLogout={this.handleLogout}
+          setUser={this.setUser}
+          logout={this.handleLogout}
+          loggedIn={this.state.userId !== undefined}
           userId={this.state.userId}
         />
         <div className="App-container">

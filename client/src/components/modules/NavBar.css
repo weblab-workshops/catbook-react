@@ -1,6 +1,6 @@
 .NavBar-container {
   padding: var(--s) var(--m);
-  background-color: var(--primary);
+  background-color: var(--darkgrey);
 }
 
 .NavBar-title {

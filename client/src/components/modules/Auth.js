@@ -1,69 +1,52 @@
 import React, { Component } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { socket } from "../../client-socket.js";
-import { get } from "../../utilities.js";
+import { get } from "../../utilities";
+import OAuth from "./OAuth";
+import LocalAuth from "./LocalAuth";
+
+/**
+ * Proptypes
+ * @param {(user) => void} setUser: (function) login user
+ * @param {(user) => void} logout: (function) logout user
+ * @param {boolean} loggedIn: is user loggedIn
+ * @param {string[]} providers: providers for oauth
+ */
 
 class Auth extends Component {
   constructor(props) {
     super(props);
-    this.state = { user: {} };
+    this.state = {
+      disabled: false,
+    };
   }
 
-  openPopup = () => {
-    const { provider } = this.props;
-    const width = 600;
-    const height = 600;
-    const left = window.innerWidth / 2 - width / 2;
-    const top = window.innerHeight / 2 - height / 2;
-    const API_URL = "/auth";
-    const url = `${API_URL}/${provider}?socketId=${socket.id}`;
-
-    return window.open(
-      url,
-      "",
-      `toolbar=no, location=no, directories=no, status=no, menubar=no, 
-      scrollbars=no, resizable=no, copyhistory=no, width=${width}, 
-      height=${height}, top=${top}, left=${left}`
-    );
+  login = (user) => {
+    this.props.setUser(user);
   };
 
-  startAuth = (e) => {
-    // if (!this.state.disabled) {
-    //   e.preventDefault();
-    //   this.popup = this.openPopup();
-    //   this.checkPopup();
-    //   this.setState({ disabled: "disabled" });
-    // }
-    this.popup = this.openPopup();
-  };
-
-  componentDidMount() {
-    const { provider } = this.props;
-
-    socket.on(provider, (user) => {
-      this.popup.close();
-      this.props.setUserId(user._id);
+  logout = () => {
+    console.log("logging out...");
+    get("/auth/logout").then(() => {
+      this.props.logout();
     });
-  }
+  };
 
   render() {
-    const { name, photo } = this.state.user;
-    const { provider } = this.props;
+    const { loggedIn, disabled, providers } = this.props;
+    const providersList = providers.map((provider) => (
+      <OAuth key={provider} login={this.login} provider={provider} disabled={disabled} />
+    ));
+
     return (
       <>
-        {name ? (
-          <FontAwesomeIcon icon="smile-wink" />
+        {loggedIn ? (
+          <div className="NavBar-link u-pointer" onClick={this.logout}>
+            Logout
+          </div>
         ) : (
-          <button onClick={this.startAuth}>
-            <FontAwesomeIcon icon={["fab", "google"]} />
-          </button>
-        )}
-        {name ? (
-          <FontAwesomeIcon icon="smile-wink" />
-        ) : (
-          <a href="/auth/google">
-            <FontAwesomeIcon icon={["fab", "microsoft"]} />
-          </a>
+          <>
+            <LocalAuth login={this.login} disabled={disabled} />
+            {providersList}
+          </>
         )}
       </>
     );
