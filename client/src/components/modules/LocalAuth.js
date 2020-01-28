@@ -21,27 +21,36 @@ class LocalAuth extends Component {
 
   attemptLogin = () => {
     const { email, password } = this.state;
-    console.log(email, password);
-    post("/auth/login", { email, password })
-      .then((user) => {
-        this.props.login(user);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (email === "" || password === "") {
+      this.setState({ errorMessage: "Must have non-empty usename/password" });
+    } else {
+      post("/auth/login", { email, password })
+        .then((user) => {
+          this.props.login(user);
+        })
+        .catch((error) => {
+          if (error.status === 401) {
+            this.setState({ errorMessage: "Incorrect username or password" });
+          }
+        });
+    }
   };
 
   attemptRegister = () => {
     const { email, password, passwordConfirm } = this.state;
     if (password != passwordConfirm) {
       this.setState({ errorMessage: "Passwords don't match" });
+    } else if (email === "" || password === "") {
+      this.setState({ errorMessage: "Cannot have an empty username or password!" });
     } else {
       post("/auth/register", { email, password })
         .then((user) => {
           this.props.login(user);
         })
         .catch((error) => {
-          console.log(error);
+          if (error.status === 403) {
+            this.setState({ errorMessage: "Email already exists" });
+          }
         });
     }
   };

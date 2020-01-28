@@ -38,7 +38,6 @@ passport.use(
     password,
     done
   ) {
-    console.log(email, password);
     User.findOne({ email }, async function(err, user) {
       if (err) {
         return done(err);
@@ -47,7 +46,6 @@ passport.use(
         return done(null, false);
       }
       const match = await bcrypt.compare(password, user.password);
-      console.log(`was there a match? ${match}`);
       if (!match) {
         return done(null, false);
       }

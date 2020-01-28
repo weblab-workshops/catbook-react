@@ -54,10 +54,14 @@ router.get("/logout", function(req, res) {
 
 router.post("/register", async function(req, res) {
   const pass = req.body.password;
+  const email = req.body.email;
   try {
+    if (await User.findOne({ email })) {
+      res.status(403).send({ error: "Email already exists" });
+    }
     const hashedSaltedPwd = await bcrypt.hash(pass, SALT_ROUNDS);
     const newUser = new User({
-      email: req.body.email,
+      email: email,
       password: hashedSaltedPwd,
     });
 
@@ -68,12 +72,11 @@ router.post("/register", async function(req, res) {
       res.send(req.user);
     });
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 });
 
 router.post("/login", passport.authenticate("local"), function(req, res) {
-  console.log("wahoo");
   res.send(req.user);
 });
 
