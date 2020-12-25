@@ -9,5 +9,11 @@
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true
-  }
+  },
+  "include": [
+    "./client/"
+  ],
+  "exclude": [
+    "./node_modules"
+  ]
 }
