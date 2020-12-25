@@ -5,16 +5,22 @@ import { get } from "../../utilities";
 
 import "./Card.css";
 
+interface Props {
+  _id: string;
+  creator_name: string;
+  creator_id: string;
+  content: string;
+  userId: string;
+}
+
+interface State {
+  comments: any;
+}
+
 /**
  * Card is a component for displaying content like stories
- *
- * Proptypes
- * @param {string} _id of the story
- * @param {string} creator_name
- * @param {string} creator_id
- * @param {string} content of the story
  */
-class Card extends Component {
+class Card extends Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Card from "../modules/Card.js";
+import Card from "../modules/Card";
 import { NewStory } from "../modules/NewPostInput.js";
 
 import { get } from "../../utilities";
