@@ -2,16 +2,23 @@ import React, { Component } from "react";
 
 import "./NewPostInput.css";
 import { post } from "../../utilities";
+import { Comment } from "./SingleComment";
+import { Story } from "./SingleStory";
 
 /**
  * New Post is a parent component for all input components
- *
- * Proptypes
- * @param {string} defaultText is the placeholder text
- * @param {string} storyId optional prop, used for comments
- * @param {({storyId, value}) => void} onSubmit: (function) triggered when this post is submitted, takes {storyId, value} as parameters
  */
-class NewPostInput extends Component {
+
+interface NewPostInputProps {
+  defaultText: string;
+  onSubmit: (value: string) => void;
+}
+
+interface NewPostInputState {
+  value: string;
+}
+
+class NewPostInput extends Component<NewPostInputProps, NewPostInputState> {
   constructor(props) {
     super(props);
 
@@ -21,14 +28,14 @@ class NewPostInput extends Component {
   }
 
   // called whenever the user types in the new post input box
-  handleChange = (event) => {
+  handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({
       value: event.target.value,
     });
   };
 
   // called when the user hits "Submit" for a new post
-  handleSubmit = (event) => {
+  handleSubmit = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.preventDefault();
     this.props.onSubmit && this.props.onSubmit(this.state.value);
     this.setState({
@@ -61,17 +68,19 @@ class NewPostInput extends Component {
 
 /**
  * New Comment is a New Post component for comments
- *
- * Proptypes
- * @param {string} defaultText is the placeholder text
- * @param {string} storyId to add comment to
  */
-class NewComment extends Component {
+
+interface NewCommentProps {
+  storyId: string;
+  addNewComment: (comment: Comment) => void;
+}
+
+class NewComment extends Component<NewCommentProps> {
   constructor(props) {
     super(props);
   }
 
-  addComment = (value) => {
+  addComment = (value: string) => {
     const body = { parent: this.props.storyId, content: value };
     post("/api/comment", body).then((comment) => {
       // display this comment on the screen
@@ -90,8 +99,13 @@ class NewComment extends Component {
  * Proptypes
  * @param {string} defaultText is the placeholder text
  */
-class NewStory extends Component {
-  addStory = (value) => {
+
+interface NewStoryProps {
+  addNewStory: (story: Story) => void;
+}
+
+class NewStory extends Component<NewStoryProps> {
+  addStory = (value: string) => {
     const body = { content: value };
     post("/api/story", body).then((story) => {
       // display this story on the screen
@@ -110,8 +124,13 @@ class NewStory extends Component {
  * Proptypes
  * @param {UserObject} recipient is the intended recipient
  */
-class NewMessage extends Component {
-  sendMessage = (value) => {
+
+interface NewMessageProps {
+  recipient: { _id: string; name: string };
+}
+
+class NewMessage extends Component<NewMessageProps> {
+  sendMessage = (value: string) => {
     const body = { recipient: this.props.recipient, content: value };
     post("/api/message", body);
   };
@@ -121,4 +140,4 @@ class NewMessage extends Component {
   }
 }
 
-export { NewComment, NewStory, NewMessage };
+export { NewPostInput, NewComment, NewStory, NewMessage };

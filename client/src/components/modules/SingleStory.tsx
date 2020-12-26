@@ -3,14 +3,16 @@ import { Link } from "@reach/router";
 
 /**
  * Story is a component that renders creator and content of a story
- *
- * Proptypes
- * @param {string} _id of the story
- * @param {string} creator_name
- * @param {string} creator_id
- * @param {string} content of the story
  */
-class SingleStory extends Component {
+
+export interface Story {
+  _id: string;
+  creator_name: string;
+  creator_id: string;
+  content: string;
+}
+
+class SingleStory extends Component<Story> {
   constructor(props) {
     super(props);
   }

@@ -1,20 +1,17 @@
 import React, { Component } from "react";
-import SingleStory from "./SingleStory.js";
-import CommentsBlock from "./CommentsBlock.js";
+import SingleStory, { Story } from "./SingleStory";
+import CommentsBlock from "./CommentsBlock";
+import { Comment } from "./SingleComment";
 import { get } from "../../utilities";
 
 import "./Card.css";
 
-interface Props {
-  _id: string;
-  creator_name: string;
-  creator_id: string;
-  content: string;
+interface Props extends Story {
   userId: string;
 }
 
 interface State {
-  comments: any;
+  comments: Comment[];
 }
 
 /**
@@ -29,7 +26,7 @@ class Card extends Component<Props, State> {
   }
 
   componentDidMount() {
-    get("/api/comment", { parent: this.props._id }).then((comments) => {
+    get("/api/comment", { parent: this.props._id }).then((comments: Comment[]) => {
       this.setState({
         comments: comments,
       });
@@ -38,7 +35,7 @@ class Card extends Component<Props, State> {
 
   // this gets called when the user pushes "Submit", so their
   // post gets added to the screen right away
-  addNewComment = (commentObj) => {
+  addNewComment = (commentObj: Comment) => {
     this.setState({
       comments: this.state.comments.concat([commentObj]),
     });

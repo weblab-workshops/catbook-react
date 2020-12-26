@@ -1,10 +1,19 @@
 import React, { Component } from "react";
 import Card from "../modules/Card";
-import { NewStory } from "../modules/NewPostInput.js";
+import { NewStory } from "../modules/NewPostInput";
 
 import { get } from "../../utilities";
+import { Story } from "../modules/SingleStory";
 
-class Feed extends Component {
+interface Props {
+  userId: string;
+}
+
+interface State {
+  stories: Story[];
+}
+
+class Feed extends Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,7 +25,7 @@ class Feed extends Component {
   // when it shows up on screen
   componentDidMount() {
     document.title = "News Feed";
-    get("/api/stories").then((storyObjs) => {
+    get("/api/stories").then((storyObjs: Story[]) => {
       let reversedStoryObjs = storyObjs.reverse();
       reversedStoryObjs.map((storyObj) => {
         this.setState({ stories: this.state.stories.concat([storyObj]) });
@@ -26,7 +35,7 @@ class Feed extends Component {
 
   // this gets called when the user pushes "Submit", so their
   // post gets added to the screen right away
-  addNewStory = (storyObj) => {
+  addNewStory = (storyObj: Story) => {
     this.setState({
       stories: [storyObj].concat(this.state.stories),
     });

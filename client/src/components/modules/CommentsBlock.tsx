@@ -1,22 +1,20 @@
 import React, { Component } from "react";
-import SingleComment from "./SingleComment.js";
-import { NewComment } from "./NewPostInput.js";
-
-/**
- * @typedef ContentObject
- * @property {string} _id of story/comment
- * @property {string} creator_name
- * @property {string} content of the story/comment
- */
+import SingleComment, { Comment } from "./SingleComment";
+import { NewComment } from "./NewPostInput";
+import { Story } from "./SingleStory";
 
 /**
  * Component that holds all the comments for a story
- *
- * Proptypes
- * @param {ContentObject[]} comments
- * @param {ContentObject} story
  */
-class CommentsBlock extends Component {
+
+interface Props {
+  comments: Comment[];
+  userId: string;
+  story: Story;
+  addNewComment: (comment: Comment) => void;
+}
+
+class CommentsBlock extends Component<Props> {
   constructor(props) {
     super(props);
   }

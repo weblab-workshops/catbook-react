@@ -1,17 +1,21 @@
 import React, { Component } from "react";
-import SingleUser from "./SingleUser.js";
+import { User } from "../pages/Chatbook";
+import SingleUser from "./SingleUser";
 
 import "./SingleUser.css";
 
 /**
  * List of users that are online to chat with and all chat
- *
- * Proptypes
- * @param {UserObject[]} users to display
- * @param {UserObject} active user in chat
- * @param {(UserObject) => ()} setActiveUser function that takes in user, sets it to active
  */
-class ChatList extends Component {
+
+interface Props {
+  users: User[];
+  userId: string;
+  setActiveUser: (user: User) => void;
+  activeUser: User;
+}
+
+class ChatList extends Component<Props> {
   constructor(props) {
     super(props);
   }
@@ -27,7 +31,7 @@ class ChatList extends Component {
               key={i}
               setActiveUser={this.props.setActiveUser}
               user={user}
-              active={user === this.props.active}
+              active={user === this.props.activeUser}
             />
           ))}
       </>

@@ -1,33 +1,45 @@
 import React, { Component } from "react";
-import ChatList from "../modules/ChatList.js";
-import Chat from "../modules/Chat.js";
+import ChatList from "../modules/ChatList";
+import Chat from "../modules/Chat";
 import { socket } from "../../client-socket.js";
 import { get } from "../../utilities";
 
 import "./Chatbook.css";
 
-const ALL_CHAT = {
+const ALL_CHAT: User = {
   _id: "ALL_CHAT",
   name: "ALL CHAT",
 };
 
-class Chatbook extends Component {
-  /**
-   * @typedef UserObject
-   * @property {string} _id
-   * @property {string} name
-   */
-  /**
-   * @typedef MessageObject
-   * @property {UserObject} sender
-   * @property {string} content
-   */
-  /**
-   * @typedef ChatData
-   * @property {MessageObject[]} messages
-   * @property {UserObject} recipient
-   */
+// Defined types here, can also be moved to a separate types file.
+export interface User {
+  _id: string;
+  name: string;
+}
 
+export interface Message {
+  sender: User;
+  content: string;
+}
+
+export interface ChatData {
+  messages: Message[];
+  recipient: User;
+}
+
+interface Props {
+  userId: string;
+}
+
+interface State {
+  activeUsers: User[];
+  activeChat: {
+    recipient: User;
+    messages: Message[];
+  };
+}
+
+class Chatbook extends Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
@@ -39,8 +51,8 @@ class Chatbook extends Component {
     };
   }
 
-  loadMessageHistory(recipient) {
-    get("/api/chat", { recipient_id: recipient._id }).then((messages) => {
+  loadMessageHistory(recipient: User) {
+    get("/api/chat", { recipient_id: recipient._id }).then((messages: Message[]) => {
       this.setState({
         activeChat: {
           recipient: recipient,
@@ -84,7 +96,7 @@ class Chatbook extends Component {
     });
   }
 
-  setActiveUser = (user) => {
+  setActiveUser = (user: User) => {
     this.loadMessageHistory(user);
     this.setState({
       activeChat: {
@@ -105,7 +117,7 @@ class Chatbook extends Component {
               setActiveUser={this.setActiveUser}
               userId={this.props.userId}
               users={this.state.activeUsers}
-              active={this.state.activeChat.recipient}
+              activeUser={this.state.activeChat.recipient}
             />
           </div>
           <div className="Chatbook-chatContainer u-relative">

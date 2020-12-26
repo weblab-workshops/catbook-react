@@ -1,11 +1,21 @@
 import React, { Component } from "react";
-import CatHappiness from "../modules/CatHappiness.js";
+import CatHappiness from "../modules/CatHappiness";
 import { get } from "../../utilities";
 
 import "../../utilities.css";
 import "./Profile.css";
+import { User } from "./Chatbook";
 
-class Profile extends Component {
+interface Props {
+  userId: string;
+}
+
+interface State {
+  user: User | undefined;
+  catHappiness: number;
+}
+
+class Profile extends Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,7 +33,7 @@ class Profile extends Component {
     this.getUserData();
   }
 
-  componentDidUpdate(oldProps) {
+  componentDidUpdate(oldProps: Props) {
     // this is called whenever the props change (call API again if the userId changes)
     if (oldProps.userId !== this.props.userId) {
       this.getUserData();

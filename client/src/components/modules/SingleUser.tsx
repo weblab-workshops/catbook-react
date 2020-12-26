@@ -1,16 +1,19 @@
 import React, { Component } from "react";
+import { User } from "../pages/Chatbook";
 
 import "./SingleUser.css";
 
 /**
  * Component to render an online user
- *
- * Proptypes
- * @param {(UserObject) => ()} setActiveUser function that takes in user, sets it to active
- * @param {UserObject} user
- * @param {boolean} active
  */
-class SingleUser extends Component {
+
+interface Props {
+  user: User;
+  active: boolean;
+  setActiveUser: (user: User) => void;
+}
+
+class SingleUser extends Component<Props> {
   constructor(props) {
     super(props);
   }

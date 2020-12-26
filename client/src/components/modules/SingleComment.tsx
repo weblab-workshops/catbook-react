@@ -3,14 +3,16 @@ import { Link } from "@reach/router";
 
 /**
  * Component to render a single comment
- *
- * Proptypes
- * @param {string} _id of comment
- * @param {string} creator_name
- * @param {string} creator_id
- * @param {string} content of the comment
  */
-class SingleComment extends Component {
+
+export interface Comment {
+  _id: string;
+  creator_name: string;
+  creator_id: string;
+  content: string;
+}
+
+class SingleComment extends Component<Comment> {
   constructor(props) {
     super(props);
   }

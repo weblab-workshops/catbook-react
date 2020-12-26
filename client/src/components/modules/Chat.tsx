@@ -1,33 +1,20 @@
 import React, { Component } from "react";
-import SingleMessage from "./SingleMessage.js";
-import { NewMessage } from "./NewPostInput.js";
+import SingleMessage from "./SingleMessage";
+import { NewMessage } from "./NewPostInput";
 
 import "./Chat.css";
-
-/**
- * @typedef UserObject
- * @property {string} _id
- * @property {string} name
- */
-/**
- * @typedef MessageObject
- * @property {UserObject} sender
- * @property {string} content
- */
-/**
- * @typedef ChatData
- * @property {MessageObject[]} messages
- * @property {UserObject} recipient
- */
+import { ChatData } from "../pages/Chatbook";
 
 /**
  * Renders main chat window including previous messages,
  * who is being chatted with, and the new message input.
- *
- * Proptypes
- * @param {ChatData} data
  */
-class Chat extends Component {
+
+interface Props {
+  data: ChatData;
+}
+
+class Chat extends Component<Props> {
   constructor(props) {
     super(props);
   }

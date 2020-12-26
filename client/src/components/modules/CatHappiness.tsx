@@ -3,11 +3,13 @@ import "./CatHappiness.css";
 
 /**
  * Component that renders cat happiness
- *
- * Proptypes
- * @param {int} catHappiness is how happy your cat is
  */
-class CatHappiness extends Component {
+
+interface Props {
+  catHappiness: number;
+}
+
+class CatHappiness extends Component<Props> {
   constructor(props) {
     super(props);
   }
