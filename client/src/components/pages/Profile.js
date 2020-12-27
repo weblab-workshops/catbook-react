@@ -11,21 +11,10 @@ class Profile extends Component {
     };
   }
 
-  incrementCatHappiness = () => {
-    this.setState({
-      catHappiness: this.state.catHappiness + 1,
-    });
-  };
-
   render() {
     return (
       <div>
-        <div
-          className="Profile-avatarContainer"
-          onClick={() => {
-            this.incrementCatHappiness();
-          }}
-        >
+        <div className="Profile-avatarContainer">
           <div className="Profile-avatar" />
         </div>
         <h1 className="Profile-name u-textCenter">YOUR NAME HERE</h1>
