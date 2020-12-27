@@ -17,7 +17,7 @@
       }
 
       #game-board {
-        background-color: #ccc;
+        background-color: black;
         width: 100vmin;
         height: 100vmin;
         display: grid;
@@ -26,16 +26,17 @@
       }
 
       .snake {
-        background-color: hsl(200, 100%, 50%);
+        background-color: lime;
         border: 0.25vmin solid black;
       }
 
       .food {
-        background-color: hsl(50, 100%, 50%);
-        border: 0.25vmin solid black;
+        background-color: red;
+        border: 0.25vmin solid gray;
       }
     </style>
-    <script src="game.js"></script>
+    <script src="snake.js"></script>
+    <script src="game.js" defer></script>
   </head>
   <body>
     <div id="game-board"></div>
