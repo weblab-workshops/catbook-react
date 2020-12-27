@@ -8,9 +8,7 @@ import "./NavBar.css";
 class NavBar extends Component {
   render() {
     return (
-      <nav className="NavBar-container">
-        <div className="NavBar-title">Catbook</div>
-      </nav>
+      null // TODO: Implement NavBar similar to old navigation found in old_index.html
     );
   }
 }
