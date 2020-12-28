@@ -37,7 +37,7 @@ class Chatbook extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // TODO (starter)
+      // TODO (step 2.3)
       activeChat: {
         recipient: ALL_CHAT,
         messages: [],
@@ -61,10 +61,7 @@ class Chatbook extends Component {
 
     this.loadMessageHistory(ALL_CHAT);
 
-    // TODO (step 3)
-
     socket.on("message", (data) => {
-      // TODO (step 7)
       this.setState((prevstate) => ({
         activeChat: {
           recipient: prevstate.activeChat.recipient,
@@ -72,13 +69,9 @@ class Chatbook extends Component {
         },
       }));
     });
-
-    // TODO (step 4): add a socket on that listens for the "activeUsers" event. Once we
-    // hear the event, update the state with the new active user who just joined
-    // similar to get("/api/activeUsers")!
   }
 
-  // TODO (starter)
+  // TODO (step 2.4): create setActiveUser
 
   render() {
     if (!this.props.userId) return <div>Log in before using Chatbook</div>;
@@ -87,8 +80,6 @@ class Chatbook extends Component {
       <>
         <div className="u-flex u-relative Chatbook-container">
           <div className="Chatbook-userList">
-            {/* TODO (step 1): Add ChatList component and pass in props setActiveUser,
-            userId, users, and active. */}
           </div>
           <div className="Chatbook-chatContainer u-relative">
             <Chat data={this.state.activeChat} />

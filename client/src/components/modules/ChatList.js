@@ -18,7 +18,7 @@ class ChatList extends Component {
   }
 
   render() {
-    // TODO (starter)
+    // TODO (step 2.2)
     return <></>;
   }
 }

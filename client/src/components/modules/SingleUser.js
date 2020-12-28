@@ -16,7 +16,7 @@ class SingleUser extends Component {
   }
 
   render() {
-    // TODO (starter)
+    // TODO (step 2.1)
     return <div></div>;
   }
 }
