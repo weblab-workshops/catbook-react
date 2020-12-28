@@ -47,9 +47,9 @@ class Chatbook extends Component {
 
   constructor(props) {
     super(props);
-    // TODO (step 2.2): add state activeChat , an object with two fields:
+    // TODO (step 2.1): add state activeChat, an object with two fields:
     // recipient, and messages!
-    // initialize recipient to ALL_CHAT
+    // In this object, initialize recipient to ALL_CHAT, and messages to TEST_MESSAGES
   }
 
   loadMessageHistory(recipient) {
@@ -66,7 +66,7 @@ class Chatbook extends Component {
       <>
         <div className="u-flex u-relative Chatbook-container">
           <div className="Chatbook-chatContainer u-relative">
-            {/* TODO (step 2.1): change to state instead of hard coded */}
+            {/* TODO (step 2.2): change data to use our activeChat state */}
             <Chat
               data={{
                 recipient: ALL_CHAT,
