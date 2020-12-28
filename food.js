@@ -5,7 +5,7 @@ updateFood = () => {
     if (onSnake(food)) {
         expandSnake(EXPANSION_RATE);
         console.log("eate")
-        food = { x: 20, y: 10 };
+        food = getRandomFoodPosition()
     }
 }
 
@@ -15,4 +15,12 @@ drawFood = (gameBoard) => {
     foodElement.style.gridColumnStart = food.x;
     foodElement.classList.add('food');
     gameBoard.appendChild(foodElement);
+}
+
+getRandomFoodPosition = () => {
+    let newFoodPosition = null;
+    while (newFoodPosition === null || onSnake(newFoodPosition)) {
+        newFoodPosition = randomGridPosition()
+    }
+    return newFoodPosition
 }
