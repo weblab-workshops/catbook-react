@@ -10,8 +10,8 @@ updateSnake = () => {
         snakeBody[i + 1] = { x: snakeBody[i].x, y: snakeBody[i].y }
     }
 
-    snakeBody[0].y += 1
-    snakeBody[0].x += 0
+    snakeBody[0].y += 0
+    snakeBody[0].x += 1
 }
 
 drawSnake = (gameBoard) => {
