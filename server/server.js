@@ -19,6 +19,9 @@ const path = require("path"); // provide utilities for working with file and dir
 // create a new express server
 const app = express();
 
+// allow us to make post requests
+app.use(express.json());
+
 app.get("/api/test", (req, res) => {
   res.send({ message: "Wow I made my first API!" });
 });
