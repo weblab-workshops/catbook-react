@@ -68,7 +68,6 @@ class Chatbook extends Component {
     });
 
     socket.on("message", (data) => {
-      // TODO (step 7)
       this.setState((prevstate) => ({
         activeChat: {
           recipient: prevstate.activeChat.recipient,
@@ -85,7 +84,7 @@ class Chatbook extends Component {
   }
 
   setActiveUser = (user) => {
-    // TODO (step 5): first load the message history for this user, then set the
+    // TODO (step 7.1): first load the message history for this user, then set the
     // state "activeChat" to the new recipient (user) and empty array forr messages
     console.log(`setting active user to ${user.name}`);
   };
