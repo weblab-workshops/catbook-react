@@ -18,6 +18,10 @@ const express = require("express"); // backend framework for our node server.
 // create a new express server
 const app = express();
 
+app.get("/api/test", (req, res) => {
+  res.send({ message: "Wow I made my first API!" });
+});
+
 // hardcode port to 3000 for now
 const port = 3000;
 app.listen(port, () => {
