@@ -15,7 +15,7 @@ class SingleMessage extends Component {
 
   render() {
     return (
-      // TODO (1.3): populate SingleMessage
+      // TODO (step 1.3): populate SingleMessage
       <div></div>
     );
   }
