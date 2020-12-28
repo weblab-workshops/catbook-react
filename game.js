@@ -18,10 +18,15 @@ window.requestAnimationFrame(main);
 update = () => {
     updateFood();
     updateSnake();
+    checkDeath();
 }
 
 draw = () => {
     gameBoard.innerHTML = ''
     drawSnake(gameBoard);
     drawFood(gameBoard);
+}
+
+checkDeath = () => {
+    //TODO:fill me in
 }
