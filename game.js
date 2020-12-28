@@ -1,4 +1,4 @@
-main = (currentTime) => {
+const main = (currentTime) => {
     window.requestAnimationFrame(main);
     update();
     draw();
@@ -6,8 +6,8 @@ main = (currentTime) => {
 
 window.requestAnimationFrame(main);
 
-update = () => {
+const update = () => {
 }
 
-draw = () => {
+const draw = () => {
 }
