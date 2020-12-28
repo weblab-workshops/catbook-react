@@ -6,5 +6,6 @@ if [ -z $1 ]; then
     exit 1
 fi
 git reset --hard
-git checkout workshop0-step$1
+#git checkout workshop0-step$1
+git checkout 2021-w0-step$1
 echo "you are now viewing step $1"
