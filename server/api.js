@@ -80,7 +80,6 @@ router.post("/initsocket", (req, res) => {
 
 router.get("/chat", (req, res) => {
   const query = { "recipient._id": "ALL_CHAT" };
-  // TODO (step 6): Support get chat for DMs
   Message.find(query).then((messages) => res.send(messages));
 });
 
@@ -97,12 +96,11 @@ router.post("/message", auth.ensureLoggedIn, (req, res) => {
     content: req.body.content,
   });
   message.save();
-  // TODO (step 7): emit for DMs
   socket.getIo().emit("message", message);
 });
 
 router.get("/activeUsers", (req, res) => {
-  // TODO (step 2): Send back an object with the field
+  // TODO (step 4.1): Send back an object with the field
   // activeUsers set to the currently active users
 });
 
