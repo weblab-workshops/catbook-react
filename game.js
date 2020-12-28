@@ -16,10 +16,12 @@ main = (currentTime) => {
 window.requestAnimationFrame(main);
 
 update = () => {
+    updateFood();
     updateSnake();
 }
 
 draw = () => {
     gameBoard.innerHTML = ''
     drawSnake(gameBoard);
+    drawFood(gameBoard);
 }
