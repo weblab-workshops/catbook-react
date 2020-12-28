@@ -56,16 +56,10 @@ class Chatbook extends Component {
   }
 
   loadMessageHistory(recipient) {
-    // This function loads the messages by getting them from the server
-    // TODO (step 4): get /api/chat and set the activeChat
   }
 
   componentDidMount() {
     document.title = "Chatbook";
-
-    // TODO (step 4): call this.loadMessageHistory()
-
-    // TODO (step 5): add socket.on for when received message
   }
 
   render() {
