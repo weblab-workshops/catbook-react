@@ -111,8 +111,10 @@ class NewStory extends Component {
  * @param {UserObject} recipient is the intended recipient
  */
 class NewMessage extends Component {
+  // TODO (1.2): add sendMessage function and pass to onSubmit
+
   render() {
-    // TODO (starter): populate NewMessage
+    // TODO (1.1): populate NewMessage
     return <div></div>;
   }
 }

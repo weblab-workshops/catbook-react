@@ -6,6 +6,7 @@ import { get } from "../../utilities";
 
 import "./Chatbook.css";
 
+// TODO (1.6): Add TEST_DATA, ALL_CHAT database object, and TEST_MESSAGES
 class Chatbook extends Component {
   /**
    * @typedef UserObject
@@ -44,7 +45,7 @@ class Chatbook extends Component {
   }
 
   render() {
-    // TODO (starter): populate chatbook
+    // TODO (1.5): populate chatbook (but use TEST_DATA)
     return <></>;
   }
 }

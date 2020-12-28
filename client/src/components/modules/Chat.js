@@ -33,7 +33,7 @@ class Chat extends Component {
   }
 
   render() {
-    // TODO (starter): populate Chat.js
+    // TODO (1.4): populate Chat.js
     return <div></div>;
   }
 }
