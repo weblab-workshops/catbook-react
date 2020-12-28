@@ -1,7 +1,7 @@
 let lastRenderTime = 0;
-let SNAKE_SPEED = 5;
+let gameBoard = document.getElementById("game-board");
 
-main = (currentTime) => {
+const main = (currentTime) => {
     window.requestAnimationFrame(main);
     let secondsSinceLastRender = (currentTime - lastRenderTime) / 1000;
     if (secondsSinceLastRender < 1 / SNAKE_SPEED) {
@@ -15,9 +15,11 @@ main = (currentTime) => {
 
 window.requestAnimationFrame(main);
 
-update = () => {
-    console.log("Render");
+const update = () => {
+    updateSnake();
 }
 
-draw = () => {
+const draw = () => {
+    gameBoard.innerHTML = "";
+    drawSnake(gameBoard);
 }
