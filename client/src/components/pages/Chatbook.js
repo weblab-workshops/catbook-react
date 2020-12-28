@@ -68,7 +68,7 @@ class Chatbook extends Component {
     });
 
     socket.on("message", (data) => {
-      // TODO (step 7)
+      // TODO (step 9.2)
       this.setState((prevstate) => ({
         activeChat: {
           recipient: prevstate.activeChat.recipient,

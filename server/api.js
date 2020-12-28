@@ -109,7 +109,7 @@ router.post("/message", auth.ensureLoggedIn, (req, res) => {
     content: req.body.content,
   });
   message.save();
-  // TODO (step 7): emit for DMs
+  // TODO (step 9.1): emit for DMs
   socket.getIo().emit("message", message);
 });
 
