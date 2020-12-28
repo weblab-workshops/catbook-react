@@ -54,7 +54,7 @@ class Chatbook extends Component {
 
     this.loadMessageHistory(ALL_CHAT);
 
-    // TODO (step 5): add socket.on for when received message
+    // TODO (step 6.2): add socket.on for when received message
   }
 
   render() {
