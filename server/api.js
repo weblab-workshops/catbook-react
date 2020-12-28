@@ -114,9 +114,9 @@ router.post("/message", auth.ensureLoggedIn, (req, res) => {
     socket.getIo().emit("message", message);
   } else {
     socket.getSocketFromUserID(req.user._id).emit("message", message);
-    // TODO (step 8): implement the emit to the recipient of the message here. It should look pretty
-    // similar to above! Except you want to emit to the recipient instead of the
-    // currently logged in user
+    // TODO (step 10.1): implement the emit to the recipient of the message here.
+    // It should look pretty similar to above! Except you want to emit to the
+    // recipient instead of the currently logged in user
   }
 });
 
