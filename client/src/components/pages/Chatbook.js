@@ -47,22 +47,16 @@ class Chatbook extends Component {
 
   constructor(props) {
     super(props);
-    // TODO (step 1): add state activeChat , an object with two fields:
+    // TODO (step 2.2): add state activeChat , an object with two fields:
     // recipient, and messages!
     // initialize recipient to ALL_CHAT
   }
 
   loadMessageHistory(recipient) {
-    // This function loads the messages by getting them from the server
-    // TODO (step 4): get /api/chat and set the activeChat
   }
 
   componentDidMount() {
     document.title = "Chatbook";
-
-    // TODO (step 4): call this.loadMessageHistory()
-
-    // TODO (step 5): add socket.on for when received message
   }
 
   render() {
@@ -72,7 +66,7 @@ class Chatbook extends Component {
       <>
         <div className="u-flex u-relative Chatbook-container">
           <div className="Chatbook-chatContainer u-relative">
-            {/* TODO (step 1): change to state instead of hard coded */}
+            {/* TODO (step 2.1): change to state instead of hard coded */}
             <Chat
               data={{
                 recipient: ALL_CHAT,
