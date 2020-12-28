@@ -1,6 +1,6 @@
-
 let lastRenderTime = 0;
 
+const gameBoard = document.getElementById('game-board')
 main = (currentTime) => {
     window.requestAnimationFrame(main);
     const secondsSinceLastRender = (currentTime - lastRenderTime) / 1000;
@@ -20,5 +20,6 @@ update = () => {
 }
 
 draw = () => {
-    drawSnake();
+    gameBoard.innerHTML = ''
+    drawSnake(gameBoard);
 }
