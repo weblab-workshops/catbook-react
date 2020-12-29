@@ -10,8 +10,9 @@ const updateSnake = () => {
         snakeBody[i + 1] = { ...snakeBody[i] };
     }
 
-    snakeBody[0].x += 0;
-    snakeBody[0].y += 1;
+    const snakeDirection = getInputDirection();
+    snakeBody[0].x += snakeDirection.x;
+    snakeBody[0].y += snakeDirection.y;
 }
 
 const drawSnake = () => {
