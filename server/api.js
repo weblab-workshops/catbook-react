@@ -21,7 +21,7 @@ const auth = require("./auth");
 // api endpoints: all these paths will be prefixed with "/api/"
 const router = express.Router();
 
-const socket = require("./server-socket");
+const socketManager = require("./server-socket");
 
 router.get("/stories", (req, res) => {
   // empty selector means get all documents
@@ -74,7 +74,7 @@ router.get("/user", (req, res) => {
 
 router.post("/initsocket", (req, res) => {
   // do nothing if user not logged in
-  if (req.user) socket.addUser(req.user, socket.getSocketFromSocketID(req.body.socketid));
+  if (req.user) socketManager.addUser(req.user, socketManager.getSocketFromSocketID(req.body.socketid));
   res.send({});
 });
 
@@ -110,11 +110,11 @@ router.post("/message", auth.ensureLoggedIn, (req, res) => {
   });
   message.save();
   // TODO (step 9.1): emit for DMs
-  socket.getIo().emit("message", message);
+  socketManager.getIo().emit("message", message);
 });
 
 router.get("/activeUsers", (req, res) => {
-  res.send({ activeUsers: socket.getAllConnectedUsers() });
+  res.send({ activeUsers: socketManager.getAllConnectedUsers() });
 });
 
 // anything else falls to this "not found" case
