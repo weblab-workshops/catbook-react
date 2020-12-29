@@ -114,7 +114,7 @@ router.post("/message", auth.ensureLoggedIn, (req, res) => {
     socket.getIo().emit("message", message);
   } else {
     socket.getSocketFromUserID(req.body.recipient._id).emit("message", message);
-    socket.getSocketFromUserID(req.user._id).emit("message", message);
+    if(req.user._id !== req.body.recipient._id) socket.getSocketFromUserID(req.user._id).emit("message", message);
   }
 });
 
