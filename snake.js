@@ -1,5 +1,5 @@
-let SNAKE_SPEED = 5;
-let snakeBody = [
+const SNAKE_SPEED = 5;
+const snakeBody = [
     { x: 11, y: 11 },
     { x: 11, y: 10 },
     { x: 11, y: 9 }
@@ -42,4 +42,17 @@ const expandSnake = (amount) => {
     for (let i = 0; i < amount; i++) {
         snakeBody.push({ ...snakeBody[snakeBody.length - 1] });
     }
+}
+
+const snakeOutOfBounds = () => {
+    return outOfBounds(snakeBody[0]);
+}
+
+const snakeIntersectSelf = () => {
+    for (let i = 1; i < snakeBody.length; i++) {
+        if (equalPositions(snakeBody[0], snakeBody[i])) {
+            return true;
+        }
+    }
+    return false;
 }

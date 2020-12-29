@@ -1,4 +1,4 @@
-let food = { x: 5, y: 18 };
+let food = getRandomFoodPosition();
 const EXPANSION_RATE = 1;
 
 const updateFood = () => {

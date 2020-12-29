@@ -1,10 +1,18 @@
 let lastRenderTime = 0;
 let gameOver = false;
-let gameBoard = document.getElementById("game-board");
+const gameBoard = document.getElementById("game-board");
 
 const main = (currentTime) => {
+    if (gameOver) {
+        const score = snakeBody.length;
+        if (confirm(`Game over. Your score was ${score}. Play again?`)) {
+            window.location = window.location;
+        }
+        return;
+    }
+
     window.requestAnimationFrame(main);
-    let secondsSinceLastRender = (currentTime - lastRenderTime) / 1000;
+    const secondsSinceLastRender = (currentTime - lastRenderTime) / 1000;
     if (secondsSinceLastRender < 1 / SNAKE_SPEED) {
         return;
     }
@@ -29,4 +37,5 @@ const draw = () => {
 }
 
 const checkGameOver = () => {
+    gameOver = snakeOutOfBounds() || snakeIntersectSelf();
 }
