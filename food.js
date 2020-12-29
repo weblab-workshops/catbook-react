@@ -17,5 +17,5 @@ const drawFood = (gameBoard) => {
 }
 
 const getRandomFoodPosition = () => {
-    return { x: 15, y: 5 }
+    return { x: 15, y: 5 };
 } 
