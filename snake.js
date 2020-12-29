@@ -1,5 +1,5 @@
-let SNAKE_SPEED = 5;
-let snakeBody = [
+const SNAKE_SPEED = 5;
+const snakeBody = [
     { x: 11, y: 11 },
     { x: 11, y: 10 },
     { x: 11, y: 9 }
