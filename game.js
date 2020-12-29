@@ -17,9 +17,11 @@ window.requestAnimationFrame(main);
 
 const update = () => {
     updateSnake();
+    updateFood();
 }
 
 const draw = () => {
     gameBoard.innerHTML = "";
     drawSnake(gameBoard);
+    drawFood(gameBoard);
 }

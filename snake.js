@@ -24,3 +24,17 @@ const drawSnake = () => {
         gameBoard.appendChild(snakeElement);
     })
 }
+
+const onSnake = (position) => {
+    return equalPositions(snakeBody[0], position)
+}
+
+const equalPositions = (pos1, pos2) => {
+    return pos1.x === pos2.x && pos1.y === pos2.y;
+}
+
+const expandSnake = (amount) => {
+    for (let i = 0; i < amount; i++) {
+        snakeBody.push({ ...snakeBody[snakeBody.length - 1] });
+    }
+}
