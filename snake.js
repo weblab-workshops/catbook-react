@@ -26,7 +26,12 @@ const drawSnake = () => {
 }
 
 const onSnake = (position) => {
-    return equalPositions(snakeBody[0], position)
+    for (let i = 0; i < snakeBody.length; i++) {
+        if (equalPositions(position, snakeBody[i])) {
+            return true;
+        }
+    }
+    return false;
 }
 
 const equalPositions = (pos1, pos2) => {
