@@ -21,7 +21,7 @@ const auth = require("./auth");
 // api endpoints: all these paths will be prefixed with "/api/"
 const router = express.Router();
 
-const socket = require("./server-socket");
+const socketManager = require("./server-socket");
 
 router.get("/stories", (req, res) => {
   // empty selector means get all documents
@@ -96,7 +96,7 @@ router.post("/message", auth.ensureLoggedIn, (req, res) => {
     content: req.body.content,
   });
   message.save();
-  socket.getIo().emit("message", message);
+  socketManager.getIo().emit("message", message);
 });
 
 router.get("/activeUsers", (req, res) => {
