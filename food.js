@@ -17,5 +17,9 @@ const drawFood = (gameBoard) => {
 }
 
 const getRandomFoodPosition = () => {
-    return { x: 15, y: 5 }
+    let randomFoodPosition = randomGridPosition();
+    while (onSnake(randomFoodPosition)) {
+        randomFoodPosition = randomGridPosition();
+    }
+    return randomFoodPosition;
 } 

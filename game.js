@@ -1,4 +1,5 @@
 let lastRenderTime = 0;
+let gameOver = false;
 let gameBoard = document.getElementById("game-board");
 
 const main = (currentTime) => {
@@ -18,10 +19,14 @@ window.requestAnimationFrame(main);
 const update = () => {
     updateSnake();
     updateFood();
+    checkGameOver();
 }
 
 const draw = () => {
     gameBoard.innerHTML = "";
     drawSnake(gameBoard);
     drawFood(gameBoard);
+}
+
+const checkGameOver = () => {
 }
