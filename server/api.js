@@ -21,7 +21,7 @@ const auth = require("./auth");
 // api endpoints: all these paths will be prefixed with "/api/"
 const router = express.Router();
 
-const socket = require("./server-socket");
+const socketManager = require("./server-socket");
 
 router.get("/stories", (req, res) => {
   // empty selector means get all documents
