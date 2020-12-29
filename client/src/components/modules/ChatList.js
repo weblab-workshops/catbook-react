@@ -22,7 +22,6 @@ class ChatList extends Component {
       <>
         <h3>Open Chats</h3>
         {this.props.users
-          .filter((user) => user._id !== this.props.userId)
           .map((user, i) => (
             <SingleUser
               key={i}
