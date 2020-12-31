@@ -11,6 +11,12 @@ const ALL_CHAT = {
   name: "ALL CHAT",
 };
 
+/**
+ * Page component to display when at the "/chat" route
+ *
+ * Proptypes
+ * @param {string} userId id of current logged in user
+ */
 class Chatbook extends Component {
   /**
    * @typedef UserObject
@@ -40,7 +46,7 @@ class Chatbook extends Component {
   }
 
   loadMessageHistory(recipient) {
-    get("/api/messages", { recipient_id: recipient._id }).then((messages) => {
+    get("/api/chat", { recipient_id: recipient._id }).then((messages) => {
       this.setState({
         activeChat: {
           recipient: recipient,
@@ -56,15 +62,22 @@ class Chatbook extends Component {
     this.loadMessageHistory(ALL_CHAT);
 
     get("/api/activeUsers").then((data) => {
-      this.setState({
-        activeUsers: [ALL_CHAT].concat(data.activeUsers),
-      });
-    });
+      // If user is logged in, we load their chats. If they are not logged in,
+      // there's nothing to load. (Also prevents data races with socket event)
+      if(this.props.userId) {
+        this.setState({
+          activeUsers: [ALL_CHAT].concat(data.activeUsers),
+        });
+      };
+    })
 
-    socket.on("chat", (data) => {
+    socket.on("message", (data) => {
       if (
-        data.recipient._id === this.state.activeChat.recipient._id ||
-        data.sender._id === this.state.activeChat.recipient._id
+        (data.recipient._id === this.state.activeChat.recipient._id &&
+          data.sender._id === this.props.userId) ||
+        (data.sender._id === this.state.activeChat.recipient._id &&
+          data.recipient._id === this.props.userId) ||
+        (data.recipient._id === "ALL_CHAT" && this.state.activeChat.recipient._id === "ALL_CHAT")
       ) {
         this.setState((prevstate) => ({
           activeChat: {
@@ -74,6 +87,7 @@ class Chatbook extends Component {
         }));
       }
     });
+
     socket.on("activeUsers", (data) => {
       this.setState({
         activeUsers: [ALL_CHAT].concat(data.activeUsers),
@@ -95,19 +109,21 @@ class Chatbook extends Component {
     if (!this.props.userId) return <div>Log in before using Chatbook</div>;
 
     return (
-      <div className="u-flex u-relative Chatbook-container">
-        <div className="Chatbook-userList">
-          <ChatList
-            setActiveUser={this.setActiveUser}
-            userId={this.props.userId}
-            users={this.state.activeUsers}
-            active={this.state.activeChat.recipient}
-          />
+      <>
+        <div className="u-flex u-relative Chatbook-container">
+          <div className="Chatbook-userList">
+            <ChatList
+              setActiveUser={this.setActiveUser}
+              userId={this.props.userId}
+              users={this.state.activeUsers}
+              active={this.state.activeChat.recipient}
+            />
+          </div>
+          <div className="Chatbook-chatContainer u-relative">
+            <Chat data={this.state.activeChat} />
+          </div>
         </div>
-        <div className="Chatbook-chatContainer u-relative">
-          <Chat data={this.state.activeChat} />
-        </div>
-      </div>
+      </>
     );
   }
 }

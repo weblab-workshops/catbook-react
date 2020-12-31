@@ -6,6 +6,7 @@ import "./SingleUser.css";
  * Component to render an online user
  *
  * Proptypes
+ * @param {(UserObject) => ()} setActiveUser function that takes in user, sets it to active
  * @param {UserObject} user
  * @param {boolean} active
  */
@@ -17,8 +18,9 @@ class SingleUser extends Component {
   render() {
     return (
       <div
-        className={`SingleUser-container u-pointer ${this.props.active &&
-          "SingleUser-container--active"}`}
+        className={`SingleUser-container u-pointer ${
+          this.props.active ? "SingleUser-container--active" : ""
+        }`}
         onClick={() => {
           this.props.setActiveUser(this.props.user);
         }}

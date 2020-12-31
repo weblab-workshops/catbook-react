@@ -1,6 +1,6 @@
 const { OAuth2Client } = require("google-auth-library");
 const User = require("./models/user");
-const socket = require("./server-socket");
+const socketManager = require("./server-socket");
 
 // create a new OAuth client used to verify google sign-in
 const CLIENT_ID = "395785444978-7b9v7l0ap2h3308528vu1ddnt3rqftjc.apps.googleusercontent.com";
@@ -46,6 +46,12 @@ function login(req, res) {
 }
 
 function logout(req, res) {
+  const userSocket = socketManager.getSocketFromUserID(req.user._id);
+  if (userSocket) {
+    // delete user's socket if they logged out
+    socketManager.removeUser(req.user, userSocket);
+  }
+
   req.session.user = null;
   res.send({});
 }
@@ -64,16 +70,9 @@ function ensureLoggedIn(req, res, next) {
   next();
 }
 
-function authenticateSocket(req, res) {
-  // do nothing if user not logged in
-  if (req.user) socket.addUser(req.user, req.body.socketid);
-  res.send({});
-}
-
 module.exports = {
   login,
   logout,
   populateCurrentUser,
-  authenticateSocket,
   ensureLoggedIn,
 };

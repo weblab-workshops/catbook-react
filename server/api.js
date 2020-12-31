@@ -21,7 +21,7 @@ const auth = require("./auth");
 // api endpoints: all these paths will be prefixed with "/api/"
 const router = express.Router();
 
-const socket = require("./server-socket");
+const socketManager = require("./server-socket");
 
 router.get("/stories", (req, res) => {
   // empty selector means get all documents
@@ -57,7 +57,6 @@ router.post("/comment", auth.ensureLoggedIn, (req, res) => {
 
 router.post("/login", auth.login);
 router.post("/logout", auth.logout);
-router.post("/initsocket", auth.authenticateSocket);
 router.get("/whoami", (req, res) => {
   if (!req.user) {
     // not logged in
@@ -73,9 +72,15 @@ router.get("/user", (req, res) => {
   });
 });
 
-router.get("/messages", (req, res) => {
+router.post("/initsocket", (req, res) => {
+  // do nothing if user not logged in
+  if (req.user) socketManager.addUser(req.user, socketManager.getSocketFromSocketID(req.body.socketid));
+  res.send({});
+});
+
+router.get("/chat", (req, res) => {
   let query;
-  if (req.query.recipient_id == "ALL_CHAT") {
+  if (req.query.recipient_id === "ALL_CHAT") {
     // get any message sent by anybody to ALL_CHAT
     query = { "recipient._id": "ALL_CHAT" };
   } else {
@@ -91,9 +96,8 @@ router.get("/messages", (req, res) => {
   Message.find(query).then((messages) => res.send(messages));
 });
 
-router.post("/chat", auth.ensureLoggedIn, (req, res) => {
-  console.log(`Received a chat message: ${req.body.content}`);
-  console.log(req.body.recipient);
+router.post("/message", auth.ensureLoggedIn, (req, res) => {
+  console.log(`Received a chat message from ${req.user.name}: ${req.body.content}`);
 
   // insert this message into the database
   const message = new Message({
@@ -104,24 +108,18 @@ router.post("/chat", auth.ensureLoggedIn, (req, res) => {
     },
     content: req.body.content,
   });
-  message.save().then((msg) => res.send(msg));
+  message.save();
 
   if (req.body.recipient._id == "ALL_CHAT") {
-    socket.getIo().emit("chat", message);
+    socketManager.getIo().emit("message", message);
   } else {
-    socket
-      .getIo()
-      .to(req.body.recipient._id)
-      .emit("chat", message);
-    socket
-      .getIo()
-      .to(req.user._id)
-      .emit("chat", message);
+    socketManager.getSocketFromUserID(req.body.recipient._id).emit("message", message);
+    if(req.user._id !== req.body.recipient._id) socketManager.getSocketFromUserID(req.user._id).emit("message", message);
   }
 });
 
 router.get("/activeUsers", (req, res) => {
-  res.send(socket.getAllConnectedUsers());
+  res.send({ activeUsers: socketManager.getAllConnectedUsers() });
 });
 
 // anything else falls to this "not found" case

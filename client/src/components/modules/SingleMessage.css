@@ -1,20 +1,20 @@
-.SingleChat-container {
+.SingleMessage-container {
   margin: 0 0 var(--xs);
 }
 
-.SingleChat-sender {
+.SingleMessage-sender {
   width: 106px;
   margin-right: var(--xs);
   flex-shrink: 0;
 }
 
-.SingleChat-content {
+.SingleMessage-content {
   padding: var(--s) var(--m);
   background: var(--medgrey);
   border-radius: var(--l);
 }
 
-.SingleChat-mine .SingleChat-content {
+.SingleMessage-mine .SingleMessage-content {
   background: var(--primary--dim);
   color: var(--white);
 }
