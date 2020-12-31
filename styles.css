@@ -34,6 +34,9 @@ body {
 .navTitle {
   color: var(--white);
   font-size: 20px;
+  /* Below cancels out some of the default styling of h1 */
+  margin: 0; 
+  font-weight: normal;
 }
 
 .avatarContainer {
