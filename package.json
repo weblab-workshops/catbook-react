@@ -4,7 +4,7 @@
   "description": "",
   "main": "server/server.js",
   "scripts": {
-    "hotloader": "webpack-dev-server --config ./webpack.config.js --mode development --port 5000",
+    "hotloader": "webpack serve --config ./webpack.config.js --mode development --port 5000",
     "build": "webpack",
     "start": "nodemon"
   },
