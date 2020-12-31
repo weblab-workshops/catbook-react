@@ -11,6 +11,12 @@ const ALL_CHAT = {
   name: "ALL CHAT",
 };
 
+/**
+ * Page component to display when at the "/chat" route
+ *
+ * Proptypes
+ * @param {string} userId id of current logged in user
+ */
 class Chatbook extends Component {
   /**
    * @typedef UserObject
@@ -56,10 +62,14 @@ class Chatbook extends Component {
     this.loadMessageHistory(ALL_CHAT);
 
     get("/api/activeUsers").then((data) => {
-      this.setState({
-        activeUsers: [ALL_CHAT].concat(data.activeUsers),
-      });
-    });
+      // If user is logged in, we load their chats. If they are not logged in,
+      // there's nothing to load. (Also prevents data races with socket event)
+      if(this.props.userId) {
+        this.setState({
+          activeUsers: [ALL_CHAT].concat(data.activeUsers),
+        });
+      };
+    })
 
     socket.on("message", (data) => {
       if (
@@ -77,6 +87,7 @@ class Chatbook extends Component {
         }));
       }
     });
+
     socket.on("activeUsers", (data) => {
       this.setState({
         activeUsers: [ALL_CHAT].concat(data.activeUsers),

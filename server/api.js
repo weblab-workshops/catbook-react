@@ -21,7 +21,7 @@ const auth = require("./auth");
 // api endpoints: all these paths will be prefixed with "/api/"
 const router = express.Router();
 
-const socket = require("./server-socket");
+const socketManager = require("./server-socket");
 
 router.get("/stories", (req, res) => {
   // empty selector means get all documents
@@ -67,14 +67,14 @@ router.get("/whoami", (req, res) => {
 });
 
 router.get("/user", (req, res) => {
-  User.findById(req.query.userId).then((user) => {
+  User.findById(req.query.userid).then((user) => {
     res.send(user);
   });
 });
 
 router.post("/initsocket", (req, res) => {
   // do nothing if user not logged in
-  if (req.user) socket.addUser(req.user, socket.getSocketFromSocketID(req.body.socketid));
+  if (req.user) socketManager.addUser(req.user, socketManager.getSocketFromSocketID(req.body.socketid));
   res.send({});
 });
 
@@ -111,15 +111,15 @@ router.post("/message", auth.ensureLoggedIn, (req, res) => {
   message.save();
 
   if (req.body.recipient._id == "ALL_CHAT") {
-    socket.getIo().emit("message", message);
+    socketManager.getIo().emit("message", message);
   } else {
-    socket.getSocketFromUserID(req.body.recipient._id).emit("message", message);
-    socket.getSocketFromUserID(req.user._id).emit("message", message);
+    socketManager.getSocketFromUserID(req.body.recipient._id).emit("message", message);
+    if(req.user._id !== req.body.recipient._id) socketManager.getSocketFromUserID(req.user._id).emit("message", message);
   }
 });
 
 router.get("/activeUsers", (req, res) => {
-  res.send({ activeUsers: socket.getAllConnectedUsers() });
+  res.send({ activeUsers: socketManager.getAllConnectedUsers() });
 });
 
 // anything else falls to this "not found" case

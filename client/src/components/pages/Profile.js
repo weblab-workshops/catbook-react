@@ -14,20 +14,9 @@ class Profile extends Component {
     };
   }
 
-  getUserData = () => {
-    get(`/api/user`, { userId: this.props.userId }).then((user) => this.setState({ user: user }));
-  };
-
   componentDidMount() {
     document.title = "Profile Page";
-    this.getUserData();
-  }
-
-  componentDidUpdate(oldProps) {
-    // this is called whenever the props change (call API again if the userId changes)
-    if (oldProps.userId !== this.props.userId) {
-      this.getUserData();
-    }
+    get(`/api/user`, { userid: this.props.userId }).then((user) => this.setState({ user: user }));
   }
 
   incrementCatHappiness = () => {
