@@ -21,7 +21,7 @@ class SingleStory extends Component {
         <Link to={`/profile/${this.props.creator_id}`} className="u-link u-bold">
           {this.props.creator_name}
         </Link>
-        <p className="Card-storyContent">{this.props.content}</p>
+        <p className="Card-storyContent" dangerouslySetInnerHTML={{ __html: this.props.content }} />
       </div>
     );
   }

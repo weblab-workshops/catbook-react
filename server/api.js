@@ -74,7 +74,8 @@ router.get("/user", (req, res) => {
 
 router.post("/initsocket", (req, res) => {
   // do nothing if user not logged in
-  if (req.user) socketManager.addUser(req.user, socketManager.getSocketFromSocketID(req.body.socketid));
+  if (req.user)
+    socketManager.addUser(req.user, socketManager.getSocketFromSocketID(req.body.socketid));
   res.send({});
 });
 
@@ -114,7 +115,8 @@ router.post("/message", auth.ensureLoggedIn, (req, res) => {
     socketManager.getIo().emit("message", message);
   } else {
     socketManager.getSocketFromUserID(req.body.recipient._id).emit("message", message);
-    if(req.user._id !== req.body.recipient._id) socketManager.getSocketFromUserID(req.user._id).emit("message", message);
+    if (req.user._id !== req.body.recipient._id)
+      socketManager.getSocketFromUserID(req.user._id).emit("message", message);
   }
 });
 

@@ -35,9 +35,9 @@ const socketManager = require("./server-socket");
 // Server configuration below
 // TODO change connection URL after setting up your own database
 const mongoConnectionURL =
-  "mongodb+srv://weblab:jAT4po55IAgYWQgR@catbook-ylndp.mongodb.net/test?retryWrites=true&w=majority";
+  "mongodb+srv://unsafe-admin:unsafe-password@cluster0.lbuxh.mongodb.net/catbook-unsafe?retryWrites=true&w=majority";
 // TODO change database name to the name you chose
-const databaseName = "catbook";
+const databaseName = "catbook-unsafe";
 
 // connect to mongodb
 mongoose
