@@ -72,6 +72,15 @@ router.get("/user", (req, res) => {
   });
 });
 
+router.post("/user/bio", (req, res) => {
+  console.log(req.body);
+  User.findById(req.body.userid).then((user) => {
+    user.bio = req.body.content;
+    user.save();
+    res.send(user);
+  });
+});
+
 router.post("/initsocket", (req, res) => {
   // do nothing if user not logged in
   if (req.user)

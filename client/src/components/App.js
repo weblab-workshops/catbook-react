@@ -64,7 +64,7 @@ class App extends Component {
         <div className="App-container">
           <Router>
             <Feed path="/" userId={this.state.userId} />
-            <Profile path="/profile/:userId" />
+            <Profile path="/profile/:userId" self={this.state.userId} />
             <Chatbook path="/chat/" userId={this.state.userId} />
             <NotFound default />
           </Router>

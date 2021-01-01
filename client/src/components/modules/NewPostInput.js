@@ -121,4 +121,21 @@ class NewMessage extends Component {
   }
 }
 
-export { NewComment, NewStory, NewMessage };
+/**
+ * New Message is a New Message component for messages
+ *
+ * Proptypes
+ * @param {string} userId is the user ID of the bio we're changing
+ */
+class NewBio extends Component {
+  updateBio = (value) => {
+    const body = { userid: this.props.self, content: value };
+    post("/api/user/bio", body).then((user) => this.props.updateUser(user));
+  };
+
+  render() {
+    return <NewPostInput defaultText="New custom bio" onSubmit={this.updateBio} />;
+  }
+}
+
+export { NewComment, NewStory, NewMessage, NewBio };

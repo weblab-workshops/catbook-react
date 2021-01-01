@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import CatHappiness from "../modules/CatHappiness.js";
+import { NewBio } from "../modules/NewPostInput.js";
 import { get } from "../../utilities";
 
 import "../../utilities.css";
@@ -25,6 +26,10 @@ class Profile extends Component {
     });
   };
 
+  updateUser = (user) => {
+    this.setState({ user: user });
+  };
+
   render() {
     if (!this.state.user) {
       return <div> Loading! </div>;
@@ -44,9 +49,14 @@ class Profile extends Component {
         <div className="u-flex">
           <div className="Profile-subContainer u-textCenter">
             <h4 className="Profile-subTitle">About Me</h4>
-            <div id="profile-description">
-              Extra Challenge: Modify catbook to show a personalized description here!
-            </div>
+            <div
+              id="profile-description"
+              style={{ paddingBottom: "100px" }}
+              dangerouslySetInnerHTML={{ __html: this.state.user.bio }}
+            />
+            {this.state.user._id === this.props.self && (
+              <NewBio self={this.props.self} updateUser={this.updateUser} />
+            )}
           </div>
           <div className="Profile-subContainer u-textCenter">
             <h4 className="Profile-subTitle">Cat Happiness</h4>
