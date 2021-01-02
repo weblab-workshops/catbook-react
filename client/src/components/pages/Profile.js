@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import CatHappiness from "../modules/CatHappiness.js";
 import { get } from "../../utilities";
+import Cube from "../modules/Cube.js"
 
 import "../../utilities.css";
 import "./Profile.css";
@@ -45,7 +46,7 @@ class Profile extends Component {
           <div className="Profile-subContainer u-textCenter">
             <h4 className="Profile-subTitle">About Me</h4>
             <div id="profile-description">
-              Extra Challenge: Modify catbook to show a personalized description here!
+              <Cube />
             </div>
           </div>
           <div className="Profile-subContainer u-textCenter">
