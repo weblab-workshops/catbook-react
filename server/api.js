@@ -8,3 +8,11 @@
 */
 
 const express = require("express");
+
+const router = express.Router();
+
+router.get("/test", (req, res) => {
+  res.send({ message: "Wow I made my first API! In its own file!" });
+});
+
+module.exports = router;

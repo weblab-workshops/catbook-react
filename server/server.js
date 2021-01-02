@@ -19,12 +19,14 @@ const path = require("path"); // provide utilities for working with file and dir
 // create a new express server
 const app = express();
 
+// import the router from our API file
+const api = require("./api.js");
+
 // allow us to make post requests
 app.use(express.json());
 
-app.get("/api/test", (req, res) => {
-  res.send({ message: "Wow I made my first API!" });
-});
+// connect API routes from api.js
+app.use("/api", api);
 
 // Load the compiled react files, which will serve /index.html and /bundle.js
 const reactPath = path.resolve(__dirname, "..", "client", "dist");
