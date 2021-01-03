@@ -44,7 +44,7 @@ class Card extends Component {
           content={this.props.content}
         />
         <CommentsBlock
-          story={this.props}
+          storyId={this.props._id}
           comments={this.state.comments}
           addNewComment={this.addNewComment}
         />
