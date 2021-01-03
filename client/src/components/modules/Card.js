@@ -37,7 +37,7 @@ class Card extends Component {
           creator_name={this.props.creator_name}
           content={this.props.content}
         />
-        <CommentsBlock story={this.props} comments={this.state.comments} />
+        <CommentsBlock storyId={this.props._id} comments={this.state.comments} />
       </div>
     );
   }

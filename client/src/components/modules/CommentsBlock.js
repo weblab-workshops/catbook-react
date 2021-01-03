@@ -14,7 +14,7 @@ import { NewComment } from "./NewPostInput.js";
  *
  * Proptypes
  * @param {ContentObject[]} comments
- * @param {ContentObject} story
+ * @param {string} storyId
  */
 class CommentsBlock extends Component {
   constructor(props) {
@@ -35,7 +35,7 @@ class CommentsBlock extends Component {
               content={comment.content}
             />
           ))}
-          <NewComment storyId={this.props.story._id} />
+          <NewComment storyId={this.props.storyId} />
           {/* TODO (step10): pass addNewComment as prop to NewComment */}
         </div>
       </div>
