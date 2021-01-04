@@ -16,7 +16,7 @@ class CatHappiness extends Component {
     return (
       <div className="CatHappiness-container">
         <div className="CatHappiness-story">
-          <p className="CatHappiness-storyContent">{this.props.catHappiness}</p>
+          <p className="CatHappiness-storyContent">{/* TODO: insert happiness counter here!*/}</p>
         </div>
       </div>
     );
