@@ -12,6 +12,12 @@ class Profile extends Component {
     };
   }
 
+  incrementCatHappiness = () => {
+
+    // TODO Step 2: Implement function to update and maintain state of cat happiness when user clicks on picture
+
+  }
+
   render() {
     return (
       <div>
