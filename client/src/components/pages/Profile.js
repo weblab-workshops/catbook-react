@@ -1,10 +1,15 @@
 import React, { Component } from "react";
+import CatHappiness from '../modules/CatHappiness.js';
 import "../../utilities.css";
 import "./Profile.css";
 
 class Profile extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      catHappiness: 0,
+    };
   }
 
   render() {
@@ -22,10 +27,10 @@ class Profile extends Component {
               Extra Challenge: Modify catbook to show a personalized description here!
             </div>
           </div>
-          {/** TODO STEP 1: 
-            *  Insert Cat Happiness component here. 
-            *  HINT: You probably want to add a new Profile-subContainer to hold the CatHappiness component. 
-            */}
+          <div className="Profile-subContainer u-textCenter">
+            <h4 className="Profile-subTitle">Cat Happiness</h4>
+            <CatHappiness catHappiness={this.state.catHappiness} />
+          </div>
           <div className="Profile-subContainer u-textCenter">
             <h4 className="Profile-subTitle">My Favorite Type of Cat</h4>
             <div id="favorite-cat">corgi</div>
