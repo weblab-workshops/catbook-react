@@ -22,9 +22,7 @@ class Profile extends Component {
       <div>
         <div
           className="Profile-avatarContainer"
-          onClick={() => {
-            this.incrementCatHappiness();
-          }}
+          onClick={this.incrementCatHappiness}
         >
           <div className="Profile-avatar" />
         </div>
