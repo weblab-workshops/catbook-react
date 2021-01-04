@@ -10,13 +10,15 @@ import "./CatHappiness.css";
 class CatHappiness extends Component {
   constructor(props) {
     super(props);
+
+    // TODO Step 1: Initialize state of CatHappiness 
   }
 
   render() {
     return (
       <div className="CatHappiness-container">
         <div className="CatHappiness-story">
-          <p className="CatHappiness-storyContent">{/* TODO: insert happiness counter here!*/}</p>
+          <p className="CatHappiness-storyContent">{/* TODO Step 1: insert happiness counter here!*/}</p>
         </div>
       </div>
     );

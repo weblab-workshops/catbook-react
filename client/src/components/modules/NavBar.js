@@ -8,7 +8,7 @@ import "./NavBar.css";
 class NavBar extends Component {
   render() {
     return (
-      // TODO: Implement NavBar similar to old navigation found in old_index.html. 
+      // TODO Step 0: Implement NavBar similar to old navigation found in old_index.html. 
       // Hint: Look for the <nav> HTML tag. 
       // Remember "class" attributes in HTML are renamed to "className" in ReactJS.
       null
