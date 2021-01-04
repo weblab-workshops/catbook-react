@@ -22,7 +22,10 @@ class Profile extends Component {
               Extra Challenge: Modify catbook to show a personalized description here!
             </div>
           </div>
-          {/* Insert Cat Happiness component here. HINT: You probably want to add a new Profile-subContainer to hold the CatHappiness component. */}
+          {/** TODO STEP 1: 
+            *  Insert Cat Happiness component here. 
+            *  HINT: You probably want to add a new Profile-subContainer to hold the CatHappiness component. 
+            */}
           <div className="Profile-subContainer u-textCenter">
             <h4 className="Profile-subTitle">My Favorite Type of Cat</h4>
             <div id="favorite-cat">corgi</div>
