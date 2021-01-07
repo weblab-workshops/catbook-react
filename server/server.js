@@ -22,13 +22,14 @@ validator.checkSetup();
 const express = require("express"); // backend framework for our node server.
 const mongoose = require("mongoose");
 const path = require("path"); // provide utilities for working with file and directory paths
+require("dotenv").config();
 
 const api = require("./api");
 
 // Server configuration below
 // TODO change connection URL after setting up your own database
 const mongoConnectionURL =
-  "mongodb+srv://admin:fEAkG4eYNy1Yt5aZ@catbook-workshop3.l5sol.mongodb.net/catbook-workshop3?retryWrites=true&w=majority";
+  process.env.MONGO_SRV;
 // TODO change database name to the name you chose
 const databaseName = "catbook";
 const options = { useNewUrlParser: true, useUnifiedTopology: true, dbName: databaseName };
