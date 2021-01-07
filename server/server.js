@@ -23,6 +23,7 @@ const http = require("http");
 const express = require("express"); // backend framework for our node server.
 const mongoose = require("mongoose");
 const path = require("path"); // provide utilities for working with file and directory paths
+const cors = require("cors");
 require("dotenv").config();
 
 const api = require("./api");
@@ -45,6 +46,8 @@ mongoose
 const app = express();
 app.use(validator.checkRoutes);
 
+// Enable CORS requests
+app.use(cors());
 // allow us to parse POST request data using middleware
 app.use(express.json());
 
