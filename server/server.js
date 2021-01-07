@@ -17,6 +17,7 @@
 // this is a tool provided by staff, so you don't need to worry about it
 const validator = require("./validator");
 validator.checkSetup();
+const http = require("http");
 
 // import libraries needed for the webserver to work!
 const express = require("express"); // backend framework for our node server.
@@ -77,6 +78,7 @@ app.use((err, req, res, next) => {
 
 // hardcode port to 3000 for now
 const port = process.env.PORT | 3000;
-app.listen(port, () => {
+const server = http.Server(app);
+server.listen(port, () => {
   console.log(`Server running on port: ${port}`);
 });
