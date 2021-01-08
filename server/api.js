@@ -53,7 +53,7 @@ router.post("/story", (req, res) => {
     creator_name: MY_NAME,
     content: req.body.content,
   };
-  
+
   data.stories.push(newStory);
   res.send(newStory);
 });
@@ -62,10 +62,10 @@ router.post("/comment", (req, res) => {
   const newComment = {
     _id: data.comments.length,
     creator_name: MY_NAME,
-    parent: req.query.parent,
+    parent: req.body.parent,
     content: req.body.content,
   };
-  
+
   data.comments.push(newComment);
   res.send(newComment);
 });
