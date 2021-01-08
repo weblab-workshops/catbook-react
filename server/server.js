@@ -26,8 +26,8 @@ const path = require("path"); // provide utilities for working with file and dir
 const api = require("./api.js");
 // Server configuration below
 // TODO change connection URL after setting up your own database
-const mongoConnectionURL =
-  "mongodb+srv://weblab:jAT4po55IAgYWQgR@catbook-ylndp.mongodb.net/test?retryWrites=true&w=majority";
+const mongoConnectionURL = "";
+
 // TODO change database name to the name you chose
 const databaseName = "catbook";
 const options = { useNewUrlParser: true, useUnifiedTopology: true, dbName: databaseName}
