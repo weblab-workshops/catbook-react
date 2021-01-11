@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import SingleComment from "./SingleComment.js";
 import { NewComment } from "./NewPostInput.js";
+import UserContext from "../UserContext.js";
 
 /**
  * @typedef ContentObject
@@ -22,6 +23,7 @@ class CommentsBlock extends Component {
   }
 
   render() {
+    let userId = this.context;
     return (
       <div className="Card-commentSection">
         <div className="story-comments">
@@ -34,7 +36,7 @@ class CommentsBlock extends Component {
               content={comment.content}
             />
           ))}
-          {this.props.userId && (
+          {userId && (
             <NewComment storyId={this.props.story._id} addNewComment={this.props.addNewComment} />
           )}
         </div>
@@ -42,5 +44,6 @@ class CommentsBlock extends Component {
     );
   }
 }
+CommentsBlock.contextType = UserContext;
 
 export default CommentsBlock;

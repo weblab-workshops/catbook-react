@@ -51,7 +51,6 @@ class Card extends Component {
           story={this.props}
           comments={this.state.comments}
           addNewComment={this.addNewComment}
-          userId={this.props.userId}
         />
       </div>
     );
