@@ -6,7 +6,7 @@ import "./Profile.css";
 const Profile = () => {
   const [catHappiness, setCatHappiness] = useState(0);
 
-  incrementCatHappiness = () => {
+  const incrementCatHappiness = () => {
     // TODO Step 2: Implement function to update and maintain state of cat happiness when user clicks on picture
   };
 
@@ -26,7 +26,7 @@ const Profile = () => {
         </div>
         <div className="Profile-subContainer u-textCenter">
           <h4 className="Profile-subTitle">Cat Happiness</h4>
-          <CatHappiness catHappiness={this.state.catHappiness} />
+          <CatHappiness catHappiness={catHappiness} />
         </div>
         <div className="Profile-subContainer u-textCenter">
           <h4 className="Profile-subTitle">My Favorite Type of Cat</h4>
