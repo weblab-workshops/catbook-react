@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mit6148-workshops/catbook-react.git"
+    "url": "git+https://github.com/weblab-workshops/catbook-react.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mit6148-workshops/catbook-react/issues"
+    "url": "https://github.com/weblab-workshops/catbook-react/issues"
   },
-  "homepage": "https://github.com/mit6148-workshops/catbook-react#readme",
+  "homepage": "https://github.com/weblab-workshops/catbook-react#readme",
   "engines": {
     "node": ">=12.0.0"
   },
@@ -55,7 +55,7 @@
     "react-hot-loader": "^4.13.0",
     "style-loader": "^2.0.0",
     "webpack": "^5.11.1",
-    "webpack-cli": "^4.3.0",
-    "webpack-dev-server": "^3.11.1"
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.5.0"
   }
 }
