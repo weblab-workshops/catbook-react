@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { Link } from "@reach/router";
 import GoogleLogin, { GoogleLogout } from "react-google-login";
 
@@ -11,62 +11,54 @@ const GOOGLE_CLIENT_ID = "121479668229-t5j82jrbi9oejh7c8avada226s75bopn.apps.goo
 /**
  * The navigation bar at the top of all pages. Takes no props.
  */
-class NavBar extends Component {
-  constructor(props) {
-    super(props);
+const NavBar = (props) => {
+  const [loggedIn, setLoggedIn] = useState(false);
 
-    this.state = {
-      loggedIn: false,
-    };
-  }
-
-  handleLogin = (res) => {
+  const handleLogin = (res) => {
     // 'res' contains the response from Google's authentication servers
     console.log(res);
-    this.setState({ loggedIn: true });
+    setLoggedIn(true);
 
     // TODO: Send res.tokenObj.id_token to the backend
   };
 
-  handleLogout = () => {
+  const handleLogout = () => {
     console.log("Logged out successfully!");
-    this.setState({ loggedIn: false });
+    setLoggedIn(false);
 
     // TODO: Tell the backend we logged out
   };
 
-  render() {
-    return (
-      <nav className="NavBar-container">
-        <div className="NavBar-title u-inlineBlock">Catbook</div>
-        <div className="NavBar-linkContainer u-inlineBlock">
-          <Link to="/" className="NavBar-link">
-            Home
-          </Link>
-          <Link to="/profile/" className="NavBar-link">
-            Profile
-          </Link>
-          {this.state.loggedIn ? (
-            <GoogleLogout
-              clientId={GOOGLE_CLIENT_ID}
-              buttonText="Logout"
-              onLogoutSuccess={this.handleLogout}
-              onFailure={(err) => console.log(err)}
-              className="NavBar-link NavBar-login"
-            />
-          ) : (
-            <GoogleLogin
-              clientId={GOOGLE_CLIENT_ID}
-              buttonText="Login"
-              onSuccess={this.handleLogin}
-              onFailure={(err) => console.log(err)}
-              className="NavBar-link NavBar-login"
-            />
-          )}
-        </div>
-      </nav>
-    );
-  }
-}
+  return (
+    <nav className="NavBar-container">
+      <div className="NavBar-title u-inlineBlock">Catbook</div>
+      <div className="NavBar-linkContainer u-inlineBlock">
+        <Link to="/" className="NavBar-link">
+          Home
+        </Link>
+        <Link to="/profile/" className="NavBar-link">
+          Profile
+        </Link>
+        {loggedIn ? (
+          <GoogleLogout
+            clientId={GOOGLE_CLIENT_ID}
+            buttonText="Logout"
+            onLogoutSuccess={handleLogout}
+            onFailure={(err) => console.log(err)}
+            className="NavBar-link NavBar-login"
+          />
+        ) : (
+          <GoogleLogin
+            clientId={GOOGLE_CLIENT_ID}
+            buttonText="Login"
+            onSuccess={handleLogin}
+            onFailure={(err) => console.log(err)}
+            className="NavBar-link NavBar-login"
+          />
+        )}
+      </div>
+    </nav>
+  );
+};
 
 export default NavBar;
