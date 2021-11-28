@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "@reach/router";
 import GoogleLogin, { GoogleLogout } from "react-google-login";
 
@@ -10,12 +10,8 @@ const GOOGLE_CLIENT_ID = "121479668229-t5j82jrbi9oejh7c8avada226s75bopn.apps.goo
 /**
  * The navigation bar at the top of all pages. Takes no props.
  */
-class NavBar extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  handleLogin = (res) => {
+const NavBar = () => {
+  const handleLogin = (res) => {
     // 'res' contains the response from Google's authentication servers
     console.log(res);
 
@@ -24,29 +20,27 @@ class NavBar extends Component {
 
   // TODO: Add a function for handleLogout here
 
-  render() {
-    // TODO: Add a logout button
-    return (
-      <nav className="NavBar-container">
-        <div className="NavBar-title u-inlineBlock">Catbook</div>
-        <div className="NavBar-linkContainer u-inlineBlock">
-          <Link to="/" className="NavBar-link">
-            Home
-          </Link>
-          <Link to="/profile/" className="NavBar-link">
-            Profile
-          </Link>
-          <GoogleLogin
-            clientId={GOOGLE_CLIENT_ID}
-            buttonText="Login"
-            onSuccess={this.handleLogin}
-            onFailure={(err) => console.log(err)}
-            className="NavBar-link NavBar-login"
-          />
-        </div>
-      </nav>
-    );
-  }
-}
+  // TODO: Add a logout button
+  return (
+    <nav className="NavBar-container">
+      <div className="NavBar-title u-inlineBlock">Catbook</div>
+      <div className="NavBar-linkContainer u-inlineBlock">
+        <Link to="/" className="NavBar-link">
+          Home
+        </Link>
+        <Link to="/profile/" className="NavBar-link">
+          Profile
+        </Link>
+        <GoogleLogin
+          clientId={GOOGLE_CLIENT_ID}
+          buttonText="Login"
+          onSuccess={handleLogin}
+          onFailure={(err) => console.log(err)}
+          className="NavBar-link NavBar-login"
+        />
+      </div>
+    </nav>
+  );
+};
 
 export default NavBar;
