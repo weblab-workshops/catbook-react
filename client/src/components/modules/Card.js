@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { get } from "../../utilities";
 import SingleStory from "./SingleStory.js";
 import CommentsBlock from "./CommentsBlock.js";
@@ -13,44 +13,27 @@ import "./Card.css";
  * @param {string} creator_name
  * @param {string} content of the story
  */
-class Card extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      comments: [],
-    };
-  }
+const Card = (props) => {
+  const [comments, setComments] = useState([]);
 
-  componentDidMount() {
-    get("/api/comment", { parent: this.props._id }).then((comments) => {
+  useEffect(() => {
+    get("/api/comment", { parent: props._id }).then((comments) => {
       this.setState({ comments: comments });
     });
-  }
+  }, []);
 
   // this gets called when the user pushes "Submit", so their
   // post gets added to the screen right away
-  addNewComment = (commentObj) => {
-    this.setState({
-      comments: this.state.comments.concat([commentObj]),
-    });
+  const addNewComment = (commentObj) => {
+    setComments(comments.concat([commentObj]));
   };
 
-  render() {
-    return (
-      <div className="Card-container">
-        <SingleStory
-          _id={this.props._id}
-          creator_name={this.props.creator_name}
-          content={this.props.content}
-        />
-        <CommentsBlock
-          storyId={this.props._id}
-          comments={this.state.comments}
-          addNewComment={this.addNewComment}
-        />
-      </div>
-    );
-  }
-}
+  return (
+    <div className="Card-container">
+      <SingleStory _id={props._id} creator_name={props.creator_name} content={props.content} />
+      <CommentsBlock storyId={props._id} comments={comments} addNewComment={addNewComment} />
+    </div>
+  );
+};
 
 export default Card;
