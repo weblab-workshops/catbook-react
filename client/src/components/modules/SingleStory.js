@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import { Link } from "@reach/router";
+import React from "react";
 
 /**
  * Story is a component that renders creator and content of a story
@@ -9,19 +8,13 @@ import { Link } from "@reach/router";
  * @param {string} creator_name
  * @param {string} content of the story
  */
-class SingleStory extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div className="Card-story">
-        <span className="u-bold">{this.props.creator_name}</span>
-        <p className="Card-storyContent">{this.props.content}</p>
-      </div>
-    );
-  }
-}
+const SingleStory = (props) => {
+  return (
+    <div className="Card-story">
+      <span className="u-bold">{props.creator_name}</span>
+      <p className="Card-storyContent">{props.content}</p>
+    </div>
+  );
+};
 
 export default SingleStory;
