@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import { Link } from "@reach/router";
+import React from "react";
 
 /**
  * Component to render a single comment
@@ -9,19 +8,13 @@ import { Link } from "@reach/router";
  * @param {string} creator_name
  * @param {string} content of the comment
  */
-class SingleComment extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div className="Card-commentBody">
-        <span className="u-bold">{this.props.creator_name}</span>
-        <span>{" | " + this.props.content}</span>
-      </div>
-    );
-  }
-}
+const SingleComment = () => {
+  return (
+    <div className="Card-commentBody">
+      <span className="u-bold">{props.creator_name}</span>
+      <span>{" | " + props.content}</span>
+    </div>
+  );
+};
 
 export default SingleComment;
