@@ -38,30 +38,33 @@ const Chatbook = (props) => {
       }
     });
 
+    socket.on("activeUsers", (data) => {
+      setActiveUsers([ALL_CHAT, ...data.activeUsers]);
+    });
+  }, []);
+
+  useEffect(() => {
+    loadMessageHistory(activeChat.recipient);
+
     socket.on("message", (data) => {
       if (
         (data.recipient._id === activeChat.recipient._id && data.sender._id === props.userId) ||
         (data.sender._id === activeChat.recipient._id && data.recipient._id === props.userId) ||
         (data.recipient._id === "ALL_CHAT" && activeChat.recipient._id === "ALL_CHAT")
       ) {
+        console.log(activeChat);
+        console.log(data);
         setActiveChat({
           recipient: activeChat.recipient,
-          messages: [...activeChat.messages, ...data],
+          messages: [...activeChat.messages, data],
         });
       }
     });
 
-    socket.on("activeUsers", (data) => {
-      setActiveUsers([ALL_CHAT, ...data.activeUsers]);
-    });
-  }, []);
+  }, [activeChat.recipient]);
 
   const setActiveUser = (user) => {
     loadMessageHistory(user);
-    setActiveChat({
-      recipient: user,
-      messages: [],
-    });
   };
 
   if (!props.userId) return <div>Log in before using Chatbook</div>;
