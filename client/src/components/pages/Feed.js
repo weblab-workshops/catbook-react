@@ -6,6 +6,7 @@ import { get } from "../../utilities";
 
 const Feed = (props) => {
   const [stories, setStories] = useState([]);
+  const [storiesList, setStoriesList] = useState(null);
 
   // called when the "Feed" component "mounts", i.e.
   // when it shows up on screen
@@ -13,9 +14,7 @@ const Feed = (props) => {
     document.title = "News Feed";
     get("/api/stories").then((storyObjs) => {
       let reversedStoryObjs = storyObjs.reverse();
-      reversedStoryObjs.map((storyObj) => {
-        setStories([...stories, storyObj]);
-      });
+      setStories([...reversedStoryObjs]);
     });
   }, []);
 
@@ -25,22 +24,25 @@ const Feed = (props) => {
     setStories([storyObj, ...stories]);
   };
 
-  let storiesList = null;
-  const hasStories = stories.length !== 0;
-  if (hasStories) {
-    storiesList = stories.map((storyObj) => (
-      <Card
-        key={`Card_${storyObj._id}`}
-        _id={storyObj._id}
-        creator_name={storyObj.creator_name}
-        creator_id={storyObj.creator_id}
-        content={storyObj.content}
-        userId={props.userId}
-      />
-    ));
-  } else {
-    storiesList = <div>No stories!</div>;
-  }
+  useEffect(() => {
+    const hasStories = stories.length !== 0;
+    if (hasStories) {
+      setStoriesList(
+        stories.map((storyObj) => (
+          <Card
+            key={`Card_${storyObj._id}`}
+            _id={storyObj._id}
+            creator_name={storyObj.creator_name}
+            creator_id={storyObj.creator_id}
+            content={storyObj.content}
+            userId={props.userId}
+          />
+        ))
+      );
+    } else {
+      setStoriesList(<div>No stories!</div>);
+    }
+  }, [stories, props.userId]);
   return (
     <>
       {props.userId && <NewStory addNewStory={addNewStory} />}
