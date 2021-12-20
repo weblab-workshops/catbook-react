@@ -5,7 +5,15 @@ import { get } from "../../utilities";
 
 import "./Card.css";
 
-const Card = (props) => {
+type CardProps = {
+  _id: string;
+  creator_name: string;
+  creator_id: string;
+  content: string;
+  userId: string;
+}
+
+const Card = (props : CardProps) => {
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
