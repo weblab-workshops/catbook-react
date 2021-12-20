@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 import "./SingleMessage.css";
 
@@ -8,19 +8,13 @@ import "./SingleMessage.css";
  * Proptypes
  * @param {MessageObject} message
  */
-class SingleMessage extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div className={"u-flex u-flex-alignCenter SingleMessage-container"}>
-        <span className=" SingleMessage-sender u-bold">{this.props.message.sender.name + ":"}</span>
-        <span className="SingleMessage-content">{this.props.message.content}</span>
-      </div>
-    );
-  }
-}
+const SingleMessage = (props) => {
+  return (
+    <div className={"u-flex u-flex-alignCenter SingleMessage-container"}>
+      <span className=" SingleMessage-sender u-bold">{props.message.sender.name + ":"}</span>
+      <span className="SingleMessage-content">{props.message.content}</span>
+    </div>
+  );
+};
 
 export default SingleMessage;

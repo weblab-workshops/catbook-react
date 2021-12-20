@@ -1,61 +1,52 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import Card from "../modules/Card.js";
 import { NewStory } from "../modules/NewPostInput.js";
 
 import { get } from "../../utilities";
 
-class Feed extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      stories: [],
-    };
-  }
+const Feed = (props) => {
+  const [stories, setStories] = useState([]);
 
   // called when the "Feed" component "mounts", i.e.
   // when it shows up on screen
-  componentDidMount() {
+  useEffect(() => {
     document.title = "News Feed";
     get("/api/stories").then((storyObjs) => {
       let reversedStoryObjs = storyObjs.reverse();
       reversedStoryObjs.map((storyObj) => {
-        this.setState({ stories: this.state.stories.concat([storyObj]) });
+        setStories([...stories, storyObj]);
       });
     });
-  }
+  }, []);
 
   // this gets called when the user pushes "Submit", so their
   // post gets added to the screen right away
-  addNewStory = (storyObj) => {
-    this.setState({
-      stories: [storyObj].concat(this.state.stories),
-    });
+  const addNewStory = (storyObj) => {
+    setStories([storyObj, ...stories]);
   };
 
-  render() {
-    let storiesList = null;
-    const hasStories = this.state.stories.length !== 0;
-    if (hasStories) {
-      storiesList = this.state.stories.map((storyObj) => (
-        <Card
-          key={`Card_${storyObj._id}`}
-          _id={storyObj._id}
-          creator_name={storyObj.creator_name}
-          creator_id={storyObj.creator_id}
-          content={storyObj.content}
-          userId={this.props.userId}
-        />
-      ));
-    } else {
-      storiesList = <div>No stories!</div>;
-    }
-    return (
-      <>
-        {this.props.userId && <NewStory addNewStory={this.addNewStory} />}
-        {storiesList}
-      </>
-    );
+  let storiesList = null;
+  const hasStories = stories.length !== 0;
+  if (hasStories) {
+    storiesList = stories.map((storyObj) => (
+      <Card
+        key={`Card_${storyObj._id}`}
+        _id={storyObj._id}
+        creator_name={storyObj.creator_name}
+        creator_id={storyObj.creator_id}
+        content={storyObj.content}
+        userId={props.userId}
+      />
+    ));
+  } else {
+    storiesList = <div>No stories!</div>;
   }
-}
+  return (
+    <>
+      {props.userId && <NewStory addNewStory={addNewStory} />}
+      {storiesList}
+    </>
+  );
+};
 
 export default Feed;

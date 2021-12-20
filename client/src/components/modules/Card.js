@@ -1,61 +1,41 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import SingleStory from "./SingleStory.js";
 import CommentsBlock from "./CommentsBlock.js";
 import { get } from "../../utilities";
 
 import "./Card.css";
 
-/**
- * Card is a component for displaying content like stories
- *
- * Proptypes
- * @param {string} _id of the story
- * @param {string} creator_name
- * @param {string} creator_id
- * @param {string} content of the story
- */
-class Card extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      comments: [],
-    };
-  }
+const Card = (props) => {
+  const [comments, setComments] = useState([]);
 
-  componentDidMount() {
-    get("/api/comment", { parent: this.props._id }).then((comments) => {
-      this.setState({
-        comments: comments,
-      });
+  useEffect(() => {
+    get("/api/comment", { parent: props._id }).then((comments) => {
+      setComments(comments);
     });
-  }
+  }, []);
 
   // this gets called when the user pushes "Submit", so their
   // post gets added to the screen right away
-  addNewComment = (commentObj) => {
-    this.setState({
-      comments: this.state.comments.concat([commentObj]),
-    });
+  const addNewComment = (commentObj) => {
+    setComments([...comments, commentObj]);
   };
 
-  render() {
-    return (
-      <div className="Card-container">
-        <SingleStory
-          _id={this.props._id}
-          creator_name={this.props.creator_name}
-          creator_id={this.props.creator_id}
-          content={this.props.content}
-        />
-        <CommentsBlock
-          story={this.props}
-          comments={this.state.comments}
-          addNewComment={this.addNewComment}
-          userId={this.props.userId}
-        />
-      </div>
-    );
-  }
-}
+  return (
+    <div className="Card-container">
+      <SingleStory
+        _id={props._id}
+        creator_name={props.creator_name}
+        creator_id={props.creator_id}
+        content={props.content}
+      />
+      <CommentsBlock
+        story={props}
+        comments={comments}
+        addNewComment={addNewComment}
+        userId={props.userId}
+      />
+    </div>
+  );
+};
 
 export default Card;
