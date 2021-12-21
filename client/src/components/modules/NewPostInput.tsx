@@ -3,16 +3,25 @@ import React, { useState } from "react";
 import "./NewPostInput.css";
 import { post } from "../../utilities";
 
-const NewPostInput = (props) => {
+import { Comment } from "./SingleComment";
+import { Story } from "./SingleStory";
+import {User} from "../pages/Chatbook"
+
+type NewPostInputProps = {
+  defaultText: string;
+  onSubmit: (value: string) => void;
+}
+
+const NewPostInput = (props: NewPostInputProps) => {
   const [value, setValue] = useState("");
 
   // called whenever the user types in the new post input box
-  const handleChange = (event) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
   };
 
   // called when the user hits "Submit" for a new post
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.preventDefault();
     props.onSubmit && props.onSubmit(value);
     setValue("");
@@ -39,6 +48,11 @@ const NewPostInput = (props) => {
   );
 };
 
+type NewCommentProps = {
+  storyId: string;
+  addNewComment: (comment: Comment) => void;
+}
+
 /**
  * New Comment is a New Post component for comments
  *
@@ -46,8 +60,8 @@ const NewPostInput = (props) => {
  * @param {string} defaultText is the placeholder text
  * @param {string} storyId to add comment to
  */
-const NewComment = (props) => {
-  const addComment = (value) => {
+const NewComment = (props: NewCommentProps) => {
+  const addComment = (value: string) => {
     const body = { parent: props.storyId, content: value };
     post("/api/comment", body).then((comment) => {
       // display this comment on the screen
@@ -58,7 +72,11 @@ const NewComment = (props) => {
   return <NewPostInput defaultText="New Comment" onSubmit={addComment} />;
 };
 
-const NewStory = (props) => {
+type NewStoryProps = {
+  addNewStory: (story: Story) => void;
+}
+
+const NewStory = (props: NewStoryProps) => {
   const addStory = (value) => {
     const body = { content: value };
     post("/api/story", body).then((story) => {
@@ -70,8 +88,12 @@ const NewStory = (props) => {
   return <NewPostInput defaultText="New Story" onSubmit={addStory} />;
 };
 
-const NewMessage = (props) => {
-  const sendMessage = (value) => {
+type NewMessageProps = {
+  recipient: User
+}
+
+const NewMessage = (props: NewMessageProps) => {
+  const sendMessage = (value: string) => {
     const body = { recipient: props.recipient, content: value };
     post("/api/message", body);
   };
@@ -79,4 +101,4 @@ const NewMessage = (props) => {
   return <NewPostInput defaultText="New Message" onSubmit={sendMessage} />;
 };
 
-export { NewComment, NewStory, NewMessage };
+export { NewPostInput, NewComment, NewStory, NewMessage };

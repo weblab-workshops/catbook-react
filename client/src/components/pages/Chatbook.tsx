@@ -1,23 +1,42 @@
 import React, { useState, useEffect } from "react";
-import ChatList from "../modules/ChatList.js";
-import Chat from "../modules/Chat.js";
+import ChatList from "../modules/ChatList";
+import Chat from "../modules/Chat";
 import { socket } from "../../client-socket.js";
 import { get } from "../../utilities";
 
 import "./Chatbook.css";
 
-const ALL_CHAT = {
+type User = {
+  _id: string;
+  name: string;
+}
+
+type Message = {
+  sender: User;
+  content: string;
+}
+
+type ChatData = {
+  messages: Message[];
+  recipient: User;
+}
+
+type ChatbookProps = {
+  userId: string;
+}
+
+const ALL_CHAT : User = {
   _id: "ALL_CHAT",
   name: "ALL CHAT",
 };
 
-const Chatbook = (props) => {
+const Chatbook = (props: ChatbookProps) => {
 
-  const [activeUsers, setActiveUsers] = useState([]);
-  const [activeChat, setActiveChat] = useState({ recipient: ALL_CHAT, messages: [] });
+  const [activeUsers, setActiveUsers] = useState<User[]>([]);
+  const [activeChat, setActiveChat] = useState<ChatData>({ recipient: ALL_CHAT, messages: [] });
 
-  const loadMessageHistory = (recipient) => {
-    get("/api/chat", { recipient_id: recipient._id }).then((messages) => {
+  const loadMessageHistory = (recipient: User) => {
+    get("/api/chat", { recipient_id: recipient._id }).then((messages: Message[]) => {
       setActiveChat({
         recipient: recipient,
         messages: messages,
@@ -63,7 +82,7 @@ const Chatbook = (props) => {
 
   }, [activeChat.recipient]);
 
-  const setActiveUser = (user) => {
+  const setActiveUser = (user: User) => {
     loadMessageHistory(user);
   };
 
@@ -88,4 +107,4 @@ const Chatbook = (props) => {
   );
 };
 
-export default Chatbook;
+export {User, Message, ChatData, Chatbook};

@@ -1,8 +1,15 @@
 import React from "react";
+import { User } from "../pages/Chatbook";
 
 import "./SingleUser.css";
 
-const SingleUser = (props) => {
+type SingleUserProps = {
+  user: User;
+  active: boolean;
+  setActiveUser: (user: User) => void;
+}
+
+const SingleUser = (props: SingleUserProps) => {
   return (
     <div
       className={`SingleUser-container u-pointer ${

@@ -1,14 +1,14 @@
 import React from "react";
+import { Message } from "../pages/Chatbook";
+
 
 import "./SingleMessage.css";
 
-/**
- * Renders a single chat message
- *
- * Proptypes
- * @param {MessageObject} message
- */
-const SingleMessage = (props) => {
+type SingleMessageProps = {
+  message: Message;
+}
+
+const SingleMessage = (props: SingleMessageProps) => {
   return (
     <div className={"u-flex u-flex-alignCenter SingleMessage-container"}>
       <span className=" SingleMessage-sender u-bold">{props.message.sender.name + ":"}</span>

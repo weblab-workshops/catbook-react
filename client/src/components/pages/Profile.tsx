@@ -1,18 +1,23 @@
 import React, { useState, useEffect } from "react";
-import CatHappiness from "../modules/CatHappiness.js";
+import CatHappiness from "../modules/CatHappiness";
 import { get } from "../../utilities";
+import { User } from "./Chatbook";
 
 import "../../utilities.css";
 import "./Profile.css";
 
-const Profile = (props) => {
-  const [user, setUser] = useState(undefined);
+type ProfileProps = {
+  userId: string;
+};
+
+const Profile = (props: ProfileProps) => {
+  const [user, setUser] = useState<User | undefined>(undefined);
   const [catHappiness, setCatHappiness] = useState(0);
 
   useEffect(() => {
     document.title = "Profile Page";
     get(`/api/user`, { userid: props.userId }).then((user) => setUser(user));
-  }, []);
+  }, [props.userId]);
 
   const incrementCatHappiness = () => {
     setCatHappiness(catHappiness + 1);
