@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import NavBar from "./modules/NavBar.js";
 import Profile from "./pages/Profile.js";
 import Feed from "./pages/Feed.js";
