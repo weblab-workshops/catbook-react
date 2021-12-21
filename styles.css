@@ -66,7 +66,7 @@ body {
   border-radius: 50%;
 
   /* Add image */
-  background-image: url("corgi.jpg");
+  background-image: url("cat.jpeg");
 
   /* Centering on image`s center*/
   background-position-y: center;
