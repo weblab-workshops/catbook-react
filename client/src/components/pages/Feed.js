@@ -1,30 +1,24 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { get } from "../../utilities";
 // TODO (step2): import SingleStory
 // TODO (step4): import NewStory
 // TODO (step6): remove SingleStory import, import Card
 
-class Feed extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      stories: [],
-    };
-  }
+const Feed = () => {
+  // TODO (step1): define state to hold stories
+  const [stories, setStories] = useState([]);
 
-  componentDidMount() {
+  useEffect(() => {
     get("/api/stories").then((storyObjs) => {
-      this.setState({ stories: storyObjs });
+      setStories(storyObjs);
     });
-  }
+  }, []);
 
-  render() {
-    return <div>{JSON.stringify(this.state.stories)}</div>;
-    // TODO (step2): render a SingleStory with hardcoded props
-    // TODO (step3): map the state to SingleStory components
-    // TODO (step4): add in the NewStory component
-    // TODO (step6): use Card instead of SingleStory
-  }
-}
+  return <div>{JSON.stringify(stories)}</div>;
+  // TODO (step2): render a SingleStory with hardcoded props
+  // TODO (step3): map the state to SingleStory components
+  // TODO (step4): add in the NewStory component
+  // TODO (step6): use Card instead of SingleStory
+};
 
 export default Feed;

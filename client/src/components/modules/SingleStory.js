@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 // TODO (step2): import Card.css
 
@@ -10,21 +10,13 @@ import React, { Component } from "react";
  * @param {string} creator_name
  * @param {string} content of the story
  */
-class SingleStory extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  componentDidMount() {}
-
-  render() {
-    return (
-      <div className="Card-story">
-        This is a SingleStory!
-        {/* TODO (step2): use JSX and props to render story creator and content */}
-      </div>
-    );
-  }
-}
+const SingleStory = () => {
+  return (
+    <div className="Card-story">
+      This is a SingleStory!
+      {/* TODO (step2): use JSX and props to render story creator and content */}
+    </div>
+  );
+};
 
 export default SingleStory;
