@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 // TODO (step9): import SingleComment and NewComment
 
 /**
@@ -15,16 +15,8 @@ import React, { Component } from "react";
  * @param {ContentObject[]} comments
  * @param {ContentObject} story
  */
-class CommentsBlock extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  componentDidMount() {}
-
-  render() {
-    // TODO (step9): implement render
-  }
-}
+const CommentsBlock = () => {
+  // TODO (step9): implement render
+};
 
 export default CommentsBlock;
