@@ -48,8 +48,6 @@ const Card = (props) => {
         {commentsList}
       </div>
   )
-  // TODO (step7): map comments from state into SingleComment
-  // components (refer to Feed)
   // TODO (step8): add in the NewComment component (refer to Feed)
   // TODO (step9): use CommentsBlock
 };
