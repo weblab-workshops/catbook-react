@@ -17,8 +17,8 @@ const Card = (props) => {
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
-    get("/api/comment", { parent: props._id }).then((comments) => {
-      this.setState({ comments: comments });
+    get("/api/comment", { parent: props._id }).then((commentObjs) => {
+      setComments(commentObjs);
     });
   }, []);
 
