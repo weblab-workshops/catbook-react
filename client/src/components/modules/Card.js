@@ -25,7 +25,6 @@ const Card = () => {
 
   // TODO (step6): render a SingleStory using props,
   // and render the comments from state (with JSON.stringify)
-  // from state using a map (refer to Feed)
   // TODO (step7): map comments from state into SingleComment
   // components (refer to Feed)
   // TODO (step8): add in the NewComment component (refer to Feed)
