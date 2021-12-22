@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 /**
  * Component to render a single comment
@@ -8,23 +8,15 @@ import React, { Component } from "react";
  * @param {string} creator_name
  * @param {string} content of the comment
  */
-class SingleComment extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  componentDidMount() {}
-
-  render() {
-    return (
-      <div className="Card-commentBody">
+const SingleComment = (props) => {
+  return (
+    <div className="Card-commentBody">
         <div className="Card-commentBody">
-          <span className="u-bold">{this.props.creator_name}</span>
-          <span>{" | " + this.props.content}</span>
+          <span className="u-bold">{props.creator_name}</span>
+          <span>{" | " + props.content}</span>
         </div>
       </div>
-    );
-  }
-}
+  );
+};
 
 export default SingleComment;
