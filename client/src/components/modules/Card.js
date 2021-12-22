@@ -44,7 +44,7 @@ const Card = (props) => {
           creator_name={props.creator_name}
           content={props.content}
         />
-        <CommentsBlock storyId={this.props._id} comments={this.state.comments} />
+        <CommentsBlock storyId={props._id} comments={comments} />
       </div>
   )
 };
