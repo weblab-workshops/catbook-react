@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { post } from "../../utilities";
 
 import "./NewPostInput.css";
@@ -11,73 +11,53 @@ import "./NewPostInput.css";
  * @param {string} storyId optional prop, used for comments
  * @param {({storyId, value}) => void} onSubmit: (function) triggered when this post is submitted, takes {storyId, value} as parameters
  */
-class NewPostInput extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      value: "",
-    };
-  }
-
-  componentDidMount() {}
+const NewPostInput = (props) => {
+  const [value, setValue] = useState("");
 
   // called whenever the user types in the new post input box
-  handleChange = (event) => {
-    this.setState({
-      value: event.target.value,
-    });
+  const handleChange = (event) => {
+    setValue(event.target.value);
   };
 
   // called when the user hits "Submit" for a new post
-  handleSubmit = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    this.props.onSubmit && this.props.onSubmit(this.state.value);
-    this.setState({
-      value: "",
-    });
+    props.onSubmit && props.onSubmit(value);
+    setValue("");
   };
 
-  render() {
-    return (
-      <div className="u-flex">
-        <input
-          type="text"
-          placeholder={this.props.defaultText}
-          value={this.state.value}
-          onChange={this.handleChange}
-          className="NewPostInput-input"
-        />
-        <button
-          type="submit"
-          className="NewPostInput-button u-pointer"
-          value="Submit"
-          onClick={this.handleSubmit}
-        >
-          Submit
-        </button>
-      </div>
-    );
-  }
-}
+  return (
+    <div className="u-flex">
+      <input
+        type="text"
+        placeholder={props.defaultText}
+        value={value}
+        onChange={handleChange}
+        className="NewPostInput-input"
+      />
+      <button
+        type="submit"
+        className="NewPostInput-button u-pointer"
+        value="Submit"
+        onClick={handleSubmit}
+      >
+        Submit
+      </button>
+    </div>
+  );
+};
 
 /**
  * New Story is a New Post component for stories
  */
-class NewStory extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  addStory = (value) => {
+const NewStory = () => {
+  const addStory = (value) => {
     const body = { content: value };
     post("/api/story", body);
   };
 
-  render() {
-    return <NewPostInput defaultText="New Story" onSubmit={this.addStory} />;
-  }
-}
+  return <NewPostInput defaultText="New Story" onSubmit={addStory} />;
+};
 
 /**
  * New Comment is a New Post component for comments
@@ -85,19 +65,13 @@ class NewStory extends Component {
  * Proptypes
  * @param {string} storyId to add comment to
  */
-class NewComment extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  addComment = (value) => {
-    const body = { parent: this.props.storyId, content: value };
+const NewComment = (props) => {
+  const addComment = (value) => {
+    const body = { parent: props.storyId, content: value };
     post("/api/comment", body);
   };
 
-  render() {
-    return <NewPostInput defaultText="New Comment" onSubmit={this.addComment} />;
-  }
-}
+  return <NewPostInput defaultText="New Comment" onSubmit={addComment} />;
+};
 
 export { NewComment, NewStory };
