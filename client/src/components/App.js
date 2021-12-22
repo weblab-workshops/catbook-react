@@ -4,6 +4,10 @@ import { Router } from "@reach/router";
 import Feed from "./pages/Feed.js";
 import NotFound from "./pages/NotFound.js";
 import Profile from "./pages/Profile.js";
+import Form1 from "./pages/Form1.js";
+import Form2 from "./pages/Form2.js";
+import Form3 from "./pages/Form3.js";
+
 
 // to use styles, import the necessary CSS files
 import "../utilities.css";
@@ -25,6 +29,9 @@ const App = () => {
         <Router>
           <Feed path="/" />
           <Profile path="/profile/" />
+          <Form1 path="/form1/" />
+          <Form2 path="/form2/" />
+          <Form3 path="/form3/" />
           <NotFound default />
         </Router>
       </div>

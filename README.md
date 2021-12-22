@@ -4,7 +4,9 @@
 
 run `npm start` in one terminal and `npm run hotloader` in another
 
-visit `http://localhost:5000`
+visit `http://localhost:5050`
+
+NOTE: we are at localhost 5050 and NOT 5000, because vincent's computer is being bad
 
 ## don't touch
 

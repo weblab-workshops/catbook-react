@@ -27,7 +27,7 @@ function checkHotLoader() {
 
     server.once("listening", () => server.close());
     server.once("close", () => resolve(false));
-    server.listen(5000);
+    server.listen(5050);
   });
 }
 

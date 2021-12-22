@@ -25,13 +25,13 @@ const Profile = () => {
       >
         <div className="Profile-avatar" />
       </div>
-      <h1 className="Profile-name u-textCenter">Shannen Wu</h1>
+      <h1 className="Profile-name u-textCenter">Vincent Huang</h1>
       <hr className="Profile-line" />
       <div className="u-flex">
         <div className="Profile-subContainer u-textCenter">
           <h4 className="Profile-subTitle">About Me</h4>
           <div id="profile-description">
-            I am really allergic to cats i don't know why i have a catbook
+            uwu
           </div>
         </div>
         <div className="Profile-subContainer u-textCenter">

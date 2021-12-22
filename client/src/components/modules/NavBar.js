@@ -17,6 +17,9 @@ const NavBar = () => {
         <Link to="/profile/" className="NavBar-link">
           Profile
         </Link>
+        <Link to="/form1/" className="NavBar-link">
+          Feedback Form
+        </Link>
       </div>
     </nav>
   );
