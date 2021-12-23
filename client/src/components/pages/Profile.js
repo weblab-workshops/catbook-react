@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import CatHappiness from "../modules/CatHappiness.js";
+import Cube from "../modules/Cube.js";
 
 import "../../utilities.css";
 import "./Profile.css";
@@ -22,21 +23,21 @@ const Profile = () => {
     var abcOptions = { add_classes: true };
     var audioParams = { chordsOff: true };
     var abc = "X:1\nK:D\nDDAA|BBA2|\n";
-    var cursorControl = function() {
+    var cursorControl = function () {
       this.beatSubdivisions = 2;
-      this.onStart = function() {
+      this.onStart = function () {
         console.log("The tune has started playing.");
-        }
-      this.onFinished = function() {
+      };
+      this.onFinished = function () {
         console.log("The tune has stopped playing.");
-        }
-      this.onBeat = function(beatNumber) {
+      };
+      this.onBeat = function (beatNumber) {
         console.log("Beat " + beatNumber + " is happening.");
-        }
-      this.onEvent = function(event) {
+      };
+      this.onEvent = function (event) {
         console.log("An event is happening", event);
-        }
-    }
+      };
+    };
     if (abcjs.synth.supportsAudio()) {
       var synthControl = new abcjs.synth.SynthController();
       synthControl.load("#audio", cursorControl, {
@@ -87,14 +88,13 @@ const Profile = () => {
           <div id="profile-description">uwu</div>
         </div>
         <div className="Profile-subContainer u-textCenter">
-          <h4 className="Profile-subTitle">Cat Happiness</h4>
-          <CatHappiness catHappiness={catHappiness} />
+          <Cube />
         </div>
-        </div>
-        <div className="Profile-subContainer u-textCenter">
-          <div id="paper"></div>
-          <div id="audio"></div>
-        </div>
+      </div>
+      <div className="Profile-subContainer u-textCenter">
+        <div id="paper"></div>
+        <div id="audio"></div>
+      </div>
     </>
   );
 };
