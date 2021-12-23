@@ -1,5 +1,9 @@
 import React from "react";
 
+import {Button, Select, Input, Checkbox} from 'antd';
+
+const { Option } = Select;
+
 const Form3 = () => {
   return (
     <div>
@@ -7,26 +11,26 @@ const Form3 = () => {
 
       <label for="cars">What do you need help with? </label>
 
-      <select name="category" id="category">
-        <option value="1">Catbook sucks</option>
-        <option value="2">Where's the log in button ????</option>
-        <option value="3">I want a different propic</option>
-        <option value="4">Oink</option>
-      </select>
+      <Select name="category" id="category" style={{width: 200}}>
+        <Option value="1">Catbook sucks</Option>
+        <Option value="2">Where's the log in button ????</Option>
+        <Option value="3">I want a different propic</Option>
+        <Option value="4">Oink</Option>
+      </Select>
 
       <div />
 
       <label for="text">Describe your issue in more detail: </label>
-      <input type="text" id="text" name="text" />
+      <Input type="text" id="text" name="text" />
       <div />
 
       <label for="contact">Can we contact you about your feedback? </label>
 
-      <input type="checkbox" id="contact" name="contact" value="Contact" />
+      <Checkbox id="contact" name="contact" value="Contact" />
 
       <div />
 
-      <button onClick={() => {}}>Submit</button>
+      <Button onClick={() => {}} type="dashed">Submit</Button>
     </div>
   );
 };
