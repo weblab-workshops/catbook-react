@@ -20,9 +20,9 @@ const Form1 = () => {
       <input type="text" id="text" name="text" />
       <div />
 
-      <input type="checkbox" id="contact" name="contact" value="Contact" />
-
       <label for="contact">Can we contact you about your feedback? </label>
+
+      <input type="checkbox" id="contact" name="contact" value="Contact" />
 
       <div />
 
