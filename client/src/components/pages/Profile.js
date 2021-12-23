@@ -4,6 +4,9 @@ import CatHappiness from "../modules/CatHappiness.js";
 import "../../utilities.css";
 import "./Profile.css";
 
+import abcjs from "abcjs";
+import "abcjs/abcjs-audio.css";
+
 const Profile = () => {
   const [catHappiness, setCatHappiness] = useState(0);
 
@@ -14,6 +17,57 @@ const Profile = () => {
   const incrementCatHappiness = () => {
     setCatHappiness(catHappiness + 1);
   };
+
+  useEffect(() => {
+    var abcOptions = { add_classes: true };
+    var audioParams = { chordsOff: true };
+    var abc = "X:1\nK:D\nDDAA|BBA2|\n";
+    var cursorControl = function() {
+      this.beatSubdivisions = 2;
+      this.onStart = function() {
+        console.log("The tune has started playing.");
+        }
+      this.onFinished = function() {
+        console.log("The tune has stopped playing.");
+        }
+      this.onBeat = function(beatNumber) {
+        console.log("Beat " + beatNumber + " is happening.");
+        }
+      this.onEvent = function(event) {
+        console.log("An event is happening", event);
+        }
+    }
+    if (abcjs.synth.supportsAudio()) {
+      var synthControl = new abcjs.synth.SynthController();
+      synthControl.load("#audio", cursorControl, {
+        displayLoop: true,
+        displayRestart: true,
+        displayPlay: true,
+        displayProgress: true,
+        displayWarp: true,
+      });
+
+      var visualObj = abcjs.renderAbc("paper", abc, abcOptions);
+      var createSynth = new abcjs.synth.CreateSynth();
+      createSynth
+        .init({ visualObj: visualObj[0] })
+        .then(function () {
+          synthControl
+            .setTune(visualObj[0], false, audioParams)
+            .then(function () {
+              console.log("Audio successfully loaded.");
+            })
+            .catch(function (error) {
+              console.warn("Audio problem:", error);
+            });
+        })
+        .catch(function (error) {
+          console.warn("Audio problem:", error);
+        });
+    } else {
+      document.querySelector("#audio").innerHTML = "Audio is not supported in this browser.";
+    }
+  }, []);
 
   return (
     <>
@@ -30,19 +84,17 @@ const Profile = () => {
       <div className="u-flex">
         <div className="Profile-subContainer u-textCenter">
           <h4 className="Profile-subTitle">About Me</h4>
-          <div id="profile-description">
-            uwu
-          </div>
+          <div id="profile-description">uwu</div>
         </div>
         <div className="Profile-subContainer u-textCenter">
           <h4 className="Profile-subTitle">Cat Happiness</h4>
           <CatHappiness catHappiness={catHappiness} />
         </div>
-        <div className="Profile-subContainer u-textCenter">
-          <h4 className="Profile-subTitle">My Favorite Type of Cat</h4>
-          <div id="favorite-cat">corgi</div>
         </div>
-      </div>
+        <div className="Profile-subContainer u-textCenter">
+          <div id="paper"></div>
+          <div id="audio"></div>
+        </div>
     </>
   );
 };
