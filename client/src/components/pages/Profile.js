@@ -33,10 +33,10 @@ const Profile = () => {
           <div id="favorite-cat">corgi</div>
         </div>
       </div>
-      {/** TODO STEP 1:
-       *  Insert Cat Happiness component here.
-       *  HINT: You probably want to add a new Profile-subContainer to hold the CatHappiness component.
-       */}
+      <div className="Profile-subContainer u-textCenter">
+        <h4 className="Profile-subTitle">Cat Happiness</h4>
+        <CatHappiness catHappiness={catHappiness} />
+      </div>
       <div className="Profile-subContainer u-textCenter">
         <h4 className="Profile-subTitle">My Favorite Type of Cat</h4>
         <div id="favorite-cat">corgi</div>
