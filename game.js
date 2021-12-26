@@ -1,10 +1,9 @@
-const main = (currentTime) => {
-    window.requestAnimationFrame(main);
+const main = () => {
     update();
     draw();
 }
 
-window.requestAnimationFrame(main);
+setInterval(main);
 
 const update = () => {
 }
