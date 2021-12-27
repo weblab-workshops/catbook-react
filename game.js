@@ -1,5 +1,7 @@
 const SNAKE_SPEED = 5;
 
+const gameBoard = document.getElementById("game-board");
+
 const main = () => {
     update();
     draw();
@@ -12,4 +14,5 @@ const update = () => {
 }
 
 const draw = () => {
+    gameBoard.innerHTML = "";
 }
