@@ -10,9 +10,11 @@ setInterval(main, 1000/SNAKE_SPEED);
 const update = () => {
     console.log("Updating");
     updateSnake();
+    updateFood();
 }
 
 const draw = () => {
     gameBoard.innerHTML = "";
     drawSnake(gameBoard);
+    drawFood(gameBoard);
 }
