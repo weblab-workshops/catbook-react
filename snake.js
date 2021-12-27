@@ -6,6 +6,14 @@ const snakeBody = [
 ];
 
 const updateSnake = () => {
+    // remove tail segment
+    snakeBody.pop();
+
+    // add new head segment
+    snakeBody.unshift({...snakeBody[0]});
+
+    snakeBody[0].x += 0;
+    snakeBody[0].y += 1;
 
 }
 
