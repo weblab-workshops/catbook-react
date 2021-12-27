@@ -15,4 +15,5 @@ const update = () => {
 const draw = () => {
     gameBoard.innerHTML = "";
     drawSnake(gameBoard);
+    drawFood(gameBoard);
 }
