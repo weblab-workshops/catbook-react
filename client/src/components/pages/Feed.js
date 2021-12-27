@@ -1,4 +1,4 @@
-import {React, useEffect} from "react";
+import React, {useEffect} from "react";
 import { get } from "../../utilities";
 // TODO (step2): import SingleStory
 // TODO (step4): import NewStory
