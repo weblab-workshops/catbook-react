@@ -1,8 +1,8 @@
 const SNAKE_SPEED = 5;
 const snakeBody = [
-    {x:11, y:9},
+    {x:11, y:11},
     {x:11, y:10},
-    {x:11, y:11}
+    {x:11, y:9}
 ];
 
 const updateSnake = () => {
@@ -11,8 +11,10 @@ const updateSnake = () => {
 
     // add new head segment
     snakeBody.unshift({...snakeBody[0]});
-    snakeBody[0].x += 0;
-    snakeBody[0].y += 1;
+
+    const snakeDirection = getInputDirection();
+    snakeBody[0].x += snakeDirection.x;
+    snakeBody[0].y += snakeDirection.y;
 
 }
 
