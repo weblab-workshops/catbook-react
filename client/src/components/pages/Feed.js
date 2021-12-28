@@ -18,9 +18,7 @@ class Feed extends Component {
     document.title = "News Feed";
     get("/api/stories").then((storyObjs) => {
       let reversedStoryObjs = storyObjs.reverse();
-      reversedStoryObjs.map((storyObj) => {
-        this.setState({ stories: this.state.stories.concat([storyObj]) });
-      });
+      setStories(reversedStoryObjs);
     });
   }
 
