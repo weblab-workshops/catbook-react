@@ -10,13 +10,13 @@
 // without a system for users, we'll have to hardcode our user name
 const MY_NAME = "Hackerman";
 
-const data = {
+let data = {
   stories: [
     {
       _id: 0,
       creator_name: "Shannen Wu",
-      content: "I love corgis!"
-    }
+      content: "I love corgis!",
+    },
   ],
   comments: [
     {
@@ -24,9 +24,28 @@ const data = {
       creator_name: "Jessica Tang",
       parent: 0,
       content: "Wow! Me Too!",
-    }
+    },
   ],
 };
+
+/////////////////////////////////////
+const fs = require("fs");
+
+const readDataFromFile = () => {
+  if (!fs.existsSync("data.txt")) return;
+  fs.readFile("data.txt", (err, fileData) => {
+    data = JSON.parse(fileData, null, "\t");
+  });
+};
+
+const writeDataToFile = () => {
+  fs.writeFile("data.txt", JSON.stringify(data, null, "\t"), (err) => {
+    if (err) console.log(err);
+  });
+};
+
+readDataFromFile();
+/////////////////////////////////////
 
 const express = require("express");
 
@@ -42,9 +61,8 @@ router.get("/stories", (req, res) => {
 });
 
 router.get("/comment", (req, res) => {
-  const filteredComments = data.comments.filter(
-    (comment) => comment.parent == req.query.parent);
-  res.send(filteredComments)
+  const filteredComments = data.comments.filter((comment) => comment.parent == req.query.parent);
+  res.send(filteredComments);
 });
 
 router.post("/story", (req, res) => {
@@ -55,6 +73,8 @@ router.post("/story", (req, res) => {
   };
 
   data.stories.push(newStory);
+  writeDataToFile();
+
   res.send(newStory);
 });
 
