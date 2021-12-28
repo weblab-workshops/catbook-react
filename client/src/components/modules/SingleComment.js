@@ -8,7 +8,7 @@ import React from "react";
  * @param {string} creator_name
  * @param {string} content of the comment
  */
-const SingleComment = () => {
+const SingleComment = (props) => {
   return (
     <div className="Card-commentBody">
       <span className="u-bold">{props.creator_name}</span>
