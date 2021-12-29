@@ -11,21 +11,8 @@
 const MY_NAME = "Hackerman";
 
 let data = {
-  stories: [
-    {
-      _id: 0,
-      creator_name: "Shannen Wu",
-      content: "I love corgis!",
-    },
-  ],
-  comments: [
-    {
-      _id: 0,
-      creator_name: "Jessica Tang",
-      parent: 0,
-      content: "Wow! Me Too!",
-    },
-  ],
+  stories: [],
+  comments: [],
 };
 
 /////////////////////////////////////
