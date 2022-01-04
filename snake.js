@@ -17,7 +17,6 @@ const updateSnake = () => {
     newHead.y += snakeDirection.y;
 
     snakeBody.unshift(newHead);
-
 }
 
 // Don't change this function!
