@@ -10,11 +10,12 @@ const updateSnake = () => {
     snakeBody.pop();
 
     // add new head segment
-    snakeBody.unshift({...snakeBody[0]});
+    const newHead = {...snakeBody[0]};
 
-    snakeBody[0].x += 0;
-    snakeBody[0].y += 1;
+    newHead.x += 0;
+    newHead.y += 1;
 
+    snakeBody.unshift(newHead);
 }
 
 // Don't change this function!
