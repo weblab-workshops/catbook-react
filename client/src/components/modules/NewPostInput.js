@@ -55,7 +55,7 @@ const NewPostInput = (props) => {
  * @param {string} storyId to add comment to
  */
 const NewComment = (props) => {
-  addComment = (value) => {
+  const addComment = (value) => {
     const body = { parent: props.storyId, content: value };
     post("/api/comment", body).then((comment) => {
       // display this comment on the screen
