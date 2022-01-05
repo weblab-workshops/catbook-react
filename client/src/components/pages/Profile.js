@@ -18,8 +18,7 @@ const Profile = () => {
           </div>
         </div>
         {/** TODO STEP 1:
-         *  Insert Cat Happiness component here.
-         *  HINT: You probably want to add a new Profile-subContainer to hold the CatHappiness component.
+         *  Insert Cat Happiness component and 'Cat Happiness' header here.
          */}
         <div className="Profile-subContainer u-textCenter">
           <h4 className="Profile-subTitle">My Favorite Type of Cat</h4>
