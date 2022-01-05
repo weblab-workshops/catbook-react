@@ -66,23 +66,17 @@ class NewPostInput extends Component {
  * @param {string} defaultText is the placeholder text
  * @param {string} storyId to add comment to
  */
-class NewComment extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  addComment = (value) => {
-    const body = { parent: this.props.storyId, content: value };
+const NewComment = (props) => {
+  const addComment = (value) => {
+    const body = { parent: props.storyId, content: value };
     post("/api/comment", body).then((comment) => {
       // display this comment on the screen
       this.props.addNewComment(comment);
     });
   };
 
-  render() {
-    return <NewPostInput defaultText="New Comment" onSubmit={this.addComment} />;
-  }
-}
+  return <NewPostInput defaultText="New Comment" onSubmit={addComment} />;
+};
 
 /**
  * New Story is a New Post component for comments

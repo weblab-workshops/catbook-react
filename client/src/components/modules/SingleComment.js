@@ -9,19 +9,13 @@ import { Link } from "@reach/router";
  * @param {string} creator_name
  * @param {string} content of the comment
  */
-class SingleComment extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div className="Card-commentBody">
-        <span className="u-bold">{this.props.creator_name}</span>
-        <span>{" | " + this.props.content}</span>
-      </div>
-    );
-  }
-}
+const SingleComment = (props) => {
+  return (
+    <div className="Card-commentBody">
+      <span className="u-bold">{props.creator_name}</span>
+      <span>{" | " + props.content}</span>
+    </div>
+  );
+};
 
 export default SingleComment;
