@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import SingleStory from "./SingleStory.js";
 import CommentsBlock from "./CommentsBlock.js";
 import { get } from "../../utilities";
@@ -13,7 +13,7 @@ import "./Card.css";
  * @param {string} creator_name
  * @param {string} content of the story
  */
-const Card = () => {
+const Card = (props) => {
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const Card = () => {
 
   // this gets called when the user pushes "Submit", so their
   // post gets added to the screen right away
-  addNewComment = (commentObj) => {
+  const addNewComment = (commentObj) => {
     setComments(comments.concat([commentObj]));
   };
 
