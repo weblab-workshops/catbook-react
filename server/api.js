@@ -16,6 +16,7 @@ const MY_NAME = "Ben Bitdiddle";
 
 // import models so we can interact with the database
 const Story = require("./models/story");
+const Comment = require("./models/comment")
 
 // api endpoints: all these paths will be prefixed with "/api/"
 const router = express.Router();
