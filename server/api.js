@@ -35,9 +35,7 @@ router.post("/story", (req, res) => {
 });
 
 router.get("/comment", (req, res) => {
-  Comment.find({ /* input the parent parameter here */ }).then((comments) => {
-    res.send(comments);
-  });
+
 });
 
 router.post("/comment", (req, res) => {
