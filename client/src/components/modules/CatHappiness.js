@@ -11,7 +11,7 @@ const CatHappiness = (props) => {
   return (
     <div className="CatHappiness-container">
       <div className="CatHappiness-story">
-        <p className="CatHappiness-storyContent">{this.props.catHappiness}</p>
+        <p className="CatHappiness-storyContent">{props.catHappiness}</p>
       </div>
     </div>
   );
