@@ -1,63 +1,43 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 
 import "./NewPostInput.css";
 import { post } from "../../utilities";
 
-/**
- * New Post is a parent component for all input components
- *
- * Proptypes
- * @param {string} defaultText is the placeholder text
- * @param {string} storyId optional prop, used for comments
- * @param {({storyId, value}) => void} onSubmit: (function) triggered when this post is submitted, takes {storyId, value} as parameters
- */
-class NewPostInput extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      value: "",
-    };
-  }
+const NewPostInput = (props) => {
+  const [value, setValue] = useState("");
 
   // called whenever the user types in the new post input box
-  handleChange = (event) => {
-    this.setState({
-      value: event.target.value,
-    });
+  const handleChange = (event) => {
+    setValue(event.target.value);
   };
 
   // called when the user hits "Submit" for a new post
-  handleSubmit = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    this.props.onSubmit && this.props.onSubmit(this.state.value);
-    this.setState({
-      value: "",
-    });
+    props.onSubmit && props.onSubmit(value);
+    setValue("");
   };
 
-  render() {
-    return (
-      <div className="u-flex">
-        <input
-          type="text"
-          placeholder={this.props.defaultText}
-          value={this.state.value}
-          onChange={this.handleChange}
-          className="NewPostInput-input"
-        />
-        <button
-          type="submit"
-          className="NewPostInput-button u-pointer"
-          value="Submit"
-          onClick={this.handleSubmit}
-        >
-          Submit
-        </button>
-      </div>
-    );
-  }
-}
+  return (
+    <div className="u-flex">
+      <input
+        type="text"
+        placeholder={props.defaultText}
+        value={value}
+        onChange={handleChange}
+        className="NewPostInput-input"
+      />
+      <button
+        type="submit"
+        className="NewPostInput-button u-pointer"
+        value="Submit"
+        onClick={handleSubmit}
+      >
+        Submit
+      </button>
+    </div>
+  );
+};
 
 /**
  * New Comment is a New Post component for comments
@@ -66,23 +46,17 @@ class NewPostInput extends Component {
  * @param {string} defaultText is the placeholder text
  * @param {string} storyId to add comment to
  */
-class NewComment extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  addComment = (value) => {
-    const body = { parent: this.props.storyId, content: value };
+const NewComment = (props) => {
+  const addComment = (value) => {
+    const body = { parent: props.storyId, content: value };
     post("/api/comment", body).then((comment) => {
       // display this comment on the screen
-      this.props.addNewComment(comment);
+      props.addNewComment(comment);
     });
   };
 
-  render() {
-    return <NewPostInput defaultText="New Comment" onSubmit={this.addComment} />;
-  }
-}
+  return <NewPostInput defaultText="New Comment" onSubmit={addComment} />;
+};
 
 /**
  * New Story is a New Post component for comments
@@ -90,19 +64,17 @@ class NewComment extends Component {
  * Proptypes
  * @param {string} defaultText is the placeholder text
  */
-class NewStory extends Component {
-  addStory = (value) => {
+const NewStory = (props) => {
+  const addStory = (value) => {
     const body = { content: value };
     post("/api/story", body).then((story) => {
       // display this story on the screen
-      this.props.addNewStory(story);
+      props.addNewStory(story);
     });
   };
 
-  render() {
-    return <NewPostInput defaultText="New Story" onSubmit={this.addStory} />;
-  }
-}
+  return <NewPostInput defaultText="New Story" onSubmit={addStory} />;
+};
 
 /**
  * New Message is a New Message component for messages
