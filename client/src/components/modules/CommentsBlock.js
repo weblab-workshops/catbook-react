@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import SingleComment from "./SingleComment.js";
 import { NewComment } from "./NewPostInput.js";
 
@@ -17,31 +17,25 @@ import { NewComment } from "./NewPostInput.js";
  * @param {ContentObject[]} comments
  * @param {ContentObject} story
  */
-class CommentsBlock extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div className="Card-commentSection">
-        <div className="story-comments">
-          {this.props.comments.map((comment) => (
-            <SingleComment
-              key={`SingleComment_${comment._id}`}
-              _id={comment._id}
-              creator_name={comment.creator_name}
-              creator_id={comment.creator_id}
-              content={comment.content}
-            />
-          ))}
-          {this.props.userId && (
-            <NewComment storyId={this.props.story._id} addNewComment={this.props.addNewComment} />
-          )}
-        </div>
+const CommentsBlock = (props) => {
+  return (
+    <div className="Card-commentSection">
+      <div className="story-comments">
+        {props.comments.map((comment) => (
+          <SingleComment
+            key={`SingleComment_${comment._id}`}
+            _id={comment._id}
+            creator_name={comment.creator_name}
+            creator_id={comment.creator_id}
+            content={comment.content}
+          />
+        ))}
+        {props.userId && (
+          <NewComment storyId={this.props.story._id} addNewComment={this.props.addNewComment} />
+        )}
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default CommentsBlock;
