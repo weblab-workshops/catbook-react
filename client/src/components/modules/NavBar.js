@@ -10,7 +10,7 @@ const GOOGLE_CLIENT_ID = "121479668229-t5j82jrbi9oejh7c8avada226s75bopn.apps.goo
 /**
  * The navigation bar at the top of all pages. Takes no props.
  */
-const NavBar = () => {
+const NavBar = (props) => {
   return (
     <nav className="NavBar-container">
       <div className="NavBar-title u-inlineBlock">Catbook</div>

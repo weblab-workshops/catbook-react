@@ -15,7 +15,7 @@ const SingleComment = (props) => {
       <Link to={`/profile/${props.creator_id}`} className="u-link u-bold">
         {props.creator_name}
       </Link>
-      <span>{" | " + this.props.content}</span>
+      <span>{" | " + props.content}</span>
     </div>
   );
 };
