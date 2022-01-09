@@ -90,17 +90,15 @@ const NewStory = (props) => {
  * Proptypes
  * @param {UserObject} recipient is the intended recipient
  */
-class NewMessage extends Component {
-  sendMessage = (value) => {
+const NewMessage = (props) => {
+  const sendMessage = (value) => {
     // TODO (step 4.1): implement sendMessage, which should make a post
     // request to "/api/message."
     // parameter: { recipient : UserObject, content : string}
     console.log(value);
   };
 
-  render() {
-    return <NewPostInput defaultText="New Message" onSubmit={this.sendMessage} />;
-  }
+  return <NewPostInput defaultText="New Message" onSubmit={sendMessage} />;
 }
 
 export { NewComment, NewStory, NewMessage };

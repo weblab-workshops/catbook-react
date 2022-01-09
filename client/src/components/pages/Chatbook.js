@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import ChatList from "../modules/ChatList.js";
 import Chat from "../modules/Chat.js";
 import { socket } from "../../client-socket.js";
@@ -28,7 +28,7 @@ const TEST_MESSAGES = [
   },
 ];
 
-class Chatbook extends Component {
+const Chatbook = (props) => {
   /**
    * @typedef UserObject
    * @property {string} _id
@@ -45,36 +45,31 @@ class Chatbook extends Component {
    * @property {UserObject} recipient
    */
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeChat: {
-        recipient: ALL_CHAT,
-        messages: TEST_MESSAGES,
-      },
-    };
-  }
+  const [activeChat, setActiveChat] = useState({
+    recipient: ALL_CHAT,
+    messages: TEST_MESSAGES,
+  });
 
-  loadMessageHistory(recipient) {
-  }
+  const loadMessageHistory = (recipient) => {
+  };
 
-  componentDidMount() {
+  useEffect(() => {
     document.title = "Chatbook";
+  }, []);
+
+  if (!props.userId) {
+    return <div>Log in before using Chatbook</div>;
   }
 
-  render() {
-    if (!this.props.userId) return <div>Log in before using Chatbook</div>;
-
-    return (
-      <>
-        <div className="u-flex u-relative Chatbook-container">
-          <div className="Chatbook-chatContainer u-relative">
-            <Chat data={this.state.activeChat} />
-          </div>
+  return (
+    <>
+      <div className="u-flex u-relative Chatbook-container">
+        <div className="Chatbook-chatContainer u-relative">
+          <Chat data={activeChat} />
         </div>
-      </>
-    );
-  }
+      </div>
+    </>
+  );
 }
 
 export default Chatbook;
