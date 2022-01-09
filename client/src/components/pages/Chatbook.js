@@ -43,18 +43,23 @@ const Chatbook = (props) => {
     });
   };
 
+  const addMessages = (data) => {
+    setActiveChat(prevActiveChat => ({
+      recipient: prevActiveChat.recipient,
+      messages: prevActiveChat.messages.concat(data),
+    }));
+  };
+
   useEffect(() => {
     document.title = "Chatbook";
   }, []);
 
   useEffect(() => {
     loadMessageHistory(ALL_CHAT);
-    socket.on("message", (data) => {
-      setActiveChat(prevActiveChat => ({
-        recipient: prevActiveChat.recipient,
-        messages: prevActiveChat.messages.concat(data),
-      }));
-    });
+    socket.on("message", addMessages);
+    return () => {
+      socket.off("message", addMessages);
+    };
   }, []);
 
   if (!props.userId) {
