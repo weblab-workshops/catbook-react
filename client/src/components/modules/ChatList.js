@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import SingleUser from "./SingleUser.js";
 
 import "./SingleUser.css";
@@ -12,27 +12,21 @@ import "./SingleUser.css";
  * @param {string} userId id of current logged in user
  * @param {(UserObject) => ()} setActiveUser function that takes in user, sets it to active
  */
-class ChatList extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <>
-        <h3>Open Chats</h3>
-        {this.props.users
-          .map((user, i) => (
-            <SingleUser
-              key={i}
-              setActiveUser={this.props.setActiveUser}
-              user={user}
-              active={user === this.props.active}
-            />
-          ))}
-      </>
-    );
-  }
+const ChatList = (props) => {
+  return (
+    <>
+      <h3>Open Chats</h3>
+      {props.users
+        .map((user, i) => (
+          <SingleUser
+            key={i}
+            setActiveUser={props.setActiveUser}
+            user={user}
+            active={user === props.active}
+          />
+        ))}
+    </>
+  );
 }
 
 export default ChatList;
