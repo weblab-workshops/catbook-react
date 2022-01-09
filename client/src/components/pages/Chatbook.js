@@ -48,6 +48,9 @@ const Chatbook = (props) => {
 
   useEffect(() => {
     loadMessageHistory(ALL_CHAT);
+  }, []);
+
+  useEffect(() => {
     // TODO (step 6.2): add socket.on for when received message
   }, []);
 
