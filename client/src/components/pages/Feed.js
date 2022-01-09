@@ -13,14 +13,7 @@ const Feed = (props) => {
     document.title = "News Feed";
     get("/api/stories").then((storyObjs) => {
       let reversedStoryObjs = storyObjs.reverse();
-<<<<<<< HEAD
-      //   reversedStoryObjs.map((storyObj) => {
-      //     setStories(stories.concat([storyObj]));
-      //   });
-      setStories(reversedStoryObjs)
-=======
-	  setStories(reversedStoryObjs)
->>>>>>> f02f483 (complete conversion)
+      setStories(reversedStoryObjs);
     });
   }, []);
 

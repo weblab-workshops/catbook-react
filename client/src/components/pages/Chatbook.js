@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import ChatList from "../modules/ChatList.js";
 import Modal from "../modules/Modal.js";
 import Chat from "../modules/Chat.js";
@@ -12,7 +12,7 @@ const ALL_CHAT = {
   name: "ALL CHAT",
 };
 
-class Chatbook extends Component {
+const Chatbook = (props) => {
   /**
    * @typedef UserObject
    * @property {string} _id
@@ -29,55 +29,47 @@ class Chatbook extends Component {
    * @property {UserObject} recipient
    */
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeChat: {
-        recipient: ALL_CHAT,
-        messages: [],
-      },
-    };
-  }
+  const [activeChat, setActiveChat] = useState({
+    recipient: ALL_CHAT,
+    messages: [],
+  });
 
-  loadMessageHistory(recipient) {
+  const loadMessageHistory = (recipient) => {
     get("/api/chat", { recipient_id: recipient._id }).then((messages) => {
-      this.setState({
-        activeChat: {
-          recipient: recipient,
-          messages: messages,
-        },
+      setActiveChat({
+        recipient: recipient,
+        messages: messages,
       });
     });
-  }
+  };
 
-  componentDidMount() {
+  useEffect(() => {
     document.title = "Chatbook";
+  }, []);
 
-    this.loadMessageHistory(ALL_CHAT);
-
+  useEffect(() => {
+    loadMessageHistory(ALL_CHAT);
     socket.on("message", (data) => {
-      this.setState((prevstate) => ({
-        activeChat: {
-          recipient: prevstate.activeChat.recipient,
-          messages: prevstate.activeChat.messages.concat(data),
-        },
+      setActiveChat(prevActiveChat => ({
+        recipient: prevActiveChat.recipient,
+        messages: prevActiveChat.messages.concat(data),
       }));
     });
+  }, []);
+
+  if (!props.userId) {
+    return <div>Log in before using Chatbook</div>;
   }
 
-  render() {
-    if (!this.props.userId) return <div>Log in before using Chatbook</div>;
-
-    return (
-      <>
-        <div className="u-flex u-relative Chatbook-container">
-          <div className="Chatbook-chatContainer u-relative">
-            <Chat data={this.state.activeChat} />
-          </div>
+  return (
+    <>
+      <div className="u-flex u-relative Chatbook-container">
+        <div className="Chatbook-chatContainer u-relative">
+          <Chat data={activeChat} />
         </div>
-      </>
-    );
-  }
+      </div>
+    </>
+  );
 }
 
 export default Chatbook;
