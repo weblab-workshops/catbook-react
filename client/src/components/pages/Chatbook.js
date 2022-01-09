@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import ChatList from "../modules/ChatList.js";
 import Chat from "../modules/Chat.js";
 import { socket } from "../../client-socket.js";
@@ -28,7 +28,7 @@ const TEST_MESSAGES = [
   },
 ];
 
-class Chatbook extends Component {
+const Chatbook = (props) => {
   /**
    * @typedef UserObject
    * @property {string} _id
@@ -45,39 +45,36 @@ class Chatbook extends Component {
    * @property {UserObject} recipient
    */
 
-  constructor(props) {
-    super(props);
-    // TODO (step 2.1): add state activeChat, an object with two fields:
-    // recipient, and messages!
-    // In this object, initialize recipient to ALL_CHAT, and messages to TEST_MESSAGES
-  }
+  // TODO (step 2.1): add state activeChat, an object with two fields:
+  // recipient, and messages!
+  // In this object, initialize recipient to ALL_CHAT, and messages to TEST_MESSAGES
 
-  loadMessageHistory(recipient) {
-  }
+  const loadMessageHistory = (recipient) => {
+  };
 
-  componentDidMount() {
+  useEffect(() => {
     document.title = "Chatbook";
+  }, []);
+
+  if (!props.userId) {
+    return <div>Log in before using Chatbook</div>;
   }
 
-  render() {
-    if (!this.props.userId) return <div>Log in before using Chatbook</div>;
-
-    return (
-      <>
-        <div className="u-flex u-relative Chatbook-container">
-          <div className="Chatbook-chatContainer u-relative">
-            {/* TODO (step 2.2): change data to use our activeChat state */}
-            <Chat
-              data={{
-                recipient: ALL_CHAT,
-                messages: TEST_MESSAGES,
-              }}
-            />
-          </div>
+  return (
+    <>
+      <div className="u-flex u-relative Chatbook-container">
+        <div className="Chatbook-chatContainer u-relative">
+          {/* TODO (step 2.2): change data to use our activeChat state */}
+          <Chat
+            data={{
+              recipient: ALL_CHAT,
+              messages: TEST_MESSAGES,
+            }}
+          />
         </div>
-      </>
-    );
-  }
+      </div>
+    </>
+  );
 }
 
 export default Chatbook;

@@ -59,6 +59,7 @@ const App = () => {
         <Router>
           <Feed path="/" userId={userId} />
           <Profile path="/profile/:userId" />
+          <Chatbook path="/chat/" userId={userId} />
           <NotFound default />
         </Router>
       </div>
