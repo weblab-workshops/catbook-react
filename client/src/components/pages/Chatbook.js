@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import ChatList from "../modules/ChatList.js";
 import Chat from "../modules/Chat.js";
 import { socket } from "../../client-socket.js";
@@ -17,7 +17,7 @@ const ALL_CHAT = {
  * Proptypes
  * @param {string} userId id of current logged in user
  */
-class Chatbook extends Component {
+const Chatbook = (props) => {
   /**
    * @typedef UserObject
    * @property {string} _id
@@ -34,60 +34,59 @@ class Chatbook extends Component {
    * @property {UserObject} recipient
    */
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      // TODO (step 2.3)
-      activeChat: {
-        recipient: ALL_CHAT,
-        messages: [],
-      },
-    };
-  }
+  // TODO (step 2.3) Add a state called activeUsers, initialized to []
 
-  loadMessageHistory(recipient) {
+  const [activeChat, setActiveChat] = useState({
+    recipient: ALL_CHAT,
+    messages: [],
+  });
+
+  const loadMessageHistory = (recipient) => {
     get("/api/chat", { recipient_id: recipient._id }).then((messages) => {
-      this.setState({
-        activeChat: {
-          recipient: recipient,
-          messages: messages,
-        },
+      setActiveChat({
+        recipient: recipient,
+        messages: messages,
       });
     });
-  }
+  };
 
-  componentDidMount() {
+  const addMessages = (data) => {
+    setActiveChat(prevActiveChat => ({
+      recipient: prevActiveChat.recipient,
+      messages: prevActiveChat.messages.concat(data),
+    }));
+  };
+
+  useEffect(() => {
     document.title = "Chatbook";
+  }, []);
 
-    this.loadMessageHistory(ALL_CHAT);
+  useEffect(() => {
+    loadMessageHistory(ALL_CHAT);
+  }, []);
 
-    socket.on("message", (data) => {
-      this.setState((prevstate) => ({
-        activeChat: {
-          recipient: prevstate.activeChat.recipient,
-          messages: prevstate.activeChat.messages.concat(data),
-        },
-      }));
-    });
+  useEffect(() => {
+    socket.on("message", addMessages);
+    return () => {
+      socket.off("message", addMessages);
+    };
+  }, []);
+
+  if (!props.userId) {
+    return <div>Log in before using Chatbook</div>;
   }
 
-  // TODO (step 2.4): create setActiveUser
-
-  render() {
-    if (!this.props.userId) return <div>Log in before using Chatbook</div>;
-
-    return (
-      <>
-        <div className="u-flex u-relative Chatbook-container">
-          <div className="Chatbook-userList">
-          </div>
-          <div className="Chatbook-chatContainer u-relative">
-            <Chat data={this.state.activeChat} />
-          </div>
+  return (
+    <>
+      <div className="u-flex u-relative Chatbook-container">
+        <div className="Chatbook-userList">
         </div>
-      </>
-    );
-  }
+        <div className="Chatbook-chatContainer u-relative">
+          <Chat data={activeChat} />
+        </div>
+      </div>
+    </>
+  );
 }
 
 export default Chatbook;

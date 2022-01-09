@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 
 import "./SingleUser.css";
 
@@ -10,15 +10,9 @@ import "./SingleUser.css";
  * @param {UserObject} user
  * @param {boolean} active
  */
-class SingleUser extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    // TODO (step 2.1)
-    return <div></div>;
-  }
+const SingleUser = (props) => {
+  // TODO (step 2.1) render single user in chat list
+  return <div></div>;
 }
 
 export default SingleUser;
