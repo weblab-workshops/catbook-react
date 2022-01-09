@@ -60,7 +60,7 @@ const Chatbook = (props) => {
   }, []);
 
   useEffect(() => {
-    // TODO (step 5.2): call this.loadMessageHistory()
+    // TODO (step 5.2): call loadMessageHistory()
   }, []);
 
   if (!props.userId) {
