@@ -49,7 +49,8 @@ const Profile = (props) => {
           <div id="favorite-cat">corgi</div>
         </div>
       </div>
-    </>)
+    </>
+  );
 };
 
 export default Profile;
