@@ -90,14 +90,12 @@ const NewStory = (props) => {
  * Proptypes
  * @param {UserObject} recipient is the intended recipient
  */
-class NewMessage extends Component {
-  sendMessage = (value) => {
+const NewMessage = (props) => {
+  const sendMessage = (value) => {
     console.log(value);
   };
 
-  render() {
-    return <NewPostInput defaultText="New Message" onSubmit={this.sendMessage} />;
-  }
+  return <NewPostInput defaultText="New Message" onSubmit={sendMessage} />;
 }
 
 export { NewComment, NewStory, NewMessage };
