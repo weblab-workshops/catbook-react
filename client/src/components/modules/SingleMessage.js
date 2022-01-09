@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 
 import "./SingleMessage.css";
 
@@ -8,17 +8,11 @@ import "./SingleMessage.css";
  * Proptypes
  * @param {MessageObject} message
  */
-class SingleMessage extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      // TODO (step 1.3): populate SingleMessage
-      <div></div>
-    );
-  }
+const SingleMessage = (props) => {
+  return (
+    // TODO (step 1.3): populate SingleMessage
+    <div></div>
+  );
 }
 
 export default SingleMessage;

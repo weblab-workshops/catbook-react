@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import SingleMessage from "./SingleMessage.js";
 import { NewMessage } from "./NewPostInput.js";
 
@@ -27,15 +27,9 @@ import "./Chat.css";
  * Proptypes
  * @param {ChatData} data
  */
-class Chat extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    // TODO (step 1.4): populate Chat.js
-    return <div></div>;
-  }
+const Chat = (props) => {
+  // TODO (step 1.4): populate Chat.js
+  return <div></div>;
 }
 
 export default Chat;
