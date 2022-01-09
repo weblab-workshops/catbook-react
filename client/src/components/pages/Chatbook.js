@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import ChatList from "../modules/ChatList.js";
 import Chat from "../modules/Chat.js";
 import { socket } from "../../client-socket.js";
@@ -7,7 +7,7 @@ import { get } from "../../utilities";
 import "./Chatbook.css";
 
 // TODO (step 1.6): Add TEST_DATA, ALL_CHAT database object, and TEST_MESSAGES
-class Chatbook extends Component {
+const Chatbook = (props) => {
   /**
    * @typedef UserObject
    * @property {string} _id
@@ -24,21 +24,15 @@ class Chatbook extends Component {
    * @property {UserObject} recipient
    */
 
-  constructor(props) {
-    super(props);
-  }
+  const loadMessageHistory = (recipient) => {
+  };
 
-  loadMessageHistory(recipient) {
-  }
-
-  componentDidMount() {
+  useEffect(() => {
     document.title = "Chatbook";
-  }
+  }, []);
 
-  render() {
-    // TODO (step 1.5): populate chatbook (but use TEST_DATA)
-    return <></>;
-  }
+  // TODO (step 1.5): populate chatbook (but use TEST_DATA)
+  return <></>;
 }
 
 export default Chatbook;
