@@ -30,6 +30,7 @@ router.post("/story", (req, res) => {
   const newStory = new Story({
     creator_name: MY_NAME,
     content: req.body.content,
+    date: Date.now(),
   });
 
   newStory.save().then((story) => res.send(story));
@@ -56,6 +57,5 @@ router.all("*", (req, res) => {
   console.log(`API route not found: ${req.method} ${req.url}`);
   res.status(404).send({ msg: "API route not found" });
 });
-
 
 module.exports = router;
