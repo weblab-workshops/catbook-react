@@ -82,6 +82,9 @@ const Chatbook = (props: ChatbookProps) => {
       }
     };
     socket.on("message", addMessages);
+    return () => {
+      socket.off("message", addMessages);
+    };
   }, [activeChat.recipient, props.userId]);
 
   const setActiveUser = (user: User) => {
