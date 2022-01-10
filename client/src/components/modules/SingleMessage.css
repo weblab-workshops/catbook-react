@@ -1,5 +1,6 @@
 .SingleMessage-container {
   margin: 0 0 var(--xs);
+  max-width: 100%;
 }
 
 .SingleMessage-sender {
@@ -12,6 +13,9 @@
   padding: var(--s) var(--m);
   background: var(--medgrey);
   border-radius: var(--l);
+  flex-shrink: 1;
+  overflow-wrap: break-word;
+  overflow-wrap: anywhere;
 }
 
 .SingleMessage-mine .SingleMessage-content {
