@@ -93,8 +93,10 @@ const Chatbook = (props) => {
   }, []);
 
   const setActiveUser = (user) => {
-    // TODO (step 7.1): first load the message history for this user, then set the
-    // state "activeChat" to the new recipient (user) and empty array forr messages
+    // TODO (step 7.1): Set the state "activeChat" to the new recipient (user)
+    // and empty array for messages.
+    // Then, make sure that the message history for this user is loaded (might
+    // involve writing code outside of this function)
     console.log(`setting active user to ${user.name}`);
   };
 
