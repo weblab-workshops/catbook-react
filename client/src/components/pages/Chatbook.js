@@ -63,7 +63,7 @@ const Chatbook = (props) => {
 
   useEffect(() => {
     loadMessageHistory(ALL_CHAT);
-  }, []);
+  }, [activeChat.recipient]);
 
   useEffect(() => {
     get("/api/activeUsers").then((data) => {
@@ -93,7 +93,6 @@ const Chatbook = (props) => {
   }, []);
 
   const setActiveUser = (user) => {
-    loadMessageHistory(user);
     setActiveChat({
       recipient: user,
       messages: [],
