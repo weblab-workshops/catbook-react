@@ -51,10 +51,18 @@ const Chatbook = (props) => {
   };
 
   const addMessages = (data) => {
-    setActiveChat(prevActiveChat => ({
-      recipient: prevActiveChat.recipient,
-      messages: prevActiveChat.messages.concat(data),
-    }));
+    if (
+      (data.recipient._id === activeChat.recipient._id &&
+        data.sender._id === props.userId) ||
+      (data.sender._id === activeChat.recipient._id &&
+        data.recipient._id === props.userId) ||
+      (data.recipient._id === "ALL_CHAT" && activeChat.recipient._id === "ALL_CHAT")
+    ) {
+      setActiveChat(prevActiveChat => ({
+        recipient: prevActiveChat.recipient,
+        messages: prevActiveChat.messages.concat(data),
+      }));
+    }
   };
 
   useEffect(() => {
