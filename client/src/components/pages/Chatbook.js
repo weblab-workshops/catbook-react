@@ -64,8 +64,8 @@ const Chatbook = (props) => {
   }, []);
 
   useEffect(() => {
-    loadMessageHistory(ALL_CHAT);
-  }, []);
+    loadMessageHistory(activeChat.recipient);
+  }, [activeChat.recipient._id]);
 
   useEffect(() => {
     get("/api/activeUsers").then((data) => {
@@ -95,11 +95,12 @@ const Chatbook = (props) => {
   }, []);
 
   const setActiveUser = (user) => {
-    loadMessageHistory(user);
-    setActiveChat({
-      recipient: user,
-      messages: [],
-    });
+    if (user._id !== activeChat.recipient._id) {
+      setActiveChat({
+        recipient: user,
+        messages: [],
+      });
+    }
   };
 
   if (!props.userId) {
