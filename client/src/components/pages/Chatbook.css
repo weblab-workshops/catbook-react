@@ -1,12 +1,14 @@
 .Chatbook-container {
   height: calc(100vh - 120px);
+  width: 100%
 }
 
 .Chatbook-userList {
-  width: 260px;
+  flex: 0 0 220px;
   margin-right: var(--l);
 }
 
 .Chatbook-chatContainer {
   flex-grow: 1;
+  overflow-x: hidden;
 }
