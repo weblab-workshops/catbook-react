@@ -9,29 +9,28 @@ import "./Chatbook.css";
 type User = {
   _id: string;
   name: string;
-}
+};
 
 type Message = {
   sender: User;
   content: string;
-}
+};
 
 type ChatData = {
   messages: Message[];
   recipient: User;
-}
+};
 
 type ChatbookProps = {
   userId: string;
-}
+};
 
-const ALL_CHAT : User = {
+const ALL_CHAT: User = {
   _id: "ALL_CHAT",
   name: "ALL CHAT",
 };
 
 const Chatbook = (props: ChatbookProps) => {
-
   const [activeUsers, setActiveUsers] = useState<User[]>([]);
   const [activeChat, setActiveChat] = useState<ChatData>({ recipient: ALL_CHAT, messages: [] });
 
@@ -47,8 +46,6 @@ const Chatbook = (props: ChatbookProps) => {
   useEffect(() => {
     document.title = "Chatbook";
 
-    loadMessageHistory(ALL_CHAT);
-
     get("/api/activeUsers").then((data) => {
       // If user is logged in, we load their chats. If they are not logged in,
       // there's nothing to load. (Also prevents data races with socket event)
@@ -57,33 +54,43 @@ const Chatbook = (props: ChatbookProps) => {
       }
     });
 
-    socket.on("activeUsers", (data) => {
+    const callback = (data) => {
       setActiveUsers([ALL_CHAT, ...data.activeUsers]);
-    });
+    };
+
+    socket.on("activeUsers", callback);
+    return () => {
+      socket.off("activeUsers", callback);
+    };
   }, []);
 
   useEffect(() => {
     loadMessageHistory(activeChat.recipient);
+  }, [activeChat.recipient._id]);
 
-    socket.on("message", (data) => {
+  useEffect(() => {
+    const addMessages = (data) => {
       if (
         (data.recipient._id === activeChat.recipient._id && data.sender._id === props.userId) ||
         (data.sender._id === activeChat.recipient._id && data.recipient._id === props.userId) ||
         (data.recipient._id === "ALL_CHAT" && activeChat.recipient._id === "ALL_CHAT")
       ) {
-        console.log(activeChat);
-        console.log(data);
-        setActiveChat({
-          recipient: activeChat.recipient,
-          messages: [...activeChat.messages, data],
-        });
+        setActiveChat((prevActiveChat) => ({
+          recipient: prevActiveChat.recipient,
+          messages: [...prevActiveChat.messages, data],
+        }));
       }
-    });
-
-  }, [activeChat.recipient]);
+    };
+    socket.on("message", addMessages);
+  }, [activeChat.recipient, props.userId]);
 
   const setActiveUser = (user: User) => {
-    loadMessageHistory(user);
+    if (user._id !== activeChat.recipient._id) {
+      setActiveChat({
+        recipient: user,
+        messages: [],
+      });
+    }
   };
 
   if (!props.userId) return <div>Log in before using Chatbook</div>;
@@ -107,4 +114,4 @@ const Chatbook = (props: ChatbookProps) => {
   );
 };
 
-export {User, Message, ChatData, Chatbook};
+export { User, Message, ChatData, Chatbook };
