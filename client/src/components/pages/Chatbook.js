@@ -50,21 +50,6 @@ const Chatbook = (props) => {
     });
   };
 
-  const addMessages = (data) => {
-    if (
-      (data.recipient._id === activeChat.recipient._id &&
-        data.sender._id === props.userId) ||
-      (data.sender._id === activeChat.recipient._id &&
-        data.recipient._id === props.userId) ||
-      (data.recipient._id === "ALL_CHAT" && activeChat.recipient._id === "ALL_CHAT")
-    ) {
-      setActiveChat(prevActiveChat => ({
-        recipient: prevActiveChat.recipient,
-        messages: prevActiveChat.messages.concat(data),
-      }));
-    }
-  };
-
   useEffect(() => {
     document.title = "Chatbook";
   }, []);
@@ -84,11 +69,25 @@ const Chatbook = (props) => {
   }, []);
 
   useEffect(() => {
+    const addMessages = (data) => {
+      if (
+        (data.recipient._id === activeChat.recipient._id &&
+          data.sender._id === props.userId) ||
+        (data.sender._id === activeChat.recipient._id &&
+          data.recipient._id === props.userId) ||
+        (data.recipient._id === "ALL_CHAT" && activeChat.recipient._id === "ALL_CHAT")
+      ) {
+        setActiveChat(prevActiveChat => ({
+          recipient: prevActiveChat.recipient,
+          messages: prevActiveChat.messages.concat(data),
+        }));
+      }
+    };
     socket.on("message", addMessages);
     return () => {
       socket.off("message", addMessages);
     };
-  }, []);
+  }, [activeChat.recipient._id, props.userId]);
 
   useEffect(() => {
     const callback = (data) => {
