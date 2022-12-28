@@ -1,4 +1,3 @@
-Workshop 0 Conclusion!
+## Workshop 1 Conclusion
 
-to start
 Open up index.html in a browser of your choice.
