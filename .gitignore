@@ -1,3 +1,4 @@
 client/dist/bundle.js
+client/dist/bundle.js.LICENSE.txt
 node_modules/
 .DS_Store
