@@ -4,7 +4,7 @@
 
 run `npm run hotloader` in a terminal
 
-visit `http://localhost:5000`
+visit `http://localhost:5050`
 
 ## don't touch
 
