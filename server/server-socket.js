@@ -8,6 +8,14 @@ const getSocketFromUserID = (userid) => userToSocketMap[userid];
 const getUserFromSocketID = (socketid) => socketToUserMap[socketid];
 const getSocketFromSocketID = (socketid) => io.sockets.connected[socketid];
 
+const usersInGame = new Set(); // Track all users who are playing the game
+
+const sendGameState = () => {};
+
+const startRunningGame = () => {};
+
+startRunningGame();
+
 const addUser = (user, socket) => {
   const oldSocket = userToSocketMap[user._id];
   if (oldSocket && oldSocket.id !== socket.id) {

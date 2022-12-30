@@ -126,6 +126,8 @@ router.get("/activeUsers", (req, res) => {
 });
 
 router.get("/spawn", (req, res) => {
+  if (req.user) {
+  }
   res.send({});
 });
 
