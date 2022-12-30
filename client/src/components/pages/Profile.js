@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import CatHappiness from "../modules/CatHappiness.js";
-import { get } from "../../utilities"
+import { get } from "../../utilities";
 
 import "../../utilities.css";
 import "./Profile.css";
@@ -19,7 +19,7 @@ const Profile = (props) => {
   };
 
   if (!user) {
-    return (<div> Loading! </div>);
+    return <div> Loading! </div>;
   }
   return (
     <>

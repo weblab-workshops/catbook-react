@@ -5,6 +5,7 @@ import Feed from "./pages/Feed.js";
 import NotFound from "./pages/NotFound.js";
 import Profile from "./pages/Profile.js";
 import Chatbook from "./pages/Chatbook.js";
+import Game from "./pages/Game.js";
 
 import { socket } from "../client-socket.js";
 
@@ -52,16 +53,13 @@ const App = () => {
     // <> is like a <div>, but won't show
     // up in the DOM tree
     <>
-      <NavBar
-        handleLogin={handleLogin}
-        handleLogout={handleLogout}
-        userId={userId}
-      />
+      <NavBar handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
       <div className="App-container">
         <Router>
           <Feed path="/" userId={userId} />
           <Profile path="/profile/:userId" />
           <Chatbook path="/chat/" userId={userId} />
+          <Game path="/game/" userId={userId} />
           <NotFound default />
         </Router>
       </div>
