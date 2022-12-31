@@ -1,5 +1,6 @@
 const MAP_LENGTH = 400;
 const INITIAL_RADIUS = 20;
+const MAX_PLAYER_SIZE = 200;
 // colors to use for players
 const colors = ["red", "blue", "green", "yellow", "purple", "orange"];
 
@@ -59,6 +60,7 @@ const getRandomPosition = () => {
 const gameState = {
   winner: null,
   players: {},
+  food: {},
 };
 
 /** game logic */
@@ -126,7 +128,7 @@ const checkWin = () => {
   const winners = Object.keys(gameState.players).filter((key) => {
     // check if player is too large
     const player = gameState.players[key];
-    if (player.radius > 200) {
+    if (player.radius > MAX_PLAYER_SIZE) {
       return true;
     }
   });
