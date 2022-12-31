@@ -10,6 +10,7 @@ let sprites = {
   yellow: null,
   purple: null,
   orange: null,
+  silver: null,
 };
 Object.keys(sprites).forEach((key) => {
   sprites[key] = new Image(400, 400);

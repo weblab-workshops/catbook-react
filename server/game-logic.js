@@ -4,7 +4,7 @@ const INITIAL_RADIUS = 20;
 const MAX_PLAYER_SIZE = 200;
 const FOOD_SIZE = 2;
 const EDIBLE_RANGE_RATIO = 0.9;
-const colors = ["red", "blue", "green", "yellow", "purple", "orange"]; // colors to use for players
+const colors = ["red", "blue", "green", "yellow", "purple", "orange", "silver"]; // colors to use for players
 
 /** Utils! */
 const getRandomInt = (min, max) => {
