@@ -18,7 +18,7 @@ const getRandomInt = (min, max) => {
 
 let playersEaten = []; // A list of ids of any players that have just been eaten!
 
-// check player overlap with player
+/** Helper to check a player overlap with a player */
 const playerAttemptEat = (pid1, pid2) => {
   const player1Position = gameState.players[pid1].position;
   const player2Position = gameState.players[pid2].position;
@@ -37,8 +37,8 @@ const playerAttemptEat = (pid1, pid2) => {
   }
 };
 
+/** Attempts all pairwise eating between players */
 const computePlayerEats = () => {
-  // Attempt all pairwise eating
   if (Object.keys(gameState.players).length >= 2) {
     Object.keys(gameState.players).forEach((pid1) => {
       Object.keys(gameState.players).forEach((pid2) => {
@@ -52,7 +52,7 @@ const computePlayerEats = () => {
   playersEaten = [];
 };
 
-// check player overlap with food
+/** Helper to check a player overlap with a food */
 const playerAttemptEatFood = (pid1, f) => {
   const player1Position = gameState.players[pid1].position;
   const foodPosition = f.position;
@@ -71,8 +71,8 @@ const playerAttemptEatFood = (pid1, f) => {
   }
 };
 
+/** Attempts all pairwise eating between each player and all foods */
 const computePlayerEatsFood = () => {
-  // Attempt all pairwise eating
   Object.keys(gameState.players).forEach((pid1) => {
     if (gameState.players[pid1].radius > FOOD_SIZE) {
       // if player is big enough to eat food
@@ -171,12 +171,14 @@ const movePlayer = (id, dir) => {
   gameState.players[id].position = desiredPosition;
 };
 
+/** Spawn a food if there are less than 10 foods */
 const checkEnoughFoods = () => {
   if (gameState.food.length < 10) {
     spawnFood();
   }
 };
 
+/** Check win condition */
 const checkWin = () => {
   const winners = Object.keys(gameState.players).filter((key) => {
     // check if player is too large
@@ -186,7 +188,7 @@ const checkWin = () => {
     }
   });
 
-  // warning: race condition here; if two players' radii become 201 at the same time, no winner will be declared
+  // warning: race condition here; if players' radii become >200 at the same time, game will keep going
   if (winners.length === 1) {
     gameState.winner = winners[0];
     Object.keys(gameState.players).forEach((key) => {

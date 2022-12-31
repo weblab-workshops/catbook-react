@@ -9,7 +9,6 @@ import "./Game.css";
 
 const Game = (props) => {
   const [winner, setWinner] = useState(null);
-  let inGame = false;
 
   // get user info
   useEffect(() => {
@@ -30,10 +29,6 @@ const Game = (props) => {
   useEffect(() => {
     socket.on("update", (update) => {
       processUpdate(update);
-
-      if (!(props.userId in update.players)) {
-        inGame = false;
-      }
     });
   }, []);
 
@@ -52,14 +47,12 @@ const Game = (props) => {
 
   // set a spawn button if the player is not in the game
   let spawnButton = null;
-  if (!inGame && props.userId) {
+  if (props.userId) {
     spawnButton = (
       <div className="Game-spawn">
         <button
           onClick={() => {
-            get("/api/spawn", { userid: props.userId }).then(() => {
-              inGame = true;
-            });
+            get("/api/spawn", { userid: props.userId });
           }}
         >
           Spawn
@@ -68,6 +61,7 @@ const Game = (props) => {
     );
   }
 
+  // text if the player is not logged in
   let loginModal = null;
   if (!props.userId) {
     loginModal = <div> Please Login First! </div>;

@@ -73,7 +73,7 @@ export const drawCanvas = (drawState) => {
     drawPlayer(context, p.position.x, p.position.y, p.radius, p.color);
   });
 
-  // draw all the food
+  // draw all the foods
   Object.values(drawState.food).forEach((f) => {
     drawCircle(context, f.position.x, f.position.y, f.radius, f.color);
   });
