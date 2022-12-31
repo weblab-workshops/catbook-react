@@ -83,6 +83,11 @@ const spawnPlayer = (id) => {
   };
 };
 
+/** Checks if a player is in the game, given user id */
+const playerInGame = (userId) => {
+  return userId in gameState.players;
+};
+
 /** Moves a player based off the sent data from the "move" socket msg */
 const movePlayer = (id, dir) => {
   if (dir === "up") {
@@ -140,6 +145,7 @@ const removePlayer = (id) => {
 module.exports = {
   gameState,
   spawnPlayer,
+  playerInGame,
   movePlayer,
   removePlayer,
   updateGameState,
