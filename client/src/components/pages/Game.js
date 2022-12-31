@@ -57,7 +57,7 @@ const Game = (props) => {
     );
   }
 
-  // text if the player is not logged in
+  // display text if the player is not logged in
   let loginModal = null;
   if (!props.userId) {
     loginModal = <div> Please Login First! </div>;
@@ -66,6 +66,7 @@ const Game = (props) => {
   return (
     <>
       <div>
+        {/* important: canvas needs id to be referenced by canvasManager */}
         <canvas id="game-canvas" width="500" height="500" />
         {loginModal}
         {winnerModal}

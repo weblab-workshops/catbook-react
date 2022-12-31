@@ -59,7 +59,7 @@ const drawCircle = (context, x, y, radius, color) => {
 
 /** main draw */
 export const drawCanvas = (drawState) => {
-  // get the canvas element
+  // use id of canvas element in HTML DOM to get reference to canvas object
   canvas = document.getElementById("game-canvas");
   if (!canvas) return;
   const context = canvas.getContext("2d");

@@ -1,6 +1,6 @@
 import { move } from "./client-socket";
 
-/** add other controls here */
+/** Callback function that calls correct movement from key */
 export const handleInput = (e) => {
   if (e.key === "ArrowUp") {
     move("up");
