@@ -52,7 +52,7 @@ const drawSprite = (context, x, y, radius, color) => {
 
 /** drawing functions */
 
-const drawPlayer = (context, x, y, radius, color) => {
+const drawCircle = (context, x, y, radius, color) => {
   const { drawX, drawY } = convertCoord(x, y);
   // fillCircle(context, drawX, drawY, radius, color);
   drawSprite(context, drawX, drawY, radius, color);
@@ -71,6 +71,11 @@ export const drawCanvas = (drawState) => {
 
   // draw all the players
   Object.values(drawState.players).forEach((p) => {
-    drawPlayer(context, p.position.x, p.position.y, p.radius, p.color);
+    drawCircle(context, p.position.x, p.position.y, p.radius, p.color);
+  });
+
+  // draw all the food
+  Object.values(drawState.food).forEach((f) => {
+    drawCircle(context, f.position.x, f.position.y, f.radius, f.color);
   });
 };

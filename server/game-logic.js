@@ -1,37 +1,35 @@
+/** constants */
 const MAP_LENGTH = 400;
 const INITIAL_RADIUS = 20;
-// colors to use for players
-const colors = ["red", "blue", "green", "yellow", "purple", "orange"];
+const MAX_PLAYER_SIZE = 200;
+const FOOD_SIZE = 2;
+const EDIBLE_RANGE_RATIO = 0.9;
+const colors = ["red", "blue", "green", "yellow", "purple", "orange"]; // colors to use for players
 
+/** Utils! */
 const getRandomInt = (min, max) => {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
 };
 
-// const getDistanceFromGoal = (player) => {
-//   return Math.abs(player.x - goal.x) + Math.abs(player.y - goal.y);
-// };
-
 // TODO: getPlayerOverlap, will return percentage of overlap between two players
 // TODO: checkOverlaps (pairwise overlaps), will update player states and player radius
 
-const EDIBLE_RANGE_RATIO = 0.9;
-const EDIBLE_SIZE_RATIO = 0.9;
-
+// check player overlap with player
 const playerAttemptEat = (pid1, pid2) => {
-  const player1Position = players[pid1].position;
-  const player2Position = players[pid2].position;
+  const player1Position = gameState.players[pid1].position;
+  const player2Position = gameState.players[pid2].position;
   const x1 = player1Position.x;
   const y1 = player1Position.y;
   const x2 = player2Position.x;
   const y2 = player2Position.y;
   const dist = Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
-  if (dist < pid1 * EDIBLE_RANGE_RATIO) {
+  if (dist < gameState.players[pid1].radius * EDIBLE_RANGE_RATIO) {
     // player 2 is within player 1's eat range
-    if (pid1 * EDIBLE_RANGE_RATIO > pid2) {
+    if (gameState.players[pid1].radius * EDIBLE_RANGE_RATIO > gameState.players[pid2].radius) {
       // player 1 is big enough to eat player 2
-      players[pid1].radius += players[pid2].radius;
+      gameState.players[pid1].radius += gameState.players[pid2].radius;
       removePlayer(pid2);
     }
   }
@@ -48,6 +46,39 @@ const computePlayerEats = () => {
   }
 };
 
+// check player overlap with food
+const playerAttemptEatFood = (pid1, f) => {
+  const player1Position = gameState.players[pid1].position;
+  const foodPosition = f.position;
+  const x1 = player1Position.x;
+  const y1 = player1Position.y;
+  console.log(foodPosition);
+  const x2 = foodPosition.x;
+  const y2 = foodPosition.y;
+  const dist = Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
+  if (dist < gameState.players[pid1].radius * EDIBLE_RANGE_RATIO) {
+    // food is within player 1's eat range
+    if (gameState.players[pid1].radius > FOOD_SIZE) {
+      // player 1 is big enough to food
+      gameState.players[pid1].radius += FOOD_SIZE;
+      removeFood(f);
+    }
+  }
+};
+
+const computePlayerEatsFood = () => {
+  // Attempt all pairwise eating
+  Object.keys(gameState.players).forEach((pid1) => {
+    if (gameState.players[pid1].radius > FOOD_SIZE) {
+      // if player is big enough to eat food
+      console.log("food", gameState.food);
+      gameState.food.forEach((f) => {
+        playerAttemptEatFood(pid1, f);
+      });
+    }
+  });
+};
+
 const getRandomPosition = () => {
   return {
     x: getRandomInt(0, MAP_LENGTH),
@@ -59,6 +90,7 @@ const getRandomPosition = () => {
 const gameState = {
   winner: null,
   players: {},
+  food: [],
 };
 
 /** game logic */
@@ -70,6 +102,15 @@ const spawnPlayer = (id) => {
     radius: INITIAL_RADIUS,
     color: colors[Math.floor(Math.random() * colors.length)],
   };
+};
+
+/** Adds a food to the game state, initialized with a random location */
+const spawnFood = () => {
+  gameState.food.push({
+    position: getRandomPosition(),
+    radius: FOOD_SIZE,
+    color: colors[Math.floor(Math.random() * colors.length)],
+  });
 };
 
 /** Checks if a player is in the game, given user id */
@@ -123,18 +164,24 @@ const movePlayer = (id, dir) => {
   gameState.players[id].position = desiredPosition;
 };
 
+const checkEnoughFoods = () => {
+  if (gameState.food.length < 10) {
+    spawnFood();
+  }
+};
+
 const checkWin = () => {
   const winners = Object.keys(gameState.players).filter((key) => {
     // check if player is too large
     const player = gameState.players[key];
-    if (player.radius > 200) {
+    if (player.radius > MAX_PLAYER_SIZE) {
       return true;
     }
   });
 
   // warning: race condition here; if two players' radii become 201 at the same time, no winner will be declared
   if (winners.length === 1) {
-    gameState.winner = alivePlayers[0];
+    gameState.winner = winners[0];
   }
 };
 
@@ -142,11 +189,21 @@ const updateGameState = () => {
   // TODO? : buffer moves on server side?
   checkWin();
   computePlayerEats();
+  computePlayerEatsFood();
+  checkEnoughFoods();
 };
 
 /** Remove a player from the game state if they disconnect or if they get eaten */
 const removePlayer = (id) => {
   delete gameState.players[id];
+};
+
+/** Remove a food from the game state if it gets eaten, given reference to food object */
+const removeFood = (f) => {
+  let ix = gameState.food.indexOf(f);
+  if (ix !== -1) {
+    gameState.food.splice(ix, 1);
+  }
 };
 
 module.exports = {
