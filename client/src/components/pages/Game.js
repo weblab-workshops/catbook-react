@@ -76,7 +76,7 @@ const Game = (props) => {
 
   return (
     <>
-      <div className="Game-body">
+      <div>
         <canvas id="game-canvas" width="400" height="400" />
         {loginModal}
         {winnerModal}
