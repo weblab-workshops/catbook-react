@@ -8,6 +8,11 @@
   font-size: 20px;
 }
 
+.NavBar-title-red {
+  color: #ffa4a4;
+  font-size: 20px;
+}
+
 .NavBar-linkContainer {
   margin-left: var(--l);
 }
