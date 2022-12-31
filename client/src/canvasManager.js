@@ -1,5 +1,26 @@
 let canvas;
+
 /** utils */
+
+// load sprites!
+let sprites = {
+  red: null,
+  blue: null,
+  green: null,
+  yellow: null,
+  purple: null,
+  orange: null,
+};
+
+// let testSprite = new Image(400, 400);
+// testSprite.onload = drawSprite;
+// testSprite.src = `../player-icons/blue.png`;
+
+Object.keys(sprites).forEach((key) => {
+  sprites[key] = new Image(400, 400);
+  sprites[key].onload = drawSprite;
+  sprites[key].src = `../player-icons/${key}.png`;
+});
 
 // converts a coordinate in a normal X Y plane to canvas coordinates
 const convertCoord = (x, y) => {
@@ -18,11 +39,23 @@ const fillCircle = (context, x, y, radius, color) => {
   context.fill();
 };
 
+// draws a sprite instead of a colored circle
+const drawSprite = (context, x, y, radius, color) => {
+  context.save();
+  context.beginPath();
+  context.arc(x, y, radius, 0, 2 * Math.PI, false);
+  context.closePath();
+  context.clip();
+  context.drawImage(sprites[color], x - radius, y - radius, radius * 2, radius * 2);
+  context.restore();
+};
+
 /** drawing functions */
 
 const drawPlayer = (context, x, y, radius, color) => {
   const { drawX, drawY } = convertCoord(x, y);
-  fillCircle(context, drawX, drawY, radius, color);
+  // fillCircle(context, drawX, drawY, radius, color);
+  drawSprite(context, drawX, drawY, radius, color);
 };
 
 /** main draw */
