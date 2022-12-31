@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { socket } from "../../client-socket.js";
-import { get } from "../../utilities";
+import { get, post } from "../../utilities";
 import { drawCanvas } from "../../canvasManager";
 import { handleInput } from "../../input";
 
@@ -17,6 +17,7 @@ const Game = (props) => {
     // remove event listener on unmount
     return () => {
       window.removeEventListener("keydown", handleInput);
+      post("/api/despawn", { userid: props.userId });
     };
   }, []);
 
@@ -47,7 +48,7 @@ const Game = (props) => {
       <div className="Game-spawn">
         <button
           onClick={() => {
-            get("/api/spawn", { userid: props.userId });
+            post("/api/spawn", { userid: props.userId });
           }}
         >
           Spawn

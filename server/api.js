@@ -125,14 +125,14 @@ router.get("/activeUsers", (req, res) => {
   res.send({ activeUsers: socketManager.getAllConnectedUsers() });
 });
 
-router.get("/spawn", (req, res) => {
+router.post("/spawn", (req, res) => {
   if (req.user) {
     socketManager.addUserToGame(req.user);
   }
   res.send({});
 });
 
-router.get("/despawn", (req, res) => {
+router.post("/despawn", (req, res) => {
   if (req.user) {
     socketManager.removeUserFromGame(req.user);
   }
