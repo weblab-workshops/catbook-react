@@ -16,10 +16,6 @@ const Game = (props) => {
     document.title = "Game Page";
   }, []);
 
-  if (!props.userId) {
-    return <div> Loading! </div>;
-  }
-
   // add event listener on mount
   useEffect(() => {
     window.addEventListener("keydown", handleInput);
@@ -36,10 +32,6 @@ const Game = (props) => {
       processUpdate(update);
     });
   }, []);
-
-  if (!props.userId) {
-    return <div> Loading! </div>;
-  }
 
   const processUpdate = (update) => {
     if (update.winner) {
@@ -64,10 +56,16 @@ const Game = (props) => {
   //   );
   // }
 
+  let loginModal = null;
+  if (!props.userId) {
+    loginModal = <div> Please Login First! </div>;
+  }
+
   return (
     <>
       <div className="Game-body">
         <canvas id="game-canvas" width="400" height="400" />
+        {loginModal}
         {winnerModal}
         {spawnModal}
       </div>
