@@ -10,11 +10,6 @@ import "./Game.css";
 const Game = (props) => {
   const [winner, setWinner] = useState(null);
 
-  // get user info
-  useEffect(() => {
-    document.title = "Game Page";
-  }, []);
-
   // add event listener on mount
   useEffect(() => {
     window.addEventListener("keydown", handleInput);
