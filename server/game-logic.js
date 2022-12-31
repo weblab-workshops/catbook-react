@@ -61,7 +61,7 @@ const playerAttemptEatFood = (pid1, f) => {
   const x2 = foodPosition.x;
   const y2 = foodPosition.y;
   const dist = Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
-  if (dist < gameState.players[pid1].radius * EDIBLE_RANGE_RATIO) {
+  if (dist < gameState.players[pid1].radius - FOOD_SIZE) {
     // food is within player 1's eat range
     if (gameState.players[pid1].radius > FOOD_SIZE) {
       // player 1 is big enough to eat food
@@ -197,7 +197,6 @@ const checkWin = () => {
 };
 
 const updateGameState = () => {
-  // TODO? : buffer moves on server side?
   checkWin();
   computePlayerEats();
   computePlayerEatsFood();

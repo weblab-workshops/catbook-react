@@ -11,14 +11,8 @@ let sprites = {
   purple: null,
   orange: null,
 };
-
-// let testSprite = new Image(400, 400);
-// testSprite.onload = drawSprite;
-// testSprite.src = `../player-icons/blue.png`;
-
 Object.keys(sprites).forEach((key) => {
   sprites[key] = new Image(400, 400);
-  sprites[key].onload = drawSprite;
   sprites[key].src = `../player-icons/${key}.png`;
 });
 
