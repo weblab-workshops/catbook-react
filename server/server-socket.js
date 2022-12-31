@@ -10,12 +10,22 @@ const getSocketFromUserID = (userid) => userToSocketMap[userid];
 const getUserFromSocketID = (socketid) => socketToUserMap[socketid];
 const getSocketFromSocketID = (socketid) => io.sockets.connected[socketid];
 
-const usersInGame = {}; // Track all users who are playing the game
+const usersInGame = new Set(); // Track all user ids who are playing the game
 
 // TODO: sendGameState
-const sendGameState = () => {};
+const sendGameState = () => {
+  usersInGame.forEach((userid) => {
+    const socket = getSocketFromUserID(userid);
+    socket.emit("gameState", gameLogic.gameState);
+  });
+};
 
-const startRunningGame = () => {};
+const startRunningGame = () => {
+  setInterval(() => {
+    gameLogic.updateGameState();
+    sendGameState();
+  }, 1000 / 60); // 60 frames per second
+};
 
 startRunningGame();
 
