@@ -17,13 +17,3 @@
   background-color: #333333;
   color: white;
 }
-
-.Game-spawn {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 40px;
-  background-color: #333333;
-  color: white;
-}

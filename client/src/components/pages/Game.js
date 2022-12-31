@@ -3,13 +3,13 @@ import { socket } from "../../client-socket.js";
 import { get } from "../../utilities";
 import { drawCanvas } from "../../canvasManager";
 import { handleInput } from "../../input";
-// const gameLogic = require("../../../../../server/game-logic.js");
 
 import "../../utilities.css";
 import "./Game.css";
 
 const Game = (props) => {
   const [winner, setWinner] = useState(null);
+  let inGame = false;
 
   // get user info
   useEffect(() => {
@@ -30,6 +30,10 @@ const Game = (props) => {
   useEffect(() => {
     socket.on("update", (update) => {
       processUpdate(update);
+
+      if (!(props.userId in update.players)) {
+        inGame = false;
+      }
     });
   }, []);
 
@@ -47,14 +51,22 @@ const Game = (props) => {
   }
 
   // set a spawn modal if the player is not in the game
-  let spawnModal = null;
-  // if (!gameLogic.playerInGame()) {
-  //   spawnModal = (
-  //     <div className="Game-spawn">
-  //       <button onClick={() => {}}>Spawn</button>
-  //     </div>
-  //   );
-  // }
+  let spawnButton = null;
+  if (!inGame) {
+    spawnButton = (
+      <div className="Game-spawn">
+        <button
+          onClick={() => {
+            get("/api/spawn", { userid: props.userId }).then(() => {
+              inGame = true;
+            });
+          }}
+        >
+          Spawn
+        </button>
+      </div>
+    );
+  }
 
   let loginModal = null;
   if (!props.userId) {
@@ -67,7 +79,7 @@ const Game = (props) => {
         <canvas id="game-canvas" width="400" height="400" />
         {loginModal}
         {winnerModal}
-        {spawnModal}
+        {spawnButton}
       </div>
     </>
   );
