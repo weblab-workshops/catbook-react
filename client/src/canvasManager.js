@@ -20,9 +20,9 @@ const fillCircle = (context, x, y, radius, color) => {
 
 /** drawing functions */
 
-const drawPlayer = (context, x, y, radius) => {
+const drawPlayer = (context, x, y, radius, color) => {
   const { drawX, drawY } = convertCoord(x, y);
-  fillCircle(context, drawX, drawY, radius, "#FF0000");
+  fillCircle(context, drawX, drawY, radius, color);
 };
 
 /** main draw */
@@ -38,6 +38,6 @@ export const drawCanvas = (drawState) => {
 
   // draw all the players
   Object.values(drawState.players).forEach((p) => {
-    drawPlayer(context, p.x, p.y);
+    drawPlayer(context, p.x, p.y, p.color);
   });
 };

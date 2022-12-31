@@ -1,5 +1,8 @@
 /** Utils! */
 
+// colors to use for players
+const colors = ["red", "blue", "green", "yellow", "purple", "orange"];
+
 const getRandomInt = (min, max) => {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -42,6 +45,8 @@ const gameState = {
 /** Adds a player to the game state, initialized with a random location */
 const addPlayer = (id) => {
   gameState.players[id] = getRandomLocation();
+  gameState.players[id].radius = 10;
+  gameState.players[id].color = colors[Math.floor(Math.random() * items.length)];
 };
 
 /** Moves a player based off the sent data from the "move" socket msg */
