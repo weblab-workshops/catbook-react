@@ -33,6 +33,17 @@ startRunningGame();
 // TODO: removeUserFromGame
 // TODO: sendGameState
 
+const addUserToGame = (user) => {
+  if (!usersInGame.has(user._id)) {
+    usersInGame.add(user._id);
+    gameLogic.spawnPlayer(user._id);
+  }
+};
+
+const removeUserFromGame = (user) => {
+  usersInGame.remove(user._id);
+};
+
 const addUser = (user, socket) => {
   const oldSocket = userToSocketMap[user._id];
   if (oldSocket && oldSocket.id !== socket.id) {
@@ -48,6 +59,7 @@ const addUser = (user, socket) => {
 
 const removeUser = (user, socket) => {
   if (user) delete userToSocketMap[user._id];
+  if (usersInGame.has(user._id)) usersInGame.delete(user._id);
   delete socketToUserMap[socket.id];
   io.emit("activeUsers", { activeUsers: getAllConnectedUsers() });
 };
@@ -76,5 +88,7 @@ module.exports = {
   getUserFromSocketID: getUserFromSocketID,
   getSocketFromSocketID: getSocketFromSocketID,
   getAllConnectedUsers: getAllConnectedUsers,
+  addUserToGame: addUserToGame,
+  removeUserFromGame: removeUserFromGame,
   getIo: () => io,
 };
