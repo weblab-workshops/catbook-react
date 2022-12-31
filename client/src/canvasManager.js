@@ -1,7 +1,5 @@
 let canvas;
 
-const FOOD_SIZE = 5;
-
 /** utils */
 
 // converts a coordinate in a normal X Y plane to canvas coordinates
@@ -46,6 +44,6 @@ export const drawCanvas = (drawState) => {
 
   // draw all the food
   Object.values(drawState.food).forEach((f) => {
-    drawCircle(context, f.position.x, f.position.y, FOOD_SIZE, f.color);
+    drawCircle(context, f.position.x, f.position.y, f.radius, f.color);
   });
 };
