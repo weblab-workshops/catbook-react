@@ -1,10 +1,12 @@
+/** constants */
 const MAP_LENGTH = 400;
 const INITIAL_RADIUS = 20;
 const MAX_PLAYER_SIZE = 200;
-const FOOD_SIZE = 5;
-// colors to use for players
-const colors = ["red", "blue", "green", "yellow", "purple", "orange"];
+const FOOD_SIZE = 2;
+const EDIBLE_RANGE_RATIO = 0.9;
+const colors = ["red", "blue", "green", "yellow", "purple", "orange"]; // colors to use for players
 
+/** Utils! */
 const getRandomInt = (min, max) => {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -13,9 +15,6 @@ const getRandomInt = (min, max) => {
 
 // TODO: getPlayerOverlap, will return percentage of overlap between two players
 // TODO: checkOverlaps (pairwise overlaps), will update player states and player radius
-
-const EDIBLE_RANGE_RATIO = 0.9;
-const EDIBLE_SIZE_RATIO = 0.9;
 
 // check player overlap with player
 const playerAttemptEat = (pid1, pid2) => {
@@ -121,16 +120,6 @@ const playerInGame = (userId) => {
 
 /** Moves a player based off the sent data from the "move" socket msg */
 const movePlayer = (id, dir) => {
-  // if (dir === "up") {
-  //   gameState.players[id].position.y += 10;
-  // } else if (dir === "down") {
-  //   gameState.players[id].position.y -= 10;
-  // } else if (dir === "left") {
-  //   gameState.players[id].position.x -= 10;
-  // } else if (dir === "right") {
-  //   gameState.players[id].position.x += 10;
-  // }
-
   const desiredPosition = {
     x: gameState.players[id].position.x,
     y: gameState.players[id].position.y,
