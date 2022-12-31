@@ -52,8 +52,8 @@ const computePlayerEats = () => {
 
 const getRandomPosition = () => {
   return {
-    x: getRandomInt(-MAP_LENGTH, MAP_LENGTH),
-    y: getRandomInt(-MAP_LENGTH, MAP_LENGTH),
+    x: getRandomInt(0, MAP_LENGTH),
+    y: getRandomInt(0, MAP_LENGTH),
   };
 };
 

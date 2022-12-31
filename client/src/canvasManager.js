@@ -5,8 +5,8 @@ let canvas;
 const convertCoord = (x, y) => {
   if (!canvas) return;
   return {
-    drawX: canvas.width / 2 + x,
-    drawY: canvas.height / 2 - y,
+    drawX: x,
+    drawY: canvas.height - y,
   };
 };
 
@@ -38,6 +38,6 @@ export const drawCanvas = (drawState) => {
 
   // draw all the players
   Object.values(drawState.players).forEach((p) => {
-    drawPlayer(context, p.x, p.y, p.color);
+    drawPlayer(context, p.position.x, p.position.y, p.radius, p.color);
   });
 };
