@@ -37,7 +37,7 @@ const Game = (props) => {
     });
   }, []);
 
-  if (!user) {
+  if (!props.userId) {
     return <div> Loading! </div>;
   }
 

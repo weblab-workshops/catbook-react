@@ -16,7 +16,7 @@ const usersInGame = new Set(); // Track all user ids who are playing the game
 const sendGameState = () => {
   usersInGame.forEach((userid) => {
     const socket = getSocketFromUserID(userid);
-    socket.emit("gameState", gameLogic.gameState);
+    socket.emit("update", gameLogic.gameState);
   });
 };
 

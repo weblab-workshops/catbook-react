@@ -41,11 +41,13 @@ const playerAttemptEat = (pid1, pid2) => {
 
 const computePlayerEats = () => {
   // Attempt all pairwise eating
-  Object.keys(gameState.players).forEach((pid1) => {
-    Object.keys(gameState.players).forEach((pid2) => {
-      playerAttemptEat(pid1, pid2);
+  if (Object.keys(gameState.players).length >= 2) {
+    Object.keys(gameState.players).forEach((pid1) => {
+      Object.keys(gameState.players).forEach((pid2) => {
+        playerAttemptEat(pid1, pid2);
+      });
     });
-  });
+  }
 };
 
 const getRandomPosition = () => {
