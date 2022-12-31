@@ -16,6 +16,8 @@ const getRandomInt = (min, max) => {
 // TODO: getPlayerOverlap, will return percentage of overlap between two players
 // TODO: checkOverlaps (pairwise overlaps), will update player states and player radius
 
+const playersEaten = []; // A list of ids of any players that have just been eaten!
+
 // check player overlap with player
 const playerAttemptEat = (pid1, pid2) => {
   const player1Position = gameState.players[pid1].position;
@@ -30,7 +32,7 @@ const playerAttemptEat = (pid1, pid2) => {
     if (gameState.players[pid1].radius * EDIBLE_RANGE_RATIO > gameState.players[pid2].radius) {
       // player 1 is big enough to eat player 2
       gameState.players[pid1].radius += gameState.players[pid2].radius;
-      removePlayer(pid2);
+      playersEaten.push(pid2);
     }
   }
 };
@@ -44,6 +46,9 @@ const computePlayerEats = () => {
       });
     });
   }
+  playersEaten.forEach((playerid) => {
+    removePlayer(playerid);
+  });
 };
 
 // check player overlap with food
@@ -59,7 +64,7 @@ const playerAttemptEatFood = (pid1, f) => {
   if (dist < gameState.players[pid1].radius * EDIBLE_RANGE_RATIO) {
     // food is within player 1's eat range
     if (gameState.players[pid1].radius > FOOD_SIZE) {
-      // player 1 is big enough to food
+      // player 1 is big enough to eat food
       gameState.players[pid1].radius += FOOD_SIZE;
       removeFood(f);
     }
@@ -130,6 +135,9 @@ const movePlayer = (id, dir) => {
   // } else if (dir === "right") {
   //   gameState.players[id].position.x += 10;
   // }
+  if (gameState.players[id] == undefined) {
+    return;
+  }
 
   const desiredPosition = {
     x: gameState.players[id].position.x,
@@ -195,7 +203,9 @@ const updateGameState = () => {
 
 /** Remove a player from the game state if they disconnect or if they get eaten */
 const removePlayer = (id) => {
-  delete gameState.players[id];
+  if (gameState.players[id] != undefined) {
+    delete gameState.players[id];
+  }
 };
 
 /** Remove a food from the game state if it gets eaten, given reference to food object */

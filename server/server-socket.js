@@ -10,14 +10,9 @@ const getSocketFromUserID = (userid) => userToSocketMap[userid];
 const getUserFromSocketID = (socketid) => socketToUserMap[socketid];
 const getSocketFromSocketID = (socketid) => io.sockets.connected[socketid];
 
-const usersInGame = new Set(); // Track all user ids who are playing the game
-
 // TODO: sendGameState
 const sendGameState = () => {
-  usersInGame.forEach((userid) => {
-    const socket = getSocketFromUserID(userid);
-    socket.emit("update", gameLogic.gameState);
-  });
+  io.emit("update", gameLogic.gameState);
 };
 
 const startRunningGame = () => {
@@ -34,14 +29,11 @@ startRunningGame();
 // TODO: sendGameState
 
 const addUserToGame = (user) => {
-  if (!usersInGame.has(user._id)) {
-    usersInGame.add(user._id);
-    gameLogic.spawnPlayer(user._id);
-  }
+  gameLogic.spawnPlayer(user._id);
 };
 
 const removeUserFromGame = (user) => {
-  usersInGame.remove(user._id);
+  gameLogic.removePlayer(user._id);
 };
 
 const addUser = (user, socket) => {
@@ -60,7 +52,7 @@ const addUser = (user, socket) => {
 const removeUser = (user, socket) => {
   if (user) {
     delete userToSocketMap[user._id];
-    if (usersInGame.has(user._id)) usersInGame.delete(user._id);
+    removeUserFromGame(user);
   }
   delete socketToUserMap[socket.id];
   io.emit("activeUsers", { activeUsers: getAllConnectedUsers() });
