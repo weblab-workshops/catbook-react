@@ -79,6 +79,7 @@ const playerInGame = (userId) => {
 
 /** Moves a player based off the sent data from the "move" socket msg */
 const movePlayer = (id, dir) => {
+  // Unbounded moves
   // if (dir === "up") {
   //   gameState.players[id].position.y += 10;
   // } else if (dir === "down") {
