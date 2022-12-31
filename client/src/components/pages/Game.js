@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { socket } from "../../client-socket.js";
 import { get } from "../../utilities";
 import { drawCanvas } from "../../canvasManager";
+import { handleInput } from "../../input";
 
 import "../../utilities.css";
 import "./Game.css";
@@ -19,6 +20,16 @@ const Game = (props) => {
   if (!user) {
     return <div> Loading! </div>;
   }
+
+  // add event listener on mount
+  useEffect(() => {
+    window.addEventListener("keydown", handleInput);
+
+    // remove event listener on unmount
+    return () => {
+      window.removeEventListener("keydown", handleInput);
+    };
+  }, []);
 
   // update game periodically
   useEffect(() => {

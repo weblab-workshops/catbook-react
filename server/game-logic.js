@@ -2,6 +2,8 @@
 
 const MAP_LENGTH = 400;
 const INITIAL_RADIUS = 20;
+// colors to use for players
+const colors = ["red", "blue", "green", "yellow", "purple", "orange"];
 
 const getRandomInt = (min, max) => {
   min = Math.ceil(min);
@@ -74,7 +76,11 @@ const gameState = {
 
 /** Adds a player to the game state, initialized with a random location */
 const spawnPlayer = (id) => {
-  gameState.players[id] = { position: getRandomPosition(), radius: INITIAL_RADIUS };
+  gameState.players[id] = {
+    position: getRandomPosition(),
+    radius: INITIAL_RADIUS,
+    color: colors[Math.floor(Math.random() * colors.length)],
+  };
 };
 
 /** Moves a player based off the sent data from the "move" socket msg */
