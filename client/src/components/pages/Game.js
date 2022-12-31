@@ -41,7 +41,6 @@ const Game = (props) => {
     if (update.winner) {
       setWinner(update.winner);
     }
-    if (update) console.log(update.players);
     drawCanvas(update);
   };
 

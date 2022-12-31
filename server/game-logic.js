@@ -1,5 +1,3 @@
-/** Utils! */
-
 const MAP_LENGTH = 400;
 const INITIAL_RADIUS = 20;
 // colors to use for players
@@ -57,17 +55,6 @@ const getRandomPosition = () => {
   };
 };
 
-// const getPlayerColor = (id) => {
-//   const player = gameState.players[id];
-//   const dist = Math.min(getDistanceFromGoal(player) / 800, 1);
-//   const blueValue = (1 - dist) * 255;
-//   const redValue = dist * 255;
-//   return `rgb(${redValue}, 0, ${blueValue})`;
-// };
-
-/** constants */
-// const goal = getRandomPosition();
-
 /** game state */
 const gameState = {
   winner: null,
@@ -92,15 +79,47 @@ const playerInGame = (userId) => {
 
 /** Moves a player based off the sent data from the "move" socket msg */
 const movePlayer = (id, dir) => {
+  // if (dir === "up") {
+  //   gameState.players[id].position.y += 10;
+  // } else if (dir === "down") {
+  //   gameState.players[id].position.y -= 10;
+  // } else if (dir === "left") {
+  //   gameState.players[id].position.x -= 10;
+  // } else if (dir === "right") {
+  //   gameState.players[id].position.x += 10;
+  // }
+
+  const desiredPosition = {
+    x: gameState.players[id].position.x,
+    y: gameState.players[id].position.y,
+  };
+
+  // Move player
   if (dir === "up") {
-    gameState.players[id].position.y += 10;
+    desiredPosition.y += 10;
   } else if (dir === "down") {
-    gameState.players[id].position.y -= 10;
+    desiredPosition.y -= 10;
   } else if (dir === "left") {
-    gameState.players[id].position.x -= 10;
+    desiredPosition.x -= 10;
   } else if (dir === "right") {
-    gameState.players[id].position.x += 10;
+    desiredPosition.x += 10;
   }
+
+  // Keep player in bounds
+  if (desiredPosition.x > MAP_LENGTH) {
+    desiredPosition.x = MAP_LENGTH;
+  }
+  if (desiredPosition.x < 0) {
+    desiredPosition.x = 0;
+  }
+  if (desiredPosition.y > MAP_LENGTH) {
+    desiredPosition.y = MAP_LENGTH;
+  }
+  if (desiredPosition.y < 0) {
+    desiredPosition.y = 0;
+  }
+
+  gameState.players[id].position = desiredPosition;
 };
 
 const checkWin = () => {
@@ -123,21 +142,6 @@ const updateGameState = () => {
   checkWin();
   computePlayerEats();
 };
-
-// probably not doing this
-// /** Checks whether a player has won, if a player won, change the game state */
-// // win condition: only one player is alive at a given moment
-// const checkWin = () => {
-//   const alivePlayers = Object.keys(gameState.players).filter((key) => {
-//     // check if they are on top of goal
-//     const player = gameState.players[key];
-//     return player.alive;
-//   });
-
-//   if (alivePlayers.length === 1) {
-//     gameState.winner = alivePlayers[0];
-//   }
-// };
 
 /** Remove a player from the game state if they disconnect or if they get eaten */
 const removePlayer = (id) => {
