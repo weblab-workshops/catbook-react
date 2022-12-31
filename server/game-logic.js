@@ -1,22 +1,55 @@
 /** Utils! */
 
+const MAP_LENGTH = 400;
+const INITIAL_RADIUS = 20;
+
 const getRandomInt = (min, max) => {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
 };
 
-const getDistanceFromGoal = (player) => {
-  return Math.abs(player.x - goal.x) + Math.abs(player.y - goal.y);
-};
+// const getDistanceFromGoal = (player) => {
+//   return Math.abs(player.x - goal.x) + Math.abs(player.y - goal.y);
+// };
 
 // TODO: getPlayerOverlap, will return percentage of overlap between two players
 // TODO: checkOverlaps (pairwise overlaps), will update player states and player radius
 
-const getRandomLocation = () => {
+const EDIBLE_RANGE_RATIO = 0.9;
+const EDIBLE_SIZE_RATIO = 0.9;
+
+const playerAttemptEat = (pid1, pid2) => {
+  const player1Position = players[pid1].position;
+  const player2Position = players[pid2].position;
+  const x1 = player1Position.x;
+  const y1 = player1Position.y;
+  const x2 = player2Position.x;
+  const y2 = player2Position.y;
+  const dist = Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
+  if (dist < pid1 * EDIBLE_RANGE_RATIO) {
+    // player 2 is within player 1's eat range
+    if (pid1 * EDIBLE_RANGE_RATIO > pid2) {
+      // player 1 is big enough to eat player 2
+      players[pid1].radius += players[pid2].radius;
+      removePlayer(pid2);
+    }
+  }
+};
+
+const computePlayerEats = () => {
+  // Attempt all pairwise eating
+  Object.keys(gameState.players).forEach((pid1) => {
+    Object.keys(gameState.players).forEach((pid2) => {
+      playerAttemptEat(pid1, pid2);
+    });
+  });
+};
+
+const getRandomPosition = () => {
   return {
-    x: getRandomInt(-20, 20) * 20,
-    y: getRandomInt(-20, 20) * 20,
+    x: getRandomInt(-MAP_LENGTH, MAP_LENGTH),
+    y: getRandomInt(-MAP_LENGTH, MAP_LENGTH),
   };
 };
 
@@ -29,7 +62,7 @@ const getRandomLocation = () => {
 // };
 
 /** constants */
-const goal = getRandomLocation();
+// const goal = getRandomPosition();
 
 /** game state */
 const gameState = {
@@ -40,8 +73,8 @@ const gameState = {
 /** game logic */
 
 /** Adds a player to the game state, initialized with a random location */
-const addPlayer = (id) => {
-  gameState.players[id] = getRandomLocation();
+const spawnPlayer = (id) => {
+  gameState.players[id] = { position: getRandomPosition(), radius: INITIAL_RADIUS };
 };
 
 /** Moves a player based off the sent data from the "move" socket msg */
@@ -55,7 +88,6 @@ const movePlayer = (id, dir) => {
   } else if (dir === "right") {
     gameState.players[id].x += 10;
   }
-  checkWin();
 };
 
 const checkWin = () => {
@@ -73,6 +105,12 @@ const checkWin = () => {
   }
 };
 
+const updateGameState = () => {
+  // TODO? : buffer moves on server side?
+  checkWin();
+  computePlayerEats();
+};
+
 // probably not doing this
 // /** Checks whether a player has won, if a player won, change the game state */
 // // win condition: only one player is alive at a given moment
@@ -88,14 +126,15 @@ const checkWin = () => {
 //   }
 // };
 
-/** Remove a player from the game state if they disconnect */
+/** Remove a player from the game state if they disconnect or if they get eaten */
 const removePlayer = (id) => {
   delete gameState.players[id];
 };
 
 module.exports = {
   gameState,
-  addPlayer,
+  spawnPlayer,
   movePlayer,
   removePlayer,
+  updateGameState,
 };

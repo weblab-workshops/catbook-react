@@ -12,6 +12,7 @@ const getSocketFromSocketID = (socketid) => io.sockets.connected[socketid];
 
 const usersInGame = {}; // Track all users who are playing the game
 
+// TODO: sendGameState
 const sendGameState = () => {};
 
 const startRunningGame = () => {};
