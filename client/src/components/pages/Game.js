@@ -8,16 +8,14 @@ import "../../utilities.css";
 import "./Game.css";
 
 const Game = (props) => {
-  const [user, setUser] = useState();
   const [winner, setWinner] = useState(null);
 
   // get user info
   useEffect(() => {
     document.title = "Game Page";
-    get(`/api/user`, { userid: props.userId }).then((userObj) => setUser(userObj));
   }, []);
 
-  if (!user) {
+  if (!props.userId) {
     return <div> Loading! </div>;
   }
 

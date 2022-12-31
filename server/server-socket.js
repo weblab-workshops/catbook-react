@@ -58,8 +58,10 @@ const addUser = (user, socket) => {
 };
 
 const removeUser = (user, socket) => {
-  if (user) delete userToSocketMap[user._id];
-  if (usersInGame.has(user._id)) usersInGame.delete(user._id);
+  if (user) {
+    delete userToSocketMap[user._id];
+    if (usersInGame.has(user._id)) usersInGame.delete(user._id);
+  }
   delete socketToUserMap[socket.id];
   io.emit("activeUsers", { activeUsers: getAllConnectedUsers() });
 };
@@ -76,7 +78,7 @@ module.exports = {
       });
       socket.on("move", (dir) => {
         const user = getUserFromSocketID(socket.id);
-        if (user) logic.movePlayer(user._id, dir);
+        if (user) gameLogic.movePlayer(user._id, dir);
       });
     });
   },

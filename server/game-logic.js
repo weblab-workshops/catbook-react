@@ -86,13 +86,13 @@ const spawnPlayer = (id) => {
 /** Moves a player based off the sent data from the "move" socket msg */
 const movePlayer = (id, dir) => {
   if (dir === "up") {
-    gameState.players[id].y += 10;
+    gameState.players[id].position.y += 10;
   } else if (dir === "down") {
-    gameState.players[id].y -= 10;
+    gameState.players[id].position.y -= 10;
   } else if (dir === "left") {
-    gameState.players[id].x -= 10;
+    gameState.players[id].position.x -= 10;
   } else if (dir === "right") {
-    gameState.players[id].x += 10;
+    gameState.players[id].position.x += 10;
   }
 };
 
