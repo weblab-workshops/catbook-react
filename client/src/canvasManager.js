@@ -14,7 +14,7 @@ let sprites = {
 };
 Object.keys(sprites).forEach((key) => {
   sprites[key] = new Image(400, 400);
-  sprites[key].src = `../player-icons/${key}.png`;
+  sprites[key].src = `../player-icons/${key}.png`; // Load sprites from dist folder
 });
 
 // converts a coordinate in a normal X Y plane to canvas coordinates
@@ -37,12 +37,14 @@ const fillCircle = (context, x, y, radius, color) => {
 // draws a sprite instead of a colored circle
 const drawSprite = (context, x, y, radius, color) => {
   context.save();
+  // Saves current context so we can restore to here once we are done drawing
   context.beginPath();
   context.arc(x, y, radius, 0, 2 * Math.PI, false);
   context.closePath();
-  context.clip();
+  context.clip(); // Sets circular clipping region for sprite image
   context.drawImage(sprites[color], x - radius, y - radius, radius * 2, radius * 2);
   context.restore();
+  // Restores context to last save (before clipping was applied), so we can draw normally again
 };
 
 /** drawing functions */
