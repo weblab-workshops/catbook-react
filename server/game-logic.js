@@ -16,7 +16,7 @@ const getRandomInt = (min, max) => {
 // TODO: getPlayerOverlap, will return percentage of overlap between two players
 // TODO: checkOverlaps (pairwise overlaps), will update player states and player radius
 
-const playersEaten = []; // A list of ids of any players that have just been eaten!
+let playersEaten = []; // A list of ids of any players that have just been eaten!
 
 // check player overlap with player
 const playerAttemptEat = (pid1, pid2) => {
@@ -49,6 +49,7 @@ const computePlayerEats = () => {
   playersEaten.forEach((playerid) => {
     removePlayer(playerid);
   });
+  playersEaten = [];
 };
 
 // check player overlap with food
