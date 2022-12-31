@@ -8,18 +8,25 @@ const EDIBLE_SIZE_RATIO = 0.9;
 const colors = ["red", "blue", "green", "yellow", "purple", "orange", "silver"]; // colors to use for players
 
 /** Utils! */
+
+/** Helper to generate a random integer */
 const getRandomInt = (min, max) => {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
 };
 
-// TODO: getPlayerOverlap, will return percentage of overlap between two players
-// TODO: checkOverlaps (pairwise overlaps), will update player states and player radius
+/** Helper to generate a random position on the map */
+const getRandomPosition = () => {
+  return {
+    x: getRandomInt(0, MAP_LENGTH),
+    y: getRandomInt(0, MAP_LENGTH),
+  };
+};
 
 let playersEaten = []; // A list of ids of any players that have just been eaten!
 
-/** Helper to check a player overlap with a player */
+/** Helper to compute when player 1 tries to eat player 2 */
 const playerAttemptEat = (pid1, pid2) => {
   const player1Position = gameState.players[pid1].position;
   const player2Position = gameState.players[pid2].position;
@@ -47,13 +54,14 @@ const computePlayerEats = () => {
       });
     });
   }
+  // Remove players who have been eaten
   playersEaten.forEach((playerid) => {
     removePlayer(playerid);
   });
-  playersEaten = [];
+  playersEaten = []; // Reset players that have just been eaten
 };
 
-/** Helper to check a player overlap with a food */
+/** Helper to check a player eating a piece of food */
 const playerAttemptEatFood = (pid1, f) => {
   const player1Position = gameState.players[pid1].position;
   const foodPosition = f.position;
@@ -75,30 +83,20 @@ const playerAttemptEatFood = (pid1, f) => {
 /** Attempts all pairwise eating between each player and all foods */
 const computePlayerEatsFood = () => {
   Object.keys(gameState.players).forEach((pid1) => {
-    if (gameState.players[pid1].radius > FOOD_SIZE) {
-      // if player is big enough to eat food
-      gameState.food.forEach((f) => {
-        playerAttemptEatFood(pid1, f);
-      });
-    }
+    gameState.food.forEach((f) => {
+      playerAttemptEatFood(pid1, f);
+    });
   });
 };
 
-const getRandomPosition = () => {
-  return {
-    x: getRandomInt(0, MAP_LENGTH),
-    y: getRandomInt(0, MAP_LENGTH),
-  };
-};
-
-/** game state */
+/** Game state */
 const gameState = {
   winner: null,
   players: {},
   food: [],
 };
 
-/** game logic */
+/** Game logic */
 
 /** Adds a player to the game state, initialized with a random location */
 const spawnPlayer = (id) => {
@@ -130,16 +128,19 @@ const movePlayer = (id, dir) => {
   // } else if (dir === "right") {
   //   gameState.players[id].position.x += 10;
   // }
+
+  // If player doesn't exist, don't move anything
   if (gameState.players[id] == undefined) {
     return;
   }
 
+  // Initialize a desired position to move to
   const desiredPosition = {
     x: gameState.players[id].position.x,
     y: gameState.players[id].position.y,
   };
 
-  // Move player
+  // Calculate desired position
   if (dir === "up") {
     desiredPosition.y += 10;
   } else if (dir === "down") {
@@ -164,6 +165,7 @@ const movePlayer = (id, dir) => {
     desiredPosition.y = 0;
   }
 
+  // Move player
   gameState.players[id].position = desiredPosition;
 };
 
@@ -177,23 +179,24 @@ const checkEnoughFoods = () => {
 /** Check win condition */
 const checkWin = () => {
   const winners = Object.keys(gameState.players).filter((key) => {
-    // check if player is too large
+    // check if player is sufficiently large
     const player = gameState.players[key];
     if (player.radius > MAX_PLAYER_SIZE) {
       return true;
     }
   });
 
-  // warning: race condition here; if players' radii become >200 at the same time, game will keep going
+  // WARNING: race condition here; if players' radii become >200 at the same time, game will keep going
   if (winners.length === 1) {
     gameState.winner = winners[0];
     Object.keys(gameState.players).forEach((key) => {
-      // remove all players
+      // remove all players from the game (effectively resetting the game)
       removePlayer(key);
     });
   }
 };
 
+/** Update the game state. This function is called once per server tick. */
 const updateGameState = () => {
   checkWin();
   computePlayerEats();

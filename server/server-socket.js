@@ -10,11 +10,12 @@ const getSocketFromUserID = (userid) => userToSocketMap[userid];
 const getUserFromSocketID = (socketid) => socketToUserMap[socketid];
 const getSocketFromSocketID = (socketid) => io.sockets.connected[socketid];
 
-// TODO: sendGameState
+/** Send game state to client */
 const sendGameState = () => {
   io.emit("update", gameLogic.gameState);
 };
 
+/** Start running game: game loop emits game states to all clients at 60 frames per second */
 const startRunningGame = () => {
   setInterval(() => {
     gameLogic.updateGameState();
@@ -23,10 +24,6 @@ const startRunningGame = () => {
 };
 
 startRunningGame();
-
-// TODO: addUserToGame
-// TODO: removeUserFromGame
-// TODO: sendGameState
 
 const addUserToGame = (user) => {
   gameLogic.spawnPlayer(user._id);
@@ -52,7 +49,7 @@ const addUser = (user, socket) => {
 const removeUser = (user, socket) => {
   if (user) {
     delete userToSocketMap[user._id];
-    removeUserFromGame(user);
+    removeUserFromGame(user); // Remove user from game if they disconnect
   }
   delete socketToUserMap[socket.id];
   io.emit("activeUsers", { activeUsers: getAllConnectedUsers() });
@@ -69,6 +66,7 @@ module.exports = {
         removeUser(user, socket);
       });
       socket.on("move", (dir) => {
+        // Listen for moves from client and move player accordingly
         const user = getUserFromSocketID(socket.id);
         if (user) gameLogic.movePlayer(user._id, dir);
       });
