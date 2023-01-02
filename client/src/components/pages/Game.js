@@ -8,7 +8,8 @@ import "../../utilities.css";
 import "./Game.css";
 
 const Game = (props) => {
-  const [winner, setWinner] = useState(null);
+  // TODO (Step 6.5): initialize winner state
+  // const [winner, setWinner] = useState(null);
 
   // add event listener on mount
   useEffect(() => {
@@ -17,7 +18,7 @@ const Game = (props) => {
     // remove event listener on unmount
     return () => {
       window.removeEventListener("keydown", handleInput);
-      post("/api/despawn", { userid: props.userId });
+      // TODO (Step 6.4): send a post request with user id to despawn api (1 line)
     };
   }, []);
 
@@ -29,17 +30,18 @@ const Game = (props) => {
   }, []);
 
   const processUpdate = (update) => {
-    if (update.winner) {
-      setWinner(update.winner);
-    }
+    // TODO (Step 6.5): set winner state if update has defined winner
+    // if (update.winner) {
+    //   setWinner(update.winner);
+    // }
     drawCanvas(update);
   };
 
-  // set a winner modal if there is a winner
   let winnerModal = null;
-  if (winner) {
-    winnerModal = <div className="Game-winner">the winner is {winner} yay cool cool</div>;
-  }
+  // TODO (Step 6.5): set winner modal if there is a winner
+  // if (winner) {
+  //   winnerModal = <div className="Game-winner">the winner is {winner} yay cool cool</div>;
+  // }
 
   // set a spawn button if the player is not in the game
   let spawnButton = null;
@@ -48,7 +50,7 @@ const Game = (props) => {
       <div className="Game-spawn">
         <button
           onClick={() => {
-            post("/api/spawn", { userid: props.userId });
+            // TODO (Step 6.3): send a post request with user id to spawn api (1 line)
           }}
         >
           Spawn
