@@ -27,7 +27,7 @@ const getRandomPosition = () => {
 let playersEaten = []; // A list of ids of any players that have just been eaten!
 
 /** Helper to compute when player 1 tries to eat player 2 */
-const playerAttemptEat = (pid1, pid2) => {
+const playerAttemptEatPlayer = (pid1, pid2) => {
   const player1Position = gameState.players[pid1].position;
   const player2Position = gameState.players[pid2].position;
   const x1 = player1Position.x;
@@ -46,11 +46,11 @@ const playerAttemptEat = (pid1, pid2) => {
 };
 
 /** Attempts all pairwise eating between players */
-const computePlayerEats = () => {
+const computePlayersEatPlayers = () => {
   if (Object.keys(gameState.players).length >= 2) {
     Object.keys(gameState.players).forEach((pid1) => {
       Object.keys(gameState.players).forEach((pid2) => {
-        playerAttemptEat(pid1, pid2);
+        playerAttemptEatPlayer(pid1, pid2);
       });
     });
   }
@@ -81,7 +81,7 @@ const playerAttemptEatFood = (pid1, f) => {
 };
 
 /** Attempts all pairwise eating between each player and all foods */
-const computePlayerEatsFood = () => {
+const computePlayersEatFoods = () => {
   Object.keys(gameState.players).forEach((pid1) => {
     gameState.food.forEach((f) => {
       playerAttemptEatFood(pid1, f);
@@ -167,8 +167,8 @@ const updateGameState = () => {
   // TODO (Step 6.5): add checkWin to game loop
   // Uncomment the following code:
   // checkWin();
-  computePlayerEats();
-  computePlayerEatsFood();
+  computePlayersEatPlayers();
+  computePlayersEatFoods();
   checkEnoughFoods();
 };
 
