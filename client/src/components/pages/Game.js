@@ -11,9 +11,9 @@ const Game = (props) => {
   // add event listener on mount
   useEffect(() => {
     // TODO (Step 3.3): add event listener when the page is loaded (1 line)
-    // Hint: `window` is a global variable on which you can call `addEventListener`
+    // Hint: `window` is a global variable on which you should call `addEventListener`
     // The type of event listener is "keydown", and the listener is the `handleInput` function
-    // we imported from input.js. Refer to documentation here:
+    // we imported from input.js. Refer to documentation for `addEventListener` here:
     // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
     // Your code goes here!
 
