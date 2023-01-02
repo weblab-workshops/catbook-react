@@ -198,7 +198,8 @@ const checkWin = () => {
 
 /** Update the game state. This function is called once per server tick. */
 const updateGameState = () => {
-  checkWin();
+  // TODO (Step 6.5): add checkWin to game loop
+  // checkWin();
   computePlayerEats();
   computePlayerEatsFood();
   checkEnoughFoods();
