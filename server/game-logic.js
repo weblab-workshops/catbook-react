@@ -142,31 +142,8 @@ const checkEnoughFoods = () => {
   }
 };
 
-/** Check win condition */
-const checkWin = () => {
-  const winners = Object.keys(gameState.players).filter((key) => {
-    // check if player is sufficiently large
-    const player = gameState.players[key];
-    if (player.radius > MAX_PLAYER_SIZE) {
-      return true;
-    }
-  });
-
-  // WARNING: race condition here; if players' radii become >200 at the same time, game will keep going
-  if (winners.length === 1) {
-    gameState.winner = winners[0];
-    Object.keys(gameState.players).forEach((key) => {
-      // remove all players from the game (effectively resetting the game)
-      removePlayer(key);
-    });
-  }
-};
-
 /** Update the game state. This function is called once per server tick. */
 const updateGameState = () => {
-  // TODO (Step 6.5): add checkWin to game loop
-  // Uncomment the following code:
-  // checkWin();
   computePlayerEats();
   computePlayerEatsFood();
   checkEnoughFoods();

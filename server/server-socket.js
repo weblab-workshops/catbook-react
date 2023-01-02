@@ -25,20 +25,9 @@ const startRunningGame = () => {
 
 startRunningGame();
 
-// TODO (Step 6.1): Fill out the addUserToGame and removeUserFromGame functions to call
-//    spawnPlayer and removePlayer functions from gameLogic. Make sure you pass in the user's id.
-const addUserToGame = (user) => {
-  // Your code here (Step 6.1)
-};
-
-const removeUserFromGame = (user) => {
-  // Your code here (Step 6.1)
-};
-
 const addUser = (user, socket) => {
   const oldSocket = userToSocketMap[user._id];
 
-  // TODO (Step 6.1): Remove this call to spawnPlayer, since now we have a spawn button.
   gameLogic.spawnPlayer(user._id);
   if (oldSocket && oldSocket.id !== socket.id) {
     // there was an old tab open for this user, force it to disconnect
@@ -54,9 +43,6 @@ const addUser = (user, socket) => {
 const removeUser = (user, socket) => {
   if (user) {
     delete userToSocketMap[user._id];
-    // TODO (Step 6.4): call removeUserFromGame on disconnect;
-    // a user should disconnect from game if they disconnect from site
-    // removeUserFromGame(user); // Remove user from game if they disconnect
   }
   delete socketToUserMap[socket.id];
   io.emit("activeUsers", { activeUsers: getAllConnectedUsers() });
@@ -87,7 +73,5 @@ module.exports = {
   getUserFromSocketID: getUserFromSocketID,
   getSocketFromSocketID: getSocketFromSocketID,
   getAllConnectedUsers: getAllConnectedUsers,
-  addUserToGame: addUserToGame,
-  removeUserFromGame: removeUserFromGame,
   getIo: () => io,
 };
