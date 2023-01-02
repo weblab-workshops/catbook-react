@@ -28,11 +28,11 @@ startRunningGame();
 // TODO (Step 6.1): Fill out the addUserToGame and removeUserFromGame functions to call
 //    spawnPlayer and removePlayer functions from gameLogic. Make sure you pass in the user's id.
 const addUserToGame = (user) => {
-  // Your code here (Step 6.1)
+  // Your code here (Step 6.1) (1 line)
 };
 
 const removeUserFromGame = (user) => {
-  // Your code here (Step 6.1)
+  // Your code here (Step 6.1) (1 line)
 };
 
 const addUser = (user, socket) => {
