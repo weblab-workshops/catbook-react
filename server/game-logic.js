@@ -46,13 +46,14 @@ const computePlayerEats = () => {
   if (Object.keys(gameState.players).length >= 2) {
     Object.keys(gameState.players).forEach((pid1) => {
       Object.keys(gameState.players).forEach((pid2) => {
-        playerAttemptEat(pid1, pid2);
+        // TODO (Step 5.2): call playerAttemptEat helper function (1 line)
       });
     });
   }
   // Remove players who have been eaten
   playersEaten.forEach((playerid) => {
-    removePlayer(playerid);
+    // TODO (Step 5.3): call removePlayer on each player that has been eaten (1 line)
+    // Note that the playerAttemptEat helper function stores all eaten players in playersEaten
   });
   playersEaten = []; // Reset players that have just been eaten
 };
@@ -140,7 +141,8 @@ const checkEnoughFoods = () => {
 
 /** Update the game state. This function is called once per server tick. */
 const updateGameState = () => {
-  computePlayerEats();
+  // TODO (Step 5.4): add computePlayerEats to game loop (1 line)
+  // This will check all pairwise eating between players every loop
   computePlayerEatsFood();
   checkEnoughFoods();
 };
