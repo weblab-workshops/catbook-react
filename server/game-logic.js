@@ -56,7 +56,7 @@ const computePlayerEatsFood = () => {
 const gameState = {
   winner: null,
   players: {},
-  food: [],
+  // TODO (4.1): Add "food" array to gameState here. (1 line)
 };
 
 /** Game logic */
@@ -71,13 +71,14 @@ const spawnPlayer = (id) => {
 };
 
 /** Adds a food to the game state, initialized with a random location */
-const spawnFood = () => {
-  gameState.food.push({
-    position: getRandomPosition(),
-    radius: FOOD_SIZE,
-    color: colors[Math.floor(Math.random() * colors.length)],
-  });
-};
+// TODO (Step 4.1): Uncomment the following function which spawns in food at random locations on the map.
+// const spawnFood = () => {
+//   gameState.food.push({
+//     position: getRandomPosition(),
+//     radius: FOOD_SIZE,
+//     color: colors[Math.floor(Math.random() * colors.length)],
+//   });
+// };
 
 /** Moves a player based off the sent data from the "move" socket msg */
 const movePlayer = (id, dir) => {
