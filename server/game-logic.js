@@ -26,23 +26,19 @@ const getRandomPosition = () => {
 
 let playersEaten = []; // A list of ids of any players that have just been eaten!
 
+// TODO (Step 5.1): Fill out the following playerAttemptEat function for player1 attempting to eat player 2.
+
 /** Helper to compute when player 1 tries to eat player 2 */
 const playerAttemptEat = (pid1, pid2) => {
-  const player1Position = gameState.players[pid1].position;
-  const player2Position = gameState.players[pid2].position;
-  const x1 = player1Position.x;
-  const y1 = player1Position.y;
-  const x2 = player2Position.x;
-  const y2 = player2Position.y;
-  const dist = Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
-  if (dist < gameState.players[pid1].radius * EDIBLE_RANGE_RATIO) {
-    // player 2 is within player 1's eat range
-    if (gameState.players[pid1].radius * EDIBLE_SIZE_RATIO > gameState.players[pid2].radius) {
-      // player 1 is big enough to eat player 2
-      gameState.players[pid1].radius += gameState.players[pid2].radius;
-      playersEaten.push(pid2);
-    }
-  }
+  // TODO (Step 5.1): We can get the players by using gameState.players and indexing by pid1 and pid2 as keys.
+  //    Each player has a position property, which has an x and y property.
+  //    We want to compute the Euclidean distance between the players' positions using the distance formula.
+  //    In order for player1 to eat, we need to check that this distance is less than player1's radius.
+  //    We must also check that player1's radius is bigger than player2's radius.
+  //    If we pass both of these checks, we should add player2's radius to player1's radius.
+  //    Instead of removing player2 immediately, we will just push player2's id to the playersEaten array
+  //    for now, and we will formally delete it delete later.
+  // Your code here (Step 5.1)
 };
 
 /** Attempts all pairwise eating between players */
