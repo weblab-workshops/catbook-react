@@ -9,6 +9,7 @@ import "./Game.css";
 
 const Game = (props) => {
   // TODO (Step 6.5): initialize winner state
+  // Uncomment the following code:
   // const [winner, setWinner] = useState(null);
 
   // add event listener on mount
@@ -31,6 +32,7 @@ const Game = (props) => {
 
   const processUpdate = (update) => {
     // TODO (Step 6.5): set winner state if update has defined winner
+    // Uncomment the following code:
     // if (update.winner) {
     //   setWinner(update.winner);
     // }
@@ -39,6 +41,7 @@ const Game = (props) => {
 
   let winnerModal = null;
   // TODO (Step 6.5): set winner modal if there is a winner
+  // Uncomment the following code:
   // if (winner) {
   //   winnerModal = <div className="Game-winner">the winner is {winner} yay cool cool</div>;
   // }
