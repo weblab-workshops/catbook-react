@@ -59,7 +59,7 @@ const playerAttemptEatFood = (pid1, f) => {
 const gameState = {
   winner: null,
   players: {},
-  // TODO (4.1): Add "food" array to gameState here. (1 line)
+  // TODO (Step 4.1): Add "food" array to gameState here. (1 line)
 };
 
 /** Game logic */
