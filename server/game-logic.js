@@ -118,55 +118,21 @@ const spawnFood = () => {
 
 /** Moves a player based off the sent data from the "move" socket msg */
 const movePlayer = (id, dir) => {
-  // Unbounded moves
-  // if (dir === "up") {
-  //   gameState.players[id].position.y += 10;
-  // } else if (dir === "down") {
-  //   gameState.players[id].position.y -= 10;
-  // } else if (dir === "left") {
-  //   gameState.players[id].position.x -= 10;
-  // } else if (dir === "right") {
-  //   gameState.players[id].position.x += 10;
-  // }
-
   // If player doesn't exist, don't move anything
   if (gameState.players[id] == undefined) {
     return;
   }
 
-  // Initialize a desired position to move to
-  const desiredPosition = {
-    x: gameState.players[id].position.x,
-    y: gameState.players[id].position.y,
-  };
-
-  // Calculate desired position
+  // Move player (unbounded)
   if (dir === "up") {
-    desiredPosition.y += 10;
+    gameState.players[id].position.y += 10;
   } else if (dir === "down") {
-    desiredPosition.y -= 10;
+    gameState.players[id].position.y -= 10;
   } else if (dir === "left") {
-    desiredPosition.x -= 10;
+    gameState.players[id].position.x -= 10;
   } else if (dir === "right") {
-    desiredPosition.x += 10;
+    gameState.players[id].position.x += 10;
   }
-
-  // Keep player in bounds
-  if (desiredPosition.x > MAP_LENGTH) {
-    desiredPosition.x = MAP_LENGTH;
-  }
-  if (desiredPosition.x < 0) {
-    desiredPosition.x = 0;
-  }
-  if (desiredPosition.y > MAP_LENGTH) {
-    desiredPosition.y = MAP_LENGTH;
-  }
-  if (desiredPosition.y < 0) {
-    desiredPosition.y = 0;
-  }
-
-  // Move player
-  gameState.players[id].position = desiredPosition;
 };
 
 /** Spawn a food if there are less than 10 foods */
@@ -199,6 +165,7 @@ const checkWin = () => {
 /** Update the game state. This function is called once per server tick. */
 const updateGameState = () => {
   // TODO (Step 6.5): add checkWin to game loop
+  // Uncomment the following code:
   // checkWin();
   computePlayerEats();
   computePlayerEatsFood();
