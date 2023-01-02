@@ -26,10 +26,10 @@ const getRandomPosition = () => {
 
 let playersEaten = []; // A list of ids of any players that have just been eaten!
 
-// TODO (Step 5.1): Fill out the following playerAttemptEat function for player1 attempting to eat player 2.
+// TODO (Step 5.1): Fill out the following playerAttemptEatPlayer function for player1 attempting to eat player 2.
 
 /** Helper to compute when player 1 tries to eat player 2 */
-const playerAttemptEat = (pid1, pid2) => {
+const playerAttemptEatPlayer = (pid1, pid2) => {
   // TODO (Step 5.1): We can get the players by using gameState.players and indexing by pid1 and pid2 as keys.
   //    Each player has a position property, which has an x and y property.
   //    We want to compute the Euclidean distance between the players' positions using the distance formula.
@@ -42,18 +42,18 @@ const playerAttemptEat = (pid1, pid2) => {
 };
 
 /** Attempts all pairwise eating between players */
-const computePlayerEats = () => {
+const computePlayersEatPlayers = () => {
   if (Object.keys(gameState.players).length >= 2) {
     Object.keys(gameState.players).forEach((pid1) => {
       Object.keys(gameState.players).forEach((pid2) => {
-        // TODO (Step 5.2): call playerAttemptEat helper function (1 line)
+        // TODO (Step 5.2): call playerAttemptEatPlayer helper function (1 line)
       });
     });
   }
   // Remove players who have been eaten
   playersEaten.forEach((playerid) => {
     // TODO (Step 5.3): call removePlayer on each player that has been eaten (1 line)
-    // Note that the playerAttemptEat helper function stores all eaten players in playersEaten
+    // Note that the playerAttemptEatPlayer helper function stores all eaten players in playersEaten
   });
   playersEaten = []; // Reset players that have just been eaten
 };
@@ -78,7 +78,7 @@ const playerAttemptEatFood = (pid1, f) => {
 };
 
 /** Attempts all pairwise eating between each player and all foods */
-const computePlayerEatsFood = () => {
+const computePlayersEatFoods = () => {
   Object.keys(gameState.players).forEach((pid1) => {
     gameState.food.forEach((f) => {
       playerAttemptEatFood(pid1, f);
@@ -141,9 +141,9 @@ const checkEnoughFoods = () => {
 
 /** Update the game state. This function is called once per server tick. */
 const updateGameState = () => {
-  // TODO (Step 5.4): add computePlayerEats to game loop (1 line)
+  // TODO (Step 5.4): add computePlayersEatPlayers to game loop (1 line)
   // This will check all pairwise eating between players every loop
-  computePlayerEatsFood();
+  computePlayersEatFoods();
   checkEnoughFoods();
 };
 
