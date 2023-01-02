@@ -56,7 +56,7 @@ const removeUser = (user, socket) => {
     delete userToSocketMap[user._id];
     // TODO (Step 6.4): call removeUserFromGame on disconnect;
     // a user should disconnect from game if they disconnect from site
-    // removeUserFromGame(user); // Remove user from game if they disconnect
+    // removeUserFromGame(user);
   }
   delete socketToUserMap[socket.id];
   io.emit("activeUsers", { activeUsers: getAllConnectedUsers() });
