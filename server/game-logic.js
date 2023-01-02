@@ -38,19 +38,22 @@ const playerAttemptEatFood = (pid1, f) => {
     if (gameState.players[pid1].radius > FOOD_SIZE) {
       // player 1 is big enough to eat food
       gameState.players[pid1].radius += FOOD_SIZE;
-      removeFood(f);
+      // TODO (Step 4.3, pt 2): call removeFood on a food if the food is in range
+      // Uncomment the following code:
+      // removeFood(f);
     }
   }
 };
 
-/** Attempts all pairwise eating between each player and all foods */
-const computePlayerEatsFood = () => {
-  Object.keys(gameState.players).forEach((pid1) => {
-    gameState.food.forEach((f) => {
-      playerAttemptEatFood(pid1, f);
-    });
-  });
-};
+// TODO (Step 4.2): attempt all pairwise eating between each player and all foods
+// Uncomment the following code:
+// const computePlayerEatsFood = () => {
+//   Object.keys(gameState.players).forEach((pid1) => {
+//     gameState.food.forEach((f) => {
+//       playerAttemptEatFood(pid1, f);
+//     });
+//   });
+// };
 
 /** Game state */
 const gameState = {
@@ -99,17 +102,22 @@ const movePlayer = (id, dir) => {
   }
 };
 
-/** Spawn a food if there are less than 10 foods */
-const checkEnoughFoods = () => {
-  if (gameState.food.length < 10) {
-    spawnFood();
-  }
-};
+// TODO (Step 4.4): spawn a food if there are less than 10 foods
+// Uncomment the following code:
+// const checkEnoughFoods = () => {
+//   if (gameState.food.length < 10) {
+//     spawnFood();
+//   }
+// };
 
 /** Update the game state. This function is called once per server tick. */
 const updateGameState = () => {
-  computePlayerEatsFood();
-  checkEnoughFoods();
+  // TODO (Step 4.4): add computePlayerEatsFood and checkEnoughFoods to game loop
+  // This will compute all pairwise eating between each player and all foods,
+  // and add more food to the game
+  // Uncomment the following code:
+  // computePlayerEatsFood();
+  // checkEnoughFoods();
 };
 
 /** Remove a player from the game state if they disconnect or if they get eaten */
@@ -119,13 +127,16 @@ const removePlayer = (id) => {
   }
 };
 
-/** Remove a food from the game state if it gets eaten, given reference to food object */
-const removeFood = (f) => {
-  let ix = gameState.food.indexOf(f);
-  if (ix !== -1) {
-    gameState.food.splice(ix, 1);
-  }
-};
+// TODO (Step 4.3): remove a food from the game state if it gets eaten, given reference to food object
+// Has some ugly syntax because we're given the _reference_ to the food _object_,
+// and need to find the corresponding index in gameState.food
+// Uncomment the following code:
+// const removeFood = (f) => {
+//   let ix = gameState.food.indexOf(f);
+//   if (ix !== -1) {
+//     gameState.food.splice(ix, 1);
+//   }
+// };
 
 module.exports = {
   gameState,
