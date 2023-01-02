@@ -26,11 +26,6 @@ const drawPlayer = (context, x, y, radius, color) => {
   fillCircle(context, drawX, drawY, radius, color);
 };
 
-const drawCircle = (context, x, y, radius, color) => {
-  const { drawX, drawY } = convertCoord(x, y);
-  fillCircle(context, drawX, drawY, radius, color);
-};
-
 /** main draw */
 export const drawCanvas = (drawState) => {
   // use id of canvas element in HTML DOM to get reference to canvas object
@@ -46,10 +41,4 @@ export const drawCanvas = (drawState) => {
   Object.values(drawState.players).forEach((p) => {
     drawPlayer(context, p.position.x, p.position.y, p.radius, p.color);
   });
-
-  // draw all the foods
-  // TODO (Step 4.1): Uncomment the following code to draw foods.
-  // Object.values(drawState.food).forEach((f) => {
-  //   drawCircle(context, f.position.x, f.position.y, f.radius, f.color);
-  // });
 };
