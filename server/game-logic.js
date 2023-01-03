@@ -219,10 +219,15 @@ const removeFood = (f) => {
   }
 };
 
+const resetWinner = () => {
+  gameState.winner = null;
+};
+
 module.exports = {
   gameState,
   spawnPlayer,
   movePlayer,
   removePlayer,
   updateGameState,
+  resetWinner,
 };

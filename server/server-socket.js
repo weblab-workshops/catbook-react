@@ -20,6 +20,16 @@ const startRunningGame = () => {
   setInterval(() => {
     gameLogic.updateGameState();
     sendGameState();
+
+    // Reset game 5 seconds after someone wins.
+    let winResetTimer = 0;
+    if (gameLogic.gameState.winner != null) {
+      winResetTimer += 1;
+    }
+    if (winResetTimer > 60 * 5) {
+      winResetTimer = 0;
+      gameLogic.resetWinner();
+    }
   }, 1000 / 60); // 60 frames per second
 };
 
