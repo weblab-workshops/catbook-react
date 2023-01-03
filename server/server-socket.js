@@ -22,7 +22,7 @@ const startRunningGame = () => {
     gameLogic.updateGameState();
     sendGameState();
 
-    // Reset game 2 ticks after someone wins.
+    // Reset game 5 seconds after someone wins.
     if (gameLogic.gameState.winner != null) {
       winResetTimer += 1;
     }
