@@ -1,10 +1,7 @@
 /** constants */
 const MAP_LENGTH = 500;
 const INITIAL_RADIUS = 20;
-const MAX_PLAYER_SIZE = 200;
 const FOOD_SIZE = 2;
-const EDIBLE_RANGE_RATIO = 0.9;
-const EDIBLE_SIZE_RATIO = 0.9;
 const colors = ["red", "blue", "green", "yellow", "purple", "orange", "silver"]; // colors to use for players
 
 /** Utils! */
