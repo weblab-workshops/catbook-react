@@ -29,6 +29,7 @@ const Game = (props) => {
   }, []);
 
   const processUpdate = (update) => {
+    // set winnerModal if update has defined winner
     if (update.winner) {
       setWinnerModal(
         <div className="Game-winner">the winner is {update.winner} yay cool cool</div>
@@ -38,12 +39,6 @@ const Game = (props) => {
     }
     drawCanvas(update);
   };
-
-  // set a winner modal if there is a winner
-  // let winnerModal = null;
-  // if (winner) {
-  //   winnerModal = <div className="Game-winner">the winner is {winner} yay cool cool</div>;
-  // }
 
   // set a spawn button if the player is not in the game
   let spawnButton = null;
