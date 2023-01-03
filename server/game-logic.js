@@ -52,7 +52,7 @@ const computePlayersEatPlayers = () => {
   // Remove players who have been eaten
   playersEaten.forEach((playerid) => {
     // TODO (Step 5.3): call removePlayer on each player that has been eaten (1 line)
-    // Note that the playerAttemptEatPlayer helper function stores all eaten players in playersEaten
+    // Note that the playerAttemptEatPlayer helper function has already stored all eaten players in playersEaten
   });
   playersEaten = []; // Reset players that have just been eaten
 };
