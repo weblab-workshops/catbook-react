@@ -44,7 +44,7 @@ const playerAttemptEatFood = (pid1, f) => {
 
 // TODO (Step 4.2): attempt all pairwise eating between each player and all foods
 // Uncomment the following code:
-// const computePlayerEatsFood = () => {
+// const computePlayersEatFoods = () => {
 //   Object.keys(gameState.players).forEach((pid1) => {
 //     gameState.food.forEach((f) => {
 //       playerAttemptEatFood(pid1, f);
@@ -109,11 +109,11 @@ const movePlayer = (id, dir) => {
 
 /** Update the game state. This function is called once per server tick. */
 const updateGameState = () => {
-  // TODO (Step 4.4): add computePlayerEatsFood and checkEnoughFoods to game loop
+  // TODO (Step 4.4): add computePlayersEatFoods and checkEnoughFoods to game loop
   // This will compute all pairwise eating between each player and all foods,
   // and add more food to the game
   // Uncomment the following code:
-  // computePlayerEatsFood();
+  // computePlayersEatFoods();
   // checkEnoughFoods();
 };
 
