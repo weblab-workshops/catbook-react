@@ -35,7 +35,7 @@ const spawnPlayer = (id) => {
   //    The new player should have a random position on the map.
   //    You can use getRandomPosition() which has been implemented above for you.
   //    The radius should be the initial radius (defined at the top of this file).
-  //    Bonus: If you want, you can try to also give a "color" property to each player, and
+  //    Bonus challenge: If you want, you can try to also give a "color" property to each player, and
   //    initialize it to a random color from the colors array at the top of this file.
 };
 
