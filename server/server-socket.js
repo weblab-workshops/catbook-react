@@ -11,19 +11,22 @@ const getUserFromSocketID = (socketid) => socketToUserMap[socketid];
 const getSocketFromSocketID = (socketid) => io.sockets.connected[socketid];
 
 /** Send game state to client */
-const sendGameState = () => {
-  io.emit("update", gameLogic.gameState);
-};
+// TODO (Step 2.1): Uncomment the following function which sends gameState updates to all clients.
+// const sendGameState = () => {
+//   io.emit("update", gameLogic.gameState);
+// };
 
-/** Start running game: game loop emits game states to all clients at 60 frames per second */
-const startRunningGame = () => {
-  setInterval(() => {
-    gameLogic.updateGameState();
-    sendGameState();
-  }, 1000 / 60); // 60 frames per second
-};
+// /** Start running game: game loop emits game states to all clients at 60 frames per second */
+// TODO (Step 2.1): Uncomment the following function which sets up a game loop for running the game.
+// const startRunningGame = () => {
+//   setInterval(() => {
+//     gameLogic.updateGameState();
+//     sendGameState();
+//   }, 1000 / 60); // 60 frames per second
+// };
 
-startRunningGame();
+// TODO (Step 2.1): Uncomment the following function call which starts the game.
+// startRunningGame();
 
 const addUser = (user, socket) => {
   const oldSocket = userToSocketMap[user._id];
