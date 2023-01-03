@@ -30,9 +30,6 @@ const App = () => {
     });
   }, []);
 
-  // TODO (extra!): Catch the "forceDisconnect" socket event.
-  // In the callback function, set the state 'socketDisconnected' to true.
-
   const handleLogin = (res) => {
     const userToken = res.tokenObj.id_token;
     post("/api/login", { token: userToken }).then((user) => {
