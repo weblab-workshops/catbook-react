@@ -26,7 +26,7 @@ const startRunningGame = () => {
     if (gameLogic.gameState.winner != null) {
       winResetTimer += 1;
     }
-    if (winResetTimer === 60 * 5) {
+    if (winResetTimer > 60 * 5) {
       winResetTimer = 0;
       gameLogic.resetWinner();
     }
