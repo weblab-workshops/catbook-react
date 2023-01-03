@@ -8,7 +8,7 @@ import "../../utilities.css";
 import "./Game.css";
 
 const Game = (props) => {
-  const [winner, setWinner] = useState(null);
+  const [winnerModal, setWinnerModal] = useState(null);
 
   // add event listener on mount
   useEffect(() => {
@@ -29,17 +29,23 @@ const Game = (props) => {
   }, []);
 
   const processUpdate = (update) => {
+    console.log(update.winner);
     if (update.winner) {
-      setWinner(update.winner);
+      setWinnerModal(
+        <div className="Game-winner">the winner is {update.winner} yay cool cool</div>
+      );
+      setTimeout(() => {
+        setWinnerModal(null);
+      }, 5000);
     }
     drawCanvas(update);
   };
 
   // set a winner modal if there is a winner
-  let winnerModal = null;
-  if (winner) {
-    winnerModal = <div className="Game-winner">the winner is {winner} yay cool cool</div>;
-  }
+  // let winnerModal = null;
+  // if (winner) {
+  //   winnerModal = <div className="Game-winner">the winner is {winner} yay cool cool</div>;
+  // }
 
   // set a spawn button if the player is not in the game
   let spawnButton = null;
