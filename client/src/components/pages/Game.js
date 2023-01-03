@@ -29,14 +29,12 @@ const Game = (props) => {
   }, []);
 
   const processUpdate = (update) => {
-    console.log(update.winner);
     if (update.winner) {
       setWinnerModal(
         <div className="Game-winner">the winner is {update.winner} yay cool cool</div>
       );
-      setTimeout(() => {
-        setWinnerModal(null);
-      }, 5000);
+    } else {
+      setWinnerModal(null);
     }
     drawCanvas(update);
   };

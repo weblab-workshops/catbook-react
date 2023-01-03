@@ -17,16 +17,16 @@ const sendGameState = () => {
 
 /** Start running game: game loop emits game states to all clients at 60 frames per second */
 const startRunningGame = () => {
+  let winResetTimer = 0;
   setInterval(() => {
     gameLogic.updateGameState();
     sendGameState();
 
-    // Reset game 5 seconds after someone wins.
-    let winResetTimer = 0;
+    // Reset game 2 ticks after someone wins.
     if (gameLogic.gameState.winner != null) {
       winResetTimer += 1;
     }
-    if (winResetTimer > 60 * 5) {
+    if (winResetTimer === 60 * 5) {
       winResetTimer = 0;
       gameLogic.resetWinner();
     }
