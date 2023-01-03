@@ -31,7 +31,11 @@ const getSocketFromSocketID = (socketid) => io.sockets.connected[socketid];
 const addUser = (user, socket) => {
   const oldSocket = userToSocketMap[user._id];
 
-  gameLogic.spawnPlayer(user._id);
+  // TODO (Step 2.4): call spawnPlayer on the user id (1 line)
+  // Hint: spawnPlayer takes a user id as an input, which is given here by `user._id`
+  // Hint 2: spawnPlayer is a function from our gameLogic module, which we've already imported
+  // Your code goes here!
+
   if (oldSocket && oldSocket.id !== socket.id) {
     // there was an old tab open for this user, force it to disconnect
     oldSocket.disconnect();

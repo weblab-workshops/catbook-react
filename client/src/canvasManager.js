@@ -23,7 +23,8 @@ const fillCircle = (context, x, y, radius, color) => {
 
 const drawPlayer = (context, x, y, radius, color) => {
   const { drawX, drawY } = convertCoord(x, y);
-  fillCircle(context, drawX, drawY, radius, color);
+  // TODO (Step 2.6): call fillCircle to draw a circle as the player (1 line)
+  // Your code goes here
 };
 
 /** main draw */
@@ -39,6 +40,9 @@ export const drawCanvas = (drawState) => {
 
   // draw all the players
   Object.values(drawState.players).forEach((p) => {
-    drawPlayer(context, p.position.x, p.position.y, p.radius, p.color);
+    // TODO (Step 2.6, pt 2): call drawPlayer to draw each player (1 line)
+    // Hint: each player `p` has a `position` field, and this `position` field
+    //   has an `x` field and `y` field.
+    // Your code goes here
   });
 };

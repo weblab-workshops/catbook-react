@@ -48,7 +48,8 @@ const spawnPlayer = (id) => {
 /** Remove a player from the game state if they disconnect or if they get eaten */
 const removePlayer = (id) => {
   if (gameState.players[id] != undefined) {
-    delete gameState.players[id];
+    // TODO (Step 2.3): remove the player from the game state
+    // Your code goes here
   }
 };
 
