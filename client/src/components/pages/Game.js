@@ -8,9 +8,9 @@ import "../../utilities.css";
 import "./Game.css";
 
 const Game = (props) => {
-  // TODO (Step 6.5): initialize winner state
+  // TODO (Step 6.5): initialize winnerModal state
   // Uncomment the following code:
-  // const [winner, setWinner] = useState(null);
+  // const [winnerModal, setWinnerModal] = useState(null);
 
   // add event listener on mount
   useEffect(() => {
@@ -31,20 +31,17 @@ const Game = (props) => {
   }, []);
 
   const processUpdate = (update) => {
-    // TODO (Step 6.5): set winner state if update has defined winner
+    // TODO (Step 6.5): set winnerModal if update has defined winner
     // Uncomment the following code:
     // if (update.winner) {
-    //   setWinner(update.winner);
+    //   setWinnerModal(
+    //     <div className="Game-winner">the winner is {update.winner} yay cool cool</div>
+    //   );
+    // } else {
+    //   setWinnerModal(null);
     // }
     drawCanvas(update);
   };
-
-  let winnerModal = null;
-  // TODO (Step 6.5): set winner modal if there is a winner
-  // Uncomment the following code:
-  // if (winner) {
-  //   winnerModal = <div className="Game-winner">the winner is {winner} yay cool cool</div>;
-  // }
 
   // set a spawn button if the player is not in the game
   let spawnButton = null;
@@ -74,7 +71,9 @@ const Game = (props) => {
         {/* important: canvas needs id to be referenced by canvasManager */}
         <canvas id="game-canvas" width="500" height="500" />
         {loginModal}
-        {winnerModal}
+        {/* TODO (Step 6.5): display winnerModal */}
+        {/* Uncomment the following line: */}
+        {/* {winnerModal} */}
         {spawnButton}
       </div>
     </>
