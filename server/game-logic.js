@@ -40,7 +40,7 @@ const spawnPlayer = (id) => {
 };
 
 /** Update the game state. This function is called once per server tick. */
-// TODO (Step 2.1): Uncomment the following function for updating the game state.
+// TODO (Step 2.1, pt 2): Uncomment the following function for updating the game state.
 // const updateGameState = () => {
 //   // This function is currently empty, but we'll add to it later.
 // };
@@ -54,8 +54,10 @@ const removePlayer = (id) => {
 };
 
 module.exports = {
-  gameState,
+  // TODO (Step 2.1, pt 3): uncomment the following code to export gameState and the
+  //   updateGameState function.
+  // gameState,
+  // updateGameState,
   spawnPlayer,
   removePlayer,
-  updateGameState,
 };
