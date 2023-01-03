@@ -41,22 +41,6 @@ const spawnPlayer = (id) => {
   };
 };
 
-/** Moves a player based off the sent data from the "move" socket msg */
-const movePlayer = (id, dir) => {
-  // If player doesn't exist, don't move anything
-  if (gameState.players[id] == undefined) {
-    return;
-  }
-
-  // TODO (Step 3.4): given the player id (id) and keyboard input (dir), move the player 10px
-  //   in the direction given by `dir` (8-10 lines).
-  // `dir` is a string that can take on 4 directions: "up", "down", "left", "right".
-  // Remember that x controls left-right, and y controls up-down.
-  // Hint: Players are stored in gameState.players, and each player is indexed by its `id`. Each player
-  //       has a `position` field, and this `position` field has an `x` field and a `y` field.
-  // Your code goes here!
-};
-
 /** Update the game state. This function is called once per server tick. */
 const updateGameState = () => {
   // This function is currently empty, but we'll add to it later.
@@ -72,7 +56,6 @@ const removePlayer = (id) => {
 module.exports = {
   gameState,
   spawnPlayer,
-  movePlayer,
   removePlayer,
   updateGameState,
 };
