@@ -5,7 +5,9 @@ import Feed from "./pages/Feed.js";
 import NotFound from "./pages/NotFound.js";
 import Profile from "./pages/Profile.js";
 import Chatbook from "./pages/Chatbook.js";
-import Game from "./pages/Game.js";
+// TODO (Step 1, pt 1): import Game from Game.js (1 line)
+// Hint: the relative path is "./pages/Game.js"
+// Your code goes here
 
 import { socket } from "../client-socket.js";
 
@@ -59,7 +61,8 @@ const App = () => {
           <Feed path="/" userId={userId} />
           <Profile path="/profile/:userId" />
           <Chatbook path="/chat/" userId={userId} />
-          <Game path="/game/" userId={userId} />
+          {/* TODO (Step 1, pt 2): add Game page ("/game/") to our app, and pass in userId as a prop (1 line) */}
+          {/* Your code goes here */}
           <NotFound default />
         </Router>
       </div>
