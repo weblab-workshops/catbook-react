@@ -28,14 +28,15 @@ const path = require("path"); // provide utilities for working with file and dir
 
 const api = require("./api");
 const auth = require("./auth");
+require("dotenv").config();
 
 // socket stuff
 const socketManager = require("./server-socket");
 
 // Server configuration below
 // TODO change connection URL after setting up your own database
-const mongoConnectionURL =
-  "mongodb+srv://weblab:jAT4po55IAgYWQgR@catbook-ylndp.mongodb.net/test?retryWrites=true&w=majority";
+// THIS IS HIDDEN IN A DOTENV FILE
+const mongoConnectionURL = process.env.mongoURL;
 // TODO change database name to the name you chose
 const databaseName = "catbook";
 
@@ -60,7 +61,7 @@ app.use(bodyParser.json());
 // set up a session, which will persist login data across requests
 app.use(
   session({
-    secret: "session-secret",
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
   })
