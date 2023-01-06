@@ -51,7 +51,7 @@ const Chatbook = (props) => {
   }, []);
 
   useEffect(() => {
-    // TODO (step 6.2): add socket.on for when received message
+    // TODO (step 0.2): add socket.on for when received message
   }, []);
 
   if (!props.userId) {
@@ -67,6 +67,6 @@ const Chatbook = (props) => {
       </div>
     </>
   );
-}
+};
 
 export default Chatbook;
