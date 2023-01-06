@@ -86,6 +86,7 @@ router.get("/chat", (req, res) => {
   } else {
     // get messages that are from me->you OR you->me
     query = {
+      // more info on $or: https://www.mongodb.com/docs/manual/reference/operator/query/or/
       $or: [
         { "sender._id": req.user._id, "recipient._id": req.query.recipient_id },
         { "sender._id": req.query.recipient_id, "recipient._id": req.user._id },
