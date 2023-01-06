@@ -50,10 +50,6 @@ const Chatbook = (props) => {
     loadMessageHistory(ALL_CHAT);
   }, []);
 
-  useEffect(() => {
-    // TODO (step 6.2): add socket.on for when received message
-  }, []);
-
   if (!props.userId) {
     return <div>Log in before using Chatbook</div>;
   }
@@ -67,6 +63,6 @@ const Chatbook = (props) => {
       </div>
     </>
   );
-}
+};
 
 export default Chatbook;
