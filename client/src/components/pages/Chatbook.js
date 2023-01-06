@@ -72,12 +72,12 @@ const Chatbook = (props) => {
     };
   }, []);
 
+  // TODO (step 2.4): Add a callback function called setActiveUser that takes a user as a parameter and
+  //    prints the user's name to console. We'll change this function later to do something more useful.
+
   if (!props.userId) {
     return <div>Log in before using Chatbook</div>;
   }
-
-  // TODO (step 2.4): Add a callback function called setActiveUser that takes a user as a parameter and
-  //    prints the user's name to console. We'll change this function later to do something more useful.
 
   return (
     <>
