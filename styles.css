@@ -35,7 +35,7 @@ body {
   font-weight: normal;
 }
 
-img.avatar {
+.avatar {
   max-width: 100%;
   border-radius: var(--m);
 }
