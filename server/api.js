@@ -7,30 +7,30 @@
 |
 */
 
-// without a system for users, we'll have to hardcode our user name
-const MY_NAME = "Hackerman";
+const express = require("express");
+
+const router = express.Router();
+
+// Use a hardcoded username for now
+const myName = "Anonymous";
 
 const data = {
   stories: [
     {
       _id: 0,
-      creator_name: "Shannen Wu",
-      content: "I love corgis!"
-    }
+      creator_name: "Nicholas Tsao",
+      content: "I love dancing!",
+    },
   ],
   comments: [
     {
       _id: 0,
-      creator_name: "Jessica Tang",
+      creator_name: "Philena Liu",
       parent: 0,
-      content: "Wow! Me Too!",
-    }
+      content: "Me Too!",
+    },
   ],
 };
-
-const express = require("express");
-
-const router = express.Router();
 
 router.get("/test", (req, res) => {
   res.send({ message: "Wow I made my first API! In its own file!" });
@@ -42,15 +42,14 @@ router.get("/stories", (req, res) => {
 });
 
 router.get("/comment", (req, res) => {
-  const filteredComments = data.comments.filter(
-    (comment) => comment.parent == req.query.parent);
-  res.send(filteredComments)
+  const filteredComments = data.comments.filter((comment) => comment.parent == req.query.parent);
+  res.send(filteredComments);
 });
 
 router.post("/story", (req, res) => {
   const newStory = {
     _id: data.stories.length,
-    creator_name: MY_NAME,
+    creator_name: myName,
     content: req.body.content,
   };
 
@@ -61,7 +60,7 @@ router.post("/story", (req, res) => {
 router.post("/comment", (req, res) => {
   const newComment = {
     _id: data.comments.length,
-    creator_name: MY_NAME,
+    creator_name: myName,
     parent: req.body.parent,
     content: req.body.content,
   };
@@ -70,8 +69,7 @@ router.post("/comment", (req, res) => {
   res.send(newComment);
 });
 
-// similar to our other catch all route in server.js,
-// let's add a backup route for bad /api routes
+// catch all /api route
 router.all("*", (req, res) => {
   console.log(`API Route not found: ${req.method} ${req.url}`);
   res.status(404).send({ message: "API Route not found" });

@@ -16,11 +16,11 @@
 const express = require("express"); // backend framework for our node server.
 const path = require("path"); // provide utilities for working with file and directory paths
 
-// create a new express server
-const app = express();
-
 // import the router from our API file
 const api = require("./api.js");
+
+// create a new express server
+const app = express();
 
 // allow us to make post requests
 app.use(express.json());
@@ -40,7 +40,7 @@ app.get("*", (req, res) => {
 // any server errors cause this function to run
 app.use((err, req, res, next) => {
   const status = err.status || 500;
-  if( status === 500 ){
+  if (status === 500) {
     // 500 means Internal Server Error
     console.log("The server errored when processing a request");
     console.log(err);
