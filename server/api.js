@@ -11,8 +11,9 @@ const express = require("express");
 
 const router = express.Router();
 
+// an example GET route
 router.get("/test", (req, res) => {
-  res.send({ message: "Wow I made my first API! In its own file!" });
+  res.send({ message: "Wow I made my first API!" });
 });
 
 module.exports = router;
