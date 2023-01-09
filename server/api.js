@@ -7,30 +7,31 @@
 |
 */
 
-// without a system for users, we'll have to hardcode our user name
-const MY_NAME = "Hackerman";
+const express = require("express");
+
+const router = express.Router();
+
+// Use a hardcoded username for now
+// TODO: change to a unique name for the workshop
+const myName = "Anonymous";
 
 const data = {
   stories: [
     {
       _id: 0,
-      creator_name: "Shannen Wu",
-      content: "I love corgis!"
-    }
+      creator_name: "Nicholas Tsao",
+      content: "I love dancing!",
+    },
   ],
   comments: [
     {
       _id: 0,
-      creator_name: "Jessica Tang",
+      creator_name: "Philena Liu",
       parent: 0,
-      content: "Wow! Me Too!",
-    }
+      content: "Me Too!",
+    },
   ],
 };
-
-const express = require("express");
-
-const router = express.Router();
 
 router.get("/test", (req, res) => {
   res.send({ message: "Wow I made my first API! In its own file!" });
@@ -42,9 +43,8 @@ router.get("/stories", (req, res) => {
 });
 
 router.get("/comment", (req, res) => {
-  const filteredComments = data.comments.filter(
-    (comment) => comment.parent == req.query.parent);
-  res.send(filteredComments)
+  const filteredComments = data.comments.filter((comment) => comment.parent == req.query.parent);
+  res.send(filteredComments);
 });
 
 module.exports = router;
