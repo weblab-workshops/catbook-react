@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/weblab-workshops/catbook-react#readme",
   "engines": {
-    "node": ">=18.x"
+    "node": "18.x"
   },
   "dependencies": {
     "@reach/router": "^1.3.4",
