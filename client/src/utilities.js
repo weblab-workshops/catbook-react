@@ -8,7 +8,7 @@
  * e.g. get('/api/foo', { bar: 0 }).then(res => console.log(res))
  */
 
-const BASE_URL = "http://catbook-workshop2.herokuapp.com";
+const BASE_URL = "http://catbook-workshop3.herokuapp.com";
 
 // ex: formatParams({ some_key: "some_value", a: "b"}) => "some_key=some_value&a=b"
 function formatParams(params) {
