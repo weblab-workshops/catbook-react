@@ -47,7 +47,7 @@ const Game = (props) => {
   let spawnButton = null;
   if (props.userId) {
     spawnButton = (
-      <div className="Game-spawn">
+      <div>
         <button
           onClick={() => {
             // TODO (Step 6.3): send a post request with user id to spawn api (1 line)
