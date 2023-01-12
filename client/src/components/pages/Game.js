@@ -44,7 +44,7 @@ const Game = (props) => {
   let spawnButton = null;
   if (props.userId) {
     spawnButton = (
-      <div className="Game-spawn">
+      <div>
         <button
           onClick={() => {
             post("/api/spawn", { userid: props.userId });
