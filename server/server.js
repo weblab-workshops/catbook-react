@@ -25,7 +25,7 @@ const path = require("path"); // provide utilities for working with file and dir
 
 const api = require("./api.js");
 // Server configuration below
-// step -1: change connection URL after setting up your own database
+// TODO (step-1): change connection URL after setting up your own database
 const mongoConnectionURL = "";
 
 // TODO (for your own websites): change database name to the name you chose
