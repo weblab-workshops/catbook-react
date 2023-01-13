@@ -11,27 +11,28 @@ const express = require("express");
 
 // import models so we can interact with the database
 const Story = require("./models/story")
+// TODO (step1) import the comment model
 
 // api endpoints: all these paths will be prefixed with "/api/"
 const router = express.Router();
 
 
 router.get("/stories", (req, res) => {
-  
+  // TODO (step1) get all the stories from the database and send response back to client 
 });
 
 router.post("/story", (req, res) => {
-  
+  // TODO (step1) create a new Story document and put it into the collection using the model
 });
 
 router.get("/comment", (req, res) => {
-  Comment.find({ /* input the parent parameter here*/ }).then((comments) => {
+  Comment.find({ /* TODO (step2) input the parent parameter here*/ }).then((comments) => {
     res.send(comments);
   });
 });
 
 router.post("/comment", (req, res) => {
-  
+  // TODO (step2) create a new Comment document and put it into the collection using the model
 });
 
 // anything else falls to this "not found" case
