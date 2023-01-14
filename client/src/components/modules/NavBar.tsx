@@ -8,13 +8,13 @@ import GoogleLogin, {
 import "./NavBar.css";
 
 // This identifies your web application to Google's authentication service
-const GOOGLE_CLIENT_ID = "121479668229-t5j82jrbi9oejh7c8avada226s75bopn.apps.googleusercontent.com";
+const GOOGLE_CLIENT_ID = "395785444978-7b9v7l0ap2h3308528vu1ddnt3rqftjc.apps.googleusercontent.com";
 
 type NavBarProps = {
   userId: string;
   handleLogin: (response: GoogleLoginResponse | GoogleLoginResponseOffline) => void;
   handleLogout: () => void;
-}
+};
 
 /**
  * The navigation bar at the top of all pages.
