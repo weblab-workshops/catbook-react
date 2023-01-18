@@ -100,7 +100,7 @@ router.post("/message", auth.ensureLoggedIn, (req, res) => {
 });
 
 router.get("/activeUsers", (req, res) => {
-  res.send({ activeUsers: socket.getAllConnectedUsers() });
+  res.send({ activeUsers: socketManager.getAllConnectedUsers() });
 });
 
 // anything else falls to this "not found" case
