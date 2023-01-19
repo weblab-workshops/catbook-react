@@ -7,6 +7,7 @@ import "../../utilities.css";
 import "./Game.css";
 
 const Game = (props) => {
+  const canvasRef = useRef(null);
   // display text if the player is not logged in
   let loginModal = null;
   if (!props.userId) {
@@ -17,7 +18,7 @@ const Game = (props) => {
     <>
       <div>
         {/* important: canvas needs id to be referenced by canvasManager */}
-        <canvas id="game-canvas" width="500" height="500" />
+        <canvas ref={canvasRef} width="500" height="500" />
         {loginModal}
       </div>
     </>
