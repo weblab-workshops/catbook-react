@@ -8,8 +8,9 @@ import "../../utilities.css";
 import "./Game.css";
 
 const Game = (props) => {
-  const [winnerModal, setWinnerModal] = useState(null);
   const canvasRef = useRef(null);
+  const [winnerModal, setWinnerModal] = useState(null);
+
   // add event listener on mount
   useEffect(() => {
     window.addEventListener("keydown", handleInput);
