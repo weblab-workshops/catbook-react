@@ -9,6 +9,7 @@ import "./Game.css";
 
 const Game = (props) => {
   const canvasRef = useRef(null);
+
   const [winnerModal, setWinnerModal] = useState(null);
 
   // add event listener on mount
