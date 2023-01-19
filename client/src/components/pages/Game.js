@@ -9,7 +9,7 @@ import "./Game.css";
 
 const Game = (props) => {
   const [winnerModal, setWinnerModal] = useState(null);
-
+  const canvasRef = useRef(null);
   // add event listener on mount
   useEffect(() => {
     window.addEventListener("keydown", handleInput);
@@ -37,7 +37,7 @@ const Game = (props) => {
     } else {
       setWinnerModal(null);
     }
-    drawCanvas(update);
+    drawCanvas(update, canvasRef);
   };
 
   // set a spawn button if the player is not in the game
@@ -66,7 +66,7 @@ const Game = (props) => {
     <>
       <div>
         {/* important: canvas needs id to be referenced by canvasManager */}
-        <canvas id="game-canvas" width="500" height="500" />
+        <canvas ref={canvasRef} width="500" height="500" />
         {loginModal}
         {winnerModal}
         {spawnButton}
