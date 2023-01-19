@@ -8,6 +8,8 @@ import "../../utilities.css";
 import "./Game.css";
 
 const Game = (props) => {
+  const canvasRef = useRef(null);
+
   // add event listener on mount
   useEffect(() => {
     // TODO (Step 3.3): add event listener when the page is loaded (1 line)
@@ -34,7 +36,7 @@ const Game = (props) => {
   }, []);
 
   const processUpdate = (update) => {
-    drawCanvas(update);
+    drawCanvas(update, canvasRef);
   };
 
   // display text if the player is not logged in
@@ -47,7 +49,7 @@ const Game = (props) => {
     <>
       <div>
         {/* important: canvas needs id to be referenced by canvasManager */}
-        <canvas id="game-canvas" width="500" height="500" />
+        <canvas ref={canvasRef} width="500" height="500" />
         {loginModal}
       </div>
     </>
