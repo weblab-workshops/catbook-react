@@ -23,7 +23,7 @@ const outputDir = path.resolve(__dirname, "client", "dist");
 const webpack = require("webpack");
 
 module.exports = {
-  entry: ["@babel/polyfill", entryFile],
+  entry: [entryFile],
   output: {
     path: outputDir,
     publicPath: "/",
