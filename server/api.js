@@ -55,7 +55,7 @@ router.post("/story", (req, res) => {
   };
 
   data.stories.push(newStory);
-  res.send(newStory);
+  res.send({ msg: "Added story!" });
 });
 
 router.post("/comment", (req, res) => {
@@ -67,7 +67,7 @@ router.post("/comment", (req, res) => {
   };
 
   data.comments.push(newComment);
-  res.send(newComment);
+  res.send({ msg: "Added comment!" });
 });
 
 // catch all /api route
