@@ -13,7 +13,7 @@ const router = express.Router();
 
 // Use a hardcoded username for now
 // TODO: change to a unique name for the workshop
-const myName = "Anonymous";
+const my_name = "Anonymous";
 
 const data = {
   stories: [
