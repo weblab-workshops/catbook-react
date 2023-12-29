@@ -33,11 +33,11 @@ class App extends Component {
   }
 
   handleLogin = (res) => {
+    console.log(res);
     const userToken = res.tokenObj.id_token;
     post("/api/login", { token: userToken }).then((user) => {
       // the server knows we're logged in now
       this.setState({ userId: user._id });
-      console.log(user);
     });
   };
 
