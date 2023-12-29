@@ -50,15 +50,6 @@ const Chatbook = (props) => {
     });
   };
 
-  const addMessages = (data) => {
-    // TODO (step 9.2) If the messages don't belong in the currently active
-    // chat, don't add them to the state!
-    setActiveChat(prevActiveChat => ({
-      recipient: prevActiveChat.recipient,
-      messages: prevActiveChat.messages.concat(data),
-    }));
-  };
-
   useEffect(() => {
     document.title = "Chatbook";
   }, []);
@@ -78,6 +69,17 @@ const Chatbook = (props) => {
   }, []);
 
   useEffect(() => {
+    // Note: we define addMessages here so the callback function is updated
+    //       when variables like props.userId change
+    const addMessages = (data) => {
+      // TODO (step 9.2) If the messages don't belong in the currently active
+      // chat, don't add them to the state!
+
+      setActiveChat(prevActiveChat => ({
+        recipient: prevActiveChat.recipient,
+        messages: prevActiveChat.messages.concat(data),
+      }));
+    };
     socket.on("message", addMessages);
     return () => {
       socket.off("message", addMessages);
