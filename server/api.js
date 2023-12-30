@@ -39,6 +39,12 @@ router.get("/comment", (req, res) => {
   });
 });
 
+router.get("/user", (req, res) => {
+  User.findById(req.query.userid).then((user) => {
+    res.send(user);
+  });
+});
+
 router.post("/comment", (req, res) => {
   const newComment = new Comment({
     creator_id: req.user._id,
