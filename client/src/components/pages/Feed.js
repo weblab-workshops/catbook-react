@@ -40,6 +40,7 @@ const Feed = () => {
   }
   return (
     <>
+      {/* TODO: hide if userId is null */}
       <NewStory addNewStory={addNewStory} />
       {storiesList}
     </>
