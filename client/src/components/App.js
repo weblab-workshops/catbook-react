@@ -24,6 +24,7 @@ const App = () => {
       <div className="App-container">
         <Router>
           <Feed path="/" />
+          {/* TODO: change route to accept userId */}
           <Profile path="/profile/" />
           <NotFound default />
         </Router>
