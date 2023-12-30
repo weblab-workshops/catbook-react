@@ -18,6 +18,8 @@ const NavBar = (props) => {
     // 'res' contains the response from Google's authentication servers
     console.log(res);
 
+    // TODO: call /api/whoami inside of a useEffect (on page load) to set the userId state
+
     const userToken = res.tokenObj.id_token;
     post("/api/login", { token: userToken }).then((user) => {
       // the server knows we're logged in now
