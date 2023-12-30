@@ -48,9 +48,11 @@ const NavBar = (props) => {
         <Link to="/" className="NavBar-link">
           Home
         </Link>
-        <Link to={`/profile`} className="NavBar-link">
-          Profile
-        </Link>
+        {userId && (
+          <Link to={`/profile/${userId}`} className="NavBar-link">
+            Profile
+          </Link>
+        )}
         {userId ? (
           <GoogleLogout
             clientId={GOOGLE_CLIENT_ID}
