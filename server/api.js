@@ -39,6 +39,8 @@ router.get("/comment", (req, res) => {
   });
 });
 
+// TODO: add "get" endpoint for fetching user information
+
 router.post("/comment", (req, res) => {
   const newComment = new Comment({
     creator_id: req.user._id,

@@ -6,10 +6,13 @@ import "./Profile.css";
 
 const Profile = () => {
   const [catHappiness, setCatHappiness] = useState(0);
+  // TODO: intiialize user state
 
   useEffect(() => {
     document.title = "Profile Page";
   }, []);
+
+  // TODO: fetch user data on page load
 
   const incrementCatHappiness = () => {
     setCatHappiness(catHappiness + 1);
@@ -25,6 +28,7 @@ const Profile = () => {
       >
         <div className="Profile-avatar" />
       </div>
+      {/* TODO: update name with name from user data */}
       <h1 className="Profile-name u-textCenter">Shannen Wu</h1>
       <hr className="Profile-line" />
       <div className="u-flex">
