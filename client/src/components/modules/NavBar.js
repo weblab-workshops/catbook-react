@@ -12,6 +12,7 @@ const GOOGLE_CLIENT_ID = "395785444978-7b9v7l0ap2h3308528vu1ddnt3rqftjc.apps.goo
  * The navigation bar at the top of all pages. Takes no props.
  */
 const NavBar = (props) => {
+  // TODO: replace the loggedIn state with a userId state
   const [loggedIn, setLoggedIn] = useState(false);
 
   const handleLogin = (res) => {
@@ -23,6 +24,7 @@ const NavBar = (props) => {
     post("/api/login", { token: userToken }).then((user) => {
       // the server knows we're logged in now
       console.log(user);
+      // TODO: update the userId state
     });
   };
 
@@ -30,6 +32,7 @@ const NavBar = (props) => {
     console.log("Logged out successfully!");
     setLoggedIn(false);
     post("/api/logout");
+    // TODO: update the userId state
   };
 
   return (
