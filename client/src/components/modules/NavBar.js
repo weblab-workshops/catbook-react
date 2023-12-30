@@ -12,35 +12,6 @@ const GOOGLE_CLIENT_ID = "395785444978-7b9v7l0ap2h3308528vu1ddnt3rqftjc.apps.goo
  * The navigation bar at the top of all pages. Takes no props.
  */
 const NavBar = (props) => {
-  const [userId, setUserId] = useState(null);
-
-  useEffect(() => {
-    get("/api/whoami").then((user) => {
-      if (user._id) {
-        // they are registed in the database, and currently logged in.
-        setUserId(user._id);
-      }
-    });
-  }, []);
-
-  const handleLogin = (res) => {
-    // 'res' contains the response from Google's authentication servers
-    console.log(res);
-
-    const userToken = res.tokenObj.id_token;
-    post("/api/login", { token: userToken }).then((user) => {
-      // the server knows we're logged in now
-      setUserId(user._id);
-      console.log(user);
-    });
-  };
-
-  const handleLogout = () => {
-    console.log("Logged out successfully!");
-    post("/api/logout");
-    setUserId(null);
-  };
-
   return (
     <nav className="NavBar-container">
       <div className="NavBar-title u-inlineBlock">Catbook</div>
@@ -48,16 +19,16 @@ const NavBar = (props) => {
         <Link to="/" className="NavBar-link">
           Home
         </Link>
-        {userId && (
-          <Link to={`/profile/${userId}`} className="NavBar-link">
+        {props.userId && (
+          <Link to={`/profile/${props.userId}`} className="NavBar-link">
             Profile
           </Link>
         )}
-        {userId ? (
+        {props.userId ? (
           <GoogleLogout
             clientId={GOOGLE_CLIENT_ID}
             buttonText="Logout"
-            onLogoutSuccess={handleLogout}
+            onLogoutSuccess={props.handleLogout}
             onFailure={(err) => console.log(err)}
             className="NavBar-link NavBar-login"
           />
@@ -65,7 +36,7 @@ const NavBar = (props) => {
           <GoogleLogin
             clientId={GOOGLE_CLIENT_ID}
             buttonText="Login"
-            onSuccess={handleLogin}
+            onSuccess={props.handleLogin}
             onFailure={(err) => console.log(err)}
             className="NavBar-link NavBar-login"
           />
