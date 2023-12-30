@@ -4,7 +4,7 @@ import { NewStory } from "../modules/NewPostInput.js";
 
 import { get } from "../../utilities";
 
-const Feed = () => {
+const Feed = (props) => {
   const [stories, setStories] = useState([]);
 
   // called when the "Feed" component "mounts", i.e.
@@ -40,7 +40,7 @@ const Feed = () => {
   }
   return (
     <>
-      <NewStory addNewStory={addNewStory} />
+      {props.userId && <NewStory addNewStory={addNewStory} />}
       {storiesList}
     </>
   );
