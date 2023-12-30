@@ -54,7 +54,7 @@ const App = () => {
       <NavBar handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
       <div className="App-container">
         <Router>
-          <Feed path="/" />
+          <Feed path="/" userId={userId} />
           <Profile path="/profile/:userId" />
           <NotFound default />
         </Router>
