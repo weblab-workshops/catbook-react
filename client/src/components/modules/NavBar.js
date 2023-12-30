@@ -12,24 +12,24 @@ const GOOGLE_CLIENT_ID = "395785444978-7b9v7l0ap2h3308528vu1ddnt3rqftjc.apps.goo
  * The navigation bar at the top of all pages. Takes no props.
  */
 const NavBar = (props) => {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [userId, setUserId] = useState(null);
 
   const handleLogin = (res) => {
     // 'res' contains the response from Google's authentication servers
     console.log(res);
 
-    setLoggedIn(true);
     const userToken = res.tokenObj.id_token;
     post("/api/login", { token: userToken }).then((user) => {
       // the server knows we're logged in now
+      setUserId(user._id);
       console.log(user);
     });
   };
 
   const handleLogout = () => {
     console.log("Logged out successfully!");
-    setLoggedIn(false);
     post("/api/logout");
+    setUserId(null);
   };
 
   return (
@@ -39,10 +39,10 @@ const NavBar = (props) => {
         <Link to="/" className="NavBar-link">
           Home
         </Link>
-        <Link to="/profile/" className="NavBar-link">
+        <Link to={`/profile/${userId}`} className="NavBar-link">
           Profile
         </Link>
-        {loggedIn ? (
+        {userId ? (
           <GoogleLogout
             clientId={GOOGLE_CLIENT_ID}
             buttonText="Logout"
