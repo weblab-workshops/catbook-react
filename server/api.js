@@ -59,6 +59,15 @@ router.post("/comment", (req, res) => {
 router.post("/login", auth.login);
 router.post("/logout", auth.logout);
 
+router.get("/whoami", (req, res) => {
+  if (req.user) {
+    res.send(req.user);
+  } else {
+    // user is not logged in
+    res.send({});
+  }
+});
+
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
   console.log(`API route not found: ${req.method} ${req.url}`);

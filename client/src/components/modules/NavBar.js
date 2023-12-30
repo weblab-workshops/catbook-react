@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "@reach/router";
 import GoogleLogin, { GoogleLogout } from "react-google-login";
 
@@ -13,6 +13,15 @@ const GOOGLE_CLIENT_ID = "395785444978-7b9v7l0ap2h3308528vu1ddnt3rqftjc.apps.goo
  */
 const NavBar = (props) => {
   const [userId, setUserId] = useState(null);
+
+  useEffect(() => {
+    get("/api/whoami").then((user) => {
+      if (user._id) {
+        // they are registed in the database, and currently logged in.
+        setUserId(user._id);
+      }
+    });
+  }, []);
 
   const handleLogin = (res) => {
     // 'res' contains the response from Google's authentication servers
