@@ -39,7 +39,7 @@ const NavBar = (props) => {
         <Link to="/" className="NavBar-link">
           Home
         </Link>
-        <Link to={`/profile/${userId}`} className="NavBar-link">
+        <Link to={`/profile`} className="NavBar-link">
           Profile
         </Link>
         {userId ? (
