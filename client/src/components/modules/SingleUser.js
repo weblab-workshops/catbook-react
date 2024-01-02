@@ -12,7 +12,17 @@ import "./SingleUser.css";
  */
 const SingleUser = (props) => {
   // TODO (step 2.1) render single user in chat list
-  return <div></div>;
+  return (
+    <div
+      className={`SingleUser-container u-pointer ${props.active ?
+        "SingleUser-container--active" : ""
+        }`}
+      onClick={() => {
+        // TODO (step 2.1.1) change the user on click
+      }}
+    >
+    </div>
+  );
 }
 
 export default SingleUser;
