@@ -7,6 +7,7 @@ const updateFood = () => {
   }
 };
 
+// Don't change me!
 const drawFood = (gameBoard) => {
   const foodElement = document.createElement('div');
   foodElement.style.gridRowStart = food.y;
