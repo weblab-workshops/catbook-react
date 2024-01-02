@@ -1,3 +1,5 @@
+const SNAKE_SPEED = 5;
+
 const gameBoard = document.getElementById('game-board');
 let gameOver = false;
 

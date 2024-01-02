@@ -1,4 +1,3 @@
-const SNAKE_SPEED = 5;
 const snakeBody = [
   { x: 11, y: 11 },
   { x: 11, y: 10 },
