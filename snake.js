@@ -5,10 +5,10 @@ const snakeBody = [
 ];
 
 const updateSnake = () => {
-  // remove tail segment
+  // Remove tail segment
   snakeBody.pop();
 
-  // add new head segment
+  // Add new head segment
   const newHead = { ...snakeBody[0] };
 
   newHead.x += 0;
