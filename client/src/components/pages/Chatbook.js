@@ -48,12 +48,12 @@ const Chatbook = (props) => {
     });
   };
 
-  const addMessages = ((messages) => {
-    setActiveChat({
-      recipient: activeChat.recipient,
-      messages: activeChat.messages.concat(messages),
-    });
-  });
+  const addMessages = (data) => {
+    setActiveChat(prevActiveChat => ({
+      recipient: prevActiveChat.recipient,
+      messages: prevActiveChat.messages.concat(data),
+    }));
+  };
 
   useEffect(() => {
     document.title = "Chatbook";
