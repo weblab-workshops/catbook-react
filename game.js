@@ -1,3 +1,5 @@
+// TODO: Implement the game loop
+
 const main = () => {
     update();
     draw();
