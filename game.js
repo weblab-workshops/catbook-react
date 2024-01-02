@@ -1,18 +1,18 @@
-const gameBoard = document.getElementById("game-board");
+const gameBoard = document.getElementById('game-board');
 
 const main = () => {
-    update();
-    draw();
-}
+  update();
+  draw();
+};
 
-setInterval(main, 1000/SNAKE_SPEED);
+setInterval(main, 1000 / SNAKE_SPEED);
 
 const update = () => {
-    console.log("Updating");
-    updateSnake();
-}
+  console.log('Updating');
+  updateSnake();
+};
 
 const draw = () => {
-    gameBoard.innerHTML = "";
-    drawSnake(gameBoard);
-}
+  gameBoard.innerHTML = '';
+  drawSnake(gameBoard);
+};
