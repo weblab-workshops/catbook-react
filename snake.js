@@ -1,4 +1,4 @@
-// TODO: fill me in!
+// TODO: Create the snake and a function that updates it 
 
 // Don't change this function!
 const drawSnake = (gameBoard) => {
