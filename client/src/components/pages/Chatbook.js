@@ -15,16 +15,16 @@ const TEST_MESSAGES = [
   {
     sender: {
       _id: 0,
-      name: "Alex",
+      name: "Michael",
     },
-    content: "i love aaron sippy cup",
+    content: "i love web lab",
   },
   {
     sender: {
       _id: 0,
-      name: "Nik",
+      name: "Kenneth",
     },
-    content: "i spend too much time on piazza",
+    content: "me too",
   },
 ];
 
@@ -76,6 +76,6 @@ const Chatbook = (props) => {
       </div>
     </>
   );
-}
+};
 
 export default Chatbook;
