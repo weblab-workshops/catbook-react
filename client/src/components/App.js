@@ -7,11 +7,9 @@ import "../utilities.css";
 import "./App.css";
 
 /**
- * Define the "App" component as a class.
+ * Define the "App" component as a function.
  */
 const App = () => {
-  // required method: whatever is returned defines what
-  // shows up on screen
   return (
     // <> is like a <div>, but won't show
     // up in the DOM tree

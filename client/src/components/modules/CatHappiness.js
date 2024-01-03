@@ -4,7 +4,7 @@ import "./CatHappiness.css";
 /**
  * Component that renders cat happiness
  *
- * Proptypes
+ * Props
  * @param {int} catHappiness is how happy your cat is
  */
 const CatHappiness = () => {
