@@ -1,8 +1,11 @@
 import React from "react";
 import "../../utilities.css";
 import "./Profile.css";
+// TODO Step 2b: Import the CatHappiness component
 
 const Profile = () => {
+  // TODO Step 2a: Initialize state of CatHappiness
+
   return (
     <div>
       <div className="Profile-avatarContainer">
@@ -17,7 +20,7 @@ const Profile = () => {
             Extra Challenge: Modify catbook to show a personalized description here!
           </div>
         </div>
-        {/** TODO STEP 1:
+        {/** TODO Step 2c:
          *  Insert Cat Happiness component here.
          *  HINT: You probably want to add a new Profile-subContainer to hold the CatHappiness component.
          */}

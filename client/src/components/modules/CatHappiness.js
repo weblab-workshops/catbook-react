@@ -8,8 +8,6 @@ import "./CatHappiness.css";
  * @param {int} catHappiness is how happy your cat is
  */
 const CatHappiness = () => {
-  // TODO Step 1: Initialize state of CatHappiness
-
   return (
     <div className="CatHappiness-container">
       <div className="CatHappiness-story">
