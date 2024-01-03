@@ -12,5 +12,5 @@ const update = () => {
 };
 
 const draw = () => {
-    
+
 };
