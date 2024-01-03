@@ -5,6 +5,7 @@ import "./Profile.css";
 
 const Profile = () => {
   const [catHappiness, setCatHappiness] = useState(0);
+
   const incrementCatHappiness = () => {
     setCatHappiness(catHappiness + 1);
   };
