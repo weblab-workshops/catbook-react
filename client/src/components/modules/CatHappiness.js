@@ -12,7 +12,7 @@ const CatHappiness = () => {
     <div className="CatHappiness-container">
       <div className="CatHappiness-story">
         <p className="CatHappiness-storyContent">
-          {/* TODO Step 1: insert happiness counter here!*/}
+          {/* TODO Step 2d: display happiness counter prop here!*/}
         </p>
       </div>
     </div>
