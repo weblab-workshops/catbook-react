@@ -5,9 +5,11 @@ const gameBoard = document.getElementById('game-board');
 const main = () => {
   update();
   draw();
-  // TODO: Add Game Over Alert
+  // TODO: Add Game Over Alert, and clear interval!
 };
 
+// TODO: Define the interval ID
+// HINT: ONLY EDIT THE LINE BELOW!
 setInterval(main, 1000 / SNAKE_SPEED);
 
 const update = () => {
