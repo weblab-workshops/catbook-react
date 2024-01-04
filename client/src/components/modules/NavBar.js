@@ -14,11 +14,11 @@ const GOOGLE_CLIENT_ID = "395785444978-7b9v7l0ap2h3308528vu1ddnt3rqftjc.apps.goo
 const NavBar = (props) => {
   const [userId, setUserId] = useState(null);
 
+  // TODO: call /api/whoami inside of a useEffect (on page load) to set the userId state
+
   const handleLogin = (res) => {
     // 'res' contains the response from Google's authentication servers
     console.log(res);
-
-    // TODO: call /api/whoami inside of a useEffect (on page load) to set the userId state
 
     const userToken = res.tokenObj.id_token;
     post("/api/login", { token: userToken }).then((user) => {
