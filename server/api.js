@@ -53,4 +53,13 @@ router.get("/comment", (req, res) => {
   res.send(filteredComments);
 });
 
+// TODO (step2) Add post story endpoint
+
+
+// TODO (step2) Add post comment endpoint
+
+
+// TODO (step2) Add catch-all endpoint for /api
+
+
 module.exports = router;
