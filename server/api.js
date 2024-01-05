@@ -11,24 +11,30 @@ const express = require("express");
 
 const router = express.Router();
 
-// Use a hardcoded username for now
-// TODO: change to a unique name for the workshop
-const my_name = "Anonymous";
+// we haven't set up user login yet, so just
+// use a hardcoded name for now
+// TODO (step2) change to a unique name for workshop
+const myName = "Anonymous";
 
 const data = {
   stories: [
     {
       _id: 0,
-      creator_name: "Nicholas Tsao",
-      content: "I love dancing!",
+      creator_name: "Tony Cui",
+      content: "Send it or blend it?",
     },
+    {
+      _id: 1, 
+      creator_name: "Andrew Liu",
+      content: "web.labing with Tony <3",
+    }
   ],
   comments: [
     {
       _id: 0,
-      creator_name: "Philena Liu",
+      creator_name: "Stanley Zhao",
       parent: 0,
-      content: "Me Too!",
+      content: "Both!",
     },
   ],
 };
