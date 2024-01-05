@@ -24,7 +24,7 @@ const Profile = () => {
       >
         <div className="Profile-avatar" />
       </div>
-      <h1 className="Profile-name u-textCenter">Shannen Wu</h1>
+      <h1 className="Profile-name u-textCenter">Kenny Choi</h1>
       <hr className="Profile-line" />
       <div className="u-flex">
         <div className="Profile-subContainer u-textCenter">
