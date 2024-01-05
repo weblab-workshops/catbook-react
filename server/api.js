@@ -11,8 +11,8 @@ const express = require("express");
 
 // we haven't set up user login yet, so just
 // use a hardcoded name for now
-// TODO change to a unique name for workshop
-const MY_NAME = "Ben Bitdiddle";
+// TODO (step2) change to a unique name for workshop
+const myName = "Anonymous";
 
 // import models so we can interact with the database
 const Story = require("./models/story");
@@ -28,7 +28,7 @@ router.get("/stories", (req, res) => {
 
 router.post("/story", (req, res) => {
   const newStory = new Story({
-    creator_name: MY_NAME,
+    creator_name: myName,
     content: req.body.content,
   });
   newStory.save().then((story) => res.send(story));
