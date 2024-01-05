@@ -1,4 +1,6 @@
-// TODO: Create the food and a function to update the food
+// TODO 4.1: Create the food
+
+// TODO 4.2: Create a function to update the food
 
 // Don't change me!
 const drawFood = (gameBoard) => {
