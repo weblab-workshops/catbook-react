@@ -11,7 +11,8 @@ const express = require("express");
 
 // we haven't set up user login yet, so just
 // use a hardcoded name for now
-// TODO (step2) change to a unique name for workshop
+// TODO change to a unique name for workshop
+// Will need to change after every checkout
 const myName = "Anonymous";
 
 // import models so we can interact with the database
