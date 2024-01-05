@@ -16,12 +16,19 @@
 const express = require("express"); // backend framework for our node server.
 const path = require("path"); // provide utilities for working with file and directory paths
 
+// TODO-3 import the router from our API file
+
+
 // create a new express server
 const app = express();
 
 // allow us to make post requests
 app.use(express.json());
 
+// TODO-4 connect API routes from api.js
+
+
+// TODO-5 migrate endpoint to api.js
 app.get("/api/test", (req, res) => {
   res.send({ message: "Wow I made my first API!" });
 });
