@@ -40,4 +40,11 @@ router.get("/test", (req, res) => {
   res.send({ message: "Wow I made my first API!" });
 });
 
+// TODO (step1) Add get stories endpoint
+
+
+// TODO (step1) Add get comments endpoint
+
+
+
 module.exports = router;
