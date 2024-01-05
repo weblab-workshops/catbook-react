@@ -9,6 +9,11 @@
 
 const express = require("express");
 
+// we haven't set up user login yet, so just
+// use a hardcoded name for now
+// TODO (step2) change to a unique name for workshop
+const myName = "Anonymous";
+
 // import models so we can interact with the database
 const Story = require("./models/story")
 // TODO (step1) import the comment model
