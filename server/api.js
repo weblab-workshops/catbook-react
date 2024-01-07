@@ -23,7 +23,7 @@ const data = {
       creator_name: "Tony Cui",
       content: "Send it or blend it?",
     },
-    // TODO (step1) Add new story!
+    // TODO-1 (step1) Add new story!
   ],
   comments: [
     {
@@ -40,10 +40,10 @@ router.get("/test", (req, res) => {
   res.send({ message: "Wow I made my first API!" });
 });
 
-// TODO (step1) Add get stories endpoint
+// TODO-2 (step1) Add get stories endpoint
 
 
-// TODO (step1) Add get comments endpoint
+// TODO-3 (step1) Add get comments endpoint
 
 
 
