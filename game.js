@@ -1,32 +1,32 @@
 const SNAKE_SPEED = 5;
 
-const gameBoard = document.getElementById('game-board');
-let gameOver = false;
+const gameBoard = document.getElementById("game-board");
+let isGameOver = false;
 
 const main = () => {
-  update();
-  draw();
-  if (gameOver) {
-    alert('Game Over');
-    clearInterval(gameLoop);
-  }
+	update();
+	draw();
+	if (isGameOver) {
+		alert("Game Over");
+		clearInterval(gameLoop);
+	}
 };
 
 let gameLoop = setInterval(main, 1000 / SNAKE_SPEED);
 
 const update = () => {
-  console.log('Updating');
-  updateSnake();
-  updateFood();
-  gameOver = isGameOver();
+	console.log("Updating");
+	updateSnake();
+	updateFood();
+	isGameOver = checkGameOver();
 };
 
 const draw = () => {
-  gameBoard.innerHTML = '';
-  drawSnake(gameBoard);
-  drawFood(gameBoard);
+	gameBoard.innerHTML = "";
+	drawSnake(gameBoard);
+	drawFood(gameBoard);
 };
 
-const isGameOver = () => {
-  return snakeOutOfBounds() || snakeIntersectSelf();
+const checkGameOver = () => {
+	return snakeOutOfBounds() || snakeIntersectSelf();
 };
