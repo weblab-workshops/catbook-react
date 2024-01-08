@@ -1,4 +1,4 @@
-// TODO 3.1: Create input event listeners for controlling the snake
+// TODO 2.1: Create input event listeners for controlling the snake
 // Hint: Create a "keydown" event listener
 // (https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener)
 // 

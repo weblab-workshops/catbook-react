@@ -11,7 +11,7 @@ const updateSnake = () => {
   // Add new head segment
   const newHead = { ...snakeBody[0] };
 
-  // TODO 3.2: Set the new head's position using the user's inputs 
+  // TODO 2.2: Set the new head's position using the user's inputs 
   newHead.x += 0;
   newHead.y += 1;
 
