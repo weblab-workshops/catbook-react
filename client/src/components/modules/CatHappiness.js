@@ -11,9 +11,7 @@ const CatHappiness = () => {
   return (
     <div className="CatHappiness-container">
       <div className="CatHappiness-story">
-        <p className="CatHappiness-storyContent">
-          {/* TODO Step 2d: display happiness counter prop here!*/}
-        </p>
+        <p className="CatHappiness-storyContent"></p>
       </div>
     </div>
   );
