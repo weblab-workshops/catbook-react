@@ -9,9 +9,15 @@ window.addEventListener('keydown', (event) => {
     inputDirection = { x: 1, y: 0 };
   } else if (event.key === 'ArrowLeft' && inputDirection.y !== 0) {
     inputDirection = { x: -1, y: 0 };
+  } else if (event.key === 'r') {
+    resetGame();
   }
 });
 
 const getInputDirection = () => {
   return inputDirection;
+};
+
+const resetDirection = () => {
+  inputDirection = { x: 0, y: 1 };
 };

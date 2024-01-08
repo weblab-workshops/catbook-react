@@ -1,4 +1,4 @@
-const snakeBody = [
+let snakeBody = [
   { x: 11, y: 11 },
   { x: 11, y: 10 },
   { x: 11, y: 9 },
@@ -28,4 +28,12 @@ const drawSnake = (gameBoard) => {
     snakeElement.classList.add('snake');
     gameBoard.appendChild(snakeElement);
   }
+};
+
+const resetSnake = () => {
+  snakeBody = [
+    { x: 11, y: 11 },
+    { x: 11, y: 10 },
+    { x: 11, y: 9 },
+  ];
 };
