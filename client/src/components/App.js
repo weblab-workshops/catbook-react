@@ -1,23 +1,18 @@
-import React from "react";
-import NavBar from "./modules/NavBar.js";
-import Profile from "./pages/Profile.js";
+import React, { useState } from "react";
 
 // to use styles, import the necessary CSS files
-import "../utilities.css";
 import "./App.css";
+import Clock from "./modules/Clock";
 
 /**
  * Define the "App" component as a function.
  */
 const App = () => {
+  const [showClock, setShowClock] = useState(true);
   return (
-    // <> is like a <div>, but won't show
-    // up in the DOM tree
     <>
-      <NavBar />
-      <div className="App-container">
-        <Profile />
-      </div>
+      <button onClick={() => setShowClock(!showClock)}>Toggle Clock</button>
+      {showClock ? <Clock /> : <></>}
     </>
   );
 };
