@@ -7,7 +7,7 @@ const Profile = () => {
   const [catHappiness, setCatHappiness] = useState(0);
 
   const incrementCatHappiness = () => {
-    // TODO Step 4: Implement function to update the state of cat happiness when user clicks on picture
+    // TODO Step 2: Implement function to update the state of cat happiness when user clicks on picture
   };
 
   return (
