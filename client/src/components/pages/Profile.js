@@ -1,10 +1,10 @@
 import React from "react";
 import "../../utilities.css";
 import "./Profile.css";
-// TODO Step 2b: Import the CatHappiness component
+// TODO Step 1b: Import the CatHappiness component
 
 const Profile = () => {
-  // TODO Step 2a: Initialize state of CatHappiness
+  // TODO Step 1a: Initialize state of CatHappiness
 
   return (
     <div>
@@ -20,7 +20,7 @@ const Profile = () => {
             Extra Challenge: Modify catbook to show a personalized description here!
           </div>
         </div>
-        {/** TODO Step 2c:
+        {/** TODO Step 1c:
          *  Insert Cat Happiness component here.
          *  HINT: You probably want to add a new Profile-subContainer to hold the CatHappiness component.
          */}
