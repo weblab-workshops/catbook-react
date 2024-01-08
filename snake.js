@@ -1,6 +1,6 @@
-// TODO 2.1: Create the snake
+// TODO 1.1: Create the snake
 
-// TODO 2.2: Create a function that updates the snake
+// TODO 1.2: Create a function that updates the snake
 // Hint: Search for the documentation for the Array pop() and unshift() methods
 // in the MDN docs.
 
