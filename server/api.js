@@ -169,6 +169,17 @@ router.post("/despawn", (req, res) => {
   res.send({});
 });
 
+router.post("/query", (req, res) => {
+  // NOTE: this is very inefficient!
+  // you should try to look for some alternative methods for querying directly inside of express,
+  // so you don't have to query the entire database everytime you want to make a query
+  // this is just to demonstrate how RAG works (:
+  Document.find({}).then((documents) => {
+    console.log(req.body.query);
+    res.send({ queryresponse: "hello" });
+  });
+});
+
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
   console.log(`API route not found: ${req.method} ${req.url}`);
