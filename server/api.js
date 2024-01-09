@@ -176,6 +176,8 @@ router.post("/query", (req, res) => {
   // this is just to demonstrate how RAG works (:
   Document.find({}).then((documents) => {
     console.log(req.body.query);
+    const docContents = documents.map((doc) => doc.content);
+    console.log(docContents);
     res.send({ queryresponse: "hello" });
   });
 });
