@@ -178,7 +178,13 @@ router.post("/query", (req, res) => {
     console.log(req.body.query);
     const docContents = documents.map((doc) => doc.content);
     console.log(docContents);
-    res.send({ queryresponse: "hello" });
+
+    const { spawn } = require("child_process");
+    const model = spawn("python3", ["./model.py"]);
+    model.stdout.on("data", (data) => {
+      console.log(data.toString());
+      res.send({ queryresponse: "hello" });
+    });
   });
 });
 

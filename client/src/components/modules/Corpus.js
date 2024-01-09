@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Document from "./Document";
 import { NewPostInput } from "./NewPostInput";
 import "./Document.css";
@@ -8,6 +8,7 @@ import { get, post } from "../../utilities";
 const Corpus = (props) => {
   const [loading, setLoading] = useState(true);
   const [corpus, setCorpus] = useState([]);
+  const corpusRef = useRef(null);
 
   useEffect(() => {
     get("/api/document").then((corpus) => {
@@ -19,12 +20,15 @@ const Corpus = (props) => {
   const handleNewDocument = (content) => {
     post("/api/document", { content: content }).then((newDoc) => {
       setCorpus(corpus.concat([newDoc]));
+      if (corpusRef.current) {
+        corpusRef.current.scrollTop = corpusRef.current.scrollHeight;
+      }
     });
   };
 
   return (
     <>
-      <div className="CorpusContainer">
+      <div className="CorpusContainer" ref={corpusRef}>
         <>
           {loading ? (
             <div>Loading...</div>

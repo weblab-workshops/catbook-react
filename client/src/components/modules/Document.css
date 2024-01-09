@@ -9,4 +9,5 @@
 .CorpusContainer {
   height: 40vh;
   overflow-y: scroll;
+  scroll-behavior: smooth;
 }
