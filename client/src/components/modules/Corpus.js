@@ -6,11 +6,13 @@ import "./Document.css";
 import { get, post } from "../../utilities";
 
 const Corpus = (props) => {
+  const [loading, setLoading] = useState(true);
   const [corpus, setCorpus] = useState([]);
 
   useEffect(() => {
     get("/api/document").then((corpus) => {
       setCorpus(corpus);
+      setLoading(false);
     });
   }, []);
 
@@ -23,9 +25,17 @@ const Corpus = (props) => {
   return (
     <>
       <div className="CorpusContainer">
-        {corpus.map((doc, i) => (
-          <Document key={i} content={doc.content} id={doc._id} />
-        ))}
+        <>
+          {loading ? (
+            <div>Loading...</div>
+          ) : (
+            <>
+              {corpus.map((doc, i) => (
+                <Document key={i} content={doc.content} id={doc._id} />
+              ))}
+            </>
+          )}
+        </>
       </div>
       <div className="NewDocument">
         <NewPostInput defaultText={"add new document"} onSubmit={handleNewDocument} />

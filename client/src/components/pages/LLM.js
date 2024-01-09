@@ -3,6 +3,8 @@ import Corpus from "../modules/Corpus";
 import { NewPostInput } from "../modules/NewPostInput";
 
 const LLM = (props) => {
+  const [response, setResponse] = useState("");
+
   const makeQuery = (q) => {
     console.log(q);
   };
