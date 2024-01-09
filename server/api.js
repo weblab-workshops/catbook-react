@@ -14,6 +14,7 @@ const Story = require("./models/story");
 const Comment = require("./models/comment");
 const User = require("./models/user");
 const Message = require("./models/message");
+const Document = require("./models/document");
 
 // import authentication library
 const auth = require("./auth");
@@ -53,6 +54,35 @@ router.post("/comment", auth.ensureLoggedIn, (req, res) => {
   });
 
   newComment.save().then((comment) => res.send(comment));
+});
+
+router.post("/document", (req, res) => {
+  const newDocument = new Document({
+    content: req.body.content,
+  });
+
+  newDocument.save().then((document) => res.send(document));
+});
+
+router.get("/document", (req, res) => {
+  Document.find({}).then((documents) => res.send(documents));
+});
+
+router.post("/updateDocument", (req, res) => {
+  Document.findById(req.body._id)
+    .then((document) => {
+      document.content = req.body.content;
+      document.save();
+    })
+    .then(() => res.send({}));
+});
+
+router.post("/deleteDocument", (req, res) => {
+  Document.findById(req.body._id)
+    .then((document) => {
+      document.remove();
+    })
+    .then(() => res.send({}));
 });
 
 router.post("/login", auth.login);
