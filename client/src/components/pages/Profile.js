@@ -7,11 +7,12 @@ const Profile = () => {
   const [catHappiness, setCatHappiness] = useState(0);
 
   const incrementCatHappiness = () => {
-    // TODO Step 2: Implement function to update the state of cat happiness when user clicks on picture
+    // TODO Step 2a: Implement function to update the state of cat happiness when user clicks on picture
   };
 
   return (
     <div>
+      {/* TODO Step 2b: Call incrementCatHappiness whenever the profile picture is clicked */}
       <div className="Profile-avatarContainer">
         <div className="Profile-avatar" />
       </div>
