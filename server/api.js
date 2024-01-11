@@ -26,25 +26,61 @@ const socketManager = require("./server-socket");
 
 // initialize vector database
 const COLLECTION_NAME = "catbook-collection";
-const OPENAI_API_KEY = "";
-const { ChromaClient, OpenAIEmbeddingFunction } = require("chromadb");
+const { ChromaClient } = require("chromadb");
 const client = new ChromaClient();
-const embedder = new OpenAIEmbeddingFunction({
-  openai_api_key: OPENAI_API_KEY,
-});
-
-console.log(embedder);
 
 let collection;
 
 async function initCollection() {
   collection = await client.getOrCreateCollection({
     name: COLLECTION_NAME,
-    embeddingFunction: embedder,
   });
+  // remove existing documents
+  // initialize collection embeddings with corpus
+  console.log(await collection.count());
+  // Document.find({}).then((documents) => res.send(documents));
 }
 
 initCollection();
+
+// initialize anyscale objects
+const ANYSCALE_API_KEY = "";
+const { OpenAI } = require("openai");
+const anyscale = new OpenAI({
+  baseURL: "https://api.endpoints.anyscale.com/v1",
+  apiKey: ANYSCALE_API_KEY,
+});
+
+// embedding helper function
+const generateEmbedding = async (document) => {
+  const embedding = await anyscale.embeddings.create({
+    model: "thenlper/gte-large",
+    // model: "text-embedding-ada-002", (anyscale doesn't have access to this model)
+    input: document,
+  });
+  return embedding;
+};
+
+// chat completion helper function
+const chatCompletion = async (query, context) => {
+  const completion = await anyscale.chat.completions.create({
+    model: "meta-llama/Llama-2-70b-chat-hf",
+    messages: [
+      {
+        role: "system",
+        content:
+          "You are a helpful assistant. You are given some context to help you answer user questions",
+      },
+      {
+        role: "system",
+        content: context,
+      },
+      { role: "user", content: query },
+    ],
+    temperature: 0.7,
+  });
+  console.log(completion);
+};
 
 router.get("/stories", (req, res) => {
   // empty selector means get all documents
@@ -84,13 +120,20 @@ router.post("/document", (req, res) => {
   });
 
   const addDocument = async (document) => {
-    await document.save();
-    console.log(collection);
-    await collection.add({
-      ids: [document._id],
-      documents: [document.content],
-    });
-    res.send(document);
+    try {
+      await document.save();
+      const embedding = await generateEmbedding(document.content);
+      await collection.add({
+        ids: [document._id.toString()],
+        embeddings: [embedding.data[0].embedding],
+        documents: [document.content],
+      });
+      res.send(document);
+    } catch (error) {
+      console.log("error:", error);
+      res.status(400);
+      res.send({});
+    }
   };
 
   addDocument(newDocument);
@@ -117,15 +160,18 @@ router.post("/updateDocument", (req, res) => {
 router.post("/deleteDocument", (req, res) => {
   const deleteDocument = async (id) => {
     const document = await Document.findById(id);
+    if (!document) res.send({});
     try {
       await collection.delete({
         ids: [document._id],
       });
       await document.remove();
+      res.send({});
     } catch {
+      // if deleting from the vector db failed (e.g., it doesn't exist)
       await document.remove();
+      res.send({});
     }
-    res.send({});
   };
   deleteDocument(req.body._id);
 });

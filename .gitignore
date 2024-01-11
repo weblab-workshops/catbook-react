@@ -2,3 +2,5 @@ client/dist/bundle.js
 node_modules/
 venv/
 .DS_Store
+chroma.log
+chroma_data/

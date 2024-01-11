@@ -7,6 +7,7 @@ import { get, post } from "../../utilities";
 
 const Corpus = (props) => {
   const [loading, setLoading] = useState(true);
+  const [alertContent, setAlertContent] = useState("");
   const [corpus, setCorpus] = useState([]);
   const corpusRef = useRef(null);
 
@@ -18,12 +19,21 @@ const Corpus = (props) => {
   }, []);
 
   const handleNewDocument = (content) => {
-    post("/api/document", { content: content }).then((newDoc) => {
-      setCorpus(corpus.concat([newDoc]));
-      if (corpusRef.current) {
-        corpusRef.current.scrollTop = corpusRef.current.scrollHeight;
-      }
-    });
+    setAlertContent("generating document...");
+    post("/api/document", { content: content })
+      .then((newDoc) => {
+        setCorpus(corpus.concat([newDoc]));
+        if (corpusRef.current) {
+          corpusRef.current.scrollTop = corpusRef.current.scrollHeight;
+        }
+        setAlertContent("");
+      })
+      .catch(() => {
+        setAlertContent("error adding document. check your server logs!");
+        setTimeout(() => {
+          setAlertContent("");
+        }, 2000);
+      });
   };
 
   return (
@@ -43,6 +53,7 @@ const Corpus = (props) => {
       </div>
       <div className="NewDocument">
         <NewPostInput defaultText={"add new document"} onSubmit={handleNewDocument} />
+        {alertContent && <div>{alertContent}</div>}
       </div>
     </>
   );
