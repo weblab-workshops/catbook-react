@@ -8,9 +8,16 @@ const LLM = (props) => {
 
   const makeQuery = (q) => {
     setResponse("querying the model...");
-    post("/api/query", { query: q }).then((res) => {
-      setResponse(res.queryresponse);
-    });
+    post("/api/query", { query: q })
+      .then((res) => {
+        setResponse(res.queryresponse);
+      })
+      .catch(() => {
+        setResponse("error during query. check your server logs!");
+        setTimeout(() => {
+          setResponse("");
+        }, 2000);
+      });
   };
 
   // if (!props.userId) {

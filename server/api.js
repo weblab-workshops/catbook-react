@@ -24,25 +24,9 @@ const router = express.Router();
 
 const socketManager = require("./server-socket");
 
-// initialize vector database
-const COLLECTION_NAME = "catbook-collection";
-const { ChromaClient } = require("chromadb");
-const client = new ChromaClient();
-
-let collection;
-
-async function initCollection() {
-  collection = await client.getOrCreateCollection({
-    name: COLLECTION_NAME,
-  });
-  // initialize collection embeddings with corpus
-  console.log(await collection.count());
-}
-
-initCollection();
-
-// initialize anyscale objects
+// anyscale setup
 const ANYSCALE_API_KEY = "";
+const MODEL = "meta-llama/Llama-2-13b-chat-hf";
 const { OpenAI } = require("openai");
 const anyscale = new OpenAI({
   baseURL: "https://api.endpoints.anyscale.com/v1",
@@ -56,28 +40,83 @@ const generateEmbedding = async (document) => {
     // model: "text-embedding-ada-002", (anyscale doesn't have access to this model)
     input: document,
   });
-  return embedding;
+  return embedding.data[0].embedding;
 };
 
 // chat completion helper function
 const chatCompletion = async (query, context) => {
-  const completion = await anyscale.chat.completions.create({
-    model: "meta-llama/Llama-2-70b-chat-hf",
+  const prompt = {
+    model: MODEL,
     messages: [
       {
         role: "system",
         content:
-          "You are a helpful assistant. You are given some context to help you answer user questions",
+          "Your role is to answer questions for a user. You are given the following context to help you answer questions: \n" +
+          `${context}. \n` +
+          "Please do not mention that you were given any context in your response.",
       },
-      {
-        role: "system",
-        content: context,
-      },
-      { role: "user", content: query },
+      { role: "user", content: `${query}` },
     ],
     temperature: 0.7,
+  };
+  const completion = await anyscale.chat.completions.create(prompt);
+  return completion.choices[0].message.content;
+};
+
+// initialize vector database
+const COLLECTION_NAME = "catbook-collection";
+const { ChromaClient } = require("chromadb");
+const client = new ChromaClient();
+
+let collection;
+
+async function initCollection() {
+  collection = await client.getOrCreateCollection({
+    name: COLLECTION_NAME,
   });
-  console.log(completion);
+  // initialize collection embeddings with corpus
+  // in production, this function should not run that often, so it is OK to resync the two dbs here
+
+  // retrieve all documents
+  const allDocs = await collection.get();
+  // delete all documents
+  await collection.delete({
+    ids: allDocs.ids,
+  });
+  // retrieve corpus from main db
+  const allMongoDocs = await Document.find({});
+  const allMongoDocIds = allMongoDocs.map((mongoDoc) => mongoDoc._id.toString());
+  let allMongoDocEmbeddings = allMongoDocs.map((mongoDoc) => generateEmbedding(mongoDoc.content));
+  const allMongoDocContent = allMongoDocs.map((mongoDoc) => mongoDoc.content);
+  allMongoDocEmbeddings = await Promise.all(allMongoDocEmbeddings);
+  // add corpus to vector db
+  await collection.add({
+    ids: allMongoDocIds,
+    embeddings: allMongoDocEmbeddings,
+    documents: allMongoDocContent,
+  });
+  console.log("number of documents", await collection.count());
+  console.log("finished initializing chroma collection");
+}
+
+initCollection();
+
+// retrieving context helper function
+const NUM_DOCUMENTS = 2;
+const retrieveContext = async (query, k) => {
+  const queryEmbedding = await generateEmbedding(query);
+  const results = await collection.query({
+    queryEmbeddings: [queryEmbedding],
+    nResults: k,
+  });
+  return results.documents;
+};
+
+// RAG
+const retrievalAugmentedGeneration = async (query) => {
+  const context = await retrieveContext(query, NUM_DOCUMENTS);
+  const llmResponse = await chatCompletion(query, context);
+  return llmResponse;
 };
 
 router.get("/stories", (req, res) => {
@@ -123,13 +162,13 @@ router.post("/document", (req, res) => {
       const embedding = await generateEmbedding(document.content);
       await collection.add({
         ids: [document._id.toString()],
-        embeddings: [embedding.data[0].embedding],
+        embeddings: [embedding],
         documents: [document.content],
       });
       res.send(document);
     } catch (error) {
       console.log("error:", error);
-      res.status(400);
+      res.status(500);
       res.send({});
     }
   };
@@ -138,7 +177,9 @@ router.post("/document", (req, res) => {
 });
 
 router.get("/document", (req, res) => {
-  Document.find({}).then((documents) => res.send(documents));
+  retrieveContext("hello", NUM_DOCUMENTS).then(() => {
+    Document.find({}).then((documents) => res.send(documents));
+  });
 });
 
 router.post("/updateDocument", (req, res) => {
@@ -259,20 +300,17 @@ router.post("/despawn", (req, res) => {
 });
 
 router.post("/query", (req, res) => {
-  // NOTE: this is very inefficient!
-  // you should try to look for some alternative methods for querying directly inside of express,
-  // so you don't have to query the entire database everytime you want to make a query
-  // this is just to demonstrate how RAG works (:
-  Document.find({}).then((documents) => {
-    const docContents = documents.map((doc) => doc.content);
-    let { spawn } = require("child_process");
-    let child = spawn("python3", [
-      "server/model.py",
-      JSON.stringify({ docs: docContents, query: req.body.query }),
-    ]);
-    child.stdout.on("data", (data) => res.send({ queryresponse: data.toString() }));
-    child.on("error", () => res.send({ queryresponse: "error querying llm!" }));
-  });
+  const makeQuery = async () => {
+    try {
+      const queryresponse = await retrievalAugmentedGeneration(req.body.query);
+      res.send({ queryresponse });
+    } catch (error) {
+      console.log("error:", error);
+      res.status(500);
+      res.send({});
+    }
+  };
+  makeQuery();
 });
 
 // anything else falls to this "not found" case
