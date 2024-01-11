@@ -1,7 +1,8 @@
+require("dotenv").config();
 const Document = require("./models/document");
 
 // anyscale setup
-const ANYSCALE_API_KEY = "";
+const ANYSCALE_API_KEY = process.env.ANYSCALE_API_KEY;
 // some information about this model: https://ai.meta.com/llama/
 const MODEL = "meta-llama/Llama-2-13b-chat-hf";
 // another common choice is text-embedding-ada-002.
