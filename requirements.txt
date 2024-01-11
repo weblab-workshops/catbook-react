@@ -1,5 +1,1 @@
-transformers
-accelerate
-bitsandbytes
 chromadb
-sentence-transformers
