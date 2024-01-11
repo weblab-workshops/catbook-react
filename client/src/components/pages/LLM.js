@@ -20,9 +20,9 @@ const LLM = (props) => {
       });
   };
 
-  // if (!props.userId) {
-  //   return <div>Log in before chatting with the LLM</div>;
-  // }
+  if (!props.userId) {
+    return <div>Log in before chatting with the LLM</div>;
+  }
   return (
     <>
       <div className="corpus-container">

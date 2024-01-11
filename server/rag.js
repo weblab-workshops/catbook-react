@@ -76,7 +76,6 @@ const syncDBs = async () => {
     documents: allMongoDocContent,
   });
   console.log("number of documents", await collection.count());
-  console.log("finished initializing chroma collection");
 };
 
 const initCollection = async () => {
@@ -86,6 +85,7 @@ const initCollection = async () => {
   // initialize collection embeddings with corpus
   // in production, this function should not run that often, so it is OK to resync the two dbs here
   await syncDBs();
+  console.log("finished initializing chroma collection");
 };
 
 initCollection();
