@@ -121,6 +121,11 @@ const initCollection = async () => {
   }
 };
 
+// This is an async function => we don't know that the collection is
+// initialized before someone else runs functions that depend on the 
+// collection, so we could get null pointer errors when collection = null
+// before initCollection() has finished. That's probably okay, but if we 
+// see errors, it's worth keeping in mind.
 initCollection();
 
 // retrieving context helper function
