@@ -8,7 +8,7 @@ const MODEL = "meta-llama/Llama-2-13b-chat-hf";
 // another common choice is text-embedding-ada-002.
 // we use gte-large because this is the only embedding model anyscale has access to
 const EMBEDDING_MODEL = "thenlper/gte-large";
-// anyscale uses openAI under the hood.
+// anyscale uses openAI under the hood! but also gives us $10 free credits (:
 const { OpenAI } = require("openai");
 const anyscale = new OpenAI({
   baseURL: "https://api.endpoints.anyscale.com/v1",
