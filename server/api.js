@@ -172,10 +172,17 @@ router.get("/document", (req, res) => {
 router.post("/updateDocument", (req, res) => {
   const updateDocument = async (id) => {
     const document = await Document.findById(id);
-    document.content = req.body.content;
-    await document.save();
-    await ragManager.updateDocument(document);
-    res.send({});
+    if (!document) res.send({});
+    try {
+      document.content = req.body.content;
+      await document.save();
+      await ragManager.updateDocument(document);
+      res.send({});
+    } catch (error) {
+      console.log("error:", error);
+      res.status(500);
+      res.send({});
+    }
   };
   updateDocument(req.body._id);
 });

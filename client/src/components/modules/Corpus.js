@@ -38,7 +38,7 @@ const Corpus = (props) => {
         alert("document successfully updated!", 2000);
       })
       .catch(() => {
-        alert("error adding document. check server logs!", 2000);
+        alert("error updating document. check server logs!", 2000);
       });
   };
 
