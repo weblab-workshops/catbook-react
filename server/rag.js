@@ -2,6 +2,7 @@ require("dotenv").config();
 const Document = require("./models/document");
 
 const ANYSCALE_API_KEY = process.env.ANYSCALE_API_KEY;
+const CHROMADB_URI = process.env.CHROMADB_URI || "http://localhost:8000";
 
 // some information about this model: https://ai.meta.com/llama/
 const MODEL = "meta-llama/Llama-2-13b-chat-hf";
@@ -70,7 +71,9 @@ const chatCompletion = async (query, context) => {
 // initialize vector database
 const COLLECTION_NAME = "catbook-collection";
 const { ChromaClient } = require("chromadb");
-const client = new ChromaClient();
+const client = new ChromaClient({
+  path: CHROMADB_URI,
+});
 
 let collection = null;
 
