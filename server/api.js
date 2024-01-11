@@ -24,9 +24,27 @@ const router = express.Router();
 
 const socketManager = require("./server-socket");
 
-// begin script that handles llm requests
-let { spawn } = require("child_process");
-const llmProcess = spawn("python3", ["server/model.py"]);
+// initialize vector database
+const COLLECTION_NAME = "catbook-collection";
+const OPENAI_API_KEY = "";
+const { ChromaClient, OpenAIEmbeddingFunction } = require("chromadb");
+const client = new ChromaClient();
+const embedder = new OpenAIEmbeddingFunction({
+  openai_api_key: OPENAI_API_KEY,
+});
+
+console.log(embedder);
+
+let collection;
+
+async function initCollection() {
+  collection = await client.getOrCreateCollection({
+    name: COLLECTION_NAME,
+    embeddingFunction: embedder,
+  });
+}
+
+initCollection();
 
 router.get("/stories", (req, res) => {
   // empty selector means get all documents
@@ -65,7 +83,17 @@ router.post("/document", (req, res) => {
     content: req.body.content,
   });
 
-  newDocument.save().then((document) => res.send(document));
+  const addDocument = async (document) => {
+    await document.save();
+    console.log(collection);
+    await collection.add({
+      ids: [document._id],
+      documents: [document.content],
+    });
+    res.send(document);
+  };
+
+  addDocument(newDocument);
 });
 
 router.get("/document", (req, res) => {
@@ -73,20 +101,33 @@ router.get("/document", (req, res) => {
 });
 
 router.post("/updateDocument", (req, res) => {
-  Document.findById(req.body._id)
-    .then((document) => {
-      document.content = req.body.content;
-      document.save();
-    })
-    .then(() => res.send({}));
+  const updateDocument = async (id) => {
+    const document = await Document.findById(id);
+    document.content = req.body.content;
+    await document.save();
+    await collection.modify({
+      ids: [document._id],
+      documents: [document.content],
+    });
+    res.send({});
+  };
+  updateDocument(req.body._id);
 });
 
 router.post("/deleteDocument", (req, res) => {
-  Document.findById(req.body._id)
-    .then((document) => {
-      document.remove();
-    })
-    .then(() => res.send({}));
+  const deleteDocument = async (id) => {
+    const document = await Document.findById(id);
+    try {
+      await collection.delete({
+        ids: [document._id],
+      });
+      await document.remove();
+    } catch {
+      await document.remove();
+    }
+    res.send({});
+  };
+  deleteDocument(req.body._id);
 });
 
 router.post("/login", auth.login);
