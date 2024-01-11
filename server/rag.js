@@ -1,14 +1,16 @@
 require("dotenv").config();
 const Document = require("./models/document");
 
-// anyscale setup
 const ANYSCALE_API_KEY = process.env.ANYSCALE_API_KEY;
+
 // some information about this model: https://ai.meta.com/llama/
 const MODEL = "meta-llama/Llama-2-13b-chat-hf";
-// another common choice is text-embedding-ada-002.
+
+// another common choice of embedding model is text-embedding-ada-002.
 // we use gte-large because this is the only embedding model anyscale has access to
 const EMBEDDING_MODEL = "thenlper/gte-large";
-// anyscale uses openAI under the hood! but also gives us $10 free credits (:
+
+// anyscale uses openAI under the hood! but anyscale gives us $10 free credits
 const { OpenAI } = require("openai");
 const anyscale = new OpenAI({
   baseURL: "https://api.endpoints.anyscale.com/v1",
