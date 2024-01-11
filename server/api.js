@@ -26,7 +26,11 @@ const socketManager = require("./server-socket");
 
 // anyscale setup
 const ANYSCALE_API_KEY = "";
+// some information about this model: https://ai.meta.com/llama/
 const MODEL = "meta-llama/Llama-2-13b-chat-hf";
+// another common choice is text-embedding-ada-002.
+// we use gte-large because this is the only embedding model anyscale has access to
+const EMBEDDING_MODEL = "thenlper/gte-large";
 const { OpenAI } = require("openai");
 const anyscale = new OpenAI({
   baseURL: "https://api.endpoints.anyscale.com/v1",
@@ -36,7 +40,7 @@ const anyscale = new OpenAI({
 // embedding helper function
 const generateEmbedding = async (document) => {
   const embedding = await anyscale.embeddings.create({
-    model: "thenlper/gte-large",
+    model: EMBEDDING_MODEL,
     // model: "text-embedding-ada-002", (anyscale doesn't have access to this model)
     input: document,
   });
@@ -57,6 +61,8 @@ const chatCompletion = async (query, context) => {
       },
       { role: "user", content: `${query}` },
     ],
+    // temperature controls the variance in the llms responses
+    // higher temperature = more variance
     temperature: 0.7,
   };
   const completion = await anyscale.chat.completions.create(prompt);
