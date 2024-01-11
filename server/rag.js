@@ -34,7 +34,7 @@ const validateAPIKey = async () => {
   }
 };
 
-const hasAPIKey = () => hasapikey;
+const isRunnable = () => hasapikey && collection;
 
 // embedding helper function
 const generateEmbedding = async (document) => {
@@ -72,7 +72,7 @@ const COLLECTION_NAME = "catbook-collection";
 const { ChromaClient } = require("chromadb");
 const client = new ChromaClient();
 
-let collection;
+let collection = null;
 
 // sync main and vector dbs
 const syncDBs = async () => {
@@ -105,13 +105,17 @@ const syncDBs = async () => {
 const initCollection = async () => {
   await validateAPIKey();
   if (!hasapikey) return;
-  collection = await client.getOrCreateCollection({
-    name: COLLECTION_NAME,
-  });
-  // initialize collection embeddings with corpus
-  // in production, this function should not run that often, so it is OK to resync the two dbs here
-  await syncDBs();
-  console.log("finished initializing chroma collection");
+  try {
+    collection = await client.getOrCreateCollection({
+      name: COLLECTION_NAME,
+    });
+    // initialize collection embeddings with corpus
+    // in production, this function should not run that often, so it is OK to resync the two dbs here
+    await syncDBs();
+    console.log("finished initializing chroma collection");
+  } catch (error) {
+    console.log("chromadb not running");
+  }
 };
 
 initCollection();
@@ -158,7 +162,7 @@ const deleteDocument = async (id) => {
 };
 
 module.exports = {
-  hasAPIKey: hasAPIKey,
+  isRunnable: isRunnable,
   addDocument: addDocument,
   updateDocument: updateDocument,
   deleteDocument: deleteDocument,

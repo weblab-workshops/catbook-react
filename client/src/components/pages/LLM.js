@@ -7,15 +7,14 @@ const LLM = (props) => {
   const [loading, setLoading] = useState(false);
   const [corpus, setCorpus] = useState([]);
   const [response, setResponse] = useState("");
-  const [noAPIKey, setNoAPIKey] = useState(true);
+  const [runnable, setRunnable] = useState(false);
 
   useEffect(() => {
-    get("/api/hasapikey").then((res) => {
-      if (res.hasapikey) {
-        setNoAPIKey(false);
+    get("/api/isrunnable").then((res) => {
+      if (res.isrunnable) {
+        setRunnable(true);
         get("/api/document").then((corpus) => {
           setCorpus(corpus);
-          setLoading(false);
         });
       }
       setLoading(false);
@@ -39,13 +38,19 @@ const LLM = (props) => {
   if (!props.userId) {
     return <div>Log in before chatting with the LLM</div>;
   }
-  if (noAPIKey) {
+  if (!runnable) {
     return (
       <>
-        <div>test query failed</div>
-        <div>this is most likely due to not configuring a valid api key</div>
-        <div>add a valid key to a .env in root to begin chatting with the LLM!</div>
-        <div>(if you think this is a mistake, refresh the page)</div>
+        <div>error detected</div>
+        <div>this is most likely due to one of two reasons:</div>
+        <div>
+          1. a valid api key is not configured. add a valid key to a .env in root to begin chatting
+          with the LLM!
+        </div>
+        <div>
+          2. your chroma db server is not running. run `chroma run` in a separate terminal to start
+          up the db
+        </div>
       </>
     );
   }

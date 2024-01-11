@@ -141,8 +141,8 @@ router.post("/despawn", (req, res) => {
   res.send({});
 });
 
-router.get("/hasapikey", (req, res) => {
-  res.send({ hasapikey: ragManager.hasAPIKey() });
+router.get("/isrunnable", (req, res) => {
+  res.send({ isrunnable: ragManager.isRunnable() });
 });
 
 router.post("/document", (req, res) => {
