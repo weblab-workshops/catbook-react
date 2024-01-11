@@ -70,13 +70,8 @@ const client = new ChromaClient();
 
 let collection;
 
-async function initCollection() {
-  collection = await client.getOrCreateCollection({
-    name: COLLECTION_NAME,
-  });
-  // initialize collection embeddings with corpus
-  // in production, this function should not run that often, so it is OK to resync the two dbs here
-
+// sync main and vector dbs
+const syncDBs = async () => {
   // retrieve all documents
   const allDocs = await collection.get();
   // delete all documents
@@ -86,9 +81,9 @@ async function initCollection() {
   // retrieve corpus from main db
   const allMongoDocs = await Document.find({});
   const allMongoDocIds = allMongoDocs.map((mongoDoc) => mongoDoc._id.toString());
-  let allMongoDocEmbeddings = allMongoDocs.map((mongoDoc) => generateEmbedding(mongoDoc.content));
   const allMongoDocContent = allMongoDocs.map((mongoDoc) => mongoDoc.content);
-  allMongoDocEmbeddings = await Promise.all(allMongoDocEmbeddings);
+  let allMongoDocEmbeddings = allMongoDocs.map((mongoDoc) => generateEmbedding(mongoDoc.content));
+  allMongoDocEmbeddings = await Promise.all(allMongoDocEmbeddings); // ensure embeddings finish generating
   // add corpus to vector db
   await collection.add({
     ids: allMongoDocIds,
@@ -97,7 +92,16 @@ async function initCollection() {
   });
   console.log("number of documents", await collection.count());
   console.log("finished initializing chroma collection");
-}
+};
+
+const initCollection = async () => {
+  collection = await client.getOrCreateCollection({
+    name: COLLECTION_NAME,
+  });
+  // initialize collection embeddings with corpus
+  // in production, this function should not run that often, so it is OK to resync the two dbs here
+  await syncDBs();
+};
 
 initCollection();
 
