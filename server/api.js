@@ -24,6 +24,10 @@ const router = express.Router();
 
 const socketManager = require("./server-socket");
 
+// begin script that handles llm requests
+let { spawn } = require("child_process");
+const llmProcess = spawn("python3", ["server/model.py"]);
+
 router.get("/stories", (req, res) => {
   // empty selector means get all documents
   Story.find({}).then((stories) => res.send(stories));
@@ -175,16 +179,14 @@ router.post("/query", (req, res) => {
   // so you don't have to query the entire database everytime you want to make a query
   // this is just to demonstrate how RAG works (:
   Document.find({}).then((documents) => {
-    console.log(req.body.query);
     const docContents = documents.map((doc) => doc.content);
-    console.log(docContents);
-
-    const { spawn } = require("child_process");
-    const model = spawn("python3", ["./model.py"]);
-    model.stdout.on("data", (data) => {
-      console.log(data.toString());
-      res.send({ queryresponse: "hello" });
-    });
+    let { spawn } = require("child_process");
+    let child = spawn("python3", [
+      "server/model.py",
+      JSON.stringify({ docs: docContents, query: req.body.query }),
+    ]);
+    child.stdout.on("data", (data) => res.send({ queryresponse: data.toString() }));
+    child.on("error", () => res.send({ queryresponse: "error querying llm!" }));
   });
 });
 
