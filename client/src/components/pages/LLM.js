@@ -49,7 +49,7 @@ const LLM = (props) => {
         </div>
         <div>
           2. your chroma db server is not running. run `chroma run` in a separate terminal to start
-          up the db
+          up the db (follow setup guide to make sure this is set up correctly)
         </div>
       </>
     );
