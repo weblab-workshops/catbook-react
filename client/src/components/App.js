@@ -12,7 +12,7 @@ import "./App.css";
 /**
  * Define the "App" component as a class.
  */
- const App = () => {
+const App = () => {
   return (
     // <> is like a <div>, but won't show
     // up in the DOM tree
@@ -21,7 +21,7 @@ import "./App.css";
       <div className="App-container">
         <Router>
           <Feed path="/" />
-          <Profile path="/profile/" />
+          <Profile path="/profile" />
           <NotFound default />
         </Router>
       </div>
