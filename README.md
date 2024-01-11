@@ -5,7 +5,7 @@
 run `npm start` in one terminal and `npm run hotloader` in another
 
 To run the LLM parts of the app:
-1. Make a virtual environment: `python3 -m venv .venv`
+1. Make a virtual environment: `python3 -m venv .venv`. This virtual environment should be in Python 3.10 or earlier; Python 3.11+ won't work.
 2. Activate the virtual environment (venv): `. .venv/bin/activate`
 3. Install the dependencies from requirements.txt in the venv: `pip install -r requirements.txt`
 4. Run the local ChromaDB instance: `chroma run`
