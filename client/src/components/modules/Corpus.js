@@ -36,6 +36,41 @@ const Corpus = (props) => {
       });
   };
 
+  const handleUpdateDocument = (id, content) => {
+    setAlertContent("updating document...");
+    post("/api/updateDocument", { _id: id, content: content })
+      .then(() => {
+        setAlertContent("document successfully updated!");
+        setTimeout(() => {
+          setAlertContent("");
+        }, 2000);
+      })
+      .catch(() => {
+        setAlertContent("error adding document. check your server logs!");
+        setTimeout(() => {
+          setAlertContent("");
+        }, 2000);
+      });
+  };
+
+  const handleDeleteDocument = (id) => {
+    setAlertContent("deleting document...");
+    post("/api/deleteDocument", { _id: id })
+      .then(() => {
+        setCorpus(corpus.filter((doc) => doc._id !== id));
+        setAlertContent("document successfully deleted!");
+        setTimeout(() => {
+          setAlertContent("");
+        }, 2000);
+      })
+      .catch(() => {
+        setAlertContent("error deleting document. check your server logs!");
+        setTimeout(() => {
+          setAlertContent("");
+        }, 2000);
+      });
+  };
+
   return (
     <>
       <div className="CorpusContainer" ref={corpusRef}>
@@ -44,8 +79,15 @@ const Corpus = (props) => {
             <div>Loading...</div>
           ) : (
             <>
-              {corpus.map((doc, i) => (
-                <Document key={i} content={doc.content} id={doc._id} />
+              {corpus.length === 0 && <div>Empty!</div>}
+              {corpus.map((doc) => (
+                <Document
+                  key={doc._id}
+                  content={doc.content}
+                  id={doc._id}
+                  handleUpdate={handleUpdateDocument}
+                  handleDelete={handleDeleteDocument}
+                />
               ))}
             </>
           )}
