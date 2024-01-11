@@ -35,7 +35,7 @@ const validateAPIKey = async () => {
   }
 };
 
-const isRunnable = () => hasapikey && collection;
+const isRunnable = () => hasapikey && collection !== null;
 
 // embedding helper function
 const generateEmbedding = async (document) => {
