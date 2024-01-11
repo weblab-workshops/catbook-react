@@ -65,6 +65,11 @@ const syncDBs = async () => {
   });
   // retrieve corpus from main db
   const allMongoDocs = await Document.find({});
+  if (allMongoDocs.length === 0) {
+    // avoid errors associated with passing empty lists to chroma
+    console.log("number of documents", await collection.count());
+    return;
+  }
   const allMongoDocIds = allMongoDocs.map((mongoDoc) => mongoDoc._id.toString());
   const allMongoDocContent = allMongoDocs.map((mongoDoc) => mongoDoc.content);
   let allMongoDocEmbeddings = allMongoDocs.map((mongoDoc) => generateEmbedding(mongoDoc.content));
