@@ -6,6 +6,7 @@ import NotFound from "./pages/NotFound.js";
 import Profile from "./pages/Profile.js";
 import Chatbook from "./pages/Chatbook.js";
 import Game from "./pages/Game.js";
+import LLM from "./pages/LLM.js";
 
 import { socket } from "../client-socket.js";
 
@@ -57,6 +58,7 @@ const App = () => {
           <Profile path="/profile/:userId" />
           <Chatbook path="/chat/" userId={userId} />
           <Game path="/game/" userId={userId} />
+          <LLM path="/llm/" userId={userId} />
           <NotFound default />
         </Router>
       </div>
