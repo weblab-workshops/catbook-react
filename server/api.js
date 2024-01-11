@@ -35,10 +35,8 @@ async function initCollection() {
   collection = await client.getOrCreateCollection({
     name: COLLECTION_NAME,
   });
-  // remove existing documents
   // initialize collection embeddings with corpus
   console.log(await collection.count());
-  // Document.find({}).then((documents) => res.send(documents));
 }
 
 initCollection();
