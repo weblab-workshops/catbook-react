@@ -141,6 +141,10 @@ router.post("/despawn", (req, res) => {
   res.send({});
 });
 
+router.get("/hasapikey", (req, res) => {
+  res.send({ hasapikey: ragManager.hasAPIKey() });
+});
+
 router.post("/document", (req, res) => {
   const newDocument = new Document({
     content: req.body.content,

@@ -17,6 +17,25 @@ const anyscale = new OpenAI({
   apiKey: ANYSCALE_API_KEY,
 });
 
+// check whether the api key is valid.
+// this is only called on server start, so it does not waste too many resources (and will present expensive server crashes when api keys expire)
+let hasapikey = false;
+const validateAPIKey = async () => {
+  try {
+    await anyscale.chat.completions.create({
+      model: "meta-llama/Llama-2-7b-chat-hf",
+      messages: [{ role: "system", content: "" }],
+    });
+    hasapikey = true;
+    return hasapikey;
+  } catch {
+    console.log("validate api key failed");
+    return hasapikey;
+  }
+};
+
+const hasAPIKey = () => hasapikey;
+
 // embedding helper function
 const generateEmbedding = async (document) => {
   const embedding = await anyscale.embeddings.create({
@@ -84,6 +103,8 @@ const syncDBs = async () => {
 };
 
 const initCollection = async () => {
+  await validateAPIKey();
+  if (!hasapikey) return;
   collection = await client.getOrCreateCollection({
     name: COLLECTION_NAME,
   });
@@ -137,6 +158,7 @@ const deleteDocument = async (id) => {
 };
 
 module.exports = {
+  hasAPIKey: hasAPIKey,
   addDocument: addDocument,
   updateDocument: updateDocument,
   deleteDocument: deleteDocument,

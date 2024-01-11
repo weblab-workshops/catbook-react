@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Corpus from "../modules/Corpus";
 import { NewPostInput } from "../modules/NewPostInput";
 import { get, post } from "../../utilities";
 
 const LLM = (props) => {
   const [response, setResponse] = useState("");
+  const [noAPIKey, setNoAPIKey] = useState(true);
+
+  useEffect(() => {
+    get("/api/hasapikey").then((res) => setNoAPIKey(!res.hasapikey));
+  }, []);
 
   const makeQuery = (q) => {
     setResponse("querying the model...");
@@ -22,6 +27,15 @@ const LLM = (props) => {
 
   if (!props.userId) {
     return <div>Log in before chatting with the LLM</div>;
+  }
+  if (noAPIKey) {
+    return (
+      <>
+        <div>test query failed</div>
+        <div>this is most likely due to not configuring a valid api key</div>
+        <div>add a valid key to a .env in root to begin chatting with the LLM!</div>
+      </>
+    );
   }
   return (
     <>
