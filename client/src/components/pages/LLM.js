@@ -4,11 +4,22 @@ import { NewPostInput } from "../modules/NewPostInput";
 import { get, post } from "../../utilities";
 
 const LLM = (props) => {
+  const [loading, setLoading] = useState(false);
+  const [corpus, setCorpus] = useState([]);
   const [response, setResponse] = useState("");
   const [noAPIKey, setNoAPIKey] = useState(true);
 
   useEffect(() => {
-    get("/api/hasapikey").then((res) => setNoAPIKey(!res.hasapikey));
+    get("/api/hasapikey").then((res) => {
+      if (res.hasapikey) {
+        setNoAPIKey(false);
+        get("/api/document").then((corpus) => {
+          setCorpus(corpus);
+          setLoading(false);
+        });
+      }
+      setLoading(false);
+    });
   }, []);
 
   const makeQuery = (q) => {
@@ -34,6 +45,7 @@ const LLM = (props) => {
         <div>test query failed</div>
         <div>this is most likely due to not configuring a valid api key</div>
         <div>add a valid key to a .env in root to begin chatting with the LLM!</div>
+        <div>(if you think this is a mistake, refresh the page)</div>
       </>
     );
   }
@@ -41,11 +53,11 @@ const LLM = (props) => {
     <>
       <div className="corpus-container">
         <h1>Corpus</h1>
-        <Corpus />
+        <Corpus corpus={corpus} setCorpus={setCorpus} loading={loading} />
       </div>
       <div className="llm-container">
-        <h1>Query the LLM!</h1>
-        <NewPostInput defaultText={"What does Tony eat for breakfast?"} onSubmit={makeQuery} />
+        <h1>Query the LLM</h1>
+        <NewPostInput defaultText={"what does Tony eat for breakfast?"} onSubmit={makeQuery} />
         <div>{response}</div>
       </div>
     </>

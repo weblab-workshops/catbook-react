@@ -6,33 +6,28 @@ import "./Document.css";
 import { get, post } from "../../utilities";
 
 const Corpus = (props) => {
-  const [loading, setLoading] = useState(true);
   const [alertContent, setAlertContent] = useState("");
-  const [corpus, setCorpus] = useState([]);
   const corpusRef = useRef(null);
 
-  useEffect(() => {
-    get("/api/document").then((corpus) => {
-      setCorpus(corpus);
-      setLoading(false);
-    });
-  }, []);
+  const alert = (message, ms) => {
+    setAlertContent(message);
+    setTimeout(() => {
+      setAlertContent("");
+    }, ms);
+  };
 
   const handleNewDocument = (content) => {
     setAlertContent("generating document...");
     post("/api/document", { content: content })
       .then((newDoc) => {
-        setCorpus(corpus.concat([newDoc]));
+        props.setCorpus(props.corpus.concat([newDoc]));
         if (corpusRef.current) {
           corpusRef.current.scrollTop = corpusRef.current.scrollHeight;
         }
-        setAlertContent("");
+        alert("document successfully generated!", 2000);
       })
       .catch(() => {
-        setAlertContent("error adding document. check your server logs!");
-        setTimeout(() => {
-          setAlertContent("");
-        }, 2000);
+        alert("error adding document. check server logs!", 2000);
       });
   };
 
@@ -40,16 +35,10 @@ const Corpus = (props) => {
     setAlertContent("updating document...");
     post("/api/updateDocument", { _id: id, content: content })
       .then(() => {
-        setAlertContent("document successfully updated!");
-        setTimeout(() => {
-          setAlertContent("");
-        }, 2000);
+        alert("document successfully updated!", 2000);
       })
       .catch(() => {
-        setAlertContent("error adding document. check your server logs!");
-        setTimeout(() => {
-          setAlertContent("");
-        }, 2000);
+        alert("error adding document. check server logs!", 2000);
       });
   };
 
@@ -57,17 +46,11 @@ const Corpus = (props) => {
     setAlertContent("deleting document...");
     post("/api/deleteDocument", { _id: id })
       .then(() => {
-        setCorpus(corpus.filter((doc) => doc._id !== id));
-        setAlertContent("document successfully deleted!");
-        setTimeout(() => {
-          setAlertContent("");
-        }, 2000);
+        props.setCorpus(props.corpus.filter((doc) => doc._id !== id));
+        alert("document successfully deleted!", 2000);
       })
       .catch(() => {
-        setAlertContent("error deleting document. check your server logs!");
-        setTimeout(() => {
-          setAlertContent("");
-        }, 2000);
+        alert("error deleting document. check server logs!", 2000);
       });
   };
 
@@ -75,12 +58,12 @@ const Corpus = (props) => {
     <>
       <div className="CorpusContainer" ref={corpusRef}>
         <>
-          {loading ? (
+          {props.loading ? (
             <div>Loading...</div>
           ) : (
             <>
-              {corpus.length === 0 && <div>Empty!</div>}
-              {corpus.map((doc) => (
+              {props.corpus.length === 0 && <div>Empty!</div>}
+              {props.corpus.map((doc) => (
                 <Document
                   key={doc._id}
                   content={doc.content}
