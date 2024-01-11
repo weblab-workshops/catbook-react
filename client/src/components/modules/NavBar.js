@@ -32,6 +32,9 @@ const NavBar = (props) => {
         <Link to="/game/" className="NavBar-link">
           Game
         </Link>
+        <Link to="/llm/" className="NavBar-link">
+          LLM
+        </Link>
         {props.userId ? (
           <GoogleLogout
             clientId={GOOGLE_CLIENT_ID}

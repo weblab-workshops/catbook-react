@@ -1,0 +1,13 @@
+.Document-save-button {
+  border-radius: 0;
+}
+
+.NewDocument {
+  margin-top: 2rem;
+}
+
+.CorpusContainer {
+  height: 40vh;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}

@@ -97,6 +97,6 @@ const NewMessage = (props) => {
   };
 
   return <NewPostInput defaultText="New Message" onSubmit={sendMessage} />;
-}
+};
 
-export { NewComment, NewStory, NewMessage };
+export { NewComment, NewStory, NewMessage, NewPostInput };
