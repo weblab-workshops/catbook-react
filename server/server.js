@@ -25,17 +25,19 @@ const express = require("express"); // backend framework for our node server.
 const session = require("express-session"); // library that stores info about each connected user
 const mongoose = require("mongoose"); // library to connect to MongoDB
 const path = require("path"); // provide utilities for working with file and directory paths
+const cors = require("cors"); // enable cross origin headers
 
 const api = require("./api");
 const auth = require("./auth");
+require("dotenv").config();
 
 // socket stuff
 const socketManager = require("./server-socket");
 
 // Server configuration below
 // TODO change connection URL after setting up your own database
-const mongoConnectionURL =
-  "mongodb+srv://weblab:jAT4po55IAgYWQgR@catbook-ylndp.mongodb.net/test?retryWrites=true&w=majority";
+// THIS IS HIDDEN IN A DOTENV FILE
+const mongoConnectionURL = process.env.mongoURL;
 // TODO change database name to the name you chose
 const databaseName = "catbook";
 
@@ -53,6 +55,9 @@ mongoose
 const app = express();
 app.use(validator.checkRoutes);
 
+// Enable cross origin requests
+app.use(cors());
+
 // set up bodyParser, which allows us to process POST requests
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -60,7 +65,7 @@ app.use(bodyParser.json());
 // set up a session, which will persist login data across requests
 app.use(
   session({
-    secret: "session-secret",
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
   })
@@ -98,7 +103,7 @@ app.use((err, req, res, next) => {
 });
 
 // hardcode port to 3000 for now
-const port = 3000;
+const port = process.env.PORT || 3000;
 const server = http.Server(app);
 socketManager.init(server);
 

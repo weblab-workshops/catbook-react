@@ -25,6 +25,12 @@ const router = express.Router();
 const socketManager = require("./server-socket");
 const ragManager = require("./rag");
 
+// health check API route: if this doesn't return 200, the server is down :(
+router.get("/health", (_req, res) => {
+    res.status(200);
+    res.send({});
+});
+
 router.get("/stories", (req, res) => {
   // empty selector means get all documents
   Story.find({}).then((stories) => res.send(stories));

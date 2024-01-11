@@ -27,6 +27,7 @@
     "connect-ensure-login": "^0.1.1",
     "core-js": "^3.8.1",
     "dotenv": "^16.3.1",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "google-auth-library": "^6.1.3",
