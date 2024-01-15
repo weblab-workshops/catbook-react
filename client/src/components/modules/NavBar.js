@@ -14,7 +14,13 @@ const GOOGLE_CLIENT_ID = "395785444978-7b9v7l0ap2h3308528vu1ddnt3rqftjc.apps.goo
 const NavBar = (props) => {
   const [loggedIn, setLoggedIn] = useState(false);
 
-  // TODO: call whoami to set loggedin state
+  useEffect(() => {
+    get("/api/whoami").then((user) => {
+      if (user._id) {
+        setLoggedIn(true);
+      }
+    });
+  }, []);
 
   const handleLogin = (res) => {
     // 'res' contains the response from Google's authentication servers
