@@ -54,6 +54,7 @@ router.post("/login", auth.login);
 router.post("/logout", auth.logout);
 
 // TODO: implement /whoami
+// return user object if it exists, other return empty object {}
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
