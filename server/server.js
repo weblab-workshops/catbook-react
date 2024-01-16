@@ -37,7 +37,7 @@ const socketManager = require("./server-socket");
 const mongoConnectionURL =
   "mongodb+srv://weblab:jAT4po55IAgYWQgR@catbook-ylndp.mongodb.net/test?retryWrites=true&w=majority";
 // TODO change database name to the name you chose
-const databaseName = "Cluster0";
+const databaseName = "catbook";
 
 // connect to mongodb
 mongoose
