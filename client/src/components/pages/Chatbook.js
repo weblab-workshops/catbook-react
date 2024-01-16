@@ -7,6 +7,17 @@ import { get } from "../../utilities";
 import "./Chatbook.css";
 
 // TODO (step 1.6): Add TEST_DATA, ALL_CHAT database object, and TEST_MESSAGES
+
+const TEST_MESSAGES = [
+  {
+    sender: {
+      _id: 0,
+      name: "Kenneth",
+    },
+    content: "i love web lab",
+  },
+];
+
 const Chatbook = (props) => {
   /**
    * @typedef UserObject
@@ -24,8 +35,7 @@ const Chatbook = (props) => {
    * @property {UserObject} recipient
    */
 
-  const loadMessageHistory = (recipient) => {
-  };
+  const loadMessageHistory = (recipient) => {};
 
   useEffect(() => {
     document.title = "Chatbook";
@@ -33,6 +43,6 @@ const Chatbook = (props) => {
 
   // TODO (step 1.5): populate chatbook (but use TEST_DATA)
   return <></>;
-}
+};
 
 export default Chatbook;
