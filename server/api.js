@@ -60,7 +60,7 @@ router.post("/story", (req, res) => {
   };
 
   data.stories.push(newStory);
-  res.send({ msg: "Added story!" });
+  res.send(newStory);
 });
 
 router.post("/comment", (req, res) => {
@@ -72,7 +72,7 @@ router.post("/comment", (req, res) => {
   };
 
   data.comments.push(newComment);
-  res.send({ msg: "Added comment!" });
+  res.send(newComment);
 });
 
 // catch all /api route
