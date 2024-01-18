@@ -10,18 +10,13 @@ const Game = (props) => {
   const canvasRef = useRef(null);
 
   // TODO (Step 1.5, pt 2): update game periodically using useEffect hook
-  // Uncomment the following code:
-  // useEffect(() => {
-  //   socket.on("update", (update) => {
-  //     processUpdate(update);
-  //   });
-  // }, []);
+  useEffect(() => {
+    
+  }, []);
 
   const processUpdate = (update) => {
-    // TODO (Step 1.5): call drawCanvas on the `update` transmitted to the socket
+    // TODO (Step 1.5): call drawCanvas using the `update` transmitted to the socket
     // (`update` is the current `gameState`)
-    // Uncomment the following line:
-    // drawCanvas(update, canvasRef);
   };
 
   // display text if the player is not logged in
