@@ -35,14 +35,14 @@ const playerAttemptEatFood = (pid1, f) => {
     if (gameState.players[pid1].radius > FOOD_SIZE) {
       // player 1 is big enough to eat food
       gameState.players[pid1].radius += FOOD_SIZE;
-      // TODO (Step 4.3, pt 2): call removeFood on a food if the food is in range
+      // TODO (Step 3.3, pt 2): call removeFood on a food if the food is in range
       // Uncomment the following code:
       // removeFood(f);
     }
   }
 };
 
-// TODO (Step 4.2): attempt all pairwise eating between each player and all foods
+// TODO (Step 3.2): attempt all pairwise eating between each player and all foods
 // Uncomment the following code:
 // const computePlayersEatFoods = () => {
 //   Object.keys(gameState.players).forEach((pid1) => {
@@ -56,7 +56,7 @@ const playerAttemptEatFood = (pid1, f) => {
 const gameState = {
   winner: null,
   players: {},
-  // TODO (Step 4.1): Add "food" array to gameState here. (1 line)
+  // TODO (Step 3.1): Add "food" array to gameState here. (1 line)
 };
 
 /** Game logic */
@@ -71,7 +71,7 @@ const spawnPlayer = (id) => {
 };
 
 /** Adds a food to the game state, initialized with a random location */
-// TODO (Step 4.1): Uncomment the following function which spawns in food at random locations on the map.
+// TODO (Step 3.1): Uncomment the following function which spawns in food at random locations on the map.
 // const spawnFood = () => {
 //   gameState.food.push({
 //     position: getRandomPosition(),
@@ -99,7 +99,7 @@ const movePlayer = (id, dir) => {
   }
 };
 
-// TODO (Step 4.4): spawn a food if there are less than 10 foods
+// TODO (Step 3.4): spawn a food if there are less than 10 foods
 // Uncomment the following code:
 // const checkEnoughFoods = () => {
 //   if (gameState.food.length < 10) {
@@ -109,7 +109,7 @@ const movePlayer = (id, dir) => {
 
 /** Update the game state. This function is called once per server tick. */
 const updateGameState = () => {
-  // TODO (Step 4.4): add computePlayersEatFoods and checkEnoughFoods to game loop
+  // TODO (Step 3.4): add computePlayersEatFoods and checkEnoughFoods to game loop
   // This will compute all pairwise eating between each player and all foods,
   // and add more food to the game
   // Uncomment the following code:
@@ -124,7 +124,7 @@ const removePlayer = (id) => {
   }
 };
 
-// TODO (Step 4.3): remove a food from the game state if it gets eaten, given reference to food object
+// TODO (Step 3.3): remove a food from the game state if it gets eaten, given reference to food object
 // Has some ugly syntax because we're given the _reference_ to the food _object_,
 // and need to find the corresponding index in gameState.food
 // Uncomment the following code:

@@ -48,7 +48,7 @@ export const drawCanvas = (drawState, canvasRef) => {
   });
 
   // draw all the foods
-  // TODO (Step 4.1): Uncomment the following code to draw foods.
+  // TODO (Step 3.1): Uncomment the following code to draw foods.
   // Object.values(drawState.food).forEach((f) => {
   //   drawCircle(context, f.position.x, f.position.y, f.radius, f.color);
   // });
