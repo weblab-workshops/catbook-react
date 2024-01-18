@@ -35,7 +35,14 @@ const Game = (props) => {
 
   const processUpdate = (update) => {
     // TODO (Step 5.5): set winnerModal if update has defined winner
-      // Your code goes here (Step 5.5)
+    // Comment in the following code:
+    // if (update.winner) {
+    //   setWinnerModal(
+    //     <div className="Game-winner">the winner is {update.winner} yay cool cool</div>
+    //   );
+    // } else {
+    //   setWinnerModal(null);
+    // }
     drawCanvas(update, canvasRef);
   };
 
