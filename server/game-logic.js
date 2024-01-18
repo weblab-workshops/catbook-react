@@ -35,7 +35,7 @@ const playerAttemptEatFood = (pid1, f) => {
     if (gameState.players[pid1].radius > FOOD_SIZE) {
       // player 1 is big enough to eat food
       gameState.players[pid1].radius += FOOD_SIZE;
-      // TODO (Step 3.3, pt 2): call removeFood on a food if the food is in range
+      // TODO (Step 3.3, pt 1): call removeFood on a food if the food is in range
 
     }
   }
@@ -112,7 +112,7 @@ const removePlayer = (id) => {
   }
 };
 
-// TODO (Step 3.3): remove a food from the game state if it gets eaten, given reference to food object
+// TODO (Step 3.3, pt 2): remove a food from the game state if it gets eaten, given reference to food object
 // Has some ugly syntax because we're given the _reference_ to the food _object_,
 // and need to find the corresponding index in gameState.food
 // Implement the following function:
