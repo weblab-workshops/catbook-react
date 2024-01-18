@@ -21,7 +21,7 @@ const getRandomPosition = () => {
 };
 
 /** Game state */
-// TODO (Step 2.1): Uncomment the following object declaration for gameState.
+// TODO (Step 1.1): Uncomment the following object declaration for gameState.
 // const gameState = {
 //   winner: null,
 //   players: {},
@@ -31,7 +31,7 @@ const getRandomPosition = () => {
 
 /** Adds a player to the game state, initialized with a random location */
 const spawnPlayer = (id) => {
-  // TODO (Step 2.2): Initialize a new player indexed by id with "position" and "radius" properties.
+  // TODO (Step 1.2): Initialize a new player indexed by id with "position" and "radius" properties.
   //    The new player should have a random position on the map.
   //    You can use getRandomPosition() which has been implemented above for you.
   //    The radius should be the initial radius (defined at the top of this file).
@@ -40,7 +40,7 @@ const spawnPlayer = (id) => {
 };
 
 /** Update the game state. This function is called once per server tick. */
-// TODO (Step 2.1, pt 2): Uncomment the following function for updating the game state.
+// TODO (Step 1.1, pt 2): Uncomment the following function for updating the game state.
 // const updateGameState = () => {
 //   // This function is currently empty, but we'll add to it later.
 // };
@@ -48,13 +48,13 @@ const spawnPlayer = (id) => {
 /** Remove a player from the game state if they disconnect or if they get eaten */
 const removePlayer = (id) => {
   if (gameState.players[id] != undefined) {
-    // TODO (Step 2.3): remove the player from the game state
+    // TODO (Step 1.3): remove the player from the game state
     // Your code goes here
   }
 };
 
 module.exports = {
-  // TODO (Step 2.1, pt 3): uncomment the following code to export gameState and the
+  // TODO (Step 1.1, pt 3): uncomment the following code to export gameState and the
   //   updateGameState function.
   // gameState,
   // updateGameState,
