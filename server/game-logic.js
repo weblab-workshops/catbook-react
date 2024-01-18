@@ -44,7 +44,7 @@ const movePlayer = (id, dir) => {
     return;
   }
 
-  // TODO (Step 2.4): given the player id (id) and keyboard input (dir), move the player 10px
+  // TODO (Step 2.5): given the player id (id) and keyboard input (dir), move the player 10px
   //   in the direction given by `dir` (8-10 lines).
   // `dir` is a string that can take on 4 directions: "up", "down", "left", "right".
   // Remember that x controls left-right, and y controls up-down.
