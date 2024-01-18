@@ -12,7 +12,7 @@ const Game = (props) => {
 
   // add event listener on mount
   useEffect(() => {
-    // TODO (Step 3.3): add event listener when the page is loaded (1 line)
+    // TODO (Step 2.3): add event listener when the page is loaded (1 line)
     // Hint: `window` is a global variable on which you should call `addEventListener`
     // The type of event listener is "keydown", and the listener is the `handleInput` function
     // we imported from input.js. Refer to documentation for `addEventListener` here:
@@ -21,7 +21,7 @@ const Game = (props) => {
 
     // remove event listener on unmount
     return () => {
-      // TODO (Step 3.3, pt 2): remove event listener when the page unmounts (1 line)
+      // TODO (Step 2.3, pt 2): remove event listener when the page unmounts (1 line)
       // This return statement allows us to run code when the user leaves the page.
       // Hint: `window` also has a `removeEventListener` method
       // Your code goes here!
