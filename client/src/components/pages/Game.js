@@ -25,6 +25,9 @@ const Game = (props) => {
     socket.on("update", (update) => {
       processUpdate(update);
     });
+    return () => {
+      socket.off("update");
+    }
   }, []);
 
   const processUpdate = (update) => {
