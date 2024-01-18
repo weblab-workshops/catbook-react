@@ -10,7 +10,7 @@ import "./Game.css";
 const Game = (props) => {
   const canvasRef = useRef(null);
 
-  // TODO (Step 6.5): initialize winnerModal state
+  // TODO (Step 5.5): initialize winnerModal state
   // Uncomment the following code:
   // const [winnerModal, setWinnerModal] = useState(null);
 
@@ -21,7 +21,7 @@ const Game = (props) => {
     // remove event listener on unmount
     return () => {
       window.removeEventListener("keydown", handleInput);
-      // TODO (Step 6.4): send a post request with user id to despawn api (1 line)
+      // TODO (Step 5.4): send a post request with user id to despawn api (1 line)
     };
   }, []);
 
@@ -33,7 +33,7 @@ const Game = (props) => {
   }, []);
 
   const processUpdate = (update) => {
-    // TODO (Step 6.5): set winnerModal if update has defined winner
+    // TODO (Step 5.5): set winnerModal if update has defined winner
     // Uncomment the following code:
     // if (update.winner) {
     //   setWinnerModal(
@@ -52,7 +52,7 @@ const Game = (props) => {
       <div>
         <button
           onClick={() => {
-            // TODO (Step 6.3): send a post request with user id to spawn api (1 line)
+            // TODO (Step 5.3): send a post request with user id to spawn api (1 line)
           }}
         >
           Spawn
@@ -73,7 +73,7 @@ const Game = (props) => {
         {/* important: canvas needs id to be referenced by canvasManager */}
         <canvas ref={canvasRef} width="500" height="500" />
         {loginModal}
-        {/* TODO (Step 6.5): display winnerModal */}
+        {/* TODO (Step 5.5): display winnerModal */}
         {/* Uncomment the following line: */}
         {/* {winnerModal} */}
         {spawnButton}

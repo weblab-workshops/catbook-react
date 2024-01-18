@@ -125,14 +125,14 @@ router.get("/activeUsers", (req, res) => {
   res.send({ activeUsers: socketManager.getAllConnectedUsers() });
 });
 
-// TODO (Step 6.2): Add an API endpoint to spawn players in, and call it "/spawn".
+// TODO (Step 5.2): Add an API endpoint to spawn players in, and call it "/spawn".
 //    Make sure you use a post API endpoint, and don't forget to check that req.user exists.
 //    You can send and empty object ({}) as a response.
 //    Hint: You should use the socketManager functions you wrote in Step 6.1.
 
 // Your code here
 
-// TODO (Step 6.2): Add an API endpoint to despawn players (if they disconnect), and call it "/despawn".
+// TODO (Step 5.2): Add an API endpoint to despawn players (if they disconnect), and call it "/despawn".
 //    Make sure you use a post API endpoint, and don't forget to check that req.user exists.
 //    You can send and empty object ({}) as a response.
 //    Hint: You should use the socketManager functions you wrote in Step 6.1.
