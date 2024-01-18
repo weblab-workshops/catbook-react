@@ -26,7 +26,7 @@ const NavBar = (props) => {
         <Link to="/chat/" className="NavBar-link">
           Chat
         </Link>
-        {/* TODO (Step 0b): add the Game page to the navbar */}
+        {/* TODO (Step 0.2): add the Game page to the navbar */}
         {/* Hint: the link to the Game page is "/game/" */}
         {/* Your code goes here */}
         {props.userId ? (
