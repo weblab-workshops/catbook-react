@@ -10,9 +10,7 @@ import "./Game.css";
 const Game = (props) => {
   const canvasRef = useRef(null);
 
-  // TODO (Step 5.5): initialize winnerModal state
-  // Uncomment the following code:
-  // const [winnerModal, setWinnerModal] = useState(null);
+  // TODO (Step 5.5): initialize winnerModal state (1 line)
 
   // add event listener on mount
   useEffect(() => {
@@ -37,14 +35,7 @@ const Game = (props) => {
 
   const processUpdate = (update) => {
     // TODO (Step 5.5): set winnerModal if update has defined winner
-    // Uncomment the following code:
-    // if (update.winner) {
-    //   setWinnerModal(
-    //     <div className="Game-winner">the winner is {update.winner} yay cool cool</div>
-    //   );
-    // } else {
-    //   setWinnerModal(null);
-    // }
+      // Your code goes here (Step 5.5)
     drawCanvas(update, canvasRef);
   };
 
@@ -76,9 +67,8 @@ const Game = (props) => {
         {/* important: canvas needs id to be referenced by canvasManager */}
         <canvas ref={canvasRef} width="500" height="500" />
         {loginModal}
-        {/* TODO (Step 5.5): display winnerModal */}
-        {/* Uncomment the following line: */}
-        {/* {winnerModal} */}
+        {/* TODO (Step 5.5): display winnerModal (1 line) */}
+
         {spawnButton}
       </div>
     </>
