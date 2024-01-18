@@ -29,7 +29,7 @@ let playersEaten = []; // A list of ids of any players that have just been eaten
 
 /** Helper to compute when player 1 tries to eat player 2 */
 const playerAttemptEatPlayer = (pid1, pid2) => {
-  // TODO (Step 4.1): We can get the players by using gameState.players and indexing by pid1 and pid2 as keys.
+  //    We can get the players by using gameState.players and indexing by pid1 and pid2 as keys.
   //    Each player has a position property, which has an x and y property.
   //    We want to compute the Euclidean distance between the players' positions using the distance formula.
   //    In order for player1 to eat, we need to check that this distance is less than player1's radius.
@@ -37,7 +37,7 @@ const playerAttemptEatPlayer = (pid1, pid2) => {
   //    If we pass both of these checks, we should add player2's radius to player1's radius.
   //    Instead of removing player2 immediately, we will just push player2's id to the playersEaten array
   //    for now, and we will formally delete it delete later.
-  // Your code here (Step 5.1)
+  // Your code here (Step 4.1)
 };
 
 /** Attempts all pairwise eating between players */
@@ -53,6 +53,7 @@ const computePlayersEatPlayers = () => {
   playersEaten.forEach((playerid) => {
     // TODO (Step 4.3): call removePlayer on each player that has been eaten (1 line)
     // Note that the playerAttemptEatPlayer helper function has already stored all eaten players in playersEaten
+    
   });
   playersEaten = []; // Reset players that have just been eaten
 };
@@ -142,6 +143,7 @@ const checkEnoughFoods = () => {
 const updateGameState = () => {
   // TODO (Step 4.4): add computePlayersEatPlayers to game loop (1 line)
   // This will check all pairwise eating between players every loop
+
   computePlayersEatFoods();
   checkEnoughFoods();
 };
