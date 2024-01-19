@@ -48,12 +48,17 @@ const generateEmbedding = async (document) => {
 
 // chat completion helper function
 const chatCompletion = async (query, context) => {
-  // query: string
-  // context: array of documents with context for query
   const prompt = {
     model: MODEL,
     messages: [
-      // TODO(step3.1): fill out messages
+      {
+        role: "system",
+        content:
+          "Your role is to answer questions for a user. You are given the following context to help you answer questions: \n" +
+          `${context}. \n` +
+          "Please do not mention that you were given any context in your response.",
+      },
+      { role: "user", content: `${query}` },
     ],
     // temperature controls the variance in the llms responses
     // higher temperature = more variance
@@ -136,8 +141,9 @@ const retrieveContext = async (query, k) => {
 
 // RAG
 const retrievalAugmentedGeneration = async (query) => {
-  // TODO(step3.2): perform RAG on a query
-  // return: the llm's response
+  const context = await retrieveContext(query, NUM_DOCUMENTS);
+  const llmResponse = await chatCompletion(query, context);
+  return llmResponse;
 };
 
 // add a document to collection
@@ -168,4 +174,5 @@ module.exports = {
   addDocument: addDocument,
   updateDocument: updateDocument,
   deleteDocument: deleteDocument,
+  retrievalAugmentedGeneration: retrievalAugmentedGeneration,
 };
