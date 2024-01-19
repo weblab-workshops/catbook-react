@@ -106,19 +106,35 @@ const initCollection = async () => {
 // see errors, it's worth keeping in mind.
 initCollection();
 
-// add a document to collection
-const addDocument = async (document) => {
-  // TODO(step1): add document to chroma
+// retrieving context helper function
+const retrieveContext = async (query, k) => {
+  // TODO(step2): retrieve context for a given query and integer k
+  // query: string
+  // k: number of documents to retrieve
+  // return: array of documents of length k
 };
 
-// delete a document in collection
-const deleteDocument = async (id) => {
-  // TODO(step1): delete document from chroma
+// add a document to collection
+const addDocument = async (document) => {
+  const embedding = await generateEmbedding(document.content);
+  await collection.add({
+    ids: [document._id.toString()],
+    embeddings: [embedding],
+    documents: [document.content],
+  });
 };
 
 // update a document in collection
 const updateDocument = async (document) => {
-  // TODO(step1): update document in chroma
+  await collection.delete({ ids: [document._id.toString()] });
+  await addDocument(document);
+};
+
+// delete a document in collection
+const deleteDocument = async (id) => {
+  await collection.delete({
+    ids: [id.toString()],
+  });
 };
 
 module.exports = {

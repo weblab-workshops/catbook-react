@@ -159,7 +159,7 @@ router.post("/document", (req, res) => {
   const addDocument = async (document) => {
     try {
       await document.save();
-      // TODO(step1): add document to chroma
+      await ragManager.addDocument(document);
       res.send(document);
     } catch (error) {
       console.log("error:", error);
@@ -182,7 +182,7 @@ router.post("/updateDocument", (req, res) => {
     try {
       document.content = req.body.content;
       await document.save();
-      // TODO(step1): update document in chroma
+      await ragManager.updateDocument(document);
       res.send({});
     } catch (error) {
       console.log("error:", error);
@@ -198,7 +198,7 @@ router.post("/deleteDocument", (req, res) => {
     const document = await Document.findById(id);
     if (!document) res.send({});
     try {
-      // TODO(step1): delete document from chroma
+      await ragManager.deleteDocument(id);
       await document.remove();
       res.send({});
     } catch {
