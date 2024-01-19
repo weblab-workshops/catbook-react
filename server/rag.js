@@ -46,6 +46,23 @@ const generateEmbedding = async (document) => {
   return embedding.data[0].embedding;
 };
 
+// chat completion helper function
+const chatCompletion = async (query, context) => {
+  // query: string
+  // context: array of documents with context for query
+  const prompt = {
+    model: MODEL,
+    messages: [
+      // TODO(step3.1): fill out messages
+    ],
+    // temperature controls the variance in the llms responses
+    // higher temperature = more variance
+    temperature: 0.7,
+  };
+  const completion = await anyscale.chat.completions.create(prompt);
+  return completion.choices[0].message.content;
+};
+
 // initialize vector database
 const COLLECTION_NAME = "catbook-collection";
 const { ChromaClient } = require("chromadb");
@@ -109,10 +126,18 @@ initCollection();
 // retrieving context helper function
 const NUM_DOCUMENTS = 2;
 const retrieveContext = async (query, k) => {
-  // TODO(step2): retrieve context for a given query and integer k
-  // query: string
-  // k: number of documents to retrieve
-  // return: array of documents of length k
+  const queryEmbedding = await generateEmbedding(query);
+  const results = await collection.query({
+    queryEmbeddings: [queryEmbedding],
+    nResults: k,
+  });
+  return results.documents;
+};
+
+// RAG
+const retrievalAugmentedGeneration = async (query) => {
+  // TODO(step3.2): perform RAG on a query
+  // return: the llm's response
 };
 
 // add a document to collection
