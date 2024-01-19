@@ -46,6 +46,9 @@ const generateEmbedding = async (document) => {
   return embedding.data[0].embedding;
 };
 
+const BASE_PROMPT =
+  "Your role is to answer questions for a user. You are given the following context to help you answer questions:";
+
 // chat completion helper function
 const chatCompletion = async (query, context) => {
   // query: string
