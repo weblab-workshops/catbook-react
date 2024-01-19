@@ -27,8 +27,8 @@ const ragManager = require("./rag");
 
 // health check API route: if this doesn't return 200, the server is down :(
 router.get("/health", (_req, res) => {
-    res.status(200);
-    res.send({});
+  res.status(200);
+  res.send({});
 });
 
 router.get("/stories", (req, res) => {
@@ -159,7 +159,6 @@ router.post("/document", (req, res) => {
   const addDocument = async (document) => {
     try {
       await document.save();
-      await ragManager.addDocument(document);
       res.send(document);
     } catch (error) {
       console.log("error:", error);
@@ -182,7 +181,6 @@ router.post("/updateDocument", (req, res) => {
     try {
       document.content = req.body.content;
       await document.save();
-      await ragManager.updateDocument(document);
       res.send({});
     } catch (error) {
       console.log("error:", error);
@@ -198,7 +196,6 @@ router.post("/deleteDocument", (req, res) => {
     const document = await Document.findById(id);
     if (!document) res.send({});
     try {
-      await ragManager.deleteDocument(id);
       await document.remove();
       res.send({});
     } catch {
@@ -213,7 +210,7 @@ router.post("/deleteDocument", (req, res) => {
 router.post("/query", (req, res) => {
   const makeQuery = async () => {
     try {
-      const queryresponse = await ragManager.retrievalAugmentedGeneration(req.body.query);
+      const queryresponse = "RAG not set up yet!";
       res.send({ queryresponse });
     } catch (error) {
       console.log("error:", error);
