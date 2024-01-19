@@ -171,4 +171,5 @@ module.exports = {
   addDocument: addDocument,
   updateDocument: updateDocument,
   deleteDocument: deleteDocument,
+  retrievalAugmentedGeneration: retrievalAugmentedGeneration,
 };
