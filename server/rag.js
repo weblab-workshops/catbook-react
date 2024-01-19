@@ -67,16 +67,17 @@ const syncDBs = async () => {
     console.log("number of documents", await collection.count());
     return;
   }
-  const allMongoDocIds = allMongoDocs.map((mongoDoc) => mongoDoc._id.toString());
-  const allMongoDocContent = allMongoDocs.map((mongoDoc) => mongoDoc.content);
-  let allMongoDocEmbeddings = allMongoDocs.map((mongoDoc) => generateEmbedding(mongoDoc.content));
-  allMongoDocEmbeddings = await Promise.all(allMongoDocEmbeddings); // ensure embeddings finish generating
-  // add corpus to vector db
-  await collection.add({
-    ids: allMongoDocIds,
-    embeddings: allMongoDocEmbeddings,
-    documents: allMongoDocContent,
-  });
+  // commented out ONLY for step 0, since embeddings are undefined
+  // const allMongoDocIds = allMongoDocs.map((mongoDoc) => mongoDoc._id.toString());
+  // const allMongoDocContent = allMongoDocs.map((mongoDoc) => mongoDoc.content);
+  // let allMongoDocEmbeddings = allMongoDocs.map((mongoDoc) => generateEmbedding(mongoDoc.content));
+  // allMongoDocEmbeddings = await Promise.all(allMongoDocEmbeddings); // ensure embeddings finish generating
+  // // add corpus to vector db
+  // await collection.add({
+  //   ids: allMongoDocIds,
+  //   embeddings: allMongoDocEmbeddings,
+  //   documents: allMongoDocContent,
+  // });
   console.log("number of documents", await collection.count());
 };
 
