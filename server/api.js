@@ -213,6 +213,7 @@ router.post("/deleteDocument", (req, res) => {
 router.post("/query", (req, res) => {
   const makeQuery = async () => {
     try {
+      // TODO(step3.3): produce a queryresponse from the llm!
       const queryresponse = "RAG not set up yet!";
       res.send({ queryresponse });
     } catch (error) {
