@@ -39,7 +39,10 @@ const isRunnable = () => hasapikey && collection !== null;
 
 // embedding helper function
 const generateEmbedding = async (document) => {
-  // TODO(step0): using anyscale.embeddings, create an embedding object!
+  const embedding = await anyscale.embeddings.create({
+    model: EMBEDDING_MODEL,
+    input: document,
+  });
   return embedding.data[0].embedding;
 };
 
@@ -67,17 +70,16 @@ const syncDBs = async () => {
     console.log("number of documents", await collection.count());
     return;
   }
-  // commented out ONLY for step 0, since embeddings are undefined
-  // const allMongoDocIds = allMongoDocs.map((mongoDoc) => mongoDoc._id.toString());
-  // const allMongoDocContent = allMongoDocs.map((mongoDoc) => mongoDoc.content);
-  // let allMongoDocEmbeddings = allMongoDocs.map((mongoDoc) => generateEmbedding(mongoDoc.content));
-  // allMongoDocEmbeddings = await Promise.all(allMongoDocEmbeddings); // ensure embeddings finish generating
-  // // add corpus to vector db
-  // await collection.add({
-  //   ids: allMongoDocIds,
-  //   embeddings: allMongoDocEmbeddings,
-  //   documents: allMongoDocContent,
-  // });
+  const allMongoDocIds = allMongoDocs.map((mongoDoc) => mongoDoc._id.toString());
+  const allMongoDocContent = allMongoDocs.map((mongoDoc) => mongoDoc.content);
+  let allMongoDocEmbeddings = allMongoDocs.map((mongoDoc) => generateEmbedding(mongoDoc.content));
+  allMongoDocEmbeddings = await Promise.all(allMongoDocEmbeddings); // ensure embeddings finish generating
+  // add corpus to vector db
+  await collection.add({
+    ids: allMongoDocIds,
+    embeddings: allMongoDocEmbeddings,
+    documents: allMongoDocContent,
+  });
   console.log("number of documents", await collection.count());
 };
 
@@ -104,6 +106,24 @@ const initCollection = async () => {
 // see errors, it's worth keeping in mind.
 initCollection();
 
+// add a document to collection
+const addDocument = async (document) => {
+  // TODO(step1): add document to chroma
+};
+
+// delete a document in collection
+const deleteDocument = async (id) => {
+  // TODO(step1): delete document from chroma
+};
+
+// update a document in collection
+const updateDocument = async (document) => {
+  // TODO(step1): update document in chroma
+};
+
 module.exports = {
   isRunnable: isRunnable,
+  addDocument: addDocument,
+  updateDocument: updateDocument,
+  deleteDocument: deleteDocument,
 };
