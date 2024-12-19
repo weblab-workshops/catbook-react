@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Card from "../modules/Card.js";
-import { NewStory } from "../modules/NewPostInput.js";
+import Card from "../modules/Card";
+import { NewStory } from "../modules/NewPostInput";
 
 import { get } from "../../utilities";
 
