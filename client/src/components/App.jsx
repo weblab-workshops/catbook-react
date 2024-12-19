@@ -1,6 +1,6 @@
 import React from "react";
-import NavBar from "./modules/NavBar.js";
-import Profile from "./pages/Profile.js";
+import NavBar from "./modules/NavBar";
+import Profile from "./pages/Profile";
 
 // to use styles, import the necessary CSS files
 import "../utilities.css";
