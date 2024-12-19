@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Card from "../modules/Card";
 import { NewStory } from "../modules/NewPostInput";
+import { useOutletContext } from "react-router-dom";
 
 import { get } from "../../utilities";
 
-const Feed = (props) => {
+const Feed = () => {
+  let props = useOutletContext();
   const [stories, setStories] = useState([]);
 
   // called when the "Feed" component "mounts", i.e.
