@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import SingleUser from "./SingleUser.js";
+import SingleUser from "./SingleUser";
 
 import "./SingleUser.css";
 
