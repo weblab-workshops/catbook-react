@@ -3,11 +3,13 @@ import { socket } from "../../client-socket.js";
 import { get, post } from "../../utilities";
 import { drawCanvas } from "../../canvasManager";
 import { handleInput } from "../../input";
+import { useOutletContext } from "react-router-dom";
 
 import "../../utilities.css";
 import "./Game.css";
 
-const Game = (props) => {
+const Game = () => {
+  let props = useOutletContext();
   const canvasRef = useRef(null);
 
   // TODO (Step 5.5): initialize winnerModal state (1 line)
