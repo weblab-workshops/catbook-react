@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { Router } from "@reach/router";
-import NavBar from "./modules/NavBar.js";
-import Profile from "./pages/Profile.js";
-import Feed from "./pages/Feed.js";
-import NotFound from "./pages/NotFound.js";
+import NavBar from "./modules/NavBar";
+import Profile from "./pages/Profile";
+import Feed from "./pages/Feed";
+import NotFound from "./pages/NotFound";
 
 // To use styles, import the necessary CSS files
 import "../utilities.css";

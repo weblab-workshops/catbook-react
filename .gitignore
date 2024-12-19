@@ -1,4 +1,9 @@
-client/dist/bundle.js
-client/dist/bundle.js.LICENSE.txt
+client/dist
 node_modules/
+package-lock.json
 .DS_Store
+venv/
+.venv/
+.env
+chroma.log
+chroma_data/
