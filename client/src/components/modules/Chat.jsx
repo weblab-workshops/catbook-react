@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import SingleMessage from "./SingleMessage.js";
-import { NewMessage } from "./NewPostInput.js";
+import SingleMessage from "./SingleMessage";
+import { NewMessage } from "./NewPostInput";
 
 import "./Chat.css";
 
