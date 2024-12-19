@@ -3,6 +3,7 @@ import ChatList from "../modules/ChatList";
 import Chat from "../modules/Chat";
 import { socket } from "../../client-socket";
 import { get } from "../../utilities";
+import { useOutletContext } from "react-router-dom";
 
 import "./Chatbook.css";
 
@@ -17,7 +18,7 @@ const ALL_CHAT = {
  * Proptypes
  * @param {string} userId id of current logged in user
  */
-const Chatbook = (props) => {
+const Chatbook = () => {
   /**
    * @typedef UserObject
    * @property {string} _id
@@ -35,6 +36,7 @@ const Chatbook = (props) => {
    */
 
   const [activeUsers, setActiveUsers] = useState([]);
+  let props = useOutletContext();
 
   const [activeChat, setActiveChat] = useState({
     recipient: ALL_CHAT,
