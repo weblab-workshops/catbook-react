@@ -12,6 +12,7 @@
 | - Sets up error handling in case something goes wrong when handling a request
 | - Actually starts the webserver
 */
+require('dotenv').config();
 
 // validator runs some basic checks to make sure you've set everything up correctly
 // this is a tool provided by staff, so you don't need to worry about it
@@ -33,8 +34,9 @@ const auth = require("./auth");
 const socketManager = require("./server-socket");
 
 // Server configuration below
-const mongoConnectionURL =
-  "mongodb+srv://kenchoi:03CXHjMYM7xUYNh6@cluster0.xbb74.mongodb.net/?retryWrites=true&w=majority";
+// TODO change connection URL after setting up your own database (HINT: you will need to modify the .env file!)
+const mongoConnectionURL = process.env.mongoURL;
+// TODO change database name to the name you chose
 const databaseName = "Cluster0";
 
 // connect to mongodb

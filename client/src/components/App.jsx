@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
-import NavBar from "./modules/NavBar.js";
+import NavBar from "./modules/NavBar";
 import { Router } from "@reach/router";
-import Feed from "./pages/Feed.js";
-import NotFound from "./pages/NotFound.js";
-import Profile from "./pages/Profile.js";
-import Chatbook from "./pages/Chatbook.js";
-// TODO (Step 0.1): import Game from Game.js (1 line)
-// Hint: the relative path is "./pages/Game.js"
+import Feed from "./pages/Feed";
+import NotFound from "./pages/NotFound";
+import Profile from "./pages/Profile";
+import Chatbook from "./pages/Chatbook";
+// TODO (Step 0.1): import Game from Game (1 line)
+// Hint: the relative path is "./pages/Game"
 // Your code goes here
 
-import { socket } from "../client-socket.js";
+import { socket } from "../client-socket";
 
 import { get, post } from "../utilities";
 
