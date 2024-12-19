@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import ChatList from "../modules/ChatList.js";
-import Chat from "../modules/Chat.js";
-import { socket } from "../../client-socket.js";
+import React, { useEffect, useState } from "react";
+import ChatList from "../modules/ChatList";
+import Chat from "../modules/Chat";
+import { socket } from "../../client-socket";
 import { get } from "../../utilities";
 
 import "./Chatbook.css";
