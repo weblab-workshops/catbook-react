@@ -42,8 +42,6 @@ const databaseName = "Cluster0";
 // connect to mongodb
 mongoose
   .connect(mongoConnectionURL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
     dbName: databaseName,
   })
   .then(() => console.log("Connected to MongoDB"))
