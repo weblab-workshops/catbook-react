@@ -2,11 +2,13 @@ import React, { useState, useEffect, useRef } from "react";
 import { socket } from "../../client-socket.js";
 import { get, post } from "../../utilities";
 import { drawCanvas } from "../../canvasManager";
+import { useOutletContext } from "react-router-dom";
 
 import "../../utilities.css";
 import "./Game.css";
 
-const Game = (props) => {
+const Game = () => {
+  let props = useOutletContext();
   const canvasRef = useRef(null);
 
   // TODO (Step 1.5, pt 2): update game periodically using useEffect hook
