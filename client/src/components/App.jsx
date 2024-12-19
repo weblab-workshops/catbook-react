@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "./modules/NavBar";
 import { Router } from "@reach/router";
-import Feed from "./pages/Feed";
-import NotFound from "./pages/NotFound";
-import Profile from "./pages/Profile";
-import Chatbook from "./pages/Chatbook";
-// TODO (Step 0.1): import Game from Game (1 line)
-// Hint: the relative path is "./pages/Game"
-// Your code goes here
 
 import { socket } from "../client-socket";
 
 import { get, post } from "../utilities";
+
+import { Outlet } from "react-router-dom";
 
 // to use styles, import the necessary CSS files
 import "../utilities.css";
@@ -33,7 +28,7 @@ const App = () => {
   }, []);
 
   const handleLogin = (res) => {
-    const userToken = res.tokenObj.id_token;
+    const userToken = res.credential;
     post("/api/login", { token: userToken }).then((user) => {
       setUserId(user._id);
       post("/api/initsocket", { socketid: socket.id });
@@ -54,14 +49,7 @@ const App = () => {
     <>
       <NavBar handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
       <div className="App-container">
-        <Router>
-          <Feed path="/" userId={userId} />
-          <Profile path="/profile/:userId" />
-          <Chatbook path="/chat/" userId={userId} />
-          {/* TODO (Step 0.1): add Game page ("/game/") to our app, and pass in userId as a prop (1 line) */}
-          {/* Your code goes here */}
-          <NotFound default />
-        </Router>
+        <Outlet context={{ userId: userId }} />
       </div>
     </>
   );

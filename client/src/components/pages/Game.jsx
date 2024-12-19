@@ -6,7 +6,8 @@ import { drawCanvas } from "../../canvasManager";
 import "../../utilities.css";
 import "./Game.css";
 
-const Game = (props) => {
+const Game = () => {
+  // TODO (Step 0.3): set up userId props using useOutletContext
   const canvasRef = useRef(null);
   // display text if the player is not logged in
   let loginModal = null;
