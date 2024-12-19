@@ -1,7 +1,7 @@
 import React from "react";
-import NavBar from "./modules/NavBar.js";
-import Profile from "./pages/Profile.js";
-import Feed from "./pages/Feed.js";
+import NavBar from "./modules/NavBar";
+import Profile from "./pages/Profile";
+import Feed from "./pages/Feed";
 // TODO (step5): import Router and NotFound
 
 // To use styles, import the necessary CSS files
