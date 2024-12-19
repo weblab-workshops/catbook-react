@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import SingleStory from "./SingleStory.js";
-import CommentsBlock from "./CommentsBlock.js";
+import SingleStory from "./SingleStory";
+import CommentsBlock from "./CommentsBlock";
 import { get } from "../../utilities";
 
 import "./Card.css";
