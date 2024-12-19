@@ -12,6 +12,7 @@
 | - Sets up error handling in case something goes wrong when handling a request
 | - Actually starts the webserver
 */
+require('dotenv').config();
 
 // validator runs some basic checks to make sure you've set everything up correctly
 // this is a tool provided by staff, so you don't need to worry about it
@@ -25,10 +26,9 @@ const path = require("path"); // provide utilities for working with file and dir
 
 const api = require("./api.js");
 // Server configuration below
-// TODO (step-1): change connection URL after setting up your own database
-const mongoConnectionURL = "";
-
-// TODO (for your own websites): change database name to the name you chose
+// TODO change connection URL after setting up your own database (HINT: you will need to modify the .env file!)
+const mongoConnectionURL = process.env.mongoURL;
+// TODO change database name to the name you chose
 const databaseName = "catbook";
 const options = { useNewUrlParser: true, useUnifiedTopology: true, dbName: databaseName}
 
