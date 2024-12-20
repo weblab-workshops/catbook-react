@@ -26,7 +26,6 @@ const router = createBrowserRouter(
       <Route path="/" element={<Feed />}/>
       <Route path="/profile/:userId" element={<Profile />}/>
       <Route path="/chat/" element={<Chatbook />}/>
-      <Route path="/game/" element={<Game />}/>
     </Route>
   )
 )
