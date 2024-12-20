@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "@reach/router";
+import { Link } from "react-router-dom";
 
 /**
  * Story is a component that renders creator and content of a story
