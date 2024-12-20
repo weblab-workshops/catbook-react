@@ -3,7 +3,6 @@ import react from '@vitejs/plugin-react-swc';
 import svgr from 'vite-plugin-svgr';
 import path from 'path';
 
-console.log(path.resolve(__dirname, 'client'));
 export default defineConfig({
   plugins: [react(), svgr()],
   root: path.resolve(__dirname, 'client'), // Set the root directory for Vite
