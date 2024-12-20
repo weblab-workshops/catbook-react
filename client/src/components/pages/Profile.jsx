@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import CatHappiness from "../modules/CatHappiness";
 import { get } from "../../utilities";
+import { useParams } from "react-router-dom";
 
 import "../../utilities.css";
 import "./Profile.css";
 
-const Profile = (props) => {
+const Profile = () => {
+  let props = useParams();
   const [catHappiness, setCatHappiness] = useState(0);
   const [user, setUser] = useState();
 
@@ -19,7 +21,7 @@ const Profile = (props) => {
   };
 
   if (!user) {
-    return (<div> Loading! </div>);
+    return <div> Loading!</div>;
   }
   return (
     <>
