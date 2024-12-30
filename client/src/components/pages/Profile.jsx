@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import CatHappiness from "../modules/CatHappiness.js";
 import { UserContext } from "../App";
-import CatHappiness from "../modules/CatHappiness";
 
 import { get, post } from "../../utilities";
 import "./Profile.css";
 
-const Profile = () => {
+const Profile = (props) => {
+  const { userId } = useContext(UserContext);
   const [catHappiness, setCatHappiness] = useState(0);
-  const { userId } = useContext(UserContext); // Access userId from context
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     document.title = "Profile Page";

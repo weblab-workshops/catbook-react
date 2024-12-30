@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import Card from "../modules/Card";
-import { NewStory } from "../modules/NewPostInput";
+import React, { useState, useEffect, useContext } from "react";
+import Card from "../modules/Card.js";
+import { NewStory } from "../modules/NewPostInput.js";
 import { UserContext } from "../App";
 
 import { get } from "../../utilities";
 
-const Feed = (props) => {
-  const [stories, setStories] = useState([]);
+const Feed = () => {
   const { userId } = useContext(UserContext);
+  const [stories, setStories] = useState([]);
 
   // called when the "Feed" component "mounts", i.e.
   // when it shows up on screen

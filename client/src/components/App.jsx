@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import NavBar from "./modules/NavBar";
+import React, { useState, useEffect, createContext } from "react";
+import NavBar from "./modules/NavBar.js";
 import { Router } from "@reach/router";
-import Feed from "./pages/Feed";
-import NotFound from "./pages/NotFound";
-import Profile from "./pages/Profile";
+import Feed from "./pages/Feed.js";
+import NotFound from "./pages/NotFound.js";
+import Profile from "./pages/Profile.js";
 
 import { get, post } from "../utilities";
 
@@ -14,8 +14,7 @@ import "./App.css";
 /**
  * Define the "App" component as a function.
  */
-export const UserContext = createContext();
-
+export const UserContext = createContext(null);
 const App = () => {
   const [userId, setUserId] = useState(null);
 
@@ -53,14 +52,16 @@ const App = () => {
     // <> is like a <div>, but won't show
     // up in the DOM tree
     <>
-      <NavBar handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
-      <div className="App-container">
-        <Router>
-          <Feed path="/" userId={userId} />
-          <Profile path="/profile/:userId" />
-          <NotFound default />
-        </Router>
-      </div>
+      <UserContext.Provider value={{ userId, handleLogin, handleLogout }}>
+        <NavBar />
+        <div className="App-container">
+          <Router>
+            <Feed path="/" />
+            <Profile path="/profile/:userId" />
+            <NotFound default />
+          </Router>
+        </div>
+      </UserContext.Provider>
     </>
   );
 };

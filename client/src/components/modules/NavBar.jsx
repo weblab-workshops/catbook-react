@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "@reach/router";
 import GoogleLogin, { GoogleLogout } from "react-google-login";
 import { UserContext } from "../App";
@@ -12,8 +12,8 @@ const GOOGLE_CLIENT_ID = "395785444978-7b9v7l0ap2h3308528vu1ddnt3rqftjc.apps.goo
 /**
  * The navigation bar at the top of all pages. Takes no props.
  */
-const NavBar = ({ handleLogin, handleLogout }) => {
-  const { userId } = useContext(UserContext);
+const NavBar = () => {
+  const { userId, handleLogin, handleLogout } = useContext(UserContext);
   return (
     <nav className="NavBar-container">
       <div className="NavBar-title u-inlineBlock">Catbook</div>
@@ -21,16 +21,16 @@ const NavBar = ({ handleLogin, handleLogout }) => {
         <Link to="/" className="NavBar-link">
           Home
         </Link>
-        {props.userId && (
+        {userId && (
           <Link to={`/profile/${userId}`} className="NavBar-link">
             Profile
           </Link>
         )}
-        {props.userId ? (
+        {userId ? (
           <GoogleLogout
             clientId={GOOGLE_CLIENT_ID}
             buttonText="Logout"
-            onLogoutSuccess={props.handleLogout}
+            onLogoutSuccess={handleLogout}
             onFailure={(err) => console.log(err)}
             className="NavBar-link NavBar-login"
           />
@@ -38,7 +38,7 @@ const NavBar = ({ handleLogin, handleLogout }) => {
           <GoogleLogin
             clientId={GOOGLE_CLIENT_ID}
             buttonText="Login"
-            onSuccess={props.handleLogin}
+            onSuccess={handleLogin}
             onFailure={(err) => console.log(err)}
             className="NavBar-link NavBar-login"
           />
