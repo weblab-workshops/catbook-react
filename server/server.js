@@ -29,12 +29,13 @@ const api = require("./api.js");
 // TODO change connection URL after setting up your own database (HINT: you will need to modify the .env file!)
 const mongoConnectionURL = process.env.mongoURL;
 // TODO change database name to the name you chose
-const databaseName = "catbook";
-const options = { useNewUrlParser: true, useUnifiedTopology: true, dbName: databaseName}
+const databaseName = "Cluster0";
 
 // connect to mongodb
 mongoose
-  .connect(mongoConnectionURL, options)
+  .connect(mongoConnectionURL, {
+    dbName: databaseName,
+  })
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.log(`Error connecting to MongoDB: ${err}`));
 
