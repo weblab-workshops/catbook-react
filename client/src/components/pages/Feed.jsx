@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Card from "../modules/Card";
 import { NewStory } from "../modules/NewPostInput";
+import { UserContext } from "../App";
 
 import { get } from "../../utilities";
 
 const Feed = (props) => {
   const [stories, setStories] = useState([]);
+  const { userId } = useContext(UserContext);
 
   // called when the "Feed" component "mounts", i.e.
   // when it shows up on screen
@@ -40,7 +42,7 @@ const Feed = (props) => {
   }
   return (
     <>
-      {props.userId && <NewStory addNewStory={addNewStory} />}
+      {userId && <NewStory addNewStory={addNewStory} />}
       {storiesList}
     </>
   );

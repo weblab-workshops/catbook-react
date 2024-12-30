@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "@reach/router";
 import GoogleLogin, { GoogleLogout } from "react-google-login";
+import { UserContext } from "../App";
 
 import { get, post } from "../../utilities";
 import "./NavBar.css";
@@ -11,7 +12,8 @@ const GOOGLE_CLIENT_ID = "395785444978-7b9v7l0ap2h3308528vu1ddnt3rqftjc.apps.goo
 /**
  * The navigation bar at the top of all pages. Takes no props.
  */
-const NavBar = (props) => {
+const NavBar = ({ handleLogin, handleLogout }) => {
+  const { userId } = useContext(UserContext);
   return (
     <nav className="NavBar-container">
       <div className="NavBar-title u-inlineBlock">Catbook</div>
@@ -20,7 +22,7 @@ const NavBar = (props) => {
           Home
         </Link>
         {props.userId && (
-          <Link to={`/profile/${props.userId}`} className="NavBar-link">
+          <Link to={`/profile/${userId}`} className="NavBar-link">
             Profile
           </Link>
         )}

@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from "react";
+import { UserContext } from "../App";
 import CatHappiness from "../modules/CatHappiness";
 
 import { get, post } from "../../utilities";
 import "./Profile.css";
 
-const Profile = (props) => {
+const Profile = () => {
   const [catHappiness, setCatHappiness] = useState(0);
-  const [user, setUser] = useState(null);
+  const { userId } = useContext(UserContext); // Access userId from context
 
   useEffect(() => {
     document.title = "Profile Page";
   }, []);
 
   useEffect(() => {
-    get("/api/user", { userid: props.userId }).then((user) => {
+    get("/api/user", { userid: userId }).then((user) => {
       setUser(user);
     });
   }, []);

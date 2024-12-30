@@ -14,6 +14,8 @@ import "./App.css";
 /**
  * Define the "App" component as a function.
  */
+export const UserContext = createContext();
+
 const App = () => {
   const [userId, setUserId] = useState(null);
 
