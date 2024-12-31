@@ -46,7 +46,6 @@ const Feed = () => {
       {storiesList}
     </div>
   );
-  // TODO (step3): map the state to SingleStory components
   // TODO (step4): add in the NewStory component and pass down addStory as a prop
   // TODO (step6): use Card instead of SingleStory, passing down the same props
 };
