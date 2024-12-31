@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CatHappiness from "../modules/CatHappiness.js";
+import CatHappiness from "../modules/CatHappiness";
 import "../../utilities.css";
 import "./Profile.css";
 
