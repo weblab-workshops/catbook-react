@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { get } from "../../utilities";
-import SingleStory from "./SingleStory.js";
-import SingleComment from "./SingleComment.js";
+import SingleStory from "./SingleStory";
+import SingleComment from "./SingleComment";
 // TODO (step8): import NewComment
 // TODO (step9): import CommentsBlock
 
