@@ -1,9 +1,7 @@
 import React, { useEffect } from "react";
-import { Router } from "@reach/router";
 import NavBar from "./modules/NavBar";
-import Profile from "./pages/Profile";
-import Feed from "./pages/Feed";
-import NotFound from "./pages/NotFound";
+
+import { Outlet } from "react-router-dom";
 
 // To use styles, import the necessary CSS files
 import "../utilities.css";
@@ -26,11 +24,7 @@ const App = () => {
     <>
       <NavBar />
       <div className="App-container">
-        <Router>
-          <Feed path="/" />
-          <Profile path="profile" />
-          <NotFound default />
-        </Router>
+        <Outlet/>
       </div>
     </>
   );
