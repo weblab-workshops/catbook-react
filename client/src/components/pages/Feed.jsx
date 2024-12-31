@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { get } from "../../utilities";
-import SingleStory from "../modules/SingleStory.js";
-import { NewStory } from "../modules/NewPostInput.js";
+import SingleStory from "../modules/SingleStory";
+import { NewStory } from "../modules/NewPostInput";
 // TODO (step6): remove SingleStory import, import Card
 
 const Feed = () => {
