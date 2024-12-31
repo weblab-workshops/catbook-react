@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { get } from "../../utilities";
 import SingleStory from "./SingleStory";
 import CommentsBlock from "./CommentsBlock";
 
@@ -16,17 +15,33 @@ import "./Card.css";
 const Card = (props) => {
   const [comments, setComments] = useState([]);
 
-  useEffect(() => {
-    get("/api/comment", { parent: props._id }).then((commentObjs) => {
-      setComments(commentObjs);
-    });
-  }, []);
-
-  // this gets called when the user pushes "Submit", so their
-  // post gets added to the screen right away
-  const addNewComment = (commentObj) => {
-    setComments(comments.concat([commentObj]));
+  const addNewComment = (comment) => {
+    setComments(comments.concat(comment));
   };
+
+  useEffect(() => {
+    const comment1 = {
+      _id: "commentid1",
+      creator_name: "person1",
+      parent: "id1",
+      content: "comment1",
+    };
+    const comment2 = {
+      _id: "commentid2",
+      creator_name: "person2",
+      parent: "id1",
+      content: "comment2",
+    };
+    const comment3 = {
+      _id: "commentid3",
+      creator_name: "person3",
+      parent: "id1",
+      content: "comment3",
+    };
+    const hardcodedComments = [comment1, comment2, comment3];
+
+    setComments(hardcodedComments);
+  }, []);
 
   return (
     <div className="Card-container">

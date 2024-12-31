@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { post } from "../../utilities";
 
 import "./NewPostInput.css";
 
@@ -49,17 +48,16 @@ const NewPostInput = (props) => {
 
 /**
  * New Story is a New Post component for stories
+ * 
+ * Proptypes
+ * @param {({value}) => void} addNewStory: (function) triggered when a story is submitted, takes {value} as parameters
  */
 const NewStory = (props) => {
   const addStory = (value) => {
-    const body = { content: value };
-    post("/api/story", body).then((story) => {
-      // display this story on the screen
-      props.addNewStory(story);
-    });
+    props.addNewStory({content: value, creator_name: "Anonymous User", _id: "random_id"});
   };
 
-  return <NewPostInput defaultText="New Story" onSubmit={addStory} />;
+  return <NewPostInput defaultText="What's on your mind?" onSubmit={addStory} />
 };
 
 /**
@@ -67,14 +65,11 @@ const NewStory = (props) => {
  *
  * Proptypes
  * @param {string} storyId to add comment to
+ * @param {({value}) => void} addNewComment: (function) triggered when a comment is submitted, takes {value} as parameters
  */
 const NewComment = (props) => {
   const addComment = (value) => {
-    const body = { parent: props.storyId, content: value };
-    post("/api/comment", body).then((comment) => {
-      // display this comment on the screen
-      props.addNewComment(comment);
-    });
+    props.addNewComment({content: value, creator_name: "Anonymous User", _id: "random_id", parent: props.storyId});
   };
 
   return <NewPostInput defaultText="New Comment" onSubmit={addComment} />;
