@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { get } from "../../utilities";
-import SingleStory from "../modules/SingleStory.js";
+import SingleStory from "../modules/SingleStory";
 // TODO (step4): import NewStory
 // TODO (step6): remove SingleStory import, import Card
 
