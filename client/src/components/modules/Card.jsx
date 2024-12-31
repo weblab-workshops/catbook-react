@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { get } from "../../utilities";
 import SingleStory from "./SingleStory";
 import SingleComment from "./SingleComment";
 import { NewComment } from "./NewPostInput";
@@ -18,21 +17,39 @@ import "./Card.css";
 const Card = (props) => {
   const [comments, setComments] = useState([]);
 
+  const addNewComment = (comment) => {
+    setComments(comments.concat(comment));
+  };
+
   useEffect(() => {
-    get("/api/comment", { parent: props._id }).then((commentItems) => {
-      setComments(commentItems);
-    });
+    const comment1 = {
+      _id: "commentid1",
+      creator_name: "person1",
+      parent: "id1",
+      content: "comment1",
+    };
+    const comment2 = {
+      _id: "commentid2",
+      creator_name: "person2",
+      parent: "id1",
+      content: "comment2",
+    };
+    const comment3 = {
+      _id: "commentid3",
+      creator_name: "person3",
+      parent: "id1",
+      content: "comment3",
+    };
+    const hardcodedComments = [comment1, comment2, comment3];
+
+    setComments(hardcodedComments);
   }, []);
 
   let commentsList = null;
     const hasComments = comments.length !== 0;
     if (hasComments) {
       commentsList = comments.map((commentObj) => (
-        <SingleComment
-          _id={commentObj._id}
-          creator_name={commentObj.creator_name}
-          content={commentObj.content}
-        />
+        <SingleComment _id={commentObj._id} creator_name={commentObj.creator_name} content={commentObj.content}/>
       ));
     } else {
       commentsList = <div>No comments!</div>;
@@ -40,14 +57,10 @@ const Card = (props) => {
 
   return (
     <div className="Card-container">
-        <SingleStory
-          _id={props._id}
-          creator_name={props.creator_name}
-          content={props.content}
-        />
-        {commentsList}
-        <NewComment storyId={props._id} />
-      </div>
+      <SingleStory _id={props._id} creator_name={props.creator_name} content={props.content}/>
+      {commentsList}
+      <NewComment storyId={props._id} addNewComment={addNewComment}/>
+    </div>
   )
   // TODO (step9): use CommentsBlock
 };
