@@ -1,15 +1,34 @@
 import React, { useState, useEffect } from "react";
-import { get } from "../../utilities";
 import Card from "../modules/Card";
 import { NewStory } from "../modules/NewPostInput";
 
 const Feed = () => {
   const [stories, setStories] = useState([]);
 
+  // updates the stories state so that the new story is added immediately
+  const addNewStory = (value) => {
+    setStories(stories.concat(value));
+  }
+
   useEffect(() => {
-    get("/api/stories").then((storyObjs) => {
-      setStories(storyObjs);
-    });
+    const story1 = {
+      _id: "id1",
+      creator_name: "person1",
+      content: "story1",
+    };
+    const story2 = {
+      _id: "id2",
+      creator_name: "person2",
+      content: "story2",
+    };
+    const story3 = {
+      _id: "id3",
+      creator_name: "person3",
+      content: "story3",
+    };
+    const hardcodedStories = [story1, story2, story3];
+    
+    setStories(hardcodedStories);
   }, []);
 
   let storiesList = null;
@@ -24,7 +43,7 @@ const Feed = () => {
 
   return (
     <div>
-      <NewStory />
+      <NewStory addNewStory={addNewStory}/>
       {storiesList}
     </div>
   );

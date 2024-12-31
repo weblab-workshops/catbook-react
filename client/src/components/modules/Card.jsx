@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { get } from "../../utilities";
 import SingleStory from "./SingleStory";
 import SingleComment from "./SingleComment";
 // TODO (step8): import NewComment
@@ -18,10 +17,31 @@ import "./Card.css";
 const Card = (props) => {
   const [comments, setComments] = useState([]);
 
+  // TODO (step8): implement a callback function addNewComment that adds a 
+  // new comment to the comments state
+
   useEffect(() => {
-    get("/api/comment", { parent: props._id }).then((commentItems) => {
-      setComments(commentItems);
-    });
+    const comment1 = {
+      _id: "commentid1",
+      creator_name: "person1",
+      parent: "id1",
+      content: "comment1",
+    };
+    const comment2 = {
+      _id: "commentid2",
+      creator_name: "person2",
+      parent: "id1",
+      content: "comment2",
+    };
+    const comment3 = {
+      _id: "commentid3",
+      creator_name: "person3",
+      parent: "id1",
+      content: "comment3",
+    };
+    const hardcodedComments = [comment1, comment2, comment3];
+
+    setComments(hardcodedComments);
   }, []);
 
   let commentsList = null;
@@ -40,13 +60,9 @@ const Card = (props) => {
 
   return (
     <div className="Card-container">
-        <SingleStory
-          _id={props._id}
-          creator_name={props.creator_name}
-          content={props.content}
-        />
-        {commentsList}
-      </div>
+      <SingleStory _id={props._id} creator_name={props.creator_name} content={props.content}/>
+      {commentsList}
+    </div>
   )
   // TODO (step8): add in the NewComment component (refer to Feed)
   // TODO (step9): use CommentsBlock
