@@ -49,10 +49,18 @@ const NewPostInput = (props) => {
 
 /**
  * New Story is a New Post component for stories
+ * 
+ * Proptypes
+ * @param {({value}) => void} addNewStory: (function) triggered when a story is submitted, takes {value} as parameters
  */
-const NewStory = () => {
-  // TODO (step4): implement addStory
-  // TODO (step4): implement render
+const NewStory = (props) => {
+  // TODO (step4): implement addStory, a callback function that takes in a story
+  // and calls the addNewStory prop from Feed
+  const addStory = (value) => {
+    
+  };
+
+  // TODO (step4): render a NewPostInput that uses addStory as its onSubmit prop
 };
 
 /**
@@ -60,13 +68,16 @@ const NewStory = () => {
  *
  * Proptypes
  * @param {string} storyId to add comment to
+ * @param {({value}) => void} addNewComment: (function) triggered when a comment is submitted, takes {value} as parameters
  */
-const NewComment = () => {
+const NewComment = (props) => {
+  // TODO (step8): implement addComment, a callback function that takes in a comment
+  // and calls the addNewComment prop from Card
   const addComment = (value) => {
-    // TODO (step8): implement addComment (refer to NewStory)
+    
   };
 
-  // TODO (step8): implement render (refer to NewStory)
+  // TODO (step8): render a NewPostInput that uses addComment as its onSubmit prop
 };
 
 export { NewComment, NewStory };
