@@ -1,6 +1,6 @@
 import React from "react";
-import SingleComment from "./SingleComment.js";
-import { NewComment } from "./NewPostInput.js";
+import SingleComment from "./SingleComment";
+import { NewComment } from "./NewPostInput";
 
 /**
  * @typedef ContentObject
