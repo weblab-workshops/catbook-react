@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { get } from "../../utilities";
-import SingleStory from "./SingleStory.js";
+import SingleStory from "./SingleStory";
 // TODO (step7): import SingleComment
 // TODO (step8): import NewComment
 // TODO (step9): import CommentsBlock
