@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { post } from "../../utilities";
 
 import "./NewPostInput.css";
 
@@ -49,14 +48,16 @@ const NewPostInput = (props) => {
 
 /**
  * New Story is a New Post component for stories
+ * 
+ * Proptypes
+ * @param {({value}) => void} addNewStory: (function) triggered when a story is submitted, takes {value} as parameters
  */
-const NewStory = () => {
+const NewStory = (props) => {
   const addStory = (value) => {
-    const body = { content: value };
-    post("/api/story", body);
+    props.addNewStory({content: value, creator_name: "Anonymous User", _id: "random_id"});
   };
 
-  return <NewPostInput defaultText="New Story" onSubmit={addStory} />;
+  return <NewPostInput defaultText="What's on your mind?" onSubmit={addStory} />
 };
 
 /**
@@ -64,13 +65,16 @@ const NewStory = () => {
  *
  * Proptypes
  * @param {string} storyId to add comment to
+ * @param {({value}) => void} addNewComment: (function) triggered when a comment is submitted, takes {value} as parameters
  */
-const NewComment = () => {
+const NewComment = (props) => {
+  // TODO (step8): implement addComment, a callback function that takes in a comment
+  // and calls the addNewComment prop from Card
   const addComment = (value) => {
-    // TODO (step8): implement addComment (refer to NewStory)
+    
   };
 
-  // TODO (step8): implement render (refer to NewStory)
+  // TODO (step8): render a NewPostInput that uses addComment as its onSubmit prop
 };
 
 export { NewComment, NewStory };
