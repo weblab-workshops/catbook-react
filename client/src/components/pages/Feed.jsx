@@ -35,7 +35,7 @@ const Feed = () => {
   const hasStories = stories.length !== 0;
   if (hasStories) {
     storiesList = stories.map((storyObj) => (
-      <SingleStory creator_name={storyObj.creator_name} content={storyObj.content} />
+      <SingleStory _id="test_id" creator_name={storyObj.creator_name} content={storyObj.content} />
     ));
   } else {
     storiesList = <div>No stories!</div>;
