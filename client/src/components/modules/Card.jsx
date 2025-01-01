@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import SingleStory from "./SingleStory";
 import CommentsBlock from "./CommentsBlock";
-// TODO (step0): import get and post
+import { get, post } from "../../utilities";
 
 import "./Card.css";
 
