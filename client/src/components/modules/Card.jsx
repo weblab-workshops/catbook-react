@@ -15,7 +15,7 @@ import "./Card.css";
  * @param {string} creator_name
  * @param {string} content of the story
  */
-const Card = () => {
+const Card = (props) => {
   // TODO (step6): define a state called "comments" to hold comments (refer to Feed)
 
   // TODO (step8): implement a callback function addNewComment that adds a 
