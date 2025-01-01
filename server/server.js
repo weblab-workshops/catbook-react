@@ -28,6 +28,26 @@ app.get("/api/test", (req, res) => {
 });
 
 // TODO (step1): implement GET /api/stories endpoint
+const story1 = {
+  _id: "id1",
+  creator_name: "Stanley Zhao",
+  content: "Hi everyone",
+};
+const story2 = {
+  _id: "id2",
+  creator_name: "Abby Chou",
+  content: "Web.lab rocks",
+};
+const story3 = {
+  _id: "id3",
+  creator_name: "Andy Jiang",
+  content: "I like cats",
+};
+const hardcodedStories = [story1, story2, story3];
+
+app.get("/api/stories", (req, res) => {
+  res.send(hardcodedStories);
+});
 
 // TODO (step2): implement POST /api/story endpoint
 
