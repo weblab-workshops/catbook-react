@@ -8,10 +8,12 @@ import React from "react";
  * @param {string} creator_name
  * @param {string} content of the comment
  */
-const SingleComment = () => {
+const SingleComment = (props) => {
   return (
     <div className="Card-commentBody">
-      {/* TODO (step7): use JSX and props to render comment creator and content */}
+      {/* TODO (step7): render comment creator and content */}
+      <span className="u-bold">{/* FILL IN */}</span>
+      <span>{" | " /* + FILL IN AND UNCOMMENT*/}</span>
     </div>
   );
 };
