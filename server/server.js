@@ -85,6 +85,12 @@ app.get("/api/comments", (req, res) => {
 
 // TODO (step4): implement POST /api/comment endpoint
 
+app.post("/api/comment", (req, res) => {
+  const newComment = req.body;
+  hardcodedComments.push(newComment);
+  res.send(newComment);
+});
+
 // TODO (step5): implement middleware for /api routes
 
 // Load the compiled react files, which will serve /index.html and /bundle.js

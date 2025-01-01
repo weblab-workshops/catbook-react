@@ -18,6 +18,9 @@ const Card = (props) => {
 
   const addNewComment = (comment) => {
     // TODO (step4): post the new comment to the server
+    post("/api/comment", comment).then((comment) => {
+      setComments(comments.concat(comment));
+    })
     setComments(comments.concat(comment));
   };
 
