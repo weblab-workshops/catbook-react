@@ -14,24 +14,10 @@ const Feed = () => {
 
   useEffect(() => {
     // TODO (step1): fetch the stories from the server
-    const story1 = {
-      _id: "id1",
-      creator_name: "person1",
-      content: "story1",
-    };
-    const story2 = {
-      _id: "id2",
-      creator_name: "person2",
-      content: "story2",
-    };
-    const story3 = {
-      _id: "id3",
-      creator_name: "person3",
-      content: "story3",
-    };
-    const hardcodedStories = [story1, story2, story3];
-    
-    setStories(hardcodedStories);
+    get("/api/stories").then((storyObjs) => {
+      let reversedStoryObjs = storyObjs.reverse();
+      setStories(reversedStoryObjs);
+    });
   }, []);
 
   let storiesList = null;
