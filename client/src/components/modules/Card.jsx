@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+// TODO (step6): import useState from react
 // TODO (step6): import SingleStory
 // TODO (step7): import SingleComment
 // TODO (step8): import NewComment
