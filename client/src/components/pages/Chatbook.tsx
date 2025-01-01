@@ -5,6 +5,8 @@ import { socket } from "../../client-socket";
 import { get } from "../../utilities";
 import { useOutletContext } from "react-router-dom";
 
+import { ChatData, UserObject, MessageObject } from "../../types";
+
 import "./Chatbook.css";
 
 const ALL_CHAT = {
@@ -12,39 +14,21 @@ const ALL_CHAT = {
   name: "ALL CHAT",
 };
 
-/**
- * Page component to display when at the "/chat" route
- *
- * Proptypes
- * @param {string} userId id of current logged in user
- */
-const Chatbook = () => {
-  /**
-   * @typedef UserObject
-   * @property {string} _id
-   * @property {string} name
-   */
-  /**
-   * @typedef MessageObject
-   * @property {UserObject} sender
-   * @property {string} content
-   */
-  /**
-   * @typedef ChatData
-   * @property {MessageObject[]} messages
-   * @property {UserObject} recipient
-   */
+interface ChatbookProps {
+  userId: string;
+}
 
-  let props = useOutletContext();
+const Chatbook: React.FC = () => {
+  const props = useOutletContext<ChatbookProps>();
 
-  const [activeUsers, setActiveUsers] = useState([]);
+  const [activeUsers, setActiveUsers] = useState<UserObject[]>([]);
 
-  const [activeChat, setActiveChat] = useState({
+  const [activeChat, setActiveChat] = useState<ChatData>({
     recipient: ALL_CHAT,
     messages: [],
   });
 
-  const loadMessageHistory = (recipient) => {
+  const loadMessageHistory = (recipient: UserObject) => {
     get("/api/chat", { recipient_id: recipient._id }).then((messages) => {
       setActiveChat({
         recipient: recipient,
@@ -67,12 +51,12 @@ const Chatbook = () => {
       // there's nothing to load. (Also prevents data races with socket event)
       if (props.userId) {
         setActiveUsers([ALL_CHAT].concat(data.activeUsers));
-      };
+      }
     });
-  }, []);
+  }, [props.userId]);
 
   useEffect(() => {
-    const addMessages = (data) => {
+    const addMessages = (data: MessageObject) => {
       if (
         (data.recipient._id === activeChat.recipient._id &&
           data.sender._id === props.userId) ||
@@ -80,7 +64,7 @@ const Chatbook = () => {
           data.recipient._id === props.userId) ||
         (data.recipient._id === "ALL_CHAT" && activeChat.recipient._id === "ALL_CHAT")
       ) {
-        setActiveChat(prevActiveChat => ({
+        setActiveChat((prevActiveChat) => ({
           recipient: prevActiveChat.recipient,
           messages: prevActiveChat.messages.concat(data),
         }));
@@ -93,7 +77,7 @@ const Chatbook = () => {
   }, [activeChat.recipient._id, props.userId]);
 
   useEffect(() => {
-    const callback = (data) => {
+    const callback = (data: { activeUsers: UserObject[] }) => {
       setActiveUsers([ALL_CHAT].concat(data.activeUsers));
     };
     socket.on("activeUsers", callback);
@@ -102,7 +86,7 @@ const Chatbook = () => {
     };
   }, []);
 
-  const setActiveUser = (user) => {
+  const setActiveUser = (user: UserObject) => {
     if (user._id !== activeChat.recipient._id) {
       setActiveChat({
         recipient: user,
@@ -131,6 +115,6 @@ const Chatbook = () => {
       </div>
     </>
   );
-}
+};
 
 export default Chatbook;

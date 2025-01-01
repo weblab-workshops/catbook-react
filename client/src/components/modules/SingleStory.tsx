@@ -10,7 +10,15 @@ import { Link } from "react-router-dom";
  * @param {string} creator_id
  * @param {string} content of the story
  */
-const SingleStory = (props) => {
+
+interface SingleStoryProps {
+  _id: string;
+  creator_name: string;
+  creator_id: string;
+  content: string;
+}
+
+const SingleStory: React.FC<SingleStoryProps> = (props) => {
   return (
     <div className="Card-story">
       <Link to={`/profile/${props.creator_id}`} className="u-link u-bold">

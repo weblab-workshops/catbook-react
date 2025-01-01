@@ -6,23 +6,31 @@ import { useParams } from "react-router-dom";
 import "../../utilities.css";
 import "./Profile.css";
 
-const Profile = () => {
+interface User {
+  name: string;
+  // Add other user properties if needed
+}
+
+const Profile: React.FC = () => {
   let props = useParams();
-  const [catHappiness, setCatHappiness] = useState(0);
-  const [user, setUser] = useState();
+  const [catHappiness, setCatHappiness] = useState<number>(0);
+  const [user, setUser] = useState<User | undefined>(undefined);
 
   useEffect(() => {
     document.title = "Profile Page";
-    get(`/api/user`, { userid: props.userId }).then((userObj) => setUser(userObj));
-  }, []);
+    if (props.userId) {
+      get(`/api/user`, { userid: props.userId }).then((userObj: User) => setUser(userObj));
+    }
+  }, [props.userId]);
 
   const incrementCatHappiness = () => {
     setCatHappiness(catHappiness + 1);
   };
 
   if (!user) {
-    return <div> Loading!</div>;
+    return <div>Loading!</div>;
   }
+
   return (
     <>
       <div
@@ -39,7 +47,7 @@ const Profile = () => {
         <div className="Profile-subContainer u-textCenter">
           <h4 className="Profile-subTitle">About Me</h4>
           <div id="profile-description">
-            I am really allergic to cats i don't know why i have a catbook
+            I am really allergic to cats I don't know why I have a Catbook.
           </div>
         </div>
         <div className="Profile-subContainer u-textCenter">
@@ -48,7 +56,7 @@ const Profile = () => {
         </div>
         <div className="Profile-subContainer u-textCenter">
           <h4 className="Profile-subTitle">My Favorite Type of Cat</h4>
-          <div id="favorite-cat">corgi</div>
+          <div id="favorite-cat">Corgi</div>
         </div>
       </div>
     </>

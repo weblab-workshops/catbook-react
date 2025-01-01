@@ -7,7 +7,14 @@ import "./NavBar.css";
 /**
  * The navigation bar at the top of all pages. Takes no props.
  */
-const NavBar = (props) => {
+
+interface NavBarProps {
+  userId: string | null;
+  handleLogin: (response: any) => void;
+  handleLogout: () => void;
+}
+
+const NavBar: React.FC<NavBarProps> = (props) => {
   return (
     <nav className="NavBar-container">
       <div className="NavBar-title u-inlineBlock">Catbook</div>
@@ -37,8 +44,8 @@ const NavBar = (props) => {
           <GoogleLogin
             text="signin_with"
             onSuccess={props.handleLogin}
-            onFailure={(err) => console.log(err)}
-            containerProps= {{'className': "NavBar-link NavBar-login u-inlineBlock"}}
+            onError={() => console.log("Login Failed")}
+            containerProps={{ className: "NavBar-link NavBar-login u-inlineBlock" }}
           />
         )}
       </div>

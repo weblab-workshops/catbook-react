@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import SingleStory from "./SingleStory";
 import CommentsBlock from "./CommentsBlock";
 import { get } from "../../utilities";
+import { CommentObject } from "../../types";
 
 import "./Card.css";
 
@@ -14,8 +15,17 @@ import "./Card.css";
  * @param {string} creator_id
  * @param {string} content of the story
  */
-const Card = (props) => {
-  const [comments, setComments] = useState([]);
+
+interface CardProps {
+  _id: string;
+  creator_name: string;
+  creator_id: string;
+  content: string;
+  userId: string;
+}
+
+const Card: React.FC<CardProps> = (props) => {
+  const [comments, setComments] = useState<CommentObject[]>([]);
 
   useEffect(() => {
     get("/api/comment", { parent: props._id }).then((comments) => {
@@ -25,7 +35,7 @@ const Card = (props) => {
 
   // this gets called when the user pushes "Submit", so their
   // post gets added to the screen right away
-  const addNewComment = (commentObj) => {
+  const addNewComment = (commentObj: CommentObject) => {
     setComments(comments.concat([commentObj]));
   };
 
@@ -40,7 +50,6 @@ const Card = (props) => {
       <CommentsBlock
         story={props}
         comments={comments}
-        creator_id={props.creator_id}
         userId={props.userId}
         addNewComment={addNewComment}
       />

@@ -1,24 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import SingleMessage from "./SingleMessage";
 import { NewMessage } from "./NewPostInput";
+import { ChatData } from "../../types";
 
 import "./Chat.css";
-
-/**
- * @typedef UserObject
- * @property {string} _id
- * @property {string} name
- */
-/**
- * @typedef MessageObject
- * @property {UserObject} sender
- * @property {string} content
- */
-/**
- * @typedef ChatData
- * @property {MessageObject[]} messages
- * @property {UserObject} recipient
- */
 
 /**
  * Renders main chat window including previous messages,
@@ -27,7 +12,11 @@ import "./Chat.css";
  * Proptypes
  * @param {ChatData} data
  */
-const Chat = (props) => {
+interface ChatProps {
+  data: ChatData;
+}
+
+const Chat: React.FC<ChatProps> = (props) => {
   return (
     <div className="u-flexColumn Chat-container">
       <h3>Chatting with {props.data.recipient.name}</h3>

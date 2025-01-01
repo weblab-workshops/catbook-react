@@ -1,16 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-/**
- * Component to render a single comment
- *
- * Proptypes
- * @param {string} _id of comment
- * @param {string} creator_name
- * @param {string} creator_id
- * @param {string} content of the comment
- */
-const SingleComment = (props) => {
+interface SingleCommentProps {
+  _id: string;
+  creator_name: string;
+  creator_id: string;
+  content: string;
+}
+
+const SingleComment: React.FC<SingleCommentProps> = (props) => {
   return (
     <div className="Card-commentBody">
       <Link to={`/profile/${props.creator_id}`} className="u-link u-bold">

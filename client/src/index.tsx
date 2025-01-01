@@ -32,7 +32,7 @@ const router = createBrowserRouter(
 )
 
 // renders React Component "Root" into the DOM element with ID "root"
-ReactDOM.createRoot(document.getElementById("root")).render(
+ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
     <RouterProvider router={router} />
   </GoogleOAuthProvider>

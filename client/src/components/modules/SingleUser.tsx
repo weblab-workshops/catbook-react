@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { UserObject } from "../../types";
 
 import "./SingleUser.css";
 
@@ -11,7 +12,14 @@ import "./SingleUser.css";
  * @param {UserObject} user
  * @param {boolean} active
  */
-const SingleUser = (props) => {
+
+interface SingleUserProps {
+  setActiveUser: (user: UserObject) => void;
+  user: UserObject;
+  active: boolean;
+}
+
+const SingleUser: React.FC<SingleUserProps> = (props) => {
   return (
     <div
       className={`SingleUser-container u-pointer ${props.active ?

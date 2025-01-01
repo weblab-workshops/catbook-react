@@ -1,22 +1,23 @@
 import React from "react";
 import SingleComment from "./SingleComment";
 import { NewComment } from "./NewPostInput";
+import { CommentObject } from "../../types";
 
-/**
- * @typedef ContentObject
- * @property {string} _id of story/comment
- * @property {string} creator_name
- * @property {string} content of the story/comment
- */
+interface ContentObject {
+  _id: string;
+  creator_name: string;
+  creator_id: string;
+  content: string;
+}
 
-/**
- * Component that holds all the comments for a story
- *
- * Proptypes
- * @param {ContentObject[]} comments
- * @param {ContentObject} story
- */
-const CommentsBlock = (props) => {
+interface CommentsBlockProps {
+  comments: ContentObject[];
+  story: ContentObject;
+  userId?: string;
+  addNewComment: (comment: CommentObject) => void;
+}
+
+const CommentsBlock: React.FC<CommentsBlockProps> = (props) => {
   return (
     <div className="Card-commentSection">
       <div className="story-comments">

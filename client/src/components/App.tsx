@@ -10,25 +10,23 @@ import { Outlet } from "react-router-dom";
 // to use styles, import the necessary CSS files
 import "../utilities.css";
 import "./App.css";
+import { UserObject } from "../types";
 
-/**
- * Define the "App" component as a function.
- */
-const App = () => {
-  const [userId, setUserId] = useState(null);
+const App: React.FC = () => {
+  const [userId, setUserId] = useState<string | null>(null);
 
   useEffect(() => {
-    get("/api/whoami").then((user) => {
+    get("/api/whoami").then((user: UserObject) => {
       if (user._id) {
-        // they are registed in the database, and currently logged in.
+        // they are registered in the database, and currently logged in.
         setUserId(user._id);
       }
     });
   }, []);
 
-  const handleLogin = (res) => {
+  const handleLogin = (res: any) => {
     const userToken = res.credential;
-    post("/api/login", { token: userToken }).then((user) => {
+    post("/api/login", { token: userToken }).then((user: UserObject) => {
       setUserId(user._id);
       post("/api/initsocket", { socketid: socket.id });
     });
@@ -43,12 +41,10 @@ const App = () => {
   // required method: whatever is returned defines what
   // shows up on screen
   return (
-    // <> is like a <div>, but won't show
-    // up in the DOM tree
     <>
       <NavBar handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
       <div className="App-container">
-        <Outlet context={{ userId: userId }} />
+        <Outlet context={{ userId }} />
       </div>
     </>
   );
