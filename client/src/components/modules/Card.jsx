@@ -17,6 +17,7 @@ import "./Card.css";
 const Card = (props) => {
   const [comments, setComments] = useState([]);
 
+  // updates the comments state so that the new comment is added immediately
   const addNewComment = (comment) => {
     setComments(comments.concat(comment));
   };
