@@ -27,6 +27,16 @@ app.get("/api/test", (req, res) => {
   res.send({ message: "Example API endpoint" });
 });
 
+// TODO (step1): implement GET /api/stories endpoint
+
+// TODO (step2): implement POST /api/story endpoint
+
+// TODO (step3): implement GET /api/comments endpoint
+
+// TODO (step4): implement POST /api/comment endpoint
+
+// TODO (step5): implement middleware for /api routes
+
 // Load the compiled react files, which will serve /index.html and /bundle.js
 const reactPath = path.resolve(__dirname, "..", "client", "dist");
 app.use(express.static(reactPath));

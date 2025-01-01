@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
 import Card from "../modules/Card";
 import { NewStory } from "../modules/NewPostInput";
+// TODO (step0): import get and post
 
 const Feed = () => {
   const [stories, setStories] = useState([]);
 
   // updates the stories state so that the new story is added immediately
   const addNewStory = (value) => {
+    // TODO (step2): post the new story to the server
     setStories(stories.concat(value));
   }
 
   useEffect(() => {
+    // TODO (step1): fetch the stories from the server
     const story1 = {
       _id: "id1",
       creator_name: "person1",
