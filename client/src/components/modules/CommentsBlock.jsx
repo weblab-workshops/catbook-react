@@ -14,7 +14,7 @@ import { NewComment } from "./NewPostInput";
  *
  * Proptypes
  * @param {ContentObject[]} comments
- * @param {string} storyId
+ * @param {ContentObject} story
  */
 const CommentsBlock = (props) => {
   return (
@@ -28,7 +28,7 @@ const CommentsBlock = (props) => {
             content={comment.content}
           />
         ))}
-        <NewComment storyId={props.storyId} addNewComment={props.addNewComment} />
+        <NewComment storyId={props.story._id} addNewComment={props.addNewComment} />
       </div>
     </div>
   );
