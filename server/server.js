@@ -51,6 +51,12 @@ app.get("/api/stories", (req, res) => {
 
 // TODO (step2): implement POST /api/story endpoint
 
+app.post("/api/story", (req, res) => {
+  const newStory = req.body;
+  hardcodedStories.push(newStory);
+  res.send(newStory);
+})
+
 // TODO (step3): implement GET /api/comments endpoint
 
 // TODO (step4): implement POST /api/comment endpoint
