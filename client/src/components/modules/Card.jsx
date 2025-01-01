@@ -47,14 +47,14 @@ const Card = (props) => {
   }, []);
 
   let commentsList = null;
-    const hasComments = comments.length !== 0;
-    if (hasComments) {
-      commentsList = comments.map((commentObj) => (
-        <SingleComment _id={commentObj._id} creator_name={commentObj.creator_name} content={commentObj.content}/>
-      ));
-    } else {
-      commentsList = <div>No comments!</div>;
-    }
+  const hasComments = comments.length !== 0;
+  if (hasComments) {
+    commentsList = comments.map((commentObj) => (
+      <SingleComment _id={commentObj._id} creator_name={commentObj.creator_name} content={commentObj.content}/>
+    ));
+  } else {
+    commentsList = <div>No comments!</div>;
+  }
 
   return (
     <div className="Card-container">
