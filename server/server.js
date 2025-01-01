@@ -59,6 +59,30 @@ app.post("/api/story", (req, res) => {
 
 // TODO (step3): implement GET /api/comments endpoint
 
+const comment1 = {
+  _id: "commentid1",
+  creator_name: "Daniel Hong",
+  parent: "id1",
+  content: "Hi Stanley",
+};
+const comment2 = {
+  _id: "commentid2",
+  creator_name: "Lucas Bautista",
+  parent: "id2",
+  content: "I agree!",
+};
+const comment3 = {
+  _id: "commentid3",
+  creator_name: "Stanley Zhao",
+  parent: "id1",
+  content: "Hi Daniel",
+};
+const hardcodedComments = [comment1, comment2, comment3];
+
+app.get("/api/comments", (req, res) => {
+  res.send(hardcodedComments.filter((comment) => comment.parent === req.query.parent));
+});
+
 // TODO (step4): implement POST /api/comment endpoint
 
 // TODO (step5): implement middleware for /api routes
