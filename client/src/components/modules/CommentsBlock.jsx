@@ -16,7 +16,13 @@ import React from "react";
  * @param {ContentObject} story
  */
 const CommentsBlock = () => {
-  // TODO (step9): implement render
+  return (
+    <div className="Card-commentSection">
+      <div className="story-comments">
+        {/* TODO (step9): render comments */}
+      </div>
+    </div>
+  );
 };
 
 export default CommentsBlock;
