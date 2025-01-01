@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { post } from "../../utilities";
 
 import "./NewPostInput.css";
 
