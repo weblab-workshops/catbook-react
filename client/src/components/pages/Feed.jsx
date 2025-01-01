@@ -36,6 +36,7 @@ const Feed = () => {
   const hasStories = stories.length !== 0;
   if (hasStories) {
     storiesList = stories.map((storyObj) => (
+      // TODO (step6): use Card instead of SingleStory, passing down the same props
       <SingleStory _id="test_id" creator_name={storyObj.creator_name} content={storyObj.content} />
     ));
   } else {
@@ -48,7 +49,6 @@ const Feed = () => {
       {storiesList}
     </div>
   );
-  // TODO (step6): use Card instead of SingleStory, passing down the same props
 };
 
 export default Feed;
