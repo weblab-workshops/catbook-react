@@ -48,11 +48,7 @@ const Card = (props) => {
     const hasComments = comments.length !== 0;
     if (hasComments) {
       commentsList = comments.map((commentObj) => (
-        <SingleComment
-          _id={commentObj._id}
-          creator_name={commentObj.creator_name}
-          content={commentObj.content}
-        />
+        <SingleComment _id={commentObj._id} creator_name={commentObj.creator_name} content={commentObj.content}/>
       ));
     } else {
       commentsList = <div>No comments!</div>;
