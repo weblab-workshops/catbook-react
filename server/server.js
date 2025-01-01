@@ -23,6 +23,10 @@ const app = express();
 // allow us to make post requests
 app.use(express.json());
 
+app.get("/api/test", (req, res) => {
+  res.send({ message: "Example API endpoint" });
+});
+
 // Load the compiled react files, which will serve /index.html and /bundle.js
 const reactPath = path.resolve(__dirname, "..", "client", "dist");
 app.use(express.static(reactPath));
