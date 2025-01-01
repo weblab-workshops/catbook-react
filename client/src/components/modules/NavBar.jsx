@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "@reach/router";
-import GoogleLogin, { GoogleLogout } from "react-google-login";
+import { Link } from "react-router-dom";
+import { GoogleLogin } from "@react-oauth/google";
 
 import { get, post } from "../../utilities";
 import "./NavBar.css";
-
-// This identifies your web application to Google's authentication service
-const GOOGLE_CLIENT_ID = "395785444978-7b9v7l0ap2h3308528vu1ddnt3rqftjc.apps.googleusercontent.com";
 
 /**
  * The navigation bar at the top of all pages. Takes no props.
@@ -27,7 +24,7 @@ const NavBar = (props) => {
     // 'res' contains the response from Google's authentication servers
     console.log(res);
 
-    const userToken = res.tokenObj.id_token;
+    const userToken = res.credential;
     post("/api/login", { token: userToken }).then((user) => {
       // the server knows we're logged in now
       setUserId(user._id);
@@ -54,20 +51,15 @@ const NavBar = (props) => {
           </Link>
         )}
         {userId ? (
-          <GoogleLogout
-            clientId={GOOGLE_CLIENT_ID}
-            buttonText="Logout"
-            onLogoutSuccess={handleLogout}
-            onFailure={(err) => console.log(err)}
-            className="NavBar-link NavBar-login"
-          />
+          <button className="NavBar-link NavBar-login u-inlineBlock" onClick={handleLogout}>
+            Sign out
+          </button>
         ) : (
           <GoogleLogin
-            clientId={GOOGLE_CLIENT_ID}
-            buttonText="Login"
+            text="signin_with"
             onSuccess={handleLogin}
             onFailure={(err) => console.log(err)}
-            className="NavBar-link NavBar-login"
+            containerProps= {{'className': "NavBar-link NavBar-login u-inlineBlock"}}
           />
         )}
       </div>
