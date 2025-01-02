@@ -34,6 +34,7 @@ const Feed = () => {
   return (
     <div>
       <SingleStory _id="test_id" creator_name="Evan" content="test" />
+      {JSON.stringify(stories)}
     </div>
   );
   // TODO (step3): map the state to SingleStory components
