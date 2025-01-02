@@ -28,6 +28,7 @@ app.get("/api/test", (req, res) => {
 });
 
 // TODO (step1): implement GET /api/stories endpoint
+
 const story1 = {
   _id: "id1",
   creator_name: "Stanley Zhao",
@@ -43,17 +44,17 @@ const story3 = {
   creator_name: "Andy Jiang",
   content: "I like cats",
 };
-const hardcodedStories = [story1, story2, story3];
+const stories = [story1, story2, story3];
 
 app.get("/api/stories", (req, res) => {
-  res.send(hardcodedStories);
+  res.send(stories);
 });
 
 // TODO (step2): implement POST /api/story endpoint
 
 app.post("/api/story", (req, res) => {
   const newStory = req.body;
-  hardcodedStories.push(newStory);
+  stories.push(newStory);
   res.send(newStory);
 })
 
@@ -77,10 +78,10 @@ const comment3 = {
   parent: "id1",
   content: "Hi Daniel",
 };
-const hardcodedComments = [comment1, comment2, comment3];
+const comments = [comment1, comment2, comment3];
 
 app.get("/api/comments", (req, res) => {
-  res.send(hardcodedComments.filter((comment) => comment.parent === req.query.parent));
+  res.send(comments.filter((comment) => comment.parent === req.query.parent));
 });
 
 // TODO (step4): implement POST /api/comment endpoint
