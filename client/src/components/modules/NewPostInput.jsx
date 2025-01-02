@@ -91,7 +91,8 @@ const NewStory = (props) => {
  * @param {UserObject} recipient is the intended recipient
  */
 const NewMessage = (props) => {
-  // TODO (step 1.2): add sendMessage function and pass to onSubmit
+  // TODO (step 1.2): add sendMessage function and pass to onSubmit.
+  // For now, sendMessage function should just log the message to the console.
 
   // TODO (step 1.1): populate NewMessage
   return <div></div>;
