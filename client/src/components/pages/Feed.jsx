@@ -11,7 +11,14 @@ const Feed = () => {
   
 
   useEffect(() => {
-    // TODO (step2): assign HARDCODED dummy values to the stories state 
+    // TODO (step2): assign HARDCODED dummy values to the stories state
+    // a story should be an object of the form: 
+    // {
+    //   _id: "some random string of letters",
+    //   creator_name: "creator name",
+    //   content: "story content",
+    // }
+    
   }, []);
 
   return <SingleStory _id="test_id" creator_name="Evan" content="test" />;
