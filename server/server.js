@@ -43,17 +43,17 @@ const story3 = {
   creator_name: "Andy Jiang",
   content: "I like cats",
 };
-const hardcodedStories = [story1, story2, story3];
+const stories = [story1, story2, story3];
 
 app.get("/api/stories", (req, res) => {
-  res.send(hardcodedStories);
+  res.send(stories);
 });
 
 // TODO (step2): implement POST /api/story endpoint
 
 app.post("/api/story", (req, res) => {
   const newStory = req.body;
-  hardcodedStories.push(newStory);
+  stories.push(newStory);
   res.send(newStory);
 })
 
