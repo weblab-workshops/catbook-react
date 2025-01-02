@@ -34,14 +34,14 @@ const Chatbook = () => {
   // TODO (step 2.1): add state activeChat, an object with two fields:
   // recipient, and messages!
   // In this object, initialize recipient to ALL_CHAT, and messages to TEST_MESSAGES
-
+  let context = useOutletContext(); // context.userId stores the currently logged in user
   const loadMessageHistory = (recipient) => {};
 
   useEffect(() => {
     document.title = "Chatbook";
   }, []);
 
-  if (!props.userId) {
+  if (!context.userId) {
     return <div>Log in before using Chatbook</div>;
   }
 
