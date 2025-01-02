@@ -43,7 +43,7 @@ const Card = (props) => {
     };
     const hardcodedComments = [comment1, comment2, comment3];
 
-    setComments(hardcodedComments);
+    setComments(hardcodedComments.filter((comment) => comment.parent === props._id));
   }, []);
 
   return (
