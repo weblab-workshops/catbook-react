@@ -23,75 +23,8 @@ const app = express();
 // allow us to make post requests
 app.use(express.json());
 
-app.get("/api/test", (req, res) => {
-  res.send({ message: "Example API endpoint" });
-});
-
-// TODO (step1): implement GET /api/stories endpoint
-const story1 = {
-  _id: "id1",
-  creator_name: "Stanley Zhao",
-  content: "Hi everyone",
-};
-const story2 = {
-  _id: "id2",
-  creator_name: "Abby Chou",
-  content: "Web.lab rocks",
-};
-const story3 = {
-  _id: "id3",
-  creator_name: "Andy Jiang",
-  content: "I like cats",
-};
-const hardcodedStories = [story1, story2, story3];
-
-app.get("/api/stories", (req, res) => {
-  res.send(hardcodedStories);
-});
-
-// TODO (step2): implement POST /api/story endpoint
-
-app.post("/api/story", (req, res) => {
-  const newStory = req.body;
-  hardcodedStories.push(newStory);
-  res.send(newStory);
-})
-
-// TODO (step3): implement GET /api/comments endpoint
-
-const comment1 = {
-  _id: "commentid1",
-  creator_name: "Daniel Hong",
-  parent: "id1",
-  content: "Hi Stanley",
-};
-const comment2 = {
-  _id: "commentid2",
-  creator_name: "Lucas Bautista",
-  parent: "id2",
-  content: "I agree!",
-};
-const comment3 = {
-  _id: "commentid3",
-  creator_name: "Stanley Zhao",
-  parent: "id1",
-  content: "Hi Daniel",
-};
-const hardcodedComments = [comment1, comment2, comment3];
-
-app.get("/api/comments", (req, res) => {
-  res.send(hardcodedComments.filter((comment) => comment.parent === req.query.parent));
-});
-
-// TODO (step4): implement POST /api/comment endpoint
-
-app.post("/api/comment", (req, res) => {
-  const newComment = req.body;
-  hardcodedComments.push(newComment);
-  res.send(newComment);
-});
-
 // TODO (step5): implement middleware for /api routes
+app.use("/api", require("./api"));
 
 // Load the compiled react files, which will serve /index.html and /bundle.js
 const reactPath = path.resolve(__dirname, "..", "client", "dist");
