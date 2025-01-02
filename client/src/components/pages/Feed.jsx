@@ -16,18 +16,18 @@ const Feed = () => {
     // TODO (step1): fetch the stories from the server
     const story1 = {
       _id: "id1",
-      creator_name: "person1",
-      content: "story1",
+      creator_name: "Stanley Zhao",
+      content: "Hi everyone",
     };
     const story2 = {
       _id: "id2",
-      creator_name: "person2",
-      content: "story2",
+      creator_name: "Abby Chou",
+      content: "Web.lab rocks",
     };
     const story3 = {
       _id: "id3",
-      creator_name: "person3",
-      content: "story3",
+      creator_name: "Andy Jiang",
+      content: "I like cats",
     };
     const hardcodedStories = [story1, story2, story3];
     
