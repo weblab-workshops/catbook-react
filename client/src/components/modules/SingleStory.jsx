@@ -1,5 +1,5 @@
 import React from "react";
-import "./SingleStory.css";
+import "./Card.css";
 
 /**
  * Story is a component that renders creator and content of a story
