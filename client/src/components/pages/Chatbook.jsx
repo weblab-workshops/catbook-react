@@ -20,7 +20,7 @@ const TEST_MESSAGES = [
 ];
 
 const Chatbook = () => {
-
+  let context = useOutletContext(); // context.user stores the currently logged in user
   const loadMessageHistory = (recipient) => {};
 
   useEffect(() => {
