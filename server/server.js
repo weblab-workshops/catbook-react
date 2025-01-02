@@ -43,10 +43,10 @@ const story3 = {
   creator_name: "person3",
   content: "story3",
 };
-const hardcodedStories = [story1, story2, story3];
+const stories = [story1, story2, story3];
 
 app.get("/api/stories", (req, res) => {
-  res.send(hardcodedStories);
+  res.send(stories);
 });
 
 // TODO (step2): implement POST /api/story endpoint
