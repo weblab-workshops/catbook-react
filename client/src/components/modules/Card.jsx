@@ -25,21 +25,21 @@ const Card = (props) => {
     // TODO (step3): fetch the comments from the server
     const comment1 = {
       _id: "commentid1",
-      creator_name: "person1",
+      creator_name: "Daniel Hong",
       parent: "id1",
-      content: "comment1",
+      content: "Hi Stanley",
     };
     const comment2 = {
       _id: "commentid2",
-      creator_name: "person2",
-      parent: "id1",
-      content: "comment2",
+      creator_name: "Lucas Bautista",
+      parent: "id2",
+      content: "I agree!",
     };
     const comment3 = {
       _id: "commentid3",
-      creator_name: "person3",
+      creator_name: "Stanley Zhao",
       parent: "id1",
-      content: "comment3",
+      content: "Hi Daniel",
     };
     const hardcodedComments = [comment1, comment2, comment3];
 
