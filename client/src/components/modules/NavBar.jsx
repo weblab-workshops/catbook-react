@@ -40,7 +40,7 @@ const NavBar = (props) => {
             text="signin_with"
             onSuccess={handleLogin}
             onFailure={(err) => console.log(err)}
-            containerProps= {{'className': "NavBar-link NavBar-login u-inlineBlock"}}
+            containerProps={{ className: "NavBar-link NavBar-login u-inlineBlock" }}
           />
         )}
       </div>
