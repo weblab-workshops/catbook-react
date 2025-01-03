@@ -16,7 +16,7 @@ const NavBar = (props) => {
     console.log(res);
     setLoggedIn(true);
 
-    // TODO: Send res.tokenObj.credential to the backend
+    // TODO: Send res.credential to the backend
   };
 
   const handleLogout = () => {
