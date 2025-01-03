@@ -16,7 +16,7 @@ const NavBar = (props) => {
     console.log(res);
 
     setLoggedIn(true);
-    const userToken = res.tokenObj.id_token;
+    const userToken = res.tokenObj.credential;
     post("/api/login", { token: userToken }).then((user) => {
       // the server knows we're logged in now
       console.log(user);
@@ -48,7 +48,7 @@ const NavBar = (props) => {
             text="signin_with"
             onSuccess={handleLogin}
             onFailure={(err) => console.log(err)}
-            containerProps= {{'className': "NavBar-link NavBar-login u-inlineBlock"}}
+            containerProps={{ className: "NavBar-link NavBar-login u-inlineBlock" }}
           />
         )}
       </div>
