@@ -16,16 +16,23 @@ const TEST_MESSAGES = [
   {
     sender: {
       _id: 0,
-      name: "Michael",
+      name: "Abby",
     },
-    content: "i love web lab",
+    content: "tell me why",
   },
   {
     sender: {
       _id: 0,
-      name: "Kenneth",
+      name: "Abby",
     },
-    content: "me too",
+    content: "aint nothin but a heartache",
+  },
+  {
+    sender: {
+      _id: 0,
+      name: "Abby",
+    },
+    content: "tElL mE whYyY",
   },
 ];
 
