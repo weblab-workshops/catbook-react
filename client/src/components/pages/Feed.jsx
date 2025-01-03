@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Card from "../modules/Card";
 import { NewStory } from "../modules/NewPostInput";
-import { get, post } from "../../utilities";
+// TODO (step0): import get and post
 
 const Feed = () => {
   const [stories, setStories] = useState([]);
