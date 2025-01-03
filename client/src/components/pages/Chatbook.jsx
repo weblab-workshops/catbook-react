@@ -37,7 +37,7 @@ const TEST_MESSAGES = [
 ];
 
 const Chatbook = () => {
-
+  let context = useOutletContext();
   const [activeChat, setActiveChat] = useState({
     recipient: ALL_CHAT,
     messages: TEST_MESSAGES,
@@ -49,7 +49,7 @@ const Chatbook = () => {
     document.title = "Chatbook";
   }, []);
 
-  if (!props.userId) {
+  if (!context.userId) {
     return <div>Log in before using Chatbook</div>;
   }
 
