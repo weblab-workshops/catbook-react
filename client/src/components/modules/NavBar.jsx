@@ -27,7 +27,7 @@ const NavBar = (props) => {
     // 'res' contains the response from Google's authentication servers
     console.log(res);
 
-    const userToken = res.tokenObj.id_token;
+    const userToken = res.credential;
     post("/api/login", { token: userToken }).then((user) => {
       // the server knows we're logged in now
       setUserId(user._id);
