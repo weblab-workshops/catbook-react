@@ -11,6 +11,7 @@ import React from "react";
 const SingleStory = (props) => {
   return (
     <div className="Card-story">
+      {/* TODO: replace with a Link component */}
       <span className="u-bold">{props.creator_name}</span>
       <p className="Card-storyContent">{props.content}</p>
     </div>

@@ -27,6 +27,7 @@ const Feed = () => {
   const hasStories = stories.length !== 0;
   if (hasStories) {
     storiesList = stories.map((storyObj) => (
+      // TODO: pass creator_id as an additional prop
       <Card
         key={`Card_${storyObj._id}`}
         _id={storyObj._id}
