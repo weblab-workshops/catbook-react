@@ -16,7 +16,7 @@ const NavBar = (props) => {
     console.log(res);
 
     setLoggedIn(true);
-    const userToken = res.tokenObj.credential;
+    const userToken = res.credential;
     post("/api/login", { token: userToken }).then((user) => {
       // the server knows we're logged in now
       console.log(user);
