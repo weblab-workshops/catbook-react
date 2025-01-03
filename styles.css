@@ -34,7 +34,7 @@ body {
   color: var(--white);
   font-size: 20px;
   /* Below cancels out some of the default styling of h1 */
-  margin: 0; 
+  margin: 0;
   font-weight: normal;
 }
 
@@ -57,27 +57,13 @@ body {
   /* make it responsive */
   max-width: 100%;
   width: 100%;
-  height: auto;
-  display: block;
-  /* div height to be the same as width*/
-  padding-top: 100%;
 
   /* make it a circle */
   border-radius: 50%;
 
-  /* Add image */
-  background-image: url("cat.png");
-
-  /* Centering on image`s center*/
-  background-position-y: center;
-  background-position-x: center;
-  background-repeat: no-repeat;
-
-  /* it makes the clue thing, takes smaller dimension to fill div */
-  background-size: cover;
-
-  /* it is optional, for making this div centered in parent*/
-  margin: 0 auto;
+  /* make it have a 1:1 aspect ratio */
+  aspect-ratio: 1;
+  object-fit: cover;
 }
 
 .name {
