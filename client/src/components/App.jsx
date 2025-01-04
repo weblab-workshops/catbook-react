@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "./modules/NavBar";
-
+// TODO: Import UserContext
 import { Outlet } from "react-router-dom";
 
 // to use styles, import the necessary CSS files
@@ -20,7 +20,8 @@ const App = () => {
     // <> is like a <div>, but won't show
     // up in the DOM tree
     <>
-      {/* Pass in login and logout functions to <NavBar /> as props */}
+      {/* TODO: Pass in login and logout functions to <NavBar /> as props */}
+      {/* TODO: Wrap everything in a context provider for user context */}
       <NavBar />
       <div className="App-container">
         <Outlet />
