@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import NavBar from "./modules/NavBar";
 
 import { Outlet } from "react-router-dom";
@@ -14,13 +14,16 @@ const App = () => {
   // required method: whatever is returned defines what
   // shows up on screen
 
+  // TODO: Move userId state, whoami fetch, login, and logout functions from NavBar.jsx
+
   return (
     // <> is like a <div>, but won't show
     // up in the DOM tree
     <>
+      {/* Pass in login and logout functions to <NavBar /> as props */}
       <NavBar />
       <div className="App-container">
-        <Outlet/>
+        <Outlet />
       </div>
     </>
   );

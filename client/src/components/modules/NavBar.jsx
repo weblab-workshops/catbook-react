@@ -5,10 +5,17 @@ import { GoogleLogin } from "@react-oauth/google";
 import { get, post } from "../../utilities";
 import "./NavBar.css";
 
+import { UserContext } from "../context/UserContext";
+
 /**
  * The navigation bar at the top of all pages. Takes no props.
  */
 const NavBar = (props) => {
+  // TODO: Move userId state, whoami fetch, login, and logout functions to App.jsx
+  // TODO: Consume userId from UserContext
+
+  ////////////////////////////
+
   const [userId, setUserId] = useState(null);
 
   useEffect(() => {
@@ -38,6 +45,8 @@ const NavBar = (props) => {
     setUserId(null);
   };
 
+  ////////////////////////////
+
   return (
     <nav className="NavBar-container">
       <div className="NavBar-title u-inlineBlock">Catbook</div>
@@ -50,6 +59,7 @@ const NavBar = (props) => {
             Profile
           </Link>
         )}
+        {/* Pass in handleLogout and handleLogin as props */}
         {userId ? (
           <button className="NavBar-link NavBar-login u-inlineBlock" onClick={handleLogout}>
             Sign out
@@ -59,7 +69,7 @@ const NavBar = (props) => {
             text="signin_with"
             onSuccess={handleLogin}
             onFailure={(err) => console.log(err)}
-            containerProps= {{'className': "NavBar-link NavBar-login u-inlineBlock"}}
+            containerProps={{ className: "NavBar-link NavBar-login u-inlineBlock" }}
           />
         )}
       </div>
