@@ -1,14 +1,13 @@
-// TODO import useContext
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Card from "../modules/Card";
 import { NewStory } from "../modules/NewPostInput";
-// TODO import UserContext
+import { UserContext } from "../context/UserContext";
 
 import { get } from "../../utilities";
 
 const Feed = () => {
   const [stories, setStories] = useState([]);
-  // TODO get the userId from the UserContext
+  // TODO: Consume userId from UserContext
 
   // called when the "Feed" component "mounts", i.e.
   // when it shows up on screen
@@ -43,7 +42,7 @@ const Feed = () => {
   }
   return (
     <>
-      {/* TODO: hide if userId is null */}
+      {/* TODO: hide NewStory if userId is null */}
       <NewStory addNewStory={addNewStory} />
       {storiesList}
     </>
