@@ -12,7 +12,7 @@ import {
   RouterProvider,
   useNavigate,
 } from "react-router-dom";
-// TODO: Import GoogleOAuthProvider
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 // This identifies your web application to Google's authentication service
 const GOOGLE_CLIENT_ID = "652128607404-rkv0o9ma7cqrlf75vlums1ga44ha59d9.apps.googleusercontent.com";
@@ -28,8 +28,7 @@ const router = createBrowserRouter(
 
 // renders React Component "Root" into the DOM element with ID "root"
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <>
-    {/* TODO: Wrap your app in GoogleOAuthProvider */}
+  <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
     <RouterProvider router={router} />
-  </>
+  </GoogleOAuthProvider>
 );
