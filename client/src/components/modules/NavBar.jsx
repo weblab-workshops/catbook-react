@@ -40,7 +40,7 @@ const NavBar = (props) => {
           Home
         </Link>
         {/* TODO: update the link using the userId state. only display if the user is logged in */}
-        <Link to="/profile/" className="NavBar-link">
+        <Link to={`/profile`} className="NavBar-link">
           Profile
         </Link>
         {loggedIn ? (
