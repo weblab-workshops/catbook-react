@@ -41,6 +41,7 @@ router.get("/comment", (req, res) => {
 
 router.post("/comment", (req, res) => {
   const newComment = new Comment({
+    creator_id: req.user._id,
     creator_name: req.user.name,
     parent: req.body.parent,
     content: req.body.content,
