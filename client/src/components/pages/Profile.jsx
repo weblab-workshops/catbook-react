@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import CatHappiness from "../modules/CatHappiness";
 
 import { get, post } from "../../utilities";
@@ -7,13 +8,13 @@ import "./Profile.css";
 const Profile = (props) => {
   const [catHappiness, setCatHappiness] = useState(0);
   const [user, setUser] = useState(null);
-
+  let userid = useParams().userId;
   useEffect(() => {
     document.title = "Profile Page";
   }, []);
 
   useEffect(() => {
-    get("/api/user", { userid: props.userId }).then((user) => {
+    get("/api/user", { userid: userid }).then((user) => {
       setUser(user);
     });
   }, []);
