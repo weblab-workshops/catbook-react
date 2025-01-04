@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
 
 import { get, post } from "../../utilities";
@@ -38,8 +38,7 @@ const NavBar = (props) => {
         <Link to="/" className="NavBar-link">
           Home
         </Link>
-        {/* TODO: update the link using the userId state. only display if the user is logged in */}
-        <Link to={`/profile`} className="NavBar-link">
+        <Link to={`/profile/${userId}`} className="NavBar-link">
           Profile
         </Link>
         {userId ? (
@@ -51,7 +50,7 @@ const NavBar = (props) => {
             text="signin_with"
             onSuccess={handleLogin}
             onFailure={(err) => console.log(err)}
-            containerProps= {{'className': "NavBar-link NavBar-login u-inlineBlock"}}
+            containerProps={{ className: "NavBar-link NavBar-login u-inlineBlock" }}
           />
         )}
       </div>
