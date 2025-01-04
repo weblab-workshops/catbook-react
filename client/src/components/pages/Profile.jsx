@@ -8,11 +8,12 @@ import "./Profile.css";
 const Profile = (props) => {
   const [catHappiness, setCatHappiness] = useState(0);
   const [user, setUser] = useState(null);
-  let userid = useParams().userId;
+
   useEffect(() => {
     document.title = "Profile Page";
   }, []);
 
+  let userid = useParams().userId;
   useEffect(() => {
     get("/api/user", { userid: userid }).then((user) => {
       setUser(user);
