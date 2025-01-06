@@ -91,7 +91,7 @@ app.post("/api/comment", (req, res) => {
   res.send(newComment);
 });
 
-// TODO (step5): implement middleware for /api routes
+// TODO (step5.3, step5.4): implement middleware for /api routes
 
 // Load the compiled react files, which will serve /index.html and /bundle.js
 const reactPath = path.resolve(__dirname, "..", "client", "dist");
