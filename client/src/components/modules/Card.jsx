@@ -23,8 +23,8 @@ const Card = (props) => {
 
   useEffect(() => {
     // TODO (step3): fetch the comments from the server
-    get("/api/comments", { parent: props._id }).then((comments) => {
-      setComments(comments);
+    get("/api/comments", { parent: props._id }).then((commentsResponse) => {
+      setComments(commentsResponse);
     });
   }, []);
 
