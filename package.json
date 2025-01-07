@@ -2,7 +2,7 @@
   "name": "catbook-react",
   "version": "1.0.0",
   "description": "",
-  "main": "server/server.js",
+  "main": "server/server.ts",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@react-oauth/google": "^0.12.1",
+    "@types/express-session": "^1.18.1",
     "connect-ensure-login": "^0.1.1",
     "core-js": "^3.8.1",
     "dotenv": "^16.0.3",
@@ -41,10 +42,12 @@
     "url-loader": "^4.1.1"
   },
   "devDependencies": {
+    "@types/express": "^5.0.0",
     "@types/react": "^19.0.2",
     "@types/react-dom": "^19.0.2",
     "@types/react-router-dom": "^5.3.3",
     "@vitejs/plugin-react-swc": "^3.0.0",
+    "ts-node": "^10.9.2",
     "vite": "^4.0.0",
     "vite-plugin-svgr": "^2.4.0"
   }
