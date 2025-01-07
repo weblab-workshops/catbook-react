@@ -14,8 +14,9 @@ const Feed = () => {
 
   useEffect(() => {
     // TODO (step1): fetch the stories from the server
-    get("/api/stories").then((storyObjs) => {
-      let reversedStoryObjs = storyObjs.reverse();
+    get("/api/stories").then((storiesResponse) => {
+      // list stories in reverse order
+      let reversedStoryObjs = storiesResponse.reverse();
       setStories(reversedStoryObjs);
     });
   }, []);
