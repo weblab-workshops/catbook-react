@@ -20,6 +20,7 @@ const Profile = () => {
 
   return (
     <>
+      {/* TODO: conditionally render Loading! if user is undefined */}
       <div
         className="Profile-avatarContainer"
         onClick={() => {
