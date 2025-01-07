@@ -38,6 +38,7 @@ const NavBar = (props) => {
         <Link to="/" className="NavBar-link">
           Home
         </Link>
+        {/* TODO: Hide profile link if not logged in! */}
         <Link to={`/profile/${userId}`} className="NavBar-link">
           Profile
         </Link>
