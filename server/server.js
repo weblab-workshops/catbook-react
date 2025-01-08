@@ -26,13 +26,10 @@ app.use(express.json());
 // TODO (step5): implement middleware for /api routes
 app.use("/api", require("./api"));
 
-// Load the compiled react files, which will serve /index.html and /bundle.js
-const reactPath = path.resolve(__dirname, "..", "client", "dist");
-app.use(express.static(reactPath));
-
-// for all other routes, render index.html and let the react router handle it
-app.get("*", (req, res) => {
-  res.sendFile(path.join(reactPath, "index.html"));
+// anything else falls to this "not found" case
+app.all("*", (req, res) => {
+  console.log(`Route not found: ${req.method} ${req.url}`);
+  res.status(404).send({ msg: "Route not found" });
 });
 
 // any server errors cause this function to run
