@@ -30,18 +30,18 @@ const Card = (props) => {
     const comment2 = {
       _id: "commentid2",
       creator_name: "person2",
-      parent: "id1",
+      parent: "id2",
       content: "comment2",
     };
     const comment3 = {
       _id: "commentid3",
       creator_name: "person3",
-      parent: "id1",
+      parent: "id3",
       content: "comment3",
     };
     const hardcodedComments = [comment1, comment2, comment3];
 
-    setComments(hardcodedComments);
+    setComments(hardcodedComments.filter((comment)=>comment.parent==props._id));
   }, []);
 
   return (
