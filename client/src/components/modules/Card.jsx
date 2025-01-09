@@ -18,16 +18,15 @@ const Card = (props) => {
 
   const addNewComment = (comment) => {
     // TODO (step4): post the new comment to the server
-    post("/api/comment", comment).then((comment) => {
-      setComments(comments.concat(comment));
-    })
-    setComments(comments.concat(comment));
+    post("/api/comment", comment).then((commentObj) => {
+      setComments(comments.concat(commentObj));
+    });
   };
 
   useEffect(() => {
     // TODO (step3): fetch the comments from the server
-    get("/api/comments", { parent: props._id }).then((comments) => {
-      setComments(comments);
+    get("/api/comments", { parent: props._id }).then((commentsResponse) => {
+      setComments(commentsResponse);
     });
   }, []);
 
