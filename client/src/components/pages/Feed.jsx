@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Card from "../modules/Card";
-import { NewStory } from "../modules/NewPostInput";
+import NewStory from "../modules/NewPostInput";
 import { get, post } from "../../utilities";
 
 const Feed = () => {
@@ -42,5 +42,3 @@ const Feed = () => {
     </div>
   );
 };
-
-export default Feed;
