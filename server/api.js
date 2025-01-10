@@ -32,9 +32,8 @@ router.get("/stories", (req, res) => {
 // TODO (step2): implement POST /api/story endpoint
 
 router.post("/story", (req, res) => {
-  const newStory = req.body;
+  const newStory = req.query;
   stories.push(newStory);
-  res.send(newStory);
 })
 
 // TODO (step3): implement GET /api/comments endpoint
@@ -60,14 +59,13 @@ const comment3 = {
 const comments = [comment1, comment2, comment3];
 
 router.get("/comments", (req, res) => {
-  res.send(comments.filter((comment) => comment.parent === req.query.parent));
+  res.send(comments.filter((comment) => comment.parent === req.body.parent));
 });
 
 // TODO (step4): implement POST /api/comment endpoint
 
 router.post("/comment", (req, res) => {
   const newComment = req.body;
-  comments.push(newComment);
   res.send(newComment);
 });
 
