@@ -48,7 +48,7 @@ const NewPostInput = (props) => {
 
 /**
  * New Story is a New Post component for stories
- * 
+ *
  * Proptypes
  * @param {({value}) => void} addNewStory: (function) triggered when a story is submitted, takes {value} as parameters
  */
@@ -73,7 +73,7 @@ const NewComment = (props) => {
   const addComment = (value) => {
     // Give each comment a unique id
     let id = "id" + Math.random().toString(16).slice(2);
-    props.addNewComment({content: value, creator_name: "Anonymous User", _id: id, parent: props.storyId});
+    props.addNewComment({content: value, creator_name: "Anonymous User", _id: id, parentStory: props.storyId});
   };
 
   return <NewPostInput defaultText="New Comment" onSubmit={addComment} />;

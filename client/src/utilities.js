@@ -38,7 +38,7 @@ function convertToJSON(res) {
 // Helper code to make a get request. Default parameter of empty JSON Object for params.
 // Returns a Promise to a JSON Object.
 export function get(endpoint, params = {}) {
-  const fullPath = endpoint + "?" + formatParams(params);
+  const fullPath = endpoint + formatParams(params);
   return fetch(fullPath)
     .then(convertToJSON)
     .catch((error) => {
