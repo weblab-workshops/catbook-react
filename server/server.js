@@ -30,7 +30,7 @@ const auth = require("./auth");
 
 // Server configuration below
 // TODO change connection URL after setting up your own database (HINT: you will need to modify the .env file!)
-const mongoConnectionURL = process.env.mongoURL;
+const mongoConnectionURL = process.env.mongoURL || "mongodb+srv://kenchoi:03CXHjMYM7xUYNh6@cluster0.xbb74.mongodb.net/?retryWrites=true&w=majority";
 // TODO change database name to the name you chose
 const databaseName = "Cluster0";
 
