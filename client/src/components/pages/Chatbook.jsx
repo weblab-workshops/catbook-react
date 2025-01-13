@@ -50,7 +50,7 @@ const Chatbook = () => {
     document.title = "Chatbook";
   }, []);
 
-  if (userId) {
+  if (!userId) {
     return <div>Log in before using Chatbook</div>;
   }
 
