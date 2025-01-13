@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import SingleComment from "./SingleComment";
 import { NewComment } from "./NewPostInput";
+import { UserContext } from "../context/UserContext";
 
 /**
  * @typedef ContentObject
@@ -17,6 +18,7 @@ import { NewComment } from "./NewPostInput";
  * @param {ContentObject} story
  */
 const CommentsBlock = (props) => {
+  const userId = useContext(UserContext);
   return (
     <div className="Card-commentSection">
       <div className="story-comments">
@@ -29,7 +31,7 @@ const CommentsBlock = (props) => {
             content={comment.content}
           />
         ))}
-        {props.userId && (
+        {userId && (
           <NewComment storyId={props.story._id} addNewComment={props.addNewComment} />
         )}
       </div>

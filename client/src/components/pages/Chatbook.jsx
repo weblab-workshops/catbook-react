@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ChatList from "../modules/ChatList";
 import Chat from "../modules/Chat";
 import { socket } from "../../client-socket";
 import { get } from "../../utilities";
-import { useOutletContext } from "react-router-dom";
 
 import "./Chatbook.css";
+import { UserContext } from "../context/UserContext";
 
 const ALL_CHAT = {
   _id: "ALL_CHAT",
@@ -37,7 +37,7 @@ const TEST_MESSAGES = [
 ];
 
 const Chatbook = () => {
-  let context = useOutletContext();
+const userId = useContext(UserContext);
   const [activeChat, setActiveChat] = useState({
     recipient: ALL_CHAT,
     messages: TEST_MESSAGES,
@@ -49,7 +49,7 @@ const Chatbook = () => {
     document.title = "Chatbook";
   }, []);
 
-  if (!context.userId) {
+  if (!userId) {
     return <div>Log in before using Chatbook</div>;
   }
 
