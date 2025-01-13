@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
 
 import "./NavBar.css";
+import { UserContext } from "../context/UserContext";
 
 /**
  * The navigation bar at the top of all pages. Takes no props.
  */
 const NavBar = (props) => {
+  const userId = useContext(UserContext);
+  
   return (
     <nav className="NavBar-container">
       <div className="NavBar-title u-inlineBlock">Catbook</div>
@@ -15,15 +18,15 @@ const NavBar = (props) => {
         <Link to="/" className="NavBar-link">
           Home
         </Link>
-        {props.userId && (
-          <Link to={`/profile/${props.userId}`} className="NavBar-link u-inlineBlock">
+        {userId && (
+          <Link to={`/profile/${userId}`} className="NavBar-link u-inlineBlock">
             Profile
           </Link>
         )}
         <Link to="/chat/" className="NavBar-link u-inlineBlock">
           Chat
         </Link>
-        {props.userId ? (
+        {userId ? (
           <button className="NavBar-link NavBar-login u-inlineBlock" onClick={props.handleLogout}>
             Sign out
           </button>

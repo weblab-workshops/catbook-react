@@ -11,6 +11,7 @@ import { Outlet } from "react-router-dom";
 import "../utilities.css";
 import "./App.css";
 
+import { UserContext } from "./context/UserContext";
 /**
  * Define the "App" component as a function.
  */
@@ -37,8 +38,8 @@ const App = () => {
 
   const handleLogout = () => {
     console.log("Logged out successfully!");
-    setUserId(null);
     post("/api/logout");
+    setUserId(null);
   };
 
   // required method: whatever is returned defines what
@@ -47,14 +48,12 @@ const App = () => {
     // <> is like a <div>, but won't show
     // up in the DOM tree
     <>
-      <NavBar
-        handleLogin={handleLogin}
-        handleLogout={handleLogout}
-        userId={userId}
-      />
-      <div className="App-container">
-        <Outlet context={{ userId: userId }} />
-      </div>
+      <UserContext.Provider value={userId}>
+        <NavBar handleLogin={handleLogin} handleLogout={handleLogout} />
+        <div className="App-container">
+          <Outlet />
+        </div>
+      </UserContext.Provider>
     </>
   );
 };

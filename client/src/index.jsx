@@ -5,7 +5,6 @@ import Feed from "./components/pages/Feed";
 import NotFound from "./components/pages/NotFound";
 import Profile from "./components/pages/Profile";
 import Chatbook from "./components/pages/Chatbook";
-import Game from "./components/pages/Game";
 
 
 import {

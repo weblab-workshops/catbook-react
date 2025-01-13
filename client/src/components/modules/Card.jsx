@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import SingleStory from "./SingleStory";
 import CommentsBlock from "./CommentsBlock";
 import { get } from "../../utilities";
 
 import "./Card.css";
+import { UserContext } from "../context/UserContext";
 
 /**
  * Card is a component for displaying content like stories
@@ -16,6 +17,7 @@ import "./Card.css";
  */
 const Card = (props) => {
   const [comments, setComments] = useState([]);
+  const userId = useContext(UserContext);
 
   useEffect(() => {
     get("/api/comment", { parent: props._id }).then((comments) => {
@@ -41,7 +43,7 @@ const Card = (props) => {
         story={props}
         comments={comments}
         creator_id={props.creator_id}
-        userId={props.userId}
+        userId={userId}
         addNewComment={addNewComment}
       />
     </div>
