@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Card from "../modules/Card";
 import { NewStory } from "../modules/NewPostInput";
 import { useOutletContext } from "react-router-dom";
 
 import { get } from "../../utilities";
+import { UserContext } from "../context/UserContext";
 
 const Feed = () => {
-  let props = useOutletContext();
   const [stories, setStories] = useState([]);
+
+  const userId = useContext(UserContext);
 
   // called when the "Feed" component "mounts", i.e.
   // when it shows up on screen
@@ -34,7 +36,7 @@ const Feed = () => {
         _id={storyObj._id}
         creator_name={storyObj.creator_name}
         creator_id={storyObj.creator_id}
-        userId={props.userId}
+        userId={userId}
         content={storyObj.content}
       />
     ));
@@ -43,7 +45,7 @@ const Feed = () => {
   }
   return (
     <>
-      {props.userId && <NewStory addNewStory={addNewStory} />}
+      {userId && <NewStory addNewStory={addNewStory} />}
       {storiesList}
     </>
   );

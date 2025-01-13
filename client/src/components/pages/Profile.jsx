@@ -7,13 +7,13 @@ import "../../utilities.css";
 import "./Profile.css";
 
 const Profile = () => {
-  let props = useParams();
+  let userId = useParams().userId;
   const [catHappiness, setCatHappiness] = useState(0);
   const [user, setUser] = useState();
 
   useEffect(() => {
     document.title = "Profile Page";
-    get(`/api/user`, { userid: props.userId }).then((userObj) => setUser(userObj));
+    get(`/api/user`, { userid: userId }).then((userObj) => setUser(userObj));
   }, []);
 
   const incrementCatHappiness = () => {
