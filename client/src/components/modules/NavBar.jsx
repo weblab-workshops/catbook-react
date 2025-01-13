@@ -5,7 +5,8 @@ import { GoogleLogin } from "@react-oauth/google";
 import { get, post } from "../../utilities";
 import "./NavBar.css";
 
-import { UserContext } from "../context/UserContext";
+// TODO: Import UserContext by uncommenting:
+// import { UserContext } from "../context/UserContext";
 
 /**
  * The navigation bar at the top of all pages. Takes no props.
