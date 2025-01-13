@@ -12,7 +12,7 @@ const Profile = () => {
     document.title = "Profile Page";
   }, []);
 
-  // TODO: fetch user data on page load
+  // TODO: fetch user data on page load by making a GET request to "/api/user" and set user state to the server response
 
   const incrementCatHappiness = () => {
     setCatHappiness(catHappiness + 1);
