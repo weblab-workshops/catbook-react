@@ -46,7 +46,11 @@ const Chatbook = () => {
   }, []);
 
   useEffect(() => {
-    // TODO (step 0.2): add socket.on for when received message
+    // TODO (step 0.2): add socket.on for when received message (1 line)
+
+    return () => {
+      socket.off("message", addMessages);
+    };
   }, []);
 
   if (!props.userId) {
