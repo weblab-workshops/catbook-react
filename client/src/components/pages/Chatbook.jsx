@@ -42,6 +42,9 @@ const Chatbook = () => {
     document.title = "Chatbook";
   }, []);
 
+  // TODO (step 7.2): Modify the useEffect to load the message history
+  // for the recipient stored in activeChat. Change the dependency array
+  // so that the useEffect runs whenever the recipient id changes.
   useEffect(() => {
     loadMessageHistory(ALL_CHAT);
   }, []);
@@ -76,8 +79,7 @@ const Chatbook = () => {
   const setActiveUser = (user) => {
     // TODO (step 7.1): Set the state "activeChat" to the new recipient (user)
     // and empty array for messages.
-    // Then, make sure that the message history for this user is loaded (might
-    // involve writing code outside of this function)
+    // Then, make sure that the message history for this user is loaded (see step 7.2)
     console.log(`setting active user to ${user.name}`);
   };
 
