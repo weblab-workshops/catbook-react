@@ -113,6 +113,10 @@ router.post("/message", auth.ensureLoggedIn, (req, res) => {
   });
   message.save();
   // TODO (step 9.1): emit for DMs
+  //
+  // Restrict the scope of the emit based on who the recipient is.
+  // If the recipient is ALL_CHAT, emit to everyone (shout).
+  // Otherwise, if the recipient is an individual user, emit only to their socket!
   socketManager.getIo().emit("message", message);
 });
 
