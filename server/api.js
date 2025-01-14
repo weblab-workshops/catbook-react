@@ -81,8 +81,24 @@ router.post("/initsocket", (req, res) => {
 });
 
 router.get("/chat", (req, res) => {
+  // TODO (step 8.1): Support get chat for ALL_CHAT as well as DMs
+  //
+  // There should be two possible values for query:
+  // - if the recipient_id passed into the req.query is "ALL_CHAT", use our current
+  //   query expression
+  // - otherwise, if the recipient_id is an actual user's id, use the following query
+  //   structure:
+  //     query = {
+  //       $or: [
+  //         {expression 1},
+  //         {expression 2}
+  //       ]
+  //     }
+  //   $or finds all documents that satisfy any of the expressions in the array
+  //
+  // remember to "let" query instead of using "const"
   const query = { "recipient._id": "ALL_CHAT" };
-  // TODO (step 8.1): Support get chat for DMs
+
   Message.find(query).then((messages) => res.send(messages));
 });
 
