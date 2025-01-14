@@ -76,7 +76,10 @@ router.get("/user", (req, res) => {
 
 router.post("/initsocket", (req, res) => {
   // do nothing if user not logged in
-  // TODO (step 1.1): addUser when init socket
+  if (req.user) {
+    // TODO (step 1.2): addUser when init socket
+
+  }
   res.send({});
 });
 
