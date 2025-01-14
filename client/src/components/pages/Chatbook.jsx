@@ -46,7 +46,7 @@ const Chatbook = () => {
   }, []);
 
   useEffect(() => {
-    socket.on("message", addMessages);
+    socket.on("message", addMessage);
     return () => {
       socket.off("message", addMessage);
     };
