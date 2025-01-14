@@ -30,7 +30,7 @@ const Chatbook = () => {
     });
   };
 
-  const addMessages = (data) => {
+  const addMessage = (data) => {
     setActiveChat(prevActiveChat => ({
       recipient: prevActiveChat.recipient,
       messages: prevActiveChat.messages.concat(data),
@@ -49,7 +49,7 @@ const Chatbook = () => {
     // TODO (step 0.2): add socket.on to add a message when we receive one from the server (1 line)
 
     return () => {
-      socket.off("message", addMessages);
+      socket.off("message", addMessage);
     };
   }, []);
 
