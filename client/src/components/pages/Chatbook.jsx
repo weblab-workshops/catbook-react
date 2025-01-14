@@ -47,7 +47,9 @@ const Chatbook = () => {
   }, []);
 
   useEffect(() => {
-    // TODO (step 5.1): get request to activeUsers
+    // TODO (step 5.1): GET request to activeUsers
+    // only load active users if the user is logged in (i.e. props.userId is not null)
+
   }, []);
 
   useEffect(() => {
