@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ChatList from "../modules/ChatList";
 import Chat from "../modules/Chat";
 import { socket } from "../../client-socket";
 import { get } from "../../utilities";
-import { useOutletContext } from "react-router-dom";
 
 import "./Chatbook.css";
+import { UserContext } from "../context/UserContext";
 
 const ALL_CHAT = {
   _id: "ALL_CHAT",
@@ -41,14 +41,14 @@ const Chatbook = () => {
   // TODO (step 2.1): add state activeChat, an object with two fields:
   // recipient, and messages!
   // In this object, initialize recipient to ALL_CHAT, and messages to TEST_MESSAGES
-  let context = useOutletContext(); // context.userId stores the currently logged in user
+  const userId = useContext(UserContext); // UserContext stores the ID of the currently logged in user
   const loadMessageHistory = (recipient) => {};
 
   useEffect(() => {
     document.title = "Chatbook";
   }, []);
 
-  if (!context.userId) {
+  if (!userId) {
     return <div>Log in before using Chatbook</div>;
   }
 
