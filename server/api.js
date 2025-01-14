@@ -116,7 +116,8 @@ router.post("/message", auth.ensureLoggedIn, (req, res) => {
   //
   // Restrict the scope of the emit based on who the recipient is.
   // If the recipient is ALL_CHAT, emit to everyone (shout).
-  // Otherwise, if the recipient is an individual user, emit only to their socket!
+  // Otherwise, if the recipient is an individual user, emit the "message"
+  // event to both the recipient as well as the user themselves (if the user is different)
   socketManager.getIo().emit("message", message);
 });
 
