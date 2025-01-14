@@ -80,7 +80,7 @@ router.post("/initsocket", (req, res) => {
     // TODO (step 1.2): call socketManager.addUser during socket init (1 line)
     // this updates the userToSocketMap and socketToUserMap.
     // hint: the second argument of socketManager.addUser is the socket object, NOT the socket id.
-    // you can get the socket object from the socket id using getSocketFromSocketID(req.body.socketid).
+    // you can get the socket object from the socket id using socketManager.getSocketFromSocketID(req.body.socketid).
     
   }
   res.send({});
