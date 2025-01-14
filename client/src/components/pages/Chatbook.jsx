@@ -32,7 +32,7 @@ const Chatbook = () => {
   };
 
   
-  const addMessages = (data) => {
+  const addMessage = (data) => {
     // TODO (step 10.1) If the messages don't belong in the currently active
     // chat, don't add them to the state!
     // NOTE: we'll need to move the definion of this function
@@ -61,9 +61,9 @@ const Chatbook = () => {
   }, []);
 
   useEffect(() => {
-    socket.on("message", addMessages);
+    socket.on("message", addMessage);
     return () => {
-      socket.off("message", addMessages);
+      socket.off("message", addMessage);
     };
   }, [activeChat.recipient._id, props.userId]);
 
