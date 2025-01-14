@@ -51,7 +51,7 @@ const Chatbook = () => {
   }, []);
 
   useEffect(() => {
-    const addMessages = (data) => {
+    const addMessage = (data) => {
       if (
         (data.recipient._id === activeChat.recipient._id &&
           data.sender._id === props.userId) ||
@@ -65,9 +65,9 @@ const Chatbook = () => {
         }));
       }
     };
-    socket.on("message", addMessages);
+    socket.on("message", addMessage);
     return () => {
-      socket.off("message", addMessages);
+      socket.off("message", addMessage);
     };
   }, [activeChat.recipient._id, props.userId]);
 
