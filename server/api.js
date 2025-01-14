@@ -79,9 +79,7 @@ router.post("/initsocket", (req, res) => {
   res.send({});
 });
 
-// TODO (step 3.3): implement chat route
-
-// TODO (step 3.2): implement message route
+// TODO (step 3.2): implement chat route
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {

@@ -43,10 +43,16 @@ const userId = useContext(UserContext);
     messages: TEST_MESSAGES,
   });
 
-  const loadMessageHistory = (recipient) => {};
+  const loadMessageHistory = (recipient) => {
+    // TODO (step 3.3): Load message history using the /api/chat endpoint
+  };
 
   useEffect(() => {
     document.title = "Chatbook";
+  }, []);
+
+  useEffect(() => {
+    // TODO (step 3.4): Call loadMessageHistory
   }, []);
 
   if (!userId) {
