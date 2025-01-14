@@ -79,7 +79,10 @@ router.post("/initsocket", (req, res) => {
   res.send({});
 });
 
-// TODO (step 3.2): implement chat route
+router.get("/chat", (req, res) => {
+  const query = { "recipient._id": "ALL_CHAT" };
+  Message.find(query).then((messages) => res.send(messages));
+})
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {

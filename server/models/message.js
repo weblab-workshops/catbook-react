@@ -2,7 +2,16 @@ const mongoose = require("mongoose");
 
 //define a message schema for the database
 const MessageSchema = new mongoose.Schema({
-    // TODO (step 3.1): Write the schema for a message
+  sender: {
+    _id: String,
+    name: String,
+  },
+  recipient: {
+    _id: String,
+    name: String,
+  },
+  timestamp: {type: Date, default: Date.now},
+  content: String,
 });
 
 // compile model from schema
