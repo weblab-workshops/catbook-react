@@ -84,6 +84,12 @@ router.get("/chat", (req, res) => {
   Message.find(query).then((messages) => res.send(messages));
 })
 
+// TODO (step 4.1): implement /api/message endpoint
+// HINT: What does the request body look like?
+//       What does the Message model look like?
+//    -> What does the server need to fill out itself?
+
+
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
   console.log(`API route not found: ${req.method} ${req.url}`);

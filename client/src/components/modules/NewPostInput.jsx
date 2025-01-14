@@ -92,6 +92,7 @@ const NewStory = (props) => {
  */
 const NewMessage = (props) => {
   const sendMessage = (value) => {
+    // TODO (step 4.2): call the POST /api/message endpoint to send the message to the server
     console.log(value);
   };
 

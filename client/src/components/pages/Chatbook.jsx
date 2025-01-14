@@ -44,7 +44,7 @@ const userId = useContext(UserContext);
   });
 
   const loadMessageHistory = (recipient) => {
-    get("/api/message", { recipient_id: activeChat.recipient._id }).then((messages) => {
+    get("/api/chat", { recipient_id: recipient._id }).then((messages) => {
       setActiveChat({
         recipient: recipient,
         messages: messages,
@@ -57,7 +57,7 @@ const userId = useContext(UserContext);
   }, []);
 
   useEffect(() => {
-    loadMessageHistory();
+    loadMessageHistory(activeChat.recipient);
   }, []);
 
   if (!userId) {
