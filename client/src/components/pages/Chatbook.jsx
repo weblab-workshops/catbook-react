@@ -46,7 +46,7 @@ const Chatbook = () => {
   }, []);
 
   useEffect(() => {
-    // TODO (step 0.2): add socket.on for when received message (1 line)
+    // TODO (step 0.2): add socket.on to add a message when we receive one from the server (1 line)
 
     return () => {
       socket.off("message", addMessages);
