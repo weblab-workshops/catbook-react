@@ -49,7 +49,7 @@ const Chatbook = () => {
   useEffect(() => {
     get("/api/activeUsers").then((data) => {
       // If user is logged in, we load their chats. If they are not logged in,
-      // there's nothing to load. (Also prevents data races with socket event)
+      // there's nothing to load (also prevents data races with socket event in step 7 onwards)
       if (props.userId) {
         setActiveUsers([ALL_CHAT].concat(data.activeUsers));
       };
