@@ -58,7 +58,7 @@ module.exports = {
         const user = getUserFromSocketID(socket.id);
         removeUser(user, socket);
       });
-      // TODO (Step 2.5): Turn on a socket that listens for the 'move' event
+      // TODO (Step 2.1 pt 2, 2.4): Turn on a socket that listens for the 'move' event
       // and calls gameLogic.movePlayer
     });
   },

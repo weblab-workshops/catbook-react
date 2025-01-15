@@ -1,4 +1,4 @@
-// TODO (Step 2.1): Import statement to import the move function defined in client-socket.js
+// TODO (Step 2.2): Import statement to import the move function defined in client-socket.js
 
 // TODO (Step 2.2): This function is where the client will handle user inputs from mouse and keyboard.
 //    One of the directions is done for you. Complete the rest of the inputs to emit "down", "left", and "right".
