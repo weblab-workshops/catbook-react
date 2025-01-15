@@ -10,8 +10,6 @@ import "./Game.css";
 
 const Game = () => {
   let props = useOutletContext();
-
-  // TODO (Step 0.3): set up userId props using useOutletContext
   const canvasRef = useRef(null);
   // display text if the player is not logged in
   let loginModal = null;

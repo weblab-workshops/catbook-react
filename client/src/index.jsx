@@ -28,7 +28,7 @@ const router = createBrowserRouter(
       <Route path="/" element={<Feed />}/>
       <Route path="/profile/:userId" element={<Profile />}/>
       <Route path="/chat/" element={<Chatbook />}/>
-      {/* TODO (Step 0.1): add a route to the Game component (1 line) */}
+      {/* TODO (Step 0.2): add a route to the Game component (1 line) */}
       {/* Hint: the path should be "/game/" */}
       {/* Your code goes here */}
     </Route>
