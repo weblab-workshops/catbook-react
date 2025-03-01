@@ -9,8 +9,16 @@
 
 const express = require("express");
 
+// import models so we can interact with the database
+const Story = require("./models/story")
+
 // api endpoints: all these paths will be prefixed with "/api/"
 const router = express.Router();
+
+
+router.get("/stories", (req, res) => {});
+
+router.post("/story", (req, res) => {});
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
