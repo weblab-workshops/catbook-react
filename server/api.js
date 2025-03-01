@@ -11,18 +11,22 @@ const express = require("express");
 
 // import models so we can interact with the database
 const Story = require("./models/story")
-// TODO (step1) import the comment model
 
 // api endpoints: all these paths will be prefixed with "/api/"
 const router = express.Router();
 
 
 router.get("/stories", (req, res) => {
-  // TODO (step1) get all the stories from the database and send response back to client 
+  Story.find({})
+    .then((stories) => res.send(stories));
 });
 
 router.post("/story", (req, res) => {
-  // TODO (step1) create a new Story document and put it into the collection using the model
+  const newStory = new Story({
+    creator_name: myName,
+    content: req.body.content,
+  });
+  newStory.save().then((story) => res.send(story));
 });
 
 // anything else falls to this "not found" case
