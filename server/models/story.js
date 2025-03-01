@@ -1,5 +1,10 @@
-// TODO (step0) import mongoose
+const mongoose = require("mongoose");
 
-// TODO (step0) define your Story schema
+//define a story schema for the database
+const StorySchema = new mongoose.Schema({
+  creator_name: String,
+  content: String,
+});
 
-// TODO (step0) create and export the model for the Story schema 
+// compile model from schema
+module.exports = mongoose.model("story", StorySchema);
