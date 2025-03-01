@@ -25,16 +25,6 @@ router.post("/story", (req, res) => {
   // TODO (step1) create a new Story document and put it into the collection using the model
 });
 
-router.get("/comment", (req, res) => {
-  Comment.find({ /* TODO (step2) input the parent parameter here*/ }).then((comments) => {
-    res.send(comments);
-  });
-});
-
-router.post("/comment", (req, res) => {
-  // TODO (step2) create a new Comment document and put it into the collection using the model
-});
-
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
   console.log(`API route not found: ${req.method} ${req.url}`);
