@@ -9,20 +9,8 @@
 
 const express = require("express");
 
-// import models so we can interact with the database
-const Story = require("./models/story")
-
 // api endpoints: all these paths will be prefixed with "/api/"
 const router = express.Router();
-
-
-router.get("/stories", (req, res) => {
-  // TODO (step1) get all the stories from the database and send response back to client 
-});
-
-router.post("/story", (req, res) => {
-  // TODO (step1) create a new Story document and put it into the collection using the model
-});
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
