@@ -4,17 +4,56 @@
 
 run `npm start` in one terminal and `npm run hotloader` in another
 
-To run the LLM parts of the app:
-1. Make a virtual environment: `python3 -m venv .venv`. This virtual environment should be in Python 3.10 or earlier; Python 3.11+ won't work.
-2. Activate the virtual environment (venv): `. .venv/bin/activate`
-3. Install the dependencies from requirements.txt in the venv: `pip install -r requirements.txt`
-4. Run the local ChromaDB instance: `chroma run`
-5. Set the environment variable `ANYSCALE_API_KEY`. Using a .env file is probably the simplest way to do this.
 
 visit `http://localhost:5050`
 
-## don't touch
+## Setting up MySQL:
 
+### Running locally
+1) Install with brew:
+```bash
+```
+
+- Test that it works:
+
+2) Add dependencies
+## don't touch
+```bash
+```
+
+3) Add DB credentials to .env
+```bash
+MYSQL_HOST=127.0.0.1
+MYSQL_PORT=3306
+
+MYSQL_USER=app
+MYSQL_PASSWORD=app
+MYSQL_DATABASE=catbook
+
+SESSION_SECRET=dev-secret
+```
+
+4) Create your database + add new user:
+- Login as root (press enter when asked for password):
+```bash
+mysql -u root -p
+```
+- Run the following commands and fill <> in with credentials from your .env:
+a. Create DB:
+```bash
+CREATE DATABASE IF NOT EXISTS <your_database_name>;
+```
+
+b. Create user:
+```bash
+CREATE USER IF NOT EXISTS '<your_username>'@'localhost' IDENTIFIED BY '<your_password>';
+CREATE USER IF NOT EXISTS '<your_username>'@'127.0.0.1' IDENTIFIED BY '<your_password>';
+
+GRANT ALL PRIVILEGES ON <your_database_name>.* TO '<your_username>'@'localhost';
+GRANT ALL PRIVILEGES ON <your_database_name>.* TO '<your_username>'@'127.0.0.1';
+
+FLUSH PRIVILEGES;
+```
 the following files students do not need to edit. feel free to read them if you would like.
 
 ```
