@@ -1,9 +1,30 @@
-const mongoose = require("mongoose");
+const { query } = require("../db");
 
-const UserSchema = new mongoose.Schema({
-  name: String,
-  googleid: String,
-});
+// Matches old call style: User.findOne({ googleid: ... })
+async function findOne(filter) {
+  if (!filter || !filter.googleid) return null;
 
-// compile model from schema
-module.exports = mongoose.model("user", UserSchema);
+  const rows = await query(
+    "SELECT id AS _id, name, google_id AS googleid FROM users WHERE google_id = ?",
+    [filter.googleid]
+  );
+  return rows[0] || null;
+}
+
+async function create({ name, googleid }) {
+  await query(
+    "INSERT INTO users (google_id, name) VALUES (?, ?)",
+    [googleid, name]
+  );
+  return findOne({ googleid });
+}
+
+async function findById(id) {
+  const rows = await query(
+    "SELECT id AS _id, name, google_id AS googleid FROM users WHERE id = ?",
+    [id]
+  );
+  return rows[0] || null;
+}
+
+module.exports = { findOne, create, findById };

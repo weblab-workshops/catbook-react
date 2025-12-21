@@ -1,11 +1,26 @@
-const mongoose = require("mongoose");
+const { query } = require("../db");
 
-//define a story schema for the database
-const StorySchema = new mongoose.Schema({
-  creator_id: String,
-  creator_name: String,
-  content: String,
-});
+async function findAll() {
+  const rows = await query(
+    "SELECT id AS _id, creator_id, creator_name, content FROM stories"
+  );
+  return rows;
+}
 
-// compile model from schema
-module.exports = mongoose.model("story", StorySchema);
+async function create({ creator_id, creator_name, content }) {
+  console.log("Story.create called with:", { creator_id, creator_name, content });
+  const result = await query(
+    "INSERT INTO stories (creator_id, creator_name, content) VALUES (?, ?, ?)",
+    [creator_id, creator_name, content]
+  );
+  console.log("Insert result:", result);
+
+  const rows = await query(
+    "SELECT id AS _id, creator_id, creator_name, content FROM stories WHERE id = ?",
+    [result.insertId]
+  );
+  console.log("Retrieved story:", rows[0]);
+  return rows[0];
+}
+
+module.exports = { findAll, create };
