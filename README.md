@@ -4,7 +4,6 @@
 
 run `npm start` in one terminal and `npm run hotloader` in another
 
-
 visit `http://localhost:5050`
 
 ## Setting up MySQL:
@@ -12,14 +11,16 @@ visit `http://localhost:5050`
 ### Running locally
 1) Install with brew:
 ```bash
+brew install mysql
 ```
 
-- Test that it works:
+- Start MySQL: brew services start mysql
 
-2) Add dependencies
-## don't touch
+2) Add dependencies to node app
 ```bash
+npm install mysql2
 ```
+*** Make sure you also have dotenv and express installed already
 
 3) Add DB credentials to .env
 ```bash
@@ -54,6 +55,9 @@ GRANT ALL PRIVILEGES ON <your_database_name>.* TO '<your_username>'@'127.0.0.1';
 
 FLUSH PRIVILEGES;
 ```
+
+## don't touch
+
 the following files students do not need to edit. feel free to read them if you would like.
 
 ```
