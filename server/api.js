@@ -14,7 +14,6 @@ const Story = require("./models/story");
 const Comment = require("./models/comment");
 const User = require("./models/user");
 const Message = require("./models/message");
-const Document = require("./models/document");
 
 // import authentication library
 const auth = require("./auth");
@@ -23,44 +22,37 @@ const auth = require("./auth");
 const router = express.Router();
 
 const socketManager = require("./server-socket");
-const ragManager = require("./rag");
 
-// health check API route: if this doesn't return 200, the server is down :(
-router.get("/health", (_req, res) => {
-    res.status(200);
-    res.send({});
+router.get("/stories", async (req, res) => {
+  const stories = await Story.findAll();
+  res.send(stories);
 });
 
-router.get("/stories", (req, res) => {
-  // empty selector means get all documents
-  Story.find({}).then((stories) => res.send(stories));
-});
-
-router.post("/story", auth.ensureLoggedIn, (req, res) => {
-  const newStory = new Story({
+router.post("/story", auth.ensureLoggedIn, async (req, res) => {
+  console.log("Creating story with user:", req.user);
+  console.log("Story content:", req.body.content);
+  const story = await Story.create({
     creator_id: req.user._id,
     creator_name: req.user.name,
     content: req.body.content,
   });
-
-  newStory.save().then((story) => res.send(story));
+  console.log("Created story:", story);
+  res.send(story);
 });
 
-router.get("/comment", (req, res) => {
-  Comment.find({ parent: req.query.parent }).then((comments) => {
-    res.send(comments);
-  });
+router.get("/comment", async (req, res) => {
+  const comments = await Comment.findByParent(req.query.parent);
+  res.send(comments);
 });
 
-router.post("/comment", auth.ensureLoggedIn, (req, res) => {
-  const newComment = new Comment({
+router.post("/comment", auth.ensureLoggedIn, async (req, res) => {
+  const comment = await Comment.create({
     creator_id: req.user._id,
     creator_name: req.user.name,
     parent: req.body.parent,
     content: req.body.content,
   });
-
-  newComment.save().then((comment) => res.send(comment));
+  res.send(comment);
 });
 
 router.post("/login", auth.login);
@@ -74,10 +66,13 @@ router.get("/whoami", (req, res) => {
   res.send(req.user);
 });
 
-router.get("/user", (req, res) => {
-  User.findById(req.query.userid).then((user) => {
+router.get("/user", async (req, res) => {
+  try {
+    const user = await User.findById(req.query.userid);
     res.send(user);
-  });
+  } catch (err) {
+    res.status(500).send('User Not');
+  }
 });
 
 router.post("/initsocket", (req, res) => {
@@ -87,7 +82,7 @@ router.post("/initsocket", (req, res) => {
   res.send({});
 });
 
-router.get("/chat", (req, res) => {
+router.get("/chat", async (req, res) => {
   let query;
   if (req.query.recipient_id === "ALL_CHAT") {
     // get any message sent by anybody to ALL_CHAT
@@ -102,14 +97,15 @@ router.get("/chat", (req, res) => {
     };
   }
 
-  Message.find(query).then((messages) => res.send(messages));
+  const messages = await Message.find(query);
+  res.send(messages);
 });
 
-router.post("/message", auth.ensureLoggedIn, (req, res) => {
+router.post("/message", auth.ensureLoggedIn, async (req, res) => {
   console.log(`Received a chat message from ${req.user.name}: ${req.body.content}`);
 
   // insert this message into the database
-  const message = new Message({
+  const message = await Message.create({
     recipient: req.body.recipient,
     sender: {
       _id: req.user._id,
@@ -117,7 +113,6 @@ router.post("/message", auth.ensureLoggedIn, (req, res) => {
     },
     content: req.body.content,
   });
-  message.save();
 
   if (req.body.recipient._id == "ALL_CHAT") {
     socketManager.getIo().emit("message", message);
@@ -127,101 +122,11 @@ router.post("/message", auth.ensureLoggedIn, (req, res) => {
       socketManager.getSocketFromUserID(req.body.recipient._id).emit("message", message);
     }
   }
+  res.send({});
 });
 
 router.get("/activeUsers", (req, res) => {
   res.send({ activeUsers: socketManager.getAllConnectedUsers() });
-});
-
-router.post("/spawn", (req, res) => {
-  if (req.user) {
-    socketManager.addUserToGame(req.user);
-  }
-  res.send({});
-});
-
-router.post("/despawn", (req, res) => {
-  if (req.user) {
-    socketManager.removeUserFromGame(req.user);
-  }
-  res.send({});
-});
-
-router.get("/isrunnable", (req, res) => {
-  res.send({ isrunnable: ragManager.isRunnable() });
-});
-
-router.post("/document", (req, res) => {
-  const newDocument = new Document({
-    content: req.body.content,
-  });
-
-  const addDocument = async (document) => {
-    try {
-      await document.save();
-      await ragManager.addDocument(document);
-      res.send(document);
-    } catch (error) {
-      console.log("error:", error);
-      res.status(500);
-      res.send({});
-    }
-  };
-
-  addDocument(newDocument);
-});
-
-router.get("/document", (req, res) => {
-  Document.find({}).then((documents) => res.send(documents));
-});
-
-router.post("/updateDocument", (req, res) => {
-  const updateDocument = async (id) => {
-    const document = await Document.findById(id);
-    if (!document) res.send({});
-    try {
-      document.content = req.body.content;
-      await document.save();
-      await ragManager.updateDocument(document);
-      res.send({});
-    } catch (error) {
-      console.log("error:", error);
-      res.status(500);
-      res.send({});
-    }
-  };
-  updateDocument(req.body._id);
-});
-
-router.post("/deleteDocument", (req, res) => {
-  const deleteDocument = async (id) => {
-    const document = await Document.findById(id);
-    if (!document) res.send({});
-    try {
-      await ragManager.deleteDocument(id);
-      await document.remove();
-      res.send({});
-    } catch {
-      // if deleting from the vector db failed (e.g., it doesn't exist)
-      await document.remove();
-      res.send({});
-    }
-  };
-  deleteDocument(req.body._id);
-});
-
-router.post("/query", (req, res) => {
-  const makeQuery = async () => {
-    try {
-      const queryresponse = await ragManager.retrievalAugmentedGeneration(req.body.query);
-      res.send({ queryresponse });
-    } catch (error) {
-      console.log("error:", error);
-      res.status(500);
-      res.send({});
-    }
-  };
-  makeQuery();
 });
 
 // anything else falls to this "not found" case
