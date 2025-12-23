@@ -48,9 +48,8 @@ const Chatbook = () => {
   useEffect(() => {
     // TODO (step 0.2): add socket.on to add a message when we receive one from the server (1 line)
 
-    return () => {
-      socket.off("message", addMessage);
-    };
+    // TODO (step 0.3): on dismount, turn off the socket with socket.off
+
   }, []);
 
   if (!props.userId) {
