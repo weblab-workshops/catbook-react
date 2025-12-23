@@ -63,7 +63,8 @@ const Chatbook = () => {
   return (
     <>
       <div className="u-flex u-relative Chatbook-container">
-        <div className="Chatbook-userList"></div>
+        <div className="Chatbook-userList">
+        </div>
         <div className="Chatbook-chatContainer u-relative">
           <Chat data={activeChat} />
         </div>
