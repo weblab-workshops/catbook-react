@@ -30,7 +30,8 @@ const App = () => {
     const userToken = res.credential;
     post("/api/login", { token: userToken }).then((user) => {
       setUserId(user._id);
-      post("/api/initsocket", { socketid: socket.id });
+      // TODO (step 1.1): make post call to /api/initsocket (1 line)
+      
     });
   };
 

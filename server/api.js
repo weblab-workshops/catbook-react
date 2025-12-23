@@ -67,16 +67,24 @@ router.get("/whoami", (req, res) => {
 });
 
 router.get("/user", (req, res) => {
-  User.findById(req.query.userid).then((user) => {
-    res.send(user);
-  }).catch((err) => {
-    res.status(500).send('User Not');
-  });
+  User.findById(req.query.userid)
+    .then((user) => {
+      res.send(user);
+    })
+    .catch((err) => {
+      res.status(500).send("User Not");
+    });
 });
 
 router.post("/initsocket", (req, res) => {
   // do nothing if user not logged in
-  if (req.user) socketManager.addUser(req.user, socketManager.getSocketFromSocketID(req.body.socketid));
+  if (req.user) {
+    // TODO (step 1.2): call socketManager.addUser during socket init (1 line)
+    // this updates the userToSocketMap and socketToUserMap.
+    // hint: the second argument of socketManager.addUser is the socket object, NOT the socket id.
+    // you can get the socket object from the socket id using socketManager.getSocketFromSocketID(req.body.socketid).
+    
+  }
   res.send({});
 });
 
@@ -101,8 +109,7 @@ router.post("/message", auth.ensureLoggedIn, (req, res) => {
   socketManager.getIo().emit("message", message);
 });
 
-router.get("/activeUsers", (req, res) => {
-});
+router.get("/activeUsers", (req, res) => {});
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
