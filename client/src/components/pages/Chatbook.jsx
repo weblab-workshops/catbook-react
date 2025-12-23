@@ -13,8 +13,9 @@ const ALL_CHAT = {
 };
 
 const Chatbook = () => {
-
   let props = useOutletContext();
+
+  // TODO (step 1.3) Add a state called activeUsers, initialized to []
 
   const [activeChat, setActiveChat] = useState({
     recipient: ALL_CHAT,
@@ -31,7 +32,7 @@ const Chatbook = () => {
   };
 
   const addMessage = (data) => {
-    setActiveChat(prevActiveChat => ({
+    setActiveChat((prevActiveChat) => ({
       recipient: prevActiveChat.recipient,
       messages: prevActiveChat.messages.concat(data),
     }));
@@ -52,6 +53,9 @@ const Chatbook = () => {
     };
   }, []);
 
+  // TODO (step 1.4): Add a callback function called setActiveUser that takes a user as a parameter and
+  // prints the user's name to console. We'll change this function later to do something more useful.
+
   if (!props.userId) {
     return <div>Log in before using Chatbook</div>;
   }
@@ -59,14 +63,13 @@ const Chatbook = () => {
   return (
     <>
       <div className="u-flex u-relative Chatbook-container">
-        <div className="Chatbook-userList">
-        </div>
+        <div className="Chatbook-userList"></div>
         <div className="Chatbook-chatContainer u-relative">
           <Chat data={activeChat} />
         </div>
       </div>
     </>
   );
-}
+};
 
 export default Chatbook;
