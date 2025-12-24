@@ -113,7 +113,7 @@ router.post("/message", auth.ensureLoggedIn, (req, res) => {
   });
   message.save();
 
-  if (req.body.recipient._id == "ALL_CHAT") {
+  if (req.body.recipient._id === "ALL_CHAT") {
     socketManager.getIo().emit("message", message);
   } else {
     socketManager.getSocketFromUserID(req.user._id).emit("message", message);
