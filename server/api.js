@@ -109,8 +109,6 @@ router.post("/message", auth.ensureLoggedIn, (req, res) => {
   socketManager.getIo().emit("message", message);
 });
 
-router.get("/activeUsers", (req, res) => {});
-
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
   console.log(`API route not found: ${req.method} ${req.url}`);
