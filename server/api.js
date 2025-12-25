@@ -76,7 +76,6 @@ router.get("/user", (req, res) => {
 
 router.post("/initsocket", (req, res) => {
   // do nothing if user not logged in
-  if (req.user) socketManager.addUser(req.user, socketManager.getSocketFromSocketID(req.body.socketid));
   res.send({});
 });
 
@@ -99,9 +98,6 @@ router.post("/message", auth.ensureLoggedIn, (req, res) => {
   });
   message.save();
   socketManager.getIo().emit("message", message);
-});
-
-router.get("/activeUsers", (req, res) => {
 });
 
 // anything else falls to this "not found" case
