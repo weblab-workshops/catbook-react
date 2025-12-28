@@ -31,6 +31,7 @@ const NavBar = () => {
         <Link to="/profile/" className="NavBar-link">
           Profile
         </Link>
+        {/* TODO (step 0.5): Condtionally render login/logout buttons */}
         <GoogleLogin
           text="signin_with"
           onSuccess={handleLogin}
