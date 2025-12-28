@@ -16,14 +16,14 @@ const NavBar = (props) => {
     console.log(res);
     setLoggedIn(true);
 
-    // TODO (step 2.2) Send res.credential to the backend
+    // TODO (step 2.2.1) Send res.credential to the backend
   };
 
   const handleLogout = () => {
     console.log("Logged out successfully!");
     setLoggedIn(false);
 
-    // TODO: Tell the backend we logged out
+    // TODO (step 2.2.2): Tell the backend we logged out
   };
 
   return (
