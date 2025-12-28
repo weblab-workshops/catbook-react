@@ -18,7 +18,7 @@ const auth = require("./auth");
 // api endpoints: all these paths will be prefixed with "/api/"
 const router = express.Router();
 
-// TODO: Get rid of this!
+// TODO (step 3.5): Get rid of this!
 const MY_NAME = "Anonymous User";
 
 router.get("/stories", (req, res) => {
@@ -27,8 +27,7 @@ router.get("/stories", (req, res) => {
 });
 
 router.post("/story", (req, res) => {
-  // TODO: Introduce creator_id
-  // TODO: Use the real creator name
+  // TODO (step 3.3): Add the creator_id field and use the real creator name
   const newStory = new Story({
     creator_name: MY_NAME,
     content: req.body.content,
@@ -44,8 +43,7 @@ router.get("/comment", (req, res) => {
 });
 
 router.post("/comment", (req, res) => {
-  // TODO: Introduce creator_id
-  // TODO: Use the real creator name
+  // TODO (step 3.4): Add the creator_id field and use the real creator name
   const newComment = new Comment({
     creator_name: MY_NAME,
     parent: req.body.parent,
