@@ -8,16 +8,19 @@ import "./NavBar.css";
  * The navigation bar at the top of all pages. Takes no props.
  */
 const NavBar = () => {
+  // TODO (step 0.1): Add a state to keep track of whether user is logged in 
+
   const handleLogin = (res) => {
     // 'res' contains the response from Google's authentication servers
     console.log(res);
 
-    // TODO: Set a variable 'loggedIn' to react state
+    // TODO (step 0.2): Update the state to reflect user logging in 
+    
   };
 
-  // TODO: Add a function for handleLogout here
+  // TODO (step 0.4): Add a function for handleLogout here
 
-  // TODO: Add a logout button
+
   return (
     <nav className="NavBar-container">
       <div className="NavBar-title u-inlineBlock">Catbook</div>
@@ -34,6 +37,7 @@ const NavBar = () => {
           onFailure={(err) => console.log(err)}
           containerProps= {{'className': "NavBar-link NavBar-login u-inlineBlock"}}
         />
+        {/* TODO (step 0.3): Add a logout button here*/}
       </div>
     </nav>
   );
