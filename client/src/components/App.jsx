@@ -3,6 +3,7 @@ import NavBar from "./modules/NavBar";
 // TODO (8.4.1): Import UserContext by uncommenting:
 // import { UserContext } from "./context/UserContext";
 import { Outlet } from "react-router-dom";
+import { get, post } from "../utilities";
 
 // to use styles, import the necessary CSS files
 import "../utilities.css";
