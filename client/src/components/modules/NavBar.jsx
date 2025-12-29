@@ -5,16 +5,17 @@ import { GoogleLogin } from "@react-oauth/google";
 import { get, post } from "../../utilities";
 import "./NavBar.css";
 
-// TODO: Import UserContext by uncommenting:
+// TODO (8.5.1): Import UserContext by uncommenting:
 // import { UserContext } from "../context/UserContext";
 
 /**
  * The navigation bar at the top of all pages. Takes no props.
  */
 const NavBar = (props) => {
-  // TODO: Move userId state, whoami fetch, login, and logout functions to App.jsx
-  // TODO: Consume userId from UserContext
+  // TODO (step 8.5.2): Consume userId from UserContext
 
+  // TODO (step 8.2.1): Move userId state, whoami fetch, login, and logout functions to App.jsx
+  //   (this will be everything between the ///)
   ////////////////////////////
 
   const [userId, setUserId] = useState(null);
