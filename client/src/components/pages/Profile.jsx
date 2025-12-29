@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import CatHappiness from "../modules/CatHappiness";
 
+import { get } from "../../utilities"; 
 import "../../utilities.css";
 import "./Profile.css";
 
