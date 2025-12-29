@@ -61,7 +61,7 @@ const NavBar = (props) => {
             Profile
           </Link>
         )}
-        {/* Pass in handleLogout and handleLogin as props */}
+        {/* TODO (step 8.3.2): Pass in handleLogout and handleLogin as props inherited from App*/}
         {userId ? (
           <button className="NavBar-link NavBar-login u-inlineBlock" onClick={handleLogout}>
             Sign out

@@ -22,7 +22,7 @@ const App = () => {
     // up in the DOM tree
     <>
       {/* TODO (step 8.4.2): Wrap everything in a context provider for user context */}
-      {/* TODO (step 8.3): Pass in login and logout functions to <NavBar /> as props */}
+      {/* TODO (step 8.3.1): Pass in login and logout functions to <NavBar /> as props */}
       <NavBar />
       <div className="App-container">
         <Outlet />
