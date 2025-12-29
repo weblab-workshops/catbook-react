@@ -6,13 +6,13 @@ import "./Profile.css";
 
 const Profile = () => {
   const [catHappiness, setCatHappiness] = useState(0);
-  // TODO: intiialize user state
+  // TODO (step 5.2): initialize user state
 
   useEffect(() => {
     document.title = "Profile Page";
   }, []);
 
-  // TODO: fetch user data on page load by making a GET request to "/api/user" and set user state to the server response
+  // TODO (step 5.4): fetch user data on page load by making a GET request to "/api/user" and set user state to the server response
 
   const incrementCatHappiness = () => {
     setCatHappiness(catHappiness + 1);
@@ -20,7 +20,7 @@ const Profile = () => {
 
   return (
     <>
-      {/* TODO: conditionally render Loading! if user is undefined */}
+      {/* TODO (step 5.5): conditionally render Loading! if user is undefined */}
       <div
         className="Profile-avatarContainer"
         onClick={() => {
@@ -29,7 +29,7 @@ const Profile = () => {
       >
         <div className="Profile-avatar" />
       </div>
-      {/* TODO: update name with name from user data */}
+      {/* TODO (step 5.3): update name with name from user data */}
       <h1 className="Profile-name u-textCenter">Shannen Wu</h1>
       <hr className="Profile-line" />
       <div className="u-flex">
