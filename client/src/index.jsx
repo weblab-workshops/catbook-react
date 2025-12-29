@@ -21,7 +21,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route errorElement={<NotFound />} element={<App />}>
       <Route path="/" element={<Feed />} />
-      {/* TODO: change route to accept userId */}
+      {/* TODO (step 4.1): change route to accept userId */}
       <Route path="/profile" element={<Profile />} />
     </Route>
   )
