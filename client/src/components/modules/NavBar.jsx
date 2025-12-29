@@ -5,7 +5,7 @@ import { GoogleLogin } from "@react-oauth/google";
 import { get, post } from "../../utilities";
 import "./NavBar.css";
 
-// TODO (8.5.1): Import UserContext by uncommenting:
+// TODO (step 8.5.1): Import UserContext by uncommenting:
 // import { UserContext } from "../context/UserContext";
 
 /**
