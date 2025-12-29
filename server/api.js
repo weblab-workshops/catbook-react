@@ -59,7 +59,7 @@ router.post("/comment", (req, res) => {
 router.post("/login", auth.login);
 router.post("/logout", auth.logout);
 
-// TODO: set up the "get" whoami route
+// TODO (step 7.1): set up the "get" whoami route
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {

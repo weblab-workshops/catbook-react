@@ -11,7 +11,7 @@ import "./NavBar.css";
 const NavBar = (props) => {
   const [userId, setUserId] = useState(null);
 
-  // TODO: call /api/whoami inside of a useEffect (on page load) to set the userId state
+  // TODO (step 7.2): call /api/whoami inside of a useEffect (on page load) to set the userId state
 
   const handleLogin = (res) => {
     // 'res' contains the response from Google's authentication servers
@@ -38,7 +38,7 @@ const NavBar = (props) => {
         <Link to="/" className="NavBar-link">
           Home
         </Link>
-        {/* TODO: Hide profile link if not logged in! */}
+        {/* TODO (step 7.3): Hide profile link if not logged in! */}
         <Link to={`/profile/${userId}`} className="NavBar-link">
           Profile
         </Link>
