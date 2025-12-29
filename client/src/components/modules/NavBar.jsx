@@ -9,7 +9,7 @@ import "./NavBar.css";
  * The navigation bar at the top of all pages. Takes no props.
  */
 const NavBar = (props) => {
-  // TODO: replace the loggedIn state with a userId state
+  // TODO (step 6.1): replace the loggedIn state with a userId state
   const [loggedIn, setLoggedIn] = useState(false);
 
   const handleLogin = (res) => {
@@ -21,7 +21,7 @@ const NavBar = (props) => {
     post("/api/login", { token: userToken }).then((user) => {
       // the server knows we're logged in now
       console.log(user);
-      // TODO: update the userId state
+      // TODO (step 6.2): update the userId state
     });
   };
 
@@ -29,7 +29,7 @@ const NavBar = (props) => {
     console.log("Logged out successfully!");
     setLoggedIn(false);
     post("/api/logout");
-    // TODO: update the userId state
+    // TODO (step 6.3): update the userId state
   };
 
   return (
@@ -39,7 +39,7 @@ const NavBar = (props) => {
         <Link to="/" className="NavBar-link">
           Home
         </Link>
-        {/* TODO: update the link using the userId state */}
+        {/* TODO (step 6.4): update the link using the userId state */}
         <Link to={`/profile`} className="NavBar-link">
           Profile
         </Link>
