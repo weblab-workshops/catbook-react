@@ -53,13 +53,13 @@ const NewPostInput = (props) => {
  * @param {({value}) => void} addNewStory: (function) triggered when a story is submitted, takes {value} as parameters
  */
 const NewStory = (props) => {
-  // TODO (step4): implement addStory, a callback function that takes in a story
-  // and calls the addNewStory prop from Feed
+  // TODO (step4.1): implement addStory, a callback function that takes in a story
+  // and calls the addNewStory prop from Feed with the new story as an input
   const addStory = (value) => {
     
   };
 
-  // TODO (step4): render a NewPostInput that uses addStory as its onSubmit prop
+  // TODO (step4.1): render a NewPostInput that uses addStory as its onSubmit prop
 };
 
 /**

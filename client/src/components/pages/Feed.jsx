@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import SingleStory from "../modules/SingleStory";
-// TODO (step4): import NewStory
+// TODO (step4.3): import NewStory
 // TODO (step6): remove SingleStory import, import Card
 
 const Feed = () => {
   const [stories, setStories] = useState([]);
 
-  // TODO (step4): implement a callback function addNewStory that adds a 
+  // TODO (step4.2): implement a callback function addNewStory that adds a 
   // new story to the stories state
   
 
@@ -42,12 +42,12 @@ const Feed = () => {
     storiesList = <div>No stories!</div>;
   }
 
+  // TODO (step4.3): add in the NewStory component and pass down addStory as a prop
   return (
     <div>
       {storiesList}
     </div>
   );
-  // TODO (step4): add in the NewStory component and pass down addStory as a prop
 };
 
 export default Feed;
