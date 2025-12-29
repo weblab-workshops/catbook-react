@@ -18,7 +18,7 @@ import { UserContext } from "../context/UserContext";
  * @param {ContentObject} story
  */
 const CommentsBlock = (props) => {
-  // TODO: Consume userId from UserContext
+  //  (step 9.2.1): Consume userId from UserContext
 
   return (
     <div className="Card-commentSection">
@@ -31,7 +31,7 @@ const CommentsBlock = (props) => {
             content={comment.content}
           />
         ))}
-        {/* TODO: hide NewComment if userId is null */}
+        {/* TODO (step 9.2.2): hide NewComment if userId is null */}
         <NewComment storyId={props.story._id} addNewComment={props.addNewComment} />
       </div>
     </div>

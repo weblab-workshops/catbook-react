@@ -7,7 +7,7 @@ import { get } from "../../utilities";
 
 const Feed = () => {
   const [stories, setStories] = useState([]);
-  // TODO: Consume userId from UserContext
+  // TODO (step 9.1.1): Consume userId from UserContext
 
   // called when the "Feed" component "mounts", i.e.
   // when it shows up on screen
@@ -42,7 +42,7 @@ const Feed = () => {
   }
   return (
     <>
-      {/* TODO: hide NewStory if userId is null */}
+      {/* TODO (step 9.1.2): hide NewStory if userId is null */}
       <NewStory addNewStory={addNewStory} />
       {storiesList}
     </>
