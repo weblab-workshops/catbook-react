@@ -18,7 +18,7 @@ import { UserContext } from "../context/UserContext";
  * @param {ContentObject} story
  */
 const CommentsBlock = (props) => {
-  //  (step 9.2.1): Consume userId from UserContext
+  //  TODO (step 9.2.1): Consume userId from UserContext
 
   return (
     <div className="Card-commentSection">
