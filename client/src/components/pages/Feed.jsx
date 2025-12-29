@@ -31,13 +31,21 @@ const Feed = () => {
     setStories(hardcodedStories);
   }, []);
 
+  // TODO (Step 3.1): If there are stories to display, use their data to create
+  // a list of SingleStory components. Store these components in `storiesList`. 
+  // Otherwise, set `storiesList` as JSX text reporting there are no stories.
+  // Hint: Use map() to transform each item in a list
+
+  let storiesList = null;
+  // const hasStories = /* TODO (Step 3.1): True if `stories` state is not empty, False otherwise */;
+
+  // TODO (Step 3.2): Render `storiesList`
   return (
     <div>
       <SingleStory _id="test_id" creator_name="Evan" content="test" />
       {JSON.stringify(stories)}
     </div>
   );
-  // TODO (step3): map the state to SingleStory components
   // TODO (step4): add in the NewStory component and pass down addStory as a prop
   // TODO (step6): use Card instead of SingleStory, passing down the same props
 };
