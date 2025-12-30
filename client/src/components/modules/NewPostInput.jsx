@@ -53,8 +53,8 @@ const NewPostInput = (props) => {
  * @param {({value}) => void} addNewStory: (function) triggered when a story is submitted, takes {value} as parameters
  */
 const NewStory = (props) => {
-  const addStory = (value) => {
-    props.addNewStory({content: value, creator_name: "Anonymous User", _id: "random_id"});
+  const addStory = (content) => {
+    props.addNewStory({content: content, creator_name: "Anonymous User", _id: "random_id"});
   };
 
   return <NewPostInput defaultText="What's on your mind?" onSubmit={addStory} />
@@ -68,8 +68,8 @@ const NewStory = (props) => {
  * @param {({value}) => void} addNewComment: (function) triggered when a comment is submitted, takes {value} as parameters
  */
 const NewComment = (props) => {
-  const addComment = (value) => {
-    props.addNewComment({content: value, creator_name: "Anonymous User", _id: "random_id", parent: props.storyId});
+  const addComment = (content) => {
+    props.addNewComment({content: content, creator_name: "Anonymous User", _id: "random_id", parent: props.storyId});
   };
 
   return <NewPostInput defaultText="New Comment" onSubmit={addComment} />;
