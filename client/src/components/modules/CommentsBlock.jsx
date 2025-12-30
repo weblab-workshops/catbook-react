@@ -15,6 +15,7 @@ import { NewComment } from "./NewPostInput";
  * Proptypes
  * @param {ContentObject[]} comments
  * @param {ContentObject} story
+ * @param {({value}) => void} addNewComment: (function) triggered when a comment is submitted, takes {value} as parameters
  */
 const CommentsBlock = (props) => {
   return (
