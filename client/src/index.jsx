@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./components/App";
-// TODO (step5): import Feed, NotFound, and Profile
+// TODO (Step 5.5): import Feed, NotFound, and Profile
 
-// TODO (step5): uncomment the following imports from react-router-dom
+// TODO (Step 5.1): uncomment the following imports from react-router-dom
 // import {
 //   createBrowserRouter,
 //   createRoutesFromElements,
@@ -11,12 +11,12 @@ import App from "./components/App";
 //   RouterProvider,
 // } from 'react-router-dom'
 
-// TODO (step5): implement router
+// TODO (Step 5.2): implement router
 
 // renders React Component "Root" into the DOM element with ID "root"
 ReactDOM.createRoot(document.getElementById("root")).render(
   <>
     <App />
-    {/* TODO (step5): use Router to route between pages */}
+    {/* TODO (Step 5.3): use Router to route between pages */}
   </>
 );

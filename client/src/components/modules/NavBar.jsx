@@ -9,7 +9,7 @@ const NavBar = () => {
   return (
     <nav className="NavBar-container">
       <div className="NavBar-title">Catbook</div>
-      {/* TODO (step5): implement links to pages */}
+      {/* TODO (Step 5.5): implement links to pages */}
     </nav>
   );
 };
