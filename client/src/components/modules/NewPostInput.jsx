@@ -53,13 +53,25 @@ const NewPostInput = (props) => {
  * @param {({value}) => void} addNewStory: (function) triggered when a story is submitted, takes {value} as parameters
  */
 const NewStory = (props) => {
-  // TODO (step4.1): implement addStory, a callback function that takes in a story
-  // and calls the addNewStory prop from Feed with the new story as an input
+  /*
+    TODO (Step 4.2): Implement addStory(value), a callback function where `value`
+    is the user-inputted story content.
+    
+    Create a new story object with `value` as its content and call the addNewStory() 
+    prop with this new story object as input. The ID and creator name can be anything.
+
+    Recall how a story object is defined:
+    storyObj: {
+      _id: String,
+      creator_name: String,
+      content: String
+    }
+  */
   const addStory = (value) => {
     
   };
 
-  // TODO (step4.1): render a NewPostInput that uses addStory as its onSubmit prop
+  // TODO (Step 4.2): render a NewPostInput that uses addStory as its onSubmit prop
 };
 
 /**
@@ -70,13 +82,13 @@ const NewStory = (props) => {
  * @param {({value}) => void} addNewComment: (function) triggered when a comment is submitted, takes {value} as parameters
  */
 const NewComment = (props) => {
-  // TODO (step8): implement addComment, a callback function that takes in a comment
+  // TODO (Step 8): implement addComment, a callback function that takes in a comment
   // and calls the addNewComment prop from Card
   const addComment = (value) => {
     
   };
 
-  // TODO (step8): render a NewPostInput that uses addComment as its onSubmit prop
+  // TODO (Step 8): render a NewPostInput that uses addComment as its onSubmit prop
 };
 
 export { NewComment, NewStory };
