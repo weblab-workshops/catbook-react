@@ -11,7 +11,6 @@ import React from "react";
 const SingleComment = (props) => {
   return (
     <div className="Card-commentBody">
-      {/* TODO (step7): render comment creator and content */}
       <span className="u-bold">{/* FILL IN */}</span>
       <span>{" | " /* + FILL IN AND UNCOMMENT*/}</span>
     </div>

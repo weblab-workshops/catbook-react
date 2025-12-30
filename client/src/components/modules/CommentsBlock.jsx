@@ -1,5 +1,4 @@
 import React from "react";
-// TODO (step9): import SingleComment and NewComment
 
 /**
  * @typedef ContentObject
@@ -14,12 +13,12 @@ import React from "react";
  * Proptypes
  * @param {ContentObject[]} comments
  * @param {ContentObject} story
+ * @param {({value}) => void} addNewComment: (function) triggered when a comment is submitted, takes {value} as parameters
  */
 const CommentsBlock = () => {
   return (
     <div className="Card-commentSection">
       <div className="story-comments">
-        {/* TODO (step9): render comments */}
       </div>
     </div>
   );
