@@ -1,14 +1,8 @@
 import React, { useState, useEffect } from "react";
 import SingleStory from "../modules/SingleStory";
-// TODO (step4): import NewStory
-// TODO (step6): remove SingleStory import, import Card
 
 const Feed = () => {
   const [stories, setStories] = useState([]);
-
-  // TODO (step4): implement a callback function addNewStory that adds a 
-  // new story to the stories state
-  
 
   useEffect(() => {
     const story1 = {
@@ -39,15 +33,13 @@ const Feed = () => {
   let storiesList = null;
   // const hasStories = /* TODO (Step 3.1): True if `stories` state is not empty, False otherwise */;
 
-  // TODO (Step 3.2): Render `storiesList`
   return (
     <div>
+      {/* TODO (Step 3.2): Replace the following to instead render `storiesList` */}
       <SingleStory _id="test_id" creator_name="Evan" content="test" />
       {JSON.stringify(stories)}
     </div>
   );
-  // TODO (step4): add in the NewStory component and pass down addStory as a prop
-  // TODO (step6): use Card instead of SingleStory, passing down the same props
 };
 
 export default Feed;
