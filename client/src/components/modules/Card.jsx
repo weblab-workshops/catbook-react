@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import SingleStory from "./SingleStory";
 import SingleComment from "./SingleComment";
 import { NewComment } from "./NewPostInput";
-// TODO (Step 9.2): import CommentsBlock
+// TODO (Step 9.1): import CommentsBlock
 
 import "./Card.css";
 
@@ -46,7 +46,7 @@ const Card = (props) => {
     setComments(hardcodedComments.filter((comment)=>comment.parent==props._id));
   }, []);
 
-  // TODO (Step 9.1): Move the following logic to CommentsBlock.jsx
+  // TODO (Step 9.2): Move the following logic to CommentsBlock.jsx
   let commentsList = null;
   const hasComments = comments.length !== 0;
   if (hasComments) {
@@ -61,7 +61,7 @@ const Card = (props) => {
     <div className="Card-container">
       <SingleStory _id={props._id} creator_name={props.creator_name} content={props.content}/>
       {commentsList}
-      {/* TODO (Step 9.2): Replace the NewComment component below with CommentsBlock */}
+      {/* TODO (Step 9.1): Replace the NewComment component below with CommentsBlock */}
       <NewComment storyId={props._id} addNewComment={addNewComment}/>
     </div>
   )

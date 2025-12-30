@@ -1,5 +1,5 @@
 import React from "react";
-// TODO (Step 9.1): import SingleComment and NewComment
+// TODO (Step 9.2): import SingleComment and NewComment
 
 /**
  * @typedef ContentObject
@@ -17,14 +17,14 @@ import React from "react";
  * @param {({value}) => void} addNewComment: (function) triggered when a comment is submitted, takes {value} as parameters
  */
 const CommentsBlock = () => {
-  // TODO (Step 9.1): Create list of SingleComment components by moving logic
+  // TODO (Step 9.2): Create list of SingleComment components by moving logic
   // in Card.jsx, lines 50-58 down below
 
   return (
     <div className="Card-commentSection">
       <div className="story-comments">
-        {/* TODO (Step 9.1): Render list of SingleComment components*/}
-        {/* TODO (Step 9.1): Render NewComment component */}
+        {/* TODO (Step 9.2): Render list of SingleComment components*/}
+        {/* TODO (Step 9.2): Render NewComment component */}
       </div>
     </div>
   );
