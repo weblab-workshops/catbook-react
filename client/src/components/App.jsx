@@ -1,7 +1,6 @@
 import React from "react";
 import NavBar from "./modules/NavBar";
 import Feed from "./pages/Feed";
-// TODO (step5): import Outlet
 
 // To use styles, import the necessary CSS files
 import "../utilities.css";
@@ -19,7 +18,6 @@ import "./App.css";
       <div className="App-container">
         {/* <Profile /> */}
         <Feed />
-        {/* TODO (step5): use Outlet to route between pages */}
       </div>
     </>
   );
