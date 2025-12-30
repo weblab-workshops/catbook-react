@@ -6,8 +6,8 @@ const Feed = () => {
   const [stories, setStories] = useState([]);
 
   // updates the stories state so that the new story is added immediately
-  const addNewStory = (value) => {
-    setStories(stories.concat(value));
+  const addNewStory = (story) => {
+    setStories(stories.concat(story));
   }
 
   useEffect(() => {
