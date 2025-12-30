@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import SingleStory from "./SingleStory";
-// TODO (step7): import SingleComment
-// TODO (step8): import NewComment
-// TODO (step9): import CommentsBlock
+// TODO (Step 7.2): import SingleComment
 
 import "./Card.css";
 
@@ -16,9 +14,6 @@ import "./Card.css";
  */
 const Card = (props) => {
   const [comments, setComments] = useState([]);
-
-  // TODO (step8): implement a callback function addNewComment that adds a 
-  // new comment to the comments state
 
   useEffect(() => {
     const comment1 = {
@@ -44,16 +39,16 @@ const Card = (props) => {
     setComments(hardcodedComments.filter((comment)=>comment.parent==props._id));
   }, []);
 
+  // TODO (Step 7.2): Map comment objects from state into SingleComment
+  // components (refer to Feed.jsx, line 34)
+  
+  
   return (
     <div className="Card-container">
       <SingleStory _id={props._id} creator_name={props.creator_name} content={props.content}/>
-      {JSON.stringify(comments)}
+      {/* TODO (Step 7.2): Replace with list of SingleComment components */ JSON.stringify(comments)}
     </div>
   )
-  // TODO (step7): map comments from state into SingleComment
-  // components (refer to Feed)
-  // TODO (step8): add in the NewComment component (refer to Feed)
-  // TODO (step9): use CommentsBlock
 };
 
 export default Card;
