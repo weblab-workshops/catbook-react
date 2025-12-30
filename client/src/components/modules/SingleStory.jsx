@@ -1,7 +1,5 @@
 import React from "react";
 
-// TODO (ste12): import Card.css
-
 /**
  * Story is a component that renders creator and content of a story
  *
@@ -14,7 +12,6 @@ const SingleStory = () => {
   return (
     <div className="Card-story">
       This is a SingleStory!
-      {/* TODO (step1): use JSX and props to render story creator and content */}
     </div>
   );
 };
