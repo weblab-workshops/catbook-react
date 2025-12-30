@@ -53,8 +53,8 @@ const NewPostInput = (props) => {
  * @param {({value}) => void} addNewStory: (function) triggered when a story is submitted, takes {value} as parameters
  */
 const NewStory = (props) => {
-  const addStory = (value) => {
-    props.addNewStory({content: value, creator_name: "Anonymous User", _id: "random_id"});
+  const addStory = (content) => {
+    props.addNewStory({content: content, creator_name: "Anonymous User", _id: "random_id"});
   };
 
   return <NewPostInput defaultText="What's on your mind?" onSubmit={addStory} />
@@ -68,13 +68,13 @@ const NewStory = (props) => {
  * @param {({value}) => void} addNewComment: (function) triggered when a comment is submitted, takes {value} as parameters
  */
 const NewComment = (props) => {
-  // TODO (step8): implement addComment, a callback function that takes in a comment
+  // TODO (Step 8.2): implement addComment, a callback function that takes in a comment
   // and calls the addNewComment prop from Card
-  const addComment = (value) => {
+  const addComment = (content) => {
     
   };
 
-  // TODO (step8): render a NewPostInput that uses addComment as its onSubmit prop
+  // TODO (Step 8.2): render a NewPostInput that uses addComment as its onSubmit prop
 };
 
 export { NewComment, NewStory };

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import SingleStory from "./SingleStory";
 import SingleComment from "./SingleComment";
-// TODO (step8): import NewComment
-// TODO (step9): import CommentsBlock
+// TODO (Step 8.3): import NewComment
 
 import "./Card.css";
 
@@ -17,7 +16,7 @@ import "./Card.css";
 const Card = (props) => {
   const [comments, setComments] = useState([]);
 
-  // TODO (step8): implement a callback function addNewComment that adds a 
+  // TODO (Step 8.1): implement a callback function addNewComment that adds a 
   // new comment to the comments state
 
   useEffect(() => {
@@ -58,10 +57,9 @@ const Card = (props) => {
     <div className="Card-container">
       <SingleStory _id={props._id} creator_name={props.creator_name} content={props.content}/>
       {commentsList}
+      {/* TODO (Step 8.3): add in the NewComment component (refer to Feed.jsx, line 46) */}
     </div>
   )
-  // TODO (step8): add in the NewComment component (refer to Feed)
-  // TODO (step9): use CommentsBlock
 };
 
 export default Card;
