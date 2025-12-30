@@ -67,7 +67,7 @@ const NewStory = (props) => {
       content: String
     }
   */
-  const addStory = (value) => {
+  const addStory = (content) => {
     
   };
 
@@ -82,13 +82,10 @@ const NewStory = (props) => {
  * @param {({value}) => void} addNewComment: (function) triggered when a comment is submitted, takes {value} as parameters
  */
 const NewComment = (props) => {
-  // TODO (Step 8): implement addComment, a callback function that takes in a comment
-  // and calls the addNewComment prop from Card
-  const addComment = (value) => {
+  const addComment = (content) => {
     
   };
 
-  // TODO (Step 8): render a NewPostInput that uses addComment as its onSubmit prop
 };
 
 export { NewComment, NewStory };
