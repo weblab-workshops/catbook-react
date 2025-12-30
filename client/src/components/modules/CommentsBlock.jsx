@@ -1,5 +1,4 @@
 import React from "react";
-// TODO (step9): import SingleComment and NewComment
 
 /**
  * @typedef ContentObject
@@ -19,7 +18,6 @@ const CommentsBlock = () => {
   return (
     <div className="Card-commentSection">
       <div className="story-comments">
-        {/* TODO (step9): render comments */}
       </div>
     </div>
   );
