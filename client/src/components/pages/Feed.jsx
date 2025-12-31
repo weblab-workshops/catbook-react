@@ -16,8 +16,9 @@ const Feed = () => {
     
   }, []);
 
-  // TODO (Step 2): render a SingleStory with hardcoded props
-  return <SingleStory _id="test_id" creator_name="Evan" content="test" />;
+  // TODO (Step 2): Replace the SingleStory component below with the
+  // stringified `stories` state
+  return <SingleStory _id="test_id" creator_name="You" content="test" />;
 };
 
 export default Feed;
