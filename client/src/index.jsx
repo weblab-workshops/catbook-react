@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./components/App";
-// TODO (Step 5.5): import Feed, NotFound, and Profile
+// TODO (Step 5.2): import Feed, NotFound, and Profile
 
 // TODO (Step 5.1): uncomment the following imports from react-router-dom
 // import {
