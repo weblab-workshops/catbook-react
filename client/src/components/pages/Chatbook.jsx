@@ -36,6 +36,8 @@ const Chatbook = () => {
     // TODO (step 10.1) If the messages don't belong in the currently active
     // chat, don't add them to the state!
     // NOTE: we'll need to move the definion of this function
+    // Hint: Access the user data with props.user
+    // Hint: the input data follows the Message schema
     setActiveChat(prevActiveChat => ({
       recipient: prevActiveChat.recipient,
       messages: prevActiveChat.messages.concat(data),
