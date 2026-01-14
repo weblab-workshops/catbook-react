@@ -37,7 +37,13 @@ const spawnPlayer = (id) => {
   };
 };
 
-/** Moves a player based off the sent data from the "move" socket msg */
+/*
+  Moves a player based off the sent data from the "move" socket message
+
+  Inputs:
+  - id: the user ID of the player attempting a move
+  - dir: the direction the player is attempting to move
+*/
 const movePlayer = (id, dir) => {
   // If player doesn't exist, don't move anything
   if (gameState.players[id] == undefined) {
