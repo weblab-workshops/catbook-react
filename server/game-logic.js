@@ -141,14 +141,15 @@ const movePlayer = (id, dir) => {
   };
 
   // Calculate desired position
+  const speed = 450 / (gameState.players[id].radius + 25)
   if (dir === "up") {
-    desiredPosition.y += 10;
+    desiredPosition.y += speed;
   } else if (dir === "down") {
-    desiredPosition.y -= 10;
+    desiredPosition.y -= speed;
   } else if (dir === "left") {
-    desiredPosition.x -= 10;
+    desiredPosition.x -= speed;
   } else if (dir === "right") {
-    desiredPosition.x += 10;
+    desiredPosition.x += speed;
   }
 
   // Keep player in bounds
